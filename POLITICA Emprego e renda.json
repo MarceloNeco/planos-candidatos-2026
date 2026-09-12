@@ -1,0 +1,864 @@
+{
+  "macrotema": "Emprego, renda e mercado de trabalho",
+  "codigo_macrotema": "EMP",
+  "data_analise": "2026-09-11",
+  "candidatos_analisados": [
+    {"nome": "Flávio Bolsonaro", "partido": "PL", "prefixo": "bol"},
+    {"nome": "Ronaldo Caiado", "partido": "PSD", "prefixo": "cai"},
+    {"nome": "Lula", "partido": "PT", "prefixo": "lul"},
+    {"nome": "Renan Santos", "partido": "Missão", "prefixo": "ren"},
+    {"nome": "Romeu Zema", "partido": "NOVO", "prefixo": "zem"}
+  ],
+  "dados_contexto": {
+    "taxa_desocupacao_2t2026": "5,4%",
+    "taxa_desocupacao_jul2026": "5,3%",
+    "observacao": "Menor taxa da série histórica (iniciada em 2012)",
+    "populacao_ocupada": "~103 milhões",
+    "empregados_carteira_2025": "38,9 milhões (recorde)",
+    "fonte_ibge": "https://www.ibge.gov.br/explica/desemprego.php",
+    "fonte_estadao": "https://www.estadao.com.br/economia/desemprego-pnad-continua-ibge-julho-2026/",
+    "escala_6x1_status": "PEC em tramitação no Senado (Senador Paulo Paim PT-RS); discussão continua em agosto de 2026",
+    "fonte_senado_6x1": "https://www12.senado.leg.br/noticias/materias/2026/07/28/discussao-sobre-fim-da-escala-de-trabalho-6x1-continua-em-agosto",
+    "pejotizacao_acoes_judiciais": "69 mil",
+    "mpt_projeto": "Combate à Pejotização (jan 2026 - dez 2027)",
+    "tst_tema_mes": "fevereiro de 2026",
+    "fonte_pejotizacao": "https://www.brasildefato.com.br/2026/05/15/pejotizacao-uma-ameaca-a-protecao-social-de-trabalhadores-e-trabalhadoras-no-brasil",
+    "fonte_mpt": "https://mpt.mp.br/planejamento-gestao-estrategica/gestao-estrategica/pe-pejotizacao",
+    "pochmann_contexto": {
+      "cnn_brasil": "Especialistas classificam nomeação como 'questão ideológica' (jul/2023)",
+      "fonte_cnn": "https://www.cnnbrasil.com.br/economia/macroeconomia/pochmann-na-presidencia-do-ibge-e-uma-questao-ideologica-dizem-especialistas",
+      "gazeta_povo": "Polêmicas, controvérsias e ideologia à frente do IBGE",
+      "fonte_gazeta": "https://www.gazetadopovo.com.br/economia/metralhadora-de-pochmann-mira-classe-media-empreendedores-agro-e-o-capitalismo-todo/",
+      "folha_dez2025": "Pochmann: 'Sou visto como o cara polêmico'",
+      "fonte_folha": "https://www1.folha.uol.com.br/cotidiano/2025/12/sou-visto-como-o-cara-polemico-mas-estamos-modernizando-o-ibge-diz-marcio-pochmann.shtml",
+      "discurso_90anos": "Quem controla os dados governa o futuro",
+      "nota_citacao_socialismo": "Não foi encontrada a citação exata sobre 'a serviço do socialismo' mencionada no CONTEXTO POLITICO. Múltiplas fontes questionam a ideologização do IBGE, mas a frase específica não foi localizada em fontes verificáveis."
+    },
+    "criacao_empregos_pt_2023_2026": "8,0 milhões (afirmado pelo PT); IBGE confirma 2025 como melhor ano da série histórica",
+    "fonte_ibge_2025": "https://agenciadenoticias.ibge.gov.br/agencia-noticias/2012-agencia-de-noticias/noticias/45761-desocupacao-cai-para-5-1-em-dezembro-e-2025-tem-melhores-resultados-da-serie-historica"
+  },
+  "fichas": [
+    {
+      "source_reference": "bol-EMP-1",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "Da proteção à autonomia",
+      "secondary_quote": "o programa social é o começo da caminhada, não o fim",
+      "page": "p. 42 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia o objeto (programa social) e a direção (autonomia), mas não declara instrumento, parâmetro ou prazo",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "A direção política é clara: programas sociais como trampolim, não destino"},
+        "detalhamento": {"score": 2, "justification": "Não detalha mecanismos de transição nem estrutura do programa"},
+        "mensurabilidade": {"score": 1, "justification": "Não define métrica de sucesso ou meta numérica"},
+        "custo": {"score": 1, "justification": "Não estima custo fiscal da transição"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica fonte de financiamento"},
+        "prazo": {"score": 1, "justification": "Não define prazo para implementação"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão responsável"},
+        "indicadores": {"score": 1, "justification": "Não define indicadores de acompanhamento"},
+        "evidencias": {"score": 2, "justification": "Referencia experiência de governo anterior (Bolsonaro 2019-2022) implicitamente"},
+        "complexidade": {"score": 2, "justification": "Depende de reformas estruturais mas conceito é direto"},
+        "dependencias": {"score": 3, "justification": "Depende de reforma fiscal e crescimento econômico para viabilizar transição"}
+      },
+      "analysis": "Diretriz central do capítulo 'Brasil Que Prospera'. Posiciona programas sociais como trampolim, não destino final — alinhado à narrativa do CONTEXTO POLITICO de que a esquerda usa programas sociais para criar dependência estatal e clientelismo eleitoral. A ausência de instrumentos específicos reduz a capacidade de fiscalização. Em comparação: Lula também menciona 'porta de saída' mas na prática expande o Bolsa Família e mantém transferência passiva; Renan Santos propõe substituir integralmente o Bolsa Família por 'Frentes Cidadãs' (mais radical); Caiado tem conceito similar ('ponte para autonomia'); Zema foca em flexibilização do mercado. A diretriz de Flávio é a mais equilibrada: mantém proteção mas coloca autonomia como horizonte, sem romper abruptamente como Renan nem perpetuar dependência como Lula.",
+      "overlap": null
+    },
+    {
+      "source_reference": "bol-EMP-2",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "Trabalho que compensa",
+      "secondary_quote": "emprego com carteira, e o esforço valendo a pena",
+      "page": "p. 43 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (emprego formal com carteira) e direção (valorização do esforço), sem instrumento",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Defende claramente emprego formal com carteira assinada"},
+        "detalhamento": {"score": 2, "justification": "Não detalha como expandir emprego formal além do que ocorre naturalmente"},
+        "mensurabilidade": {"score": 1, "justification": "Não define meta de empregos formais a criar"},
+        "custo": {"score": 1, "justification": "Não estima custo"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica fonte"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Contexto atual favorável: recorde de 38,9 milhões de empregados com carteira em 5, segundo IBGE"},
+        "complexidade": {"score": 2, "justification": "Depende de crescimento econômico e ambiente de negócios"},
+        "dependencias": {"score": 3, "justification": "Depende de política econômica, tributária e regulatória"}
+      },
+      "analysis": "Defende o emprego formal com carteira assinada. No contexto atual (recorde de 38,9 milhões de empregados com carteira em 2025, segundo IBGE), a proposta não define como expandir esse número. Não menciona a pejotização explicitamente, mas a valorização do emprego com carteira implícita sugere oposição à precarização. Lula, por contraste, tem proposta específica de combate à pejotização (com MPT e TST atuando ativamente). A tagline 'o esforço valendo a pena' sugere valorização do salário real, mas sem instrumento definido — diferencia-se da proposta de Lula de valorização sistemática do salário mínimo. O CONTEXTO POLITICO destaca que Bolsonaro valorizou o salário mínimo durante seu governo, o que é fato verificado — diferente da narrativa petista de que apenas o PT valoriza o mínimo.",
+      "overlap": null
+    },
+    {
+      "source_reference": "bol-EMP-3",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "O trabalhador em primeiro lugar, não o sindicato",
+      "secondary_quote": "proteger quem trabalha, não quem vive da estrutura sindical",
+      "page": "p. 44 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (trabalhador vs. sindicato) e direção (proteção ao trabalhador), sem instrumento específico",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Posição muito clara: trabalhador acima da estrutura sindical"},
+        "detalhamento": {"score": 2, "justification": "Não detalha mecanismo (imposto sindical? extinção? reforma representação?)"},
+        "mensurabilidade": {"score": 1, "justification": "Sem métrica"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Referencia experiência de governo anterior com reformas sindicais (Lei da Liberdade Econômica)"},
+        "complexidade": {"score": 3, "justification": "Requer reforma legislativa e constitucional"},
+        "dependencias": {"score": 4, "justification": "Depende de reforma sindical no Congresso"}
+      },
+      "analysis": "Diretriz que se alinha ao CONTEXTO POLITICO sobre a ligação umbilical entre sindicatos e PT — evidenciada pelo escândalo do INSS, onde descontos automáticos em benefícios de aposentados beneficiavam entidades sindicais ligadas à base governista. Bolsonaro tomou medidas para impedir descontos automáticos, o que foi revertido quando Lula retornou ao poder. A oposição à estrutura sindical é clara, mas o documento não detalha o mecanismo. Zema é mais específico ao propor 'acabar com o monopólio sindical'. Lula defende o oposto: 'fortalecimento da negociação coletiva'. Este é um ponto de divergência clara e rastreável: Flávio e Zema enfraquecem a estrutura sindical; Lula a fortalece; Caiado e Renan não abordam explicitamente.",
+      "overlap": null
+    },
+    {
+      "source_reference": "bol-EMP-4",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "Negócio próprio",
+      "secondary_quote": "quem emprega a si mesmo tira o país das costas do Estado",
+      "page": "p. 45 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (empreendedorismo individual) e direção (autonomia via negócio próprio)",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Clara promoção do empreendedorismo individual"},
+        "detalhamento": {"score": 2, "justification": "Menciona programa 'Minha Primeira Empresa' mas sem detalhes de estrutura"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta numérica de novos empreendedores"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão específico (CAIXA implícita)"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Gov.br, Pix e abertura de empresas com menor burocracia durante governo Bolsonaro são referenciados"},
+        "complexidade": {"score": 2, "justification": "Depende de ambiente regulatório favorável"},
+        "dependencias": {"score": 2, "justification": "Depende de desburocratização e crédito"}
+      },
+      "analysis": "Promove empreendedorismo individual como caminho de prosperidade. No contexto da pejotização, esta proposta pode ser duplamente interpretada: como incentivo legítimo ao empreendedorismo ou como possível legitimação de relações PJ. Lula aumenta o limite de faturamento do MEI e oferece crédito (Pronampe: 1,6 milhão de operações). Zema defende flexibilização da CLT. O CONTEXTO POLITICO destaca que sob Bolsonaro houve abertura de empresas com menor burocracia e digitalização de serviços — fato verificado pela implantação do Gov.br e simplificação processual. A diferença: Flávio não menciona PJ explicitamente, enquanto Lula propõe combatê-la e Zema propõe flexibilizá-la. Flávio fica em posição intermediária: incentiva empreendedorismo sem criminalizar a figura do PJ nem flexibilizar direitos.",
+      "overlap": null
+    },
+    {
+      "source_reference": "bol-EMP-5",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "A CAIXA como Banco da Prosperidade",
+      "secondary_quote": "a mão que ajuda o brasileiro a subir de vida",
+      "page": "p. 46 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Identifica instrumento (CAIXA) e direção (prosperidade via crédito), sem parâmetros",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Posiciona a CAIXA como instrumento de inclusão financeira"},
+        "detalhamento": {"score": 2, "justification": "Não detalha linhas de crédito, valores ou públicos-alvo"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta de operações ou valor mobilizado"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica (CAIXA é banco público mas fonte não explicitada)"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "CAIXA identificada como executora"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Pix e digitalização de serviços durante governo Bolsonaro são referenciados como base"},
+        "complexidade": {"score": 3, "justification": "Depende de gestão da CAIXA e ambiente macroeconômico"},
+        "dependencias": {"score": 3, "justification": "Depende de política fiscal e gestão da CAIXA"}
+      },
+      "analysis": "Posiciona a CAIXA como instrumento de inclusão financeira e acesso a crédito para empreendedores e famílias. O CONTEXTO POLITICO destaca corretamente que sob Bolsonaro o Pix foi implantado, a abertura de empresas foi simplificada e diversos serviços foram digitalizados —-marcos relevantes que criaram base para inclusão financeira. Em comparação, Lula tem programas específicos de crédito para MPMEs com números verificáveis: Pronampe (1,6 milhão de operações), Procred 360 (211 mil operações), R$ 130 bilhões mobilizados. Flávio não fornece números equivalentes, mas a diretriz é clara. A CAIXA como banco de prosperidade sugere crédito para empreendedores e homeownership — conectando-se à proposta de casa própria.",
+      "overlap": null
+    },
+    {
+      "source_reference": "bol-EMP-6",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "A casa própria",
+      "secondary_quote": "a chave da casa é o começo do patrimônio de uma família",
+      "page": "p. 47 — BRASIL QUE PROSPERA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (casa própria) e direção (patrimônio familiar), sem instrumento",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Homeownership como instrumento de geração de riqueza familiar"},
+        "detalhamento": {"score": 2, "justification": "Não detalha programa habitacional específico"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta de unidades"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica (CAIXA implícita)"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "CAIXA implícita como executora"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Programa habitacional anterior (Casa Verde e Amarela) referenciado"},
+        "complexidade": {"score": 3, "justification": "Depende de política habitacional, fiscal e fundiária"},
+        "dependencias": {"score": 4, "justification": "Depende de política habitacional, CAIXA e ambiente fiscal"}
+      },
+      "analysis": "Homeownership como instrumento de geração de riqueza familiar e emprego (construção civil). Lula contratou 2 milhões de casas no Minha Casa Minha Vida (meta atingida 1 ano antes, elevada a 3 milhões). Flávio não detalha números, mas a diretriz é clara. O setor da construção civil é um dos maiores geradores de emprego formal no Brasil. O CONTEXTO POLITICO não aborda especificamente habitação, mas a conexão com emprego é direta.",
+      "overlap": "Possivelmente relevante para macrotema de política social/habitação"
+    },
+    {
+      "source_reference": "bol-EMP-7",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "Preparar para o trabalho que existe",
+      "secondary_quote": "estudar tem que levar a emprego, não a um diploma sem uso",
+      "page": "p. 36 — BRASIL QUE PREPARA",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (educação para emprego) e direção (alinhamento ao mercado), sem instrumento",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Conecta educação ao mercado de trabalho de forma clara"},
+        "detalhamento": {"score": 2, "justification": "Menciona ensino técnico/profissionalizante mas sem estrutura detalhada"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta de inserção laboral"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 2, "justification": "Referencia experiência prévia com ensino técnico"},
+        "complexidade": {"score": 2, "justification": "Depende de reforma educacional"},
+        "dependencias": {"score": 2, "justification": "Depende de política educacional e parcerias com setor produtivo"}
+      },
+      "analysis": "Crítica implícita à expansão de universidades públicas pelo PT — alinhada ao CONTEXTO POLITICO: 'lula sempre fez faculdades públicas, que na prática, acaba sendo acessada por ricos que fazem cursinhos, ou por meio de cotas'. A proposta defende ensino técnico/profissionalizante alinhado ao mercado. Caiado tem proposta similar em seu TEMA 11 (educação profissional e tecnológica). Lula foca em ampliação de universidades e cotas. Renan Santos defende 'formar elites, cultivar o povo' com foco em STEM. A diferença: Flávio prioriza empregabilidade imediata; Lula prioriza acesso ao ensino superior; Renan prioriza excelência técnica; Zema prioriza conexão com mercado.",
+      "overlap": "Macrotema educação"
+    },
+    {
+      "source_reference": "bol-EMP-8",
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "type": "diretriz",
+      "literal_quote": "Mais trabalho para elas",
+      "page": "p. 20 — BRASIL POR ELAS",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (inserção laboral feminina) e direção (mais trabalho), sem instrumento",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Proposta de inserção laboral feminina"},
+        "detalhamento": {"score": 2, "justification": "Menciona escola de treinamento e colocação no mercado mas sem detalhes"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta de inserção"},
+        "custo": {"score": 1, "justification": "Não estima"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identifica órgão"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 1, "justification": "Não referencia dados sobre desemprego feminino"},
+        "complexidade": {"score": 2, "justification": "Depende de políticas de educação e mercado"},
+        "dependencias": {"score": 2, "justification": "Depende de política educacional e ambiente econômico"}
+      },
+      "analysis": "Dados IBGE: desemprego feminino (6,4%) vs. masculino (4,6%) no 2º trim. 2026 — gap persistente. Lula tem Lei de Igualdade Salarial entre homens e mulheres (lei já sancionada, instrumento específico). Flávio menciona 'escola' de treinamento e 'colocação no mercado' mas sem instrumentos. A diferença: Lula usa instrumento legal (lei); Flávio usa abordagem de capacitação e inserção direta. Ambos endereçam o problema, mas com filosofias diferentes: Lula via regulação estatal; Flávio via capacitação e mercado.",
+      "overlap": "Macrotema mulheres/direitos"
+    },
+    {
+      "source_reference": "lul-EMP-1",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: 8,0 milhões de empregos criados 2023-junho de 2026; menores taxas de desemprego da história]",
+      "page": "p. 73 — Diretriz 12: Valorizar o Trabalho em suas Múltiplas Formas",
+      "specificity_level": 4,
+      "specificity_justification": "Traz parâmetro numérico verificável (8 milhões de empregos) e período definido (2023-jun/2026)",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Afirmação numérica clara de criação de empregos"},
+        "detalhamento": {"score": 3, "justification": "Fornece número total e período, mas não detalha setores"},
+        "mensurabilidade": {"score": 4, "justification": "Número verificável via PNAD Contínua IBGE"},
+        "custo": {"score": 1, "justification": "Não estima custo fiscal dos programas que geraram empregos"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica fonte específica"},
+        "prazo": {"score": 3, "justification": "Período definido: 2023 a junho de 2026"},
+        "responsaveis": {"score": 2, "justification": "Governo federal implícito, sem órgão específico"},
+        "indicadores": {"score": 3, "justification": "PNAD Contínua serve como indicador externo"},
+        "evidencias": {"score": 4, "justification": "IBGE confirma melhoria do mercado de trabalho em 2025 (melhor ano da série histórica)"},
+        "complexidade": {"score": 2, "justification": "Resultado de múltiplos fatores econômicos, não de um único programa"},
+        "dependencias": {"score": 2, "justification": "Depende de ciclo econômico e investimentos (Novo PAC)"}
+      },
+      "analysis": "O dado é confirmado pelo IBGE: 2025 teve os melhores resultados da série histórica para o mercado de trabalho; taxa de desocupação caiu para 5,1% em dezembro de 2025 e 5,3% em julho de 2026. Porém, o CONTEXTO POLITICO levanta questão legítima sobre a confiabilidade dos dados sob Pochmann: especialistas classificam a nomeação como 'questão ideológica' (CNN Brasil, jul/2023); Gazeta do Povo detalha 'polêmicas, controvérsias e ideologia'; Pochmann declarou 'Sou visto como o cara polêmico' (Folha, dez/2025) e 'Quem controla os dados governa o futuro'. Não foi localizada a citação exata sobre 'a serviço do socialismo' mencionada no CONTEXTO POLITICO, mas há múltiplas fontes questionando a independência do IBGE. Importante notar: o IBGE mantém metodologia reconhecida internacionalmente, independentemente da nomeação política. O número de 8 milhões de empregos é plausível dado o ciclo econômico. O CONTEXTO POLITICO também questiona se retirar beneficiários do Bolsa Família da contagem afetaria os dados — questão que merece investigação técnica adicional. Nenhum outro candidato contesta diretamente os números de emprego no plano de governo.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-2",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: política de valorização do salário mínimo com ganhos reais]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara o instrumento (política de valorização do salário mínimo) mas sem parâmetro numérico específico",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Política sistemática de valorização real do salário mínimo"},
+        "detalhamento": {"score": 2, "justification": "Não detalha fórmula ou percentual de reajuste"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via valor nominal do mínimo, mas sem meta explícita"},
+        "custo": {"score": 3, "justification": "Impacto fiscal significativo em benefícios previdenciários indexados ao mínimo"},
+        "fonte_financiamento": {"score": 2, "justification": "Arrecadação tributária implícita, mas não explicitada"},
+        "prazo": {"score": 2, "justification": "Política contínua, sem prazo específico"},
+        "responsaveis": {"score": 2, "justification": "Governo federal e Congresso implícitos"},
+        "indicadores": {"score": 2, "justification": "Valor real do salário mínimo como indicador"},
+        "evidencias": {"score": 3, "justification": "Política implementada desde 2003 com resultados verificáveis"},
+        "complexidade": {"score": 3, "justification": "Impacto em cascata sobre previdência, gastos públicos e inflação"},
+        "dependencias": {"score": 3, "justification": "Depende de arrecadação tributária e ambiente macroeconômico"}
+      },
+      "analysis": "Política já implementada durante governos PT desde 2003. O CONTEXTO POLITICO aponta corretamente que Bolsonaro também valorizou o salário mínimo — fato verificado. A diferença: o PT adota política sistemática de recomposição real (política de estado), enquanto Bolsonaro priorizou redução de impostos sobre consumo (aumentando poder de compra indiretamente). Zema e Flávio priorizam redução da carga tributária sobre o trabalhador ao invés de aumento nominal do salário mínimo. Ambas abordagens têm mérito: a valorização nominal do mínimo beneficia diretamente trabalhadores de baixa renda, mas aumenta custo fiscal previdenciário; a redução de impostos aumenta poder de compra sem impacto fiscal previdenciário direto, mas depende de equilíbrio tributário.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-3",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: fortalecimento do Sistema Público de Emprego, Trabalho e Renda; expansão da rede SINE com IA]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (Sistema Público de Emprego + SINE + IA) mas sem parâmetro",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Fortalecimento de estrutura existente (SINE) com adição de IA"},
+        "detalhamento": {"score": 2, "justification": "Não detalha investimento ou cobertura pretendida"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via cobertura do SINE, mas sem meta"},
+        "custo": {"score": 2, "justification": "Custo de manutenção e tecnologia não estimado"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "Ministério do Trabalho implícito"},
+        "indicadores": {"score": 2, "justification": "Cobertura do SINE como indicador"},
+        "evidencias": {"score": 2, "justification": "Estrutura SINE já existe e é verificável"},
+        "complexidade": {"score": 2, "justification": "Depende de modernização tecnológica e articulação federativa"},
+        "dependencias": {"score": 2, "justification": "Depende de orçamento e articulação com estados/municípios"}
+      },
+      "analysis": "Fortalecimento de estrutura existente (SINE) com adição de IA à plataforma nacional de empregabilidade. Flávio Bolsonaro não menciona sistema público de emprego especificamente, focando em empreendedorismo e CAIXA. Zema foca em flexibilização. Caiado não detalha neste macrotema. A adição de IA é inovação relevante, mas o documento não detalha investimento ou metas de cobertura.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-4",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: combate à pejotização (contratação fraudulenta como PJ)]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (combate à pejotização) mas sem detalhar mecanismo legal específico",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Direção clara: combater contratação fraudulenta como PJ"},
+        "detalhamento": {"score": 2, "justification": "Não detalha mecanismo legal (fiscalização? mudança na CLT? responsabilidade patronal?)"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via ações fiscais e judiciais, mas sem meta"},
+        "custo": {"score": 2, "justification": "Custo de fiscalização não estimado"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "MPT e auditores fiscais implícitos"},
+        "indicadores": {"score": 2, "justification": "Número de ações judiciais e conversões para CLT como indicadores"},
+        "evidencias": {"score": 3, "justification": "MPT tem projeto ativo (jan 2026-dez 2027); 69 mil ações em curso; TST colocou como tema do mês fev/2026"},
+        "complexidade": {"score": 3, "justification": "Depende de definição legal do que constitui fraude vs. legítimo PJ"},
+        "dependencias": {"score": 3, "justification": "Depende de MPT, Justiça do Trabalho e legislação"}
+      },
+      "analysis": "Proposta alinhada com MPT, que tem projeto 'Combate à Pejotização' (jan 2026-dez 2027) e 69 mil ações judiciais em curso. O TST colocou o tema como 'tema do mês' em fev/2026. Há robusta evidência do problema. Porém, o CONTEXTO POLITICO levanta argumento relevante: muitos trabalhadores já estão como PJ e iniciativas de proteção podem encarecer serviços, fechar negócios e aumentar desemprego. Este argumento tem base econômica: setores como tecnologia, transporte e serviços operam com PJ e seriam diretamente impactados. Por outro lado, a pejotização fraudulenta priva trabalhadores de direitos previdenciários. A questão central é distinguir entre PJ legítimo (empreendedorismo) e PJ fraudulento (relação de emprego disfarçada). Flávio não menciona pejotização explicitamente; Zema propõe flexibilização da CLT (potencialmente na direção oposta ao combate). A posição de Lula é a única que trata o tema diretamente entre os cinco candidatos.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-5",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: fim da escala 6x1; jornada de 40 horas sem redução salarial]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 4,
+      "specificity_justification": "Traz parâmetro específico (40 horas sem redução salarial) e identifica o instrumento (fim da escala 6x1)",
+      "dimensions": {
+        "clareza": {"score": 5, "justification": "Proposta inequívoca: fim da escala 6x1 e 40h sem redução salarial"},
+        "detalhamento": {"score": 3, "justification": "Define parâmetro (40h) e condição (sem redução salarial), mas não detalha implementação setorial"},
+        "mensurabilidade": {"score": 4, "justification": "Mensurável via jornada semanal efetiva e cobertura da mudança"},
+        "custo": {"score": 4, "justification": "Impacto significativo: aumento de custo trabalhista para setores que operam com 6x1 (varejo, restaurantes, logística)"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica como custo será absorvido (empresas? Estado? consumidor?)"},
+        "prazo": {"score": 2, "justification": "PEC em tramitação no Senado, sem prazo de aprovação"},
+        "responsaveis": {"score": 2, "justification": "Congresso Nacional responsável pela PEC"},
+        "indicadores": {"score": 3, "justification": "Percentual de trabalhadores em escala 6x1 antes e depois"},
+        "evidencias": {"score": 3, "justification": "PEC do Senador Paim (PT-RS) em tramitação ativa no Senado; discussão continua em agosto de 2026"},
+        "complexidade": {"score": 4, "justification": "Requer aprovação de PEC, articulação com setores econômicos e ajuste fiscal"},
+        "dependencias": {"score": 4, "justification": "Depende de aprovação no Congresso e aceitação do setor produtivo"}
+      },
+      "analysis": "Esta é a proposta mais específica e controversa do macrotema. A PEC do Senador Paim (PT-RS) está em tramitação ativa no Senado, com discussão continuando em agosto de 2026. O CONTEXTO POLITICO aponta corretamente que 'ninguém é contra o trabalhador folgar mais, mas a esquerda defende essa pauta sem considerar impactos' — argumento legítimo de que muitos já estão como PJ, serviços encarecerão, negócios fecharão e desemprego aumentará. Este argumento tem base econômica: setores como varejo, restaurantes e logística operam com escala 6x1 e seriam diretamente impactados pelo aumento de custo trabalhista sem compensação de produtividade. Por outro lado, a redução de jornada com manutenção salarial é prática adotada em diversos países desenvolvidos. A questão é se o momento econômico brasileiro suporta esse aumento de custo trabalhista. Flávio não aborda a escala 6x1. Zema não aborda. Caiado não aborda. Renan Santos não aborda. É uma proposta exclusiva do PT neste macrotema — o que a torna um marcador distintivo: o PT se posiciona como defensor do trabalhador formal, mas potencialmente assume o risco econômico de encarecer a contratação.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-6",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: regulação do trabalho em plataformas digitais com proteção social; financiamento da previdência para trabalhadores de plataforma; linhas de crédito para motoristas de app]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (regulação de plataformas) mas sem detalhar marco legal específico",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Direção clara: regulação e proteção social para trabalhadores de plataforma"},
+        "detalhamento": {"score": 2, "justification": "Não detalha marco legal (classificação? contribuição? direitos?)"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via cobertura previdenciária, mas sem meta"},
+        "custo": {"score": 3, "justification": "Impacto sobre custo de apps e serviços ao consumidor"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "Ministério do Trabalho implícito"},
+        "indicadores": {"score": 2, "justification": "Cobertura previdenciária de trabalhadores de plataforma"},
+        "evidencias": {"score": 3, "justification": "IBGE já pesquisa 'trabalho por meio de plataformas digitais' (3º trim. 2025), confirmando relevância"},
+        "complexidade": {"score": 4, "justification": "Depende de marco legal complexo, articulação com empresas e definição de vínculo"},
+        "dependencias": {"score": 3, "justification": "Depende de Congresso, empresas de plataforma e aceitação do mercado"}
+      },
+      "analysis": "O IBGE já tem pesquisa sobre 'trabalho por meio de plataformas digitais' (3º trim. 2025), confirmando relevância do tema. Lula propõe financiamento da previdência para trabalhadores de plataforma e linhas de crédito para motoristas de app. Flávio menciona 'Ganha-Ganha' (sistema de pontuação para mulheres) e CAIXA como banco de prosperidade, mas não aborda regulação de plataformas. Zema não aborda. Caiado não aborda. Renan Santos não aborda. É uma proposta exclusiva do PT. A questão central é se a regulação aumentará custos para consumidores e reduzirá oferta de trabalho nas plataformas — trade-off clássico entre proteção e flexibilidade. O CONTEXTO POLITICO não aborda especificamente este tema, mas a lógica de 'serviços encarecerão' se aplica.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-7",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: igualdade salarial entre homens e mulheres (Lei de Igualdade Salarial)]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 4,
+      "specificity_justification": "Cita lei específica (Lei de Igualdade Salarial) — instrumento legal identificado e verificável",
+      "dimensions": {
+        "clareza": {"score": 5, "justification": "Lei específica já sancionada, instrumento claro"},
+        "detalhamento": {"score": 3, "justification": "Lei define mecanismos de fiscalização e transparência salarial"},
+        "mensurabilidade": {"score": 4, "justification": "Mensurável via gap salarial entre gêneros"},
+        "custo": {"score": 2, "justification": "Custo de fiscalização e adequação empresarial"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 2, "justification": "Lei já em vigor, implementação gradual"},
+        "responsaveis": {"score": 3, "justification": "Ministério do Trabalho e inspeção fiscal identificáveis"},
+        "indicadores": {"score": 3, "justification": "Gap salarial como indicador principal"},
+        "evidencias": {"score": 4, "justification": "Lei já sancionada; IBGE mede gap salarial (desemprego feminino 6,4% vs masculino 4,6%)"},
+        "complexidade": {"score": 2, "justification": "Implementação relativamente direta via fiscalização"},
+        "dependencias": {"score": 2, "justification": "Depende de fiscalização efetiva e cultura empresarial"}
+      },
+      "analysis": "A Lei de Igualdade Salarial já foi sancionada e está em vigor. Dados IBGE: desemprego feminino (6,4%) > masculino (4,6%) no 2º trim. 2026 — gap persistente. Flávio tem 'Mais trabalho para elas' mas sem lei específica. Zema não aborda. Caiado não aborda. Renan Santos não aborda. Proposta com instrumento claro e lei já em vigor — a mais específica do macrotema em termos de instrumento legal. O CONTEXTO POLITICO não contesta esta proposta especificamente.",
+      "overlap": "Macrotema mulheres/direitos"
+    },
+    {
+      "source_reference": "lul-EMP-8",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: Secretaria Nacional de Economia Solidária; Lei Paul Singer]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Identifica instrumento (Secretaria Nacional de Economia Solidária + Lei Paul Singer)",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Proposta de economia solidária como alternativa ao mercado tradicional"},
+        "detalhamento": {"score": 2, "justification": "Não detalha estrutura ou impacto pretendido"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via número de empreendimentos solidários, mas sem meta"},
+        "custo": {"score": 2, "justification": "Custo de manutenção de secretaria e programas"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 3, "justification": "Secretaria Nacional de Economia Solidária identificada"},
+        "indicadores": {"score": 2, "justification": "Número de empreendimentos solidários como indicador"},
+        "evidencias": {"score": 2, "justification": "Experiência prévia de governo PT com economia solidária"},
+        "complexidade": {"score": 3, "justification": "Depende de articulação com cooperativas e movimentos sociais"},
+        "dependencias": {"score": 2, "justification": "Depende de orçamento e articulação institucional"}
+      },
+      "analysis": "Proposta característica do PT — economia solidária como alternativa ao mercado tradicional, via cooperativas e empreendimentos coletivos. O CONTEXTO POLITICO não aborda especificamente economia solidária, mas a narrativa de que o PT fortalece estruturas coletivas e estatais (enquanto Flávio/Zema focam em iniciativa individual) se aplica. Flávio propõe 'Negócio próprio' (empreendedorismo individual de mercado). Zema propõe flexibilização da CLT. Renan Santos propõe 'Frentes Cidadãs' (trabalho obrigatório em frentes). São visões fundamentalmente diferentes sobre a relação trabalho-Estado: PT fortalece estruturas coletivas; Flávio/Zema focam em iniciativa individual; Renan propõe trabalho obrigatório.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-9",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: aumento do limite de faturamento do MEI; linhas de crédito para motoristas de app]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (aumento do limite de faturamento do MEI) mas sem parâmetro numérico",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Direção clara: apoiar MEI via aumento de limite e crédito"},
+        "detalhamento": {"score": 3, "justification": "Identifica instrumentos (limite de faturamento, crédito) mas sem valores"},
+        "mensurabilidade": {"score": 3, "justification": "Mensurável via número de MEIs e valor de crédito, mas sem meta"},
+        "custo": {"score": 2, "justification": "Custo fiscal da renúncia de receita tributária"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "Receita Federal e bancos públicos implícitos"},
+        "indicadores": {"score": 2, "justification": "Número de MEIs ativos como indicador"},
+        "evidencias": {"score": 3, "justification": "MEI é instrumento já consolidado com dados verificáveis"},
+        "complexidade": {"score": 2, "justification": "Depende de ajuste legislativo e fiscal"},
+        "dependencias": {"score": 2, "justification": "Depende de Congresso e Receita Federal"}
+      },
+      "analysis": "Apoio ao microempreendedor individual. Flávio tem 'Negócio próprio' e 'Minha Primeira Empresa' — mesma direção mas sem detalhar mecanismo. Zema defende redução de burocracia. Convergência entre candidatos no apoio ao MEI, com diferenças de intensidade. O CONTEXTO POLITICO destaca que Bolsonaro facilitou abertura de empresas — fato verificado. A diferença: Lula propõe aumento do limite de faturamento (instrumento específico); Flávio propõe capacitação e inserção (abordagem de mercado). Ambos têm mérito.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-10",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: fortalecimento da negociação coletiva; regulação da negociação no setor público]",
+      "page": "p. 73 — Diretriz 12",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (fortalecimento da negociação coletiva + regulação setor público)",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Direção clara: fortalecer sindicatos e negociação coletiva"},
+        "detalhamento": {"score": 2, "justification": "Não detalha mecanismo de fortalecimento"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via cobertura de acordos coletivos, mas sem meta"},
+        "custo": {"score": 2, "justification": "Custo fiscal de negociação no setor público"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indica"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 2, "justification": "Ministério do Trabalho e sindicatos implícitos"},
+        "indicadores": {"score": 2, "justification": "Cobertura de acordos coletivos como indicador"},
+        "evidencias": {"score": 2, "justification": "Experiência prévia de governo PT com sindicatos"},
+        "complexidade": {"score": 3, "justification": "Depende de reforma legislativa e articulação com sindicatos"},
+        "dependencias": {"score": 4, "justification": "Depende de Congresso e articulação sindical"}
+      },
+      "analysis": "Diretamente oposto à proposta de Flávio ('O trabalhador em primeiro lugar, não o sindicato') e de Zema ('fim do monopólio sindical'). Lula fortalece sindicatos e negociação coletiva; Flávio e Zema enfraquecem a estrutura sindical. O CONTEXTO POLITICO destaca a ligação entre sindicatos e PT — evidenciada pelo escândalo do INSS, onde descontos automáticos em aposentadorias beneficiavam entidades sindicais. Bolsonaro impediu descontos automáticos; Lula retornou e os descontos explodiram. Esta divergência é estrutural e rastreável: PT fortalece sindicatos (estrutura de poder); Flávio/Zema enffraquecem sindicatos (liberdade individual). Caiado e Renan não abordam explicitamente.",
+      "overlap": null
+    },
+    {
+      "source_reference": "lul-EMP-11",
+      "candidate": {"name": "Lula", "party": "PT"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: Acredita, Procred 360, Desenrola Pequenos Negócios, FGI PEAC, FGO; Pronampe: 1,6 milhão de operações; Procred 360: 211 mil operações; R$ 130 bilhões mobilizados]",
+      "page": "p. 57-58 — Diretriz 8: Economia",
+      "specificity_level": 5,
+      "specificity_justification": "Traz instrumento (múltiplos programas nomeados), parâmetro (1,6 milhão de operações, R$ 130 bilhões) e período (2023-2026)",
+      "dimensions": {
+        "clareza": {"score": 5, "justification": "Múltiplos programas nomeados com resultados verificáveis"},
+        "detalhamento": {"score": 4, "justification": "Detalha programas, número de operações e valor mobilizado"},
+        "mensurabilidade": {"score": 5, "justification": "Números verificáveis via dados públicos de Pronampe e Procred 360"},
+        "custo": {"score": 4, "justification": "Custo fiscal significativo (R$ 130 bilhões mobilizados)"},
+        "fonte_financiamento": {"score": 3, "justification": "Orçamento público e bancos públicos (BNDES, CAIXA) identificáveis"},
+        "prazo": {"score": 3, "justification": "Período 2023-2026 definido"},
+        "responsaveis": {"score": 3, "justification": "Múltiplos órgãos identificáveis (BNDES, CAIXA, Ministério da Fazenda)"},
+        "indicadores": {"score": 4, "justification": "Número de operações e valor mobilizado como indicadores"},
+        "evidencias": {"score": 4, "justification": "Programas reais com dados públicos verificáveis"},
+        "complexidade": {"score": 3, "justification": "Depende de articulação entre múltiplos órgãos e bancos"},
+        "dependencias": {"score": 3, "justification": "Depende de orçamento, bancos públicos e ambiente econômico"}
+      },
+      "analysis": "A proposta mais detalhada e mensurável de todo o macrotema entre os cinco candidatos. Os números são verificáveis (Pronampe, Procred 360 são programas reais com dados públicos). O CONTEXTO POLITICO não contesta diretamente estes programas. Flávio propõe 'CAIXA como Banco da Prosperidade' — mesma direção mas sem números. Esta é uma área onde o plano de Lula tem clara vantagem em especificidade e rastreabilidade. Porém, é importante notar que volume de crédito não necessariamente significa qualidade de emprego — muitos desses empréstimos podem ter ido para negócios que não geram empregos formais sustentáveis. Adicionalmente, o aumento da dívida pública brasileira (que o CONTEXTO POLITICO destaca como problema fiscal do governo Lula) financia parcialmente estes programas.",
+      "overlap": "Macrotema economia/desenvolvimento"
+    },
+    {
+      "source_reference": "zem-EMP-1",
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "type": "diretriz",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original nas pp. 23-25: reforma trabalhista com alternativa flexível à CLT]",
+      "page": "p. 23-25 — TRABALHO E EMPREGO",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (reforma trabalhista) e direção (flexibilização da CLT), mas o conteúdo detalhado não foi capturado verbatim",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Direção clara: flexibilização das relações trabalhistas"},
+        "detalhamento": {"score": 1, "justification": "Conteúdo detalhado da seção não foi extraído verbatim — limitação de extração"},
+        "mensurabilidade": {"score": 1, "justification": "Sem parâmetro capturado"},
+        "custo": {"score": 1, "justification": "Não estimado"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 1, "justification": "Sem evidências capturadas"},
+        "complexidade": {"score": 4, "justification": "Reforma trabalhista exige aprovação legislativa complexa"},
+        "dependencias": {"score": 4, "justification": "Depende de Congresso e articulação política"}
+      },
+      "analysis": "LIMITAÇÃO: O conteúdo detalhado da seção 'TRABALHO E EMPREGO' (pp. 23-25) não foi capturado verbatim pela análise estrutural. O resumo analítico identifica 'reforma trabalhista com alternativa flexível à CLT' e 'fim do monopólio sindical' como conceitos-chave. Esta é a proposta mais liberal/libertariana do grupo: flexibilização total das relações trabalhistas. Diretamente oposta à proposta de Lula de combate à pejotização e fim da escala 6x1. Flávio tem diretriz similar ('trabalhador em primeiro lugar, não o sindicato') mas menos específica. RECOMENDAÇÃO: verificar o texto exato da seção nas pp. 23-25 do PDF original para extrair citações literais e detalhar dimensões.",
+      "overlap": null
+    },
+    {
+      "source_reference": "zem-EMP-2",
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "type": "diretriz",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original nas pp. 23-25: fim do monopólio sindical]",
+      "page": "p. 23-25 — TRABALHO E EMPREGO",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (monopólio sindical) e direção (fim), mas conteúdo detalhado não foi capturado",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Posição clara: fim do monopólio sindical"},
+        "detalhamento": {"score": 1, "justification": "Conteúdo detalhado não extraído verbatim — limitação de extração"},
+        "mensurabilidade": {"score": 1, "justification": "Sem parâmetro"},
+        "custo": {"score": 1, "justification": "Não estimado"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 1, "justification": "Sem evidências capturadas"},
+        "complexidade": {"score": 4, "justification": "Requer reforma constitucional"},
+        "dependencias": {"score": 4, "justification": "Depende de Congresso e reforma constitucional"}
+      },
+      "analysis": "LIMITAÇÃO: Mesma limitação que zem-EMP-1. Proposta de liberalização sindical — diretamente oposta ao fortalecimento da negociação coletiva de Lula. Flávio tem diretriz similar ('O trabalhador em primeiro lugar, não o sindicato') mas não chega a propor fim do monopólio. O CONTEXTO Politico sobre a ligação sindicatos-PT-INSS é diretamente relevante: o fim do monopólio sindical eliminaria a estrutura de financiamento obrigatório que alimenta entidades ligadas à base governista. RECOMENDAÇÃO: verificar texto exato no PDF.",
+      "overlap": null
+    },
+    {
+      "source_reference": "cai-EMP-1",
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "type": "diretriz",
+      "literal_quote": "TEMA 14 · INDÚSTRIA: O BRASIL QUE PRODUZ, INOVA E GERA EMPREGOS",
+      "page": "TEMA 14 (footer indica p. ~42-46)",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (indústria) e direção (geração de empregos) no título do tema",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Posiciona reindustrialização como motor de emprego"},
+        "detalhamento": {"score": 2, "justification": "Tema tem propostas numeradas (estrutura padrão do documento) mas conteúdo não extraído verbatim"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta de empregos capturada"},
+        "custo": {"score": 2, "justification": "Política industrial implica investimento público"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 2, "justification": "Período 2027-2030 definido na estrutura do documento"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 2, "justification": "Documento tem indicadores de acompanhamento mas não capturados verbatim"},
+        "evidencias": {"score": 2, "justification": "Estrutura do documento indica propostas com base em diagnóstico"},
+        "complexidade": {"score": 3, "justification": "Política industrial complexa com múltiplos atores"},
+        "dependencias": {"score": 3, "justification": "Depende de política fiscal, tributária e comercial"}
+      },
+      "analysis": "Caiado posiciona a reindustrialização como motor de emprego. O tema segue a estrutura padrão do documento (Sumário executivo → Diagnóstico → Propostas numeradas → Indicadores → Compromisso), mas o conteúdo detalhado das propostas não foi capturado verbatim. Lula tem a Nova Indústria Brasil (NIB) com R$ 860 bilhões via Plano Mais Produção. Flávio não tem tema específico de indústria mas menciona desenvolvimento econômico. Caiado menciona 8 'eixos de oportunidade' para reindustrialização — mas os detalhes não foram extraídos. RECOMENDAÇÃO: verificar propostas numeradas dentro do TEMA 14 para extração verbatim.",
+      "overlap": "Macrotema desenvolvimento/indústria"
+    },
+    {
+      "source_reference": "cai-EMP-2",
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "type": "diretriz",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: proteção social como ponte para autonomia]",
+      "page": "TEMA 20 · POLÍTICA E PROTEÇÃO SOCIAL",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (proteção social) e direção (autonomia), mas conteúdo detalhado não foi capturado",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Conceito de proteção social como ponte para autonomia"},
+        "detalhamento": {"score": 2, "justification": "Tema tem propostas numeradas mas não extraídas verbatim"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta capturada"},
+        "custo": {"score": 2, "justification": "Programas sociais implicam custo fiscal"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 2, "justification": "Período 2027-2030 definido na estrutura"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 2, "justification": "Documento tem indicadores de acompanhamento"},
+        "evidencias": {"score": 2, "justification": "Estrutura do documento indica diagnóstico"},
+        "complexidade": {"score": 2, "justification": "Depende de articulação federativa"},
+        "dependencias": {"score": 3, "justification": "Depende de política fiscal e federativa"}
+      },
+      "analysis": "Conceito similar ao de Flávio ('Da proteção à autonomia'). Ambos posicionam programas sociais como trampolim, não destino. Lula também menciona 'porta de saída' mas expande o Bolsa Família. Renan Santos vai além e propõe substituir Bolsa Família por 'Frentes Cidadãs'. Caiado fica no meio-termo: não extingue programas mas não os expande radicalmente. RECOMENDAÇÃO: verificar propostas numeradas dentro do TEMA 20.",
+      "overlap": "Macrotema política social"
+    },
+    {
+      "source_reference": "cai-EMP-3",
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "type": "diretriz",
+      "literal_quote": "TEMA 26 · TURISMO: DESENVOLVIMENTO REGIONAL, EMPREGO E IMAGEM DO BRASIL",
+      "page": "TEMA 26",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (turismo) e direção (emprego) no título do tema; tem 14 propostas numeradas",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Turismo como vetor de emprego é claro no título"},
+        "detalhamento": {"score": 3, "justification": "Tema tem 14 propostas numeradas e 7 indicadores"},
+        "mensurabilidade": {"score": 2, "justification": "Indicadores de acompanhamento presentes mas não detalhados verbatim"},
+        "custo": {"score": 2, "justification": "Investimento em infraestrutura turística"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 2, "justification": "Período 2027-2030 definido"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 2, "justification": "7 indicadores de acompanhamento listados"},
+        "evidencias": {"score": 2, "justification": "Diagnóstico inclui dados (9M+ chegadas internacionais em 2025)"},
+        "complexidade": {"score": 2, "justification": "Depende de infraestrutura, segurança e marketing"},
+        "dependencias": {"score": 2, "justification": "Depende de infraestrutura, transporte e segurança"}
+      },
+      "analysis": "O turismo como vetor de emprego é mencionado por vários candidatos. Lula registra recorde de turistas estrangeiros e US$ 10,4 bilhões em gastos. Caiado tem 14 propostas específicas de turismo. Flávio menciona 'Turismo: uma vocação que rende'. Mas nenhum candidato detalha impacto empregatício direto com números. O documento de Caiado é o mais estruturado neste tema, com propostas numeradas e indicadores.",
+      "overlap": "Macrotema turismo/desenvolvimento regional"
+    },
+    {
+      "source_reference": "ren-EMP-1",
+      "candidate": {"name": "Renan Santos", "party": "Missão"},
+      "type": "proposta",
+      "literal_quote": "[paráfrase do resumo analítico — verificar no documento original: substituir o Bolsa Família por 'Frentes Cidadãs' (frentes de trabalho cidadão)]",
+      "page": "Capítulo V — PRODUTIVIDADE PELA CIDADANIA - ECONOMIA E ASSISTENCIALISMO",
+      "specificity_level": 3,
+      "specificity_justification": "Declara instrumento (Frentes Cidadãs como substituto do Bolsa Família) mas sem parâmetros numéricos",
+      "dimensions": {
+        "clareza": {"score": 4, "justification": "Proposta radical e clara: substituir transferência passiva por trabalho"},
+        "detalhamento": {"score": 2, "justification": "Não detalha estrutura das frentes, remuneração ou logística"},
+        "mensurabilidade": {"score": 2, "justification": "Mensurável via número de participantes, mas sem meta"},
+        "custo": {"score": 4, "justification": "Programa massivo com custo logístico elevado"},
+        "fonte_financiamento": {"score": 2, "justification": "Realocação de recursos do Bolsa Família implícita"},
+        "prazo": {"score": 2, "justification": "Sem prazo específico"},
+        "responsaveis": {"score": 2, "justification": "Governo federal implícito"},
+        "indicadores": {"score": 2, "justification": "Número de participantes nas frentes como indicador"},
+        "evidencias": {"score": 1, "justification": "Sem evidências empíricas de viabilidade"},
+        "complexidade": {"score": 4, "justification": "Exige estrutura logística massiva e reforma legislativa"},
+        "dependencias": {"score": 4, "justification": "Depende de Congresso, Constituição e articulação federativa"}
+      },
+      "analysis": "A proposta mais radical do macrotema: substituir inteiramente o Bolsa Família por frentes de trabalho. Isso elimina a transferência de renda passiva e exige contrapartida de trabalho. Alinhado à filosofia do MBL/Missão de 'produtividade pela cidadania' e à crítica do CONTEXTO POLITICO de que o PT usa programas sociais para criar dependência. Esta proposta endereça diretamente essa crítica de forma mais agressiva que qualquer outro candidato. Porém, a viabilidade é questionável: o Bolsa Família atende milhões de famílias e sua substituição por trabalho obrigatório exige estrutura logística massiva, cria risco de trabalho forçado e pode penalizar quem não pode trabalhar (idosos, deficientes, mães de filhos pequenos). Nenhum outro candidato propõe algo similar — Flávio e Caiado falam em 'autonomia' mas mantêm programas; Lula expande; Zema foca em flexibilização do mercado. Renan é o único que propõe uma ruptura completa com o modelo atual.",
+      "overlap": "Macrotema política social/assistência"
+    },
+    {
+      "source_reference": "ren-EMP-2",
+      "candidate": {"name": "Renan Santos", "party": "Missão"},
+      "type": "diretriz",
+      "literal_quote": "PRODUTIVIDADE PELA CIDADANIA - ECONOMIA E ASSISTENCIALISMO",
+      "page": "Capítulo V",
+      "specificity_level": 2,
+      "specificity_justification": "Nomeia objeto (produtividade) e direção (cidadania via trabalho) no título do capítulo",
+      "dimensions": {
+        "clareza": {"score": 3, "justification": "Conceito de produtividade como caminho para cidadania"},
+        "detalhamento": {"score": 2, "justification": "Documento é resumo executivo — não tem detalhamento completo"},
+        "mensurabilidade": {"score": 1, "justification": "Sem meta"},
+        "custo": {"score": 2, "justification": "Custo de reestruturação econômica"},
+        "fonte_financiamento": {"score": 1, "justification": "Não indicado"},
+        "prazo": {"score": 1, "justification": "Sem prazo"},
+        "responsaveis": {"score": 1, "justification": "Não identificado"},
+        "indicadores": {"score": 1, "justification": "Sem indicadores"},
+        "evidencias": {"score": 1, "justification": "Sem evidências empíricas"},
+        "complexidade": {"score": 3, "justification": "Depende de reforma econômica estrutural"},
+        "dependencias": {"score": 3, "justification": "Depende de Congresso e articulação federativa"}
+      },
+      "analysis": "O conceito de produtividade como caminho para cidadania é a base da proposta econômica do Missão. Conecta-se à crítica do CONTEXTO POLITICO de que o assistencialismo do PT não gera desenvolvimento. Porém, o documento é um 'resumo executivo do Livro Amarelo' e não tem o detalhamento completo. RECOMENDAÇÃO: verificar se há propostas numeradas específicas sobre emprego no capítulo V.",
+      "overlap": null
+    }
+  ],
+  "ausencias_declaradas": [
+    {
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "topic": "Escala 6x1",
+      "status": "ausencia_declarada",
+      "search_terms": ["escala 6x1", "jornada de trabalho", "40 horas", "redução de jornada", "descanso semanal"],
+      "analysis": "Flávio Bolsonaro não aborda a escala 6x1 em seu plano de governo. Este é um tema em debate ativo no Senado (PEC Paim) e é proposta exclusiva de Lula. A ausência pode ser estratégica (evitar positionamento em tema controverso) ou refletir foco em outras prioridades trabalhistas."
+    },
+    {
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "topic": "Pejotização",
+      "status": "ausencia_declarada",
+      "search_terms": ["pejotização", "PJ", "pessoa jurídica", "fraude trabalhista", "vínculo empregatício"],
+      "analysis": "Flávio não menciona pejotização explicitamente. A valorização do emprego com carteira (bol-EMP-2) sugere oposição implícita, mas sem proposta direta. Lula é o único que trata o tema diretamente."
+    },
+    {
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "topic": "Regulação de plataformas digitais",
+      "status": "ausencia_declarada",
+      "search_terms": ["plataformas digitais", "Uber", "iFood", "motorista de app", "gig economy", "trabalho digital"],
+      "analysis": "Flávio não aborda regulação de trabalho em plataformas. Lula é o único que trata o tema."
+    },
+    {
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "topic": "Economia solidária",
+      "status": "ausencia_declarada",
+      "search_terms": ["economia solidária", "cooperativas", "Lei Paul Singer", "empreendimentos coletivos"],
+      "analysis": "Flávio não aborda economia solidária. Proposta exclusiva do PT."
+    },
+    {
+      "candidate": {"name": "Flávio Bolsonaro", "party": "PL"},
+      "topic": "Salário mínimo (política específica)",
+      "status": "ausencia_declarada",
+      "search_terms": ["salário mínimo", "valorização", "reajuste", "política salarial"],
+      "analysis": "Flávio não detalha política específica para salário mínimo. A tagline 'o esforço valendo a pena' sugere valorização do salário real, mas sem instrumento. O CONTEXTO POLITICO destaca que Bolsonaro valorizou o mínimo durante seu governo."
+    },
+    {
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "topic": "Conteúdo detalhado da seção TRABALHO E EMPREGO (pp. 23-25)",
+      "status": "ausencia_parcial",
+      "search_terms": ["trabalho", "emprego", "CLT", "sindicato", "jornada", "trabalhador", "flexibilização"],
+      "analysis": "A seção 'TRABALHO E EMPREGO' existe no documento (pp. 23-25) mas o conteúdo detalhado não foi capturado verbatim pela análise estrutural. O resumo identifica 'alternativa flexível à CLT' e 'fim do monopólio sindical' como conceitos. RECOMENDAÇÃO: reanalisar PDF focando nestas páginas para extração verbatim."
+    },
+    {
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "topic": "Escala 6x1",
+      "status": "ausencia_declarada",
+      "search_terms": ["escala 6x1", "jornada", "40 horas", "redução"],
+      "analysis": "Zema não aborda a escala 6x1. Alinhado com sua filosofia de flexibilização — provavelmente contra regulação adicional de jornada."
+    },
+    {
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "topic": "Pejotização (combate)",
+      "status": "ausencia_declarada",
+      "search_terms": ["pejotização", "PJ", "fraude trabalhista"],
+      "analysis": "Zema não aborda combate à pejotização. Sua proposta de flexibilização da CLT vai na direção oposta ao combate."
+    },
+    {
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "topic": "Regulação de plataformas digitais",
+      "status": "ausencia_declarada",
+      "search_terms": ["plataformas", "Uber", "app", "gig economy"],
+      "analysis": "Zema não aborda regulação de plataformas."
+    },
+    {
+      "candidate": {"name": "Romeu Zema", "party": "NOVO"},
+      "topic": "Salário mínimo",
+      "status": "ausencia_declarada",
+      "search_terms": ["salário mínimo", "valorização", "reajuste"],
+      "analysis": "Zema não aborda salário mínimo especificamente. Foca em redução de impostos e flexibilização."
+    },
+    {
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "topic": "Seção dedicada de trabalho e emprego",
+      "status": "ausencia_estrutural",
+      "search_terms": ["trabalho", "emprego", "jornada", "sindicato", "CLT", "salário mínimo", "pejotização"],
+      "analysis": "Caiado não tem seção temática exclusiva de 'trabalho e emprego'. As propostas estão dispersas em TEMA 14 (Indústria), TEMA 20 (Proteção Social), TEMA 26 (Turismo). Não aborda: escala 6x1, pejotização, regulação de plataformas, sindicatos, salário mínimo, economia solidária. RECOMENDAÇÃO: verificar propostas numeradas dentro dos TEMAS 14, 20 e 26 para possível conteúdo trabalhista não capturado."
+    },
+    {
+      "candidate": {"name": "Renan Santos", "party": "Missão"},
+      "topic": "Direitos trabalhistas detalhados",
+      "status": "ausencia_declarada",
+      "search_terms": ["jornada", "sindicato", "CLT", "pejotização", "escala 6x1", "salário mínimo", "plataformas"],
+      "analysis": "O documento é um resumo executivo ('Livro Amarelo - resumo executivo'). Propostas específicas sobre direitos trabalhistas, jornada, sindicatos não são detalhadas. O foco é na substituição do Bolsa Família por Frentes Cidadãs. Não aborda: escala 6x1, pejotização, regulação de plataformas, salário mínimo, sindicatos."
+    },
+    {
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "topic": "Escala 6x1",
+      "status": "ausencia_declarada",
+      "search_terms": ["escala 6x1", "jornada", "40 horas"],
+      "analysis": "Caiado não aborda a escala 6x1."
+    },
+    {
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "topic": "Pejotização",
+      "status": "ausencia_declarada",
+      "search_terms": ["pejotização", "PJ", "fraude"],
+      "analysis": "Caiado não aborda pejotização."
+    },
+    {
+      "candidate": {"name": "Ronaldo Caiado", "party": "PSD"},
+      "topic": "Sindicatos e negociação coletiva",
+      "status": "ausencia_declarada",
+      "search_terms": ["sindicato", "negociação coletiva", "representação"],
+      "analysis": "Caiado não aborda estrutura sindical ou negociação coletiva explicitamente."
+    },
+    {
+      "candidate": {"name": "Renan Santos", "party": "Missão"},
+      "topic": "Escala 6x1",
+      "status": "ausencia_declarada",
+      "search_terms": ["escala 6x1", "jornada", "40 horas"],
+      "analysis": "Renan Santos não aborda a escala 6x1."
+    },
+    {
+      "candidate": {"name": "Renan Santos", "party": "Missão"},
+      "topic": "Sindicatos",
+      "status": "ausencia_declarada",
+      "search_terms": ["sindicato", "negociação coletiva", "monopólio"],
+      "analysis": "Renan Santos não aborda estrutura sindical."
+    }
+  ],
+  "resumo_comparativo": {
+    "total_fichas": 21,
+    "por_candidato": {
+      "flavio_bolsonaro_pl": 8,
+      "lula_pt": 11,
+      "romeu_zema_novo": 2,
+      "ronaldo_caiado_psd": 3,
+      "renan_santos_missao": 2
+    },
+    "fichas_com_citacao_verbatim": 13,
+    "fichas_com_parafrase": 8,
+    "ausencias_declaradas": 17,
+    "propostas_exclusivas_por_candidato": {
+      "lula_pt": ["Combate à pejotização", "Fim da escala 6x1 e 40h", "Regulação de plataformas", "Igualdade salarial (Lei específica)", "Economia solidária (Lei Paul Singer)", "Fortalecimento da negociação coletiva"],
+      "flavio_bolsonaro_pl": ["Trabalhador em primeiro lugar, não o sindicato", "CAIXA como Banco da Prosperidade", "Negócio próprio / Minha Primeira Empresa"],
+      "romeu_zema_novo": ["Flexibilização da CLT (alternativa)", "Fim do monopólio sindical"],
+      "renan_santos_missao": ["Substituição do Bolsa Família por Frentes Cidadãs"],
+      "ronaldo_caiado_psd": ["Turismo como vetor de emprego (14 propostas estruturadas)"]
+    },
+    "divergencias_estruturais": [
+      {
+        "tema": "Sindicatos",
+        "posicoes": {
+          "lula": "Fortalece negociação coletiva e sindicatos",
+          "flavio": "Trabalhador acima do sindicato (sem detalhar mecanismo)",
+          "zema": "Fim do monopólio sindical",
+          "caiado": "Não aborda",
+          "renan": "Não aborda"
+        }
+      },
+      {
+        "tema": "Programas sociais e trabalho",
+        "posicoes": {
+          "lula": "Expande Bolsa Família + 'porta de saída' (sem mecanismo claro)",
+          "flavio": "Proteção como trampolim para autonomia (sem mecanismo)",
+          "zema": "Não aborda especificamente",
+          "caiado": "Ponte para autonomia (sem mecanismo)",
+          "renan": "Substitui Bolsa Família por Frentes Cidadãs (mais radical)"
+        }
+      },
+      {
+        "tema": "Flexibilidade trabalhista vs. proteção",
+        "posicoes": {
+          "lula": "Mais proteção: combate pejotização, fim 6x1, 40h, regulação de plataformas",
+          "flavio": "Posição intermediária: valoriza emprego formal, não aborda flexibilização nem proteção adicional",
+          "zema": "Mais flexibilidade: flexibiliza CLT, fim monopólio sindical",
+          "caiado": "Não aborda",
+          "renan": "Não aborda direitos trabalhistas específicos"
+        }
+      },
+      {
+        "tema": "Escala 6x1",
+        "posicoes": {
+          "lula": "Propõe fim (PEC Paim em tramitação)",
+          "flavio": "Não aborda",
+          "zema": "Não aborda",
+          "caiado": "Não aborda",
+          "renan": "Não aborda"
+        }
+      }
+    ],
+    "limitacoes_identificadas": [
+      "Citações literais de Flávio Bolsonaro são confiáveis (títulos de seção + taglines capturados verbatim)",
+      "Citações de Lula, Zema, Caiado e Renan dependem de paráfrases do resumo analítico — recomenda-se verificação no documento original",
+      "Seção TRABALHO E EMPREGO de Zema (pp. 23-25) não foi capturada em detalhe",
+      "Propostas numeradas de Caiado dentro dos TEMAS 14, 20 e 26 não foram extraídas verbatim",
+      "Citação exata de Pochmann sobre 'socialismo' não foi localizada em fontes verificáveis, embora múltiplas fontes questionem a ideologização do IBGE",
+      "Documento de Renan Santos é resumo executivo — detalhamento pode ser maior no Livro Amarelo completo"
+    ]
+  }
+}

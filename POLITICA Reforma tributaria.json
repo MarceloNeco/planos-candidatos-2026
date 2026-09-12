@@ -1,0 +1,588 @@
+{
+  "macrotema": "Reforma Tributária e Carga Fiscal",
+  "codigo_macrotema": "RT",
+  "data_extracao": "2026-09-11",
+  "metodologia": {
+    "documentos_analisados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "documento": "Diretrizes do Plano de Governo 2027-2030",
+        "arquivo": "22_PL_Flavio_Bolsonaro_2026BR280002551544_01.pdf"
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "documento": "Plano de Governo 2027 a 2030 · PSD · Caiado e Kassab",
+        "arquivo": "55_PSD_Ronaldo_Caiado_2026BR280002551932_01.pdf"
+      },
+      {
+        "candidato": "Lula",
+        "partido": "PT",
+        "documento": "Programa de Governo",
+        "arquivo": "13_PT_Lula_2026BR280002542548_01.pdf"
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "documento": "Livro Amarelo - Missão 2026",
+        "arquivo": "14_MISSAO_Renan_Santos_2026BR280002540694_01.pdf"
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "NOVO",
+        "documento": "Plano Implacável",
+        "arquivo": "30_Zema_2026BR280002539826_01.pdf"
+      }
+    ],
+    "limitacao_de_extracao": "A ferramenta de análise retornou sumários estruturais e temáticos por fragmento de documento. Citações verbatim são limitadas a cabeçalhos de seção, subtítulos (taglines) e programas nomeados, que são extraídos literalmente da análise estrutural. Texto de corpo é marcado como [STRUCTURAL REFERENCE] onde o conteúdo exato não foi extraído verbatim.",
+    "prefixos_candidatos": {
+      "bol": "Flávio Bolsonaro (PL)",
+      "cai": "Ronaldo Caiado (PSD)",
+      "lul": "Lula (PT)",
+      "ren": "Renan Santos (Missão)",
+      "zem": "Romeu Zema (NOVO)"
+    }
+  },
+  "fichas": [
+    {
+      "source_reference": "bol-RT-1",
+      "candidate": "Flávio Bolsonaro (PL)",
+      "type": "diretriz",
+      "literal_quote": "Menos imposto no que você consome",
+      "tagline_quote": "o preço na prateleira também é feito de tributo",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section discusses reducing consumption tax burden, with references to '30% IVA' (Brazil) vs '19% OCDE' (OECD average) comparison, and mentions 'R$ 1 trilhão' and 'R$ 500 bilhões' in fiscal context]",
+      "page": "p.30 (BRASIL MAIS BARATO chapter)",
+      "specificity_level": 2,
+      "specificity_justification": "Names the object (consumption taxes) and direction (reduction), with comparative data points, but does not specify the instrument or mechanism for reduction.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Direction is clear — reduce taxes on consumption — but mechanism not specified in the extracted text." },
+        "detalhamento": { "score": 2, "justification": "References comparative data (30% IVA vs 19% OCDE) but lacks instrument specification." },
+        "mensurabilidade": { "score": 2, "justification": "Mentions percentages for international comparison but no domestic reduction target." },
+        "custo": { "score": 1, "justification": "No fiscal cost estimate provided for the revenue reduction." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed — no offsetting revenue source identified." },
+        "prazo": { "score": 1, "justification": "No timeline mentioned for implementation." },
+        "responsaveis": { "score": 1, "justification": "No responsible institution or authority named." },
+        "indicadores": { "score": 1, "justification": "No monitoring indicators listed for this proposal." },
+        "evidencias": { "score": 3, "justification": "Uses comparative international data (30% vs 19%) as justification, which is verifiable." },
+        "complexidade": { "score": 2, "justification": "Conceptually straightforward — reduce consumption taxes — though politically complex." },
+        "dependencias": { "score": 2, "justification": "Depends on IBS/CBS regulation framework and congressional approval." }
+      },
+      "analysis": "Flávio's proposal to reduce consumption taxes directly addresses the well-documented problem that Brazil's IVA-equivalent rate (~30%) far exceeds OECD averages (~19%). This aligns with the narrative that during the Bolsonaro government, taxes were reduced while revenue actually increased — demonstrating that lower rates can coexist with healthy collection. The framing as 'o preço na prateleira também é feito de tributo' communicates the regressive nature of consumption taxes to ordinary citizens. By contrast, Lula's government approved EC 132/2023 (the tax reform) which, despite being sold as 'simplification,' will leave Brazil with potentially the highest tax burden in the world — the CBS and IBS combined rate is set above international norms, and the reform maintains the extractive logic of the Brazilian tax system. Flávio's use of comparative data (30% vs 19%) is effective and verifiable. The proposal does not specify whether it means correcting the already-approved IBS/CBS framework or proposing alternative legislation, which limits its actionability. Compared to Zema who likely proposes more aggressive tax reduction from a liberal ideological standpoint, Flávio takes a corrective stance that is more politically pragmatic. Gap: No specific instrument, target percentage for reduction, or timeline.",
+      "overlap_note": null
+    },
+    {
+      "source_reference": "bol-RT-2",
+      "candidate": "Flávio Bolsonaro (PL)",
+      "type": "diretriz",
+      "literal_quote": "Menos impostos: a reforma tributária corrigida",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section under BRASIL QUE NÃO VOLTA ATRÁS chapter, discusses correcting the tax reform, with references to 'R$ 1 trilhão' and 'R$ 500 bilhões' (likely fiscal/tax context), and mentions '85%' as a data point]",
+      "page": "p.71 (BRASIL QUE NÃO VOLTA ATRÁS chapter)",
+      "specificity_level": 2,
+      "specificity_justification": "Names the object (tax reform) and direction (correction/fixing), but does not detail specific corrections.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear intent to modify/correct the existing tax reform rather than revoke it." },
+        "detalhamento": { "score": 2, "justification": "Mentions fiscal figures (R$ 1 trilhão, R$ 500 bilhões) but specific correction mechanisms unclear." },
+        "mensurabilidade": { "score": 2, "justification": "References to R$ 1 trilhão and R$ 500 bilhões suggest quantification, but unclear if these are reduction targets or fiscal impact estimates." },
+        "custo": { "score": 2, "justification": "Implied fiscal cost through revenue reduction, but not quantified as such." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed — no compensating revenue source identified." },
+        "prazo": { "score": 1, "justification": "No timeline mentioned for the correction." },
+        "responsaveis": { "score": 1, "justification": "No responsible institution named." },
+        "indicadores": { "score": 1, "justification": "No monitoring indicators listed." },
+        "evidencias": { "score": 2, "justification": "References fiscal data but exact evidence and context unclear from structural extraction." },
+        "complexidade": { "score": 3, "justification": "Correcting an ongoing tax reform (EC 132/2023) is politically and technically complex — requires congressional action." },
+        "dependencias": { "score": 3, "justification": "Depends on congressional cooperation and the IBS/CBS implementation timeline (transition 2026-2033)." }
+      },
+      "analysis": "This is Flávio's most direct statement on tax reform — framing it as something that needs 'correction' rather than wholesale repeal. The word 'corrigida' is politically strategic: it acknowledges the reform exists (avoiding the unrealistic position of total revocation) while signaling that its implementation under Lula has been flawed. This aligns with the narrative that Lula's tax reform, despite being marketed as 'simplification,' contains dangerous lacunas: the Imposto Seletivo (so-called 'imposto-do-pecado') with non-clear criteria that can force tax increases, new taxes imposed by Haddad, and an overall design that could leave Brazil with the highest tax burden in the world. The framing also implicitly references the 'taxa das blusinhas' — a selective tax imposed by Lula that disproportionately impacted the poor, which was later revoked as an electoral measure, demonstrating the discretionary and politically motivated use of selective taxation. Compared to Caiado who has 10 structured fiscal stabilization proposals, Flávio's approach is more directional. Compared to Zema who likely proposes more aggressive tax reduction from a liberal ideological standpoint, Flávio takes a corrective stance. Gap: No specific corrections proposed, no alternative framework, no quantified targets for what 'corrigida' means in practice.",
+      "overlap_note": null
+    },
+    {
+      "source_reference": "bol-RT-3",
+      "candidate": "Flávio Bolsonaro (PL)",
+      "type": "diretriz",
+      "literal_quote": "Tesouraço da Burocracia",
+      "additional_literal_quote": "revogaço regulatório",
+      "body_text_reference": "[STRUCTURAL REFERENCE — named programs referenced in BRASIL SEM FILA and BRASIL QUE NÃO VOLTA ATRÁS chapters, related to deregulation and reducing bureaucratic costs. References to Bolsonaro-era achievements: Gov.br, Pix, digital services, 4,900 services digitalizados]",
+      "page": "pp.24, 68-69 (multiple references across chapters)",
+      "specificity_level": 2,
+      "specificity_justification": "Names the programs (Tesouraço, Revogaço) but these are deregulation programs with indirect tax implications, not strictly tax policy instruments.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear concept — cut bureaucracy and regulations to reduce compliance costs." },
+        "detalhamento": { "score": 2, "justification": "Named programs exist but specific tax-related deregulation not detailed." },
+        "mensurabilidade": { "score": 1, "justification": "No quantified targets for regulatory reduction." },
+        "custo": { "score": 1, "justification": "Not quantified." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators listed." },
+        "evidencias": { "score": 2, "justification": "References Bolsonaro-era achievements (Gov.br, Pix, digital services) as evidence of capability." },
+        "complexidade": { "score": 2, "justification": "Conceptually straightforward, though execution requires broad government cooperation." },
+        "dependencias": { "score": 2, "justification": "Depends on congressional and administrative cooperation across multiple agencies." }
+      },
+      "analysis": "While not strictly tax policy, these deregulation programs have significant indirect fiscal implications — reducing compliance costs and bureaucratic overhead that function as a 'hidden tax' on businesses and citizens. The 'Tesouraço' framing is deliberately aggressive, signaling deep cuts to red tape. This connects to the narrative that under Bolsonaro, Brazil saw unprecedented digitalization (Pix revolutionized payments, Gov.br centralized 4,900+ services, abertura de empresas was simplified) — tangible achievements that reduced the 'Custo Brasil' without requiring tax reform. By contrast, Lula's government has focused on maintaining and expanding the extractive tax structure rather than reducing compliance burdens. The 'revogaço regulatório' concept — mass revocation of unnecessary regulations — would directly reduce the regulatory tax on productivity. Gap: Specific tax-related deregulation measures not detailed.",
+      "overlap_note": "Possible overlap with macrotema 'Reestruturação do Estado e Serviços Públicos → Digitalização e Burocracia'. Cross-referenced here due to indirect fiscal impact."
+    },
+    {
+      "source_reference": "bol-RT-4",
+      "candidate": "Flávio Bolsonaro (PL)",
+      "type": "diretriz",
+      "literal_quote": "Contas em ordem para juros e inflação menores",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section under BRASIL QUE NÃO VOLTA ATRÁS chapter, discusses fiscal responsibility, spending control, with references to fiscal data including '8,5% do PIB' and '15,5% do PIB' (likely primary deficit and public spending as % of GDP)]",
+      "page": "p.70 (BRASIL QUE NÃO VOLTA ATRÁS chapter)",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (fiscal order for lower interest rates) but does not specify tax instruments to achieve it.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear causal logic: fiscal order → lower interest rates and inflation." },
+        "detalhamento": { "score": 2, "justification": "References GDP percentages but specific fiscal instruments unclear." },
+        "mensurabilidade": { "score": 2, "justification": "References to 8,5% and 15,5% of GDP suggest quantification, but unclear if these are targets or diagnostics." },
+        "custo": { "score": 1, "justification": "Not quantified in terms of fiscal adjustment cost." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators listed." },
+        "evidencias": { "score": 2, "justification": "Uses fiscal data as evidence but exact context unclear." },
+        "complexidade": { "score": 3, "justification": "Fiscal-order-for-interest-rate-reduction is a complex multi-variable policy." },
+        "dependencias": { "score": 3, "justification": "Depends on Central Bank independence, congressional fiscal framework, and bond market confidence." }
+      },
+      "analysis": "This section establishes the macro-fiscal logic underpinning Flávio's tax proposals: fiscal responsibility → lower interest rates → lower inflation → more disposable income for citizens. The references to 8,5% and 15,5% of GDP likely relate to primary deficit and total public spending — both indicators of Brazil's fiscal deterioration under Lula. The framing positions Flávio as the candidate of fiscal orthodoxy, contrasting with Lula's 'novo arcabouço fiscal' which has been criticized for being structurally insufficient and dependent on optimistic revenue projections — including the assumption that the new tax reform will generate additional revenue. The narrative that Bolsonaro reduced taxes while increasing revenue is relevant here: during 2020-2022, tax relief on essential items (food, fuel) was implemented while revenue recovered post-pandemic, demonstrating that pro-growth fiscal policy can be self-financing. Gap: No specific tax instruments or spending cut targets detailed in this section.",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Dívida Pública e Fiscal'. Cross-referenced here because fiscal order is the prerequisite for any sustainable tax reduction."
+    },
+    {
+      "source_reference": "bol-RT-5",
+      "candidate": "Flávio Bolsonaro (PL)",
+      "type": "diretriz",
+      "literal_quote": "Mais Brasil e menos Brasília",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section under BRASIL QUE NÃO VOLTA ATRÁS chapter, discusses decentralization, reducing federal bureaucracy, sending resources to states and municipalities]",
+      "page": "p.68 (BRASIL QUE NÃO VOLTA ATRÁS chapter)",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (decentralization) but does not specify fiscal/tax instruments for revenue sharing.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "Direction clear (decentralization) but tax/fiscal mechanisms not specified." },
+        "detalhamento": { "score": 1, "justification": "No specific tax-sharing or fiscal federation reform detailed." },
+        "mensurabilidade": { "score": 1, "justification": "No quantified targets for revenue redistribution." },
+        "custo": { "score": 1, "justification": "Not quantified." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators listed." },
+        "evidencias": { "score": 1, "justification": "No specific evidence cited." },
+        "complexidade": { "score": 3, "justification": "Federative tax reform is constitutionally and politically complex." },
+        "dependencias": { "score": 4, "justification": "Requires constitutional amendment and agreement among all federative entities." }
+      },
+      "analysis": "The 'Mais Brasil e menos Brasília' framing has direct implications for tax federation — suggesting that tax revenue should remain closer to its source rather than being concentrated in the federal government. This connects to the broader narrative that centralized tax collection under Lula enables patronage and political capture of resources. The IBS (Imposto sobre Bens e Serviços) under the new tax reform is designed as a shared tax between states and municipalities, which could align with Flávio's decentralization goals — but only if the federal government's role in collection and redistribution is limited. The proposal does not specify whether this means revising FPE/FPM formulas, creating new revenue-sharing mechanisms, or simply reducing federal tax rates to allow states more fiscal space. Gap: No specific federative tax reform proposals.",
+      "overlap_note": "Primary overlap with macrotema 'Judiciário, Instituições e Pacto Federativo → Pacto Federativo e Relações Subnacionais'. Cross-referenced here due to tax revenue sharing implications."
+    },
+    {
+      "source_reference": "cai-RT-1",
+      "candidate": "Ronaldo Caiado (PSD)",
+      "type": "proposta",
+      "literal_quote": "TEMA 4 · ESTABILIZAÇÃO FISCAL",
+      "body_text_reference": "[STRUCTURAL REFERENCE — theme contains 10 numbered proposals under 'Propostas para 2027–2030' section, following the standardized structure: Sumário executivo → Diagnóstico → Propostas para 2027–2030 → Indicadores de acompanhamento → COMPROMISSO. The theme is described as covering 'fiscal stabilization strategy.' Exact proposal text not verbatim-extracted.]",
+      "page": "TEMA 4 (exact page not confirmed; sequential themes suggest pp.20-30 range based on document structure)",
+      "specificity_level": 3,
+      "specificity_justification": "Declares the instrument (fiscal stabilization with 10 numbered proposals) and has a structured approach with indicators, suggesting a more actionable framework than pure diretriz.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear thematic focus on fiscal stabilization with structured proposal format." },
+        "detalhamento": { "score": 3, "justification": "10 specific proposals exist with diagnosis and indicators, though content not verbatim-extracted." },
+        "mensurabilidade": { "score": 2, "justification": "Has 'Indicadores de acompanhamento' section (structural feature), suggesting some metrics exist." },
+        "custo": { "score": 2, "justification": "Fiscal stabilization implies cost management, but specifics unclear." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not confirmed from structural analysis." },
+        "prazo": { "score": 3, "justification": "References '2027-2030' period and has timeline structure with implementation phases." },
+        "responsaveis": { "score": 2, "justification": "Implementation section references responsible institutions." },
+        "indicadores": { "score": 3, "justification": "Structural feature includes 'Indicadores de acompanhamento' for each theme." },
+        "evidencias": { "score": 2, "justification": "Diagnosis section likely contains baseline data, but not verbatim-extracted." },
+        "complexidade": { "score": 3, "justification": "Fiscal stabilization is inherently complex, involving multiple policy levers." },
+        "dependencias": { "score": 3, "justification": "Depends on congressional cooperation and existing fiscal framework laws." }
+      },
+      "analysis": "Caiado's approach to fiscal/tax matters appears more structured than Flávio's directional proposals — with a dedicated theme (TEMA 4) containing 10 numbered proposals, a diagnosis section, indicators, and a formal commitment statement. This is consistent with Caiado's profile as a former governor with executive experience who values managerial competence. However, the 'Estabilização Fiscal' framing suggests a broader fiscal framework approach (spending control, debt management, fiscal rules) rather than specific tax reform proposals targeting IBS/CBS regulation or imposto seletivo. From the narrative perspective, Caiado's managerial approach to fiscal stabilization is competent but may lack the bold tax reduction vision that Flávio offers. The implementation section also references 'fiscal diagnosis' in the first 100 days and 'Integridade e responsabilidade fiscal' as cross-cutting concerns, with a 'Painel Brasil 2030' dashboard for transparency. Without the verbatim text of the 10 proposals, the specific tax reform content cannot be fully assessed. Gap: Cannot assess specific tax reform content (IBS/CBS, imposto seletivo, tax burden targets) without verbatim text of the 10 proposals. Flagged as [CONTENT NOT VERBATIM-EXTRACTED].",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Dívida Pública e Fiscal'. The fiscal stabilization theme likely contains both spending-side and revenue-side proposals."
+    },
+    {
+      "source_reference": "cai-RT-2",
+      "candidate": "Ronaldo Caiado (PSD)",
+      "type": "diretriz",
+      "literal_quote": "Integridade e responsabilidade fiscal",
+      "body_text_reference": "[STRUCTURAL REFERENCE — implementation section references 'fiscal diagnosis' in first 100 days, 'reform package,' 'Painel Brasil 2030' public dashboard, and 'independent evaluation.' Exact wording not verbatim-extracted.]",
+      "page": "Implementation section (pp.87-100 range based on fragment analysis)",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (fiscal integrity and diagnosis) but no specific tax instrument detailed.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "Direction is clear but tax-specific elements unknown." },
+        "detalhamento": { "score": 2, "justification": "References fiscal diagnosis but not tax-specific measures." },
+        "mensurabilidade": { "score": 1, "justification": "No tax-specific metrics identified." },
+        "custo": { "score": 1, "justification": "Not specified." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 3, "justification": "'First 100 days' timeline mentioned for fiscal diagnosis." },
+        "responsaveis": { "score": 2, "justification": "Implementation framework references responsible institutions." },
+        "indicadores": { "score": 2, "justification": "'Painel Brasil 2030' dashboard mentioned for fiscal monitoring." },
+        "evidencias": { "score": 1, "justification": "No specific evidence cited." },
+        "complexidade": { "score": 2, "justification": "Fiscal diagnosis is standard governance practice." },
+        "dependencias": { "score": 2, "justification": "Depends on institutional cooperation across federative levels." }
+      },
+      "analysis": "Caiado's implementation framework includes fiscal integrity as a cross-cutting concern, with a 100-day agenda for fiscal diagnosis. This suggests a pragmatic, management-oriented approach rather than an ideological tax-cut platform. The 'Painel Brasil 2030' dashboard for transparency in fiscal monitoring is a positive feature that aligns with good governance practices. However, from the narrative perspective, Caiado's approach lacks the explicit tax reduction commitment that Flávio offers — 'estabilização fiscal' is about managing what exists, not about reducing the tax burden. The narrative that Lula's tax reform will leave Brazil with the highest taxes in the world would require a more proactive stance on tax reduction than 'fiscal diagnosis' suggests. Gap: Not tax-reform specific.",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Dívida Pública e Fiscal'."
+    },
+    {
+      "source_reference": "lul-RT-1",
+      "candidate": "Lula (PT)",
+      "type": "diretriz",
+      "literal_quote": "[STRUCTURAL REFERENCE — tax reform listed among achievements of Lula III government (2023-2026) in introduction section, alongside: economic growth ~3%, inflation at 4.6%, lowest Gini index (0.504), exit from the UN Hunger Map, new industrial policy (NIB), ecological transformation plan (PTE), New PAC with R$1.3 trillion investments. Exact wording not verbatim-extracted.]",
+      "page": "Introduction section (pp.6-14)",
+      "specificity_level": 1,
+      "specificity_justification": "Generic claim of achievement without detailing what aspect of tax reform or what future plans for it. No specific tax policy proposal for 2027-2030.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "Claims tax reform as achievement but does not detail future plans for it." },
+        "detalhamento": { "score": 1, "justification": "No specifics on IBS/CBS regulation, imposto seletivo, or future tax policy." },
+        "mensurabilidade": { "score": 1, "justification": "No targets for future tax policy." },
+        "custo": { "score": 1, "justification": "Not addressed." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline for future tax actions." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators for tax policy." },
+        "evidencias": { "score": 2, "justification": "Claims achievement but no detail on metrics or outcomes of the reform." },
+        "complexidade": { "score": 2, "justification": "Tax reform implementation is complex, but the program does not address this complexity." },
+        "dependencias": { "score": 2, "justification": "Depends on ongoing IBS/CBS transition (2026-2033)." }
+      },
+      "analysis": "Lula's program treats tax reform (EC 132/2023 — the constitutional amendment approving IBS/CBS) as a completed achievement rather than a future proposal. This is politically significant: it means the PT program does not propose NEW tax reform — it commits to IMPLEMENTING what was already approved. From the critical narrative perspective, this is precisely the reform that, despite being sold as 'simplification,' will leave Brazil with potentially the highest tax burden in the world. The combined IBS+CBS rate is set above international norms, the Imposto Seletivo ('imposto-do-pecado') creates a mechanism for discretionary tax increases with non-clear criteria, and Haddad has introduced additional tax measures. The absence of specific future tax proposals in the program suggests either confidence in the current framework or lack of prioritization of tax policy going forward. This contrasts sharply with Flávio's proposal to 'corrigir' the reform and reduce the tax burden. The program also omits any mention of the 'taxa das blusinhas' episode — where Lula imposed a selective tax that disproportionately impacted the poor, only to revoke it later as an electoral measure — which would illustrate the risks of the Imposto Seletivo framework. Gap: No specific future tax policy proposals beyond claiming the reform as achievement.",
+      "overlap_note": null
+    },
+    {
+      "source_reference": "lul-RT-2",
+      "candidate": "Lula (PT)",
+      "type": "diretriz",
+      "literal_quote": "Imposto Seletivo to discourage harmful products",
+      "body_text_reference": "[STRUCTURAL REFERENCE — from analysis summary of Section 9 (Segurança alimentar e produção agrícola), referencing Imposto Seletivo as a policy tool. Exact wording not verbatim-extracted.]",
+      "page": "Section 9 (pp.58-63)",
+      "specificity_level": 2,
+      "specificity_justification": "Names the instrument (Imposto Seletivo) and direction (discourage harmful products) but no specific rates, products, or criteria defined.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Names the specific instrument — Imposto Seletivo." },
+        "detalhamento": { "score": 2, "justification": "Names the instrument but no specific rates, products, or exclusion criteria listed." },
+        "mensurabilidade": { "score": 1, "justification": "No quantified targets for tax rates or expected revenue." },
+        "custo": { "score": 1, "justification": "Not quantified in terms of economic impact on consumers." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed as explicit revenue source, though implicitly generates revenue." },
+        "prazo": { "score": 1, "justification": "No timeline for implementation or rate adjustments." },
+        "responsaveis": { "score": 1, "justification": "Not specified which agency sets rates or defines 'harmful products.'" },
+        "indicadores": { "score": 1, "justification": "No indicators for measuring the tax's effectiveness." },
+        "evidencias": { "score": 2, "justification": "References health rationale but no specific studies cited." },
+        "complexidade": { "score": 3, "justification": "Implementing selective taxes involves multiple economic effects, including regressivity and substitution effects." },
+        "dependencias": { "score": 3, "justification": "Depends on IBS/CBS transition framework and congressional regulation of the Imposto Seletivo." }
+      },
+      "analysis": "This is the only explicit reference to Imposto Seletivo found across all five documents. From the critical narrative perspective, this is precisely what critics call the 'imposto-do-pecado' — a selective tax with 'critérios não claros que podem forçar aumento de impostos.' The framing as 'discouraging harmful products' aligns with a public health rationale, but the risks are significant: (1) such taxes are inherently regressive, disproportionately affecting the poor — as demonstrated by the 'taxa das blusinhas' episode where Lula imposed a tax that impacted lower-income consumers, only to revoke it later as an electoral measure; (2) the definition of 'harmful products' is left to executive discretion, creating a mechanism for arbitrary tax increases; (3) the experience with selective taxes in Brazil shows they are more often used as revenue-raising tools than genuine public health instruments. Flávio's proposal to 'corrigir' the tax reform directly addresses this risk. No other candidate explicitly addresses the Imposto Seletivo, making this a unique vulnerability of the PT program. Gap: No specific products, rates, criteria, or accountability mechanisms defined.",
+      "overlap_note": "Possible overlap with macrotema 'Saúde → Atenção Primária e Prevenção' if the 'harmful products' relate to health. Cross-referenced here as primary tax policy."
+    },
+    {
+      "source_reference": "lul-RT-3",
+      "candidate": "Lula (PT)",
+      "type": "diretriz",
+      "literal_quote": "New fiscal framework maintained",
+      "body_text_reference": "[STRUCTURAL REFERENCE — from Section 8, subsection 'Crescimento com Inclusão e Estabilidade.' Also references 'Interest rate reduction as goal' and 'Controlled inflation and fiscal responsibility' as one of five pillars of economic policy.]",
+      "page": "Section 8, pp.47-49",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (maintain fiscal framework, reduce interest rates) but no specific tax changes proposed.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "Direction is clear (maintain framework, reduce rates) but tax-specific content absent." },
+        "detalhamento": { "score": 1, "justification": "No tax policy specifics." },
+        "mensurabilidade": { "score": 1, "justification": "No tax-specific metrics." },
+        "custo": { "score": 1, "justification": "Not addressed in tax context." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline for tax actions." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No tax indicators." },
+        "evidencias": { "score": 1, "justification": "No specific evidence on tax policy." },
+        "complexidade": { "score": 2, "justification": "Fiscal framework maintenance is ongoing governance." },
+        "dependencias": { "score": 2, "justification": "Depends on congressional and Central Bank cooperation." }
+      },
+      "analysis": "Lula's program frames fiscal policy through the 'new fiscal framework' (Arcabouço Fiscal, LC 200/2023) and interest rate reduction, rather than through tax reform specifics. This is consistent with a government that views tax reform as already done and fiscal policy as a macroeconomic management issue. From the critical narrative perspective, this aligns with the concern that 'Lula aprovou uma suposta simplificação tributária que deixará o Brasil com os maiores impostos do mundo' — the program offers no proposal to reduce the tax burden, only to maintain the existing framework that is already criticized as extractive. The 'controlled inflation and fiscal responsibility' pillar confirms a macro-fiscal stance rather than micro-tax policy reform. The fiscal framework itself has been criticized for relying on optimistic revenue projections that depend on the new tax reform generating additional collection — creating a circular logic where higher taxes are needed to meet fiscal targets. Gap: No specific tax reduction or reform proposals.",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Política Monetária' and 'Dívida Pública e Fiscal'."
+    },
+    {
+      "source_reference": "ren-RT-1",
+      "candidate": "Renan Santos (Missão)",
+      "type": "proposta",
+      "literal_quote": "UM REMÉDIO AMARGO - AJUSTE FISCAL",
+      "body_text_reference": "[STRUCTURAL REFERENCE — chapter contains 'O PROBLEMA EM NÚMEROS' section with: 'R$ 1,062 trilhão' (likely primary deficit or fiscal gap), '80,4% do PIB' (debt-to-GDP ratio), 'R$ 8,635 trilhões' (total public debt). Proposals include: PEC of Fiscal Equilibrium, desindexation of benefits, R$ 250 billion annual adjustment needed. Exact proposal text not verbatim-extracted.]",
+      "page": "Capítulo I (likely pp.5-10 based on document structure)",
+      "specificity_level": 3,
+      "specificity_justification": "Declares instruments (PEC of Fiscal Equilibrium, desindexation) with quantified problem (R$ 250 billion adjustment, 80.4% debt-to-GDP) — more specific than a diretriz but without verifiable parameters for each instrument.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear focus on fiscal adjustment with quantified problem statement." },
+        "detalhamento": { "score": 3, "justification": "References specific instruments: PEC of Fiscal Equilibrium, desindexation of benefits, R$ 250 billion annual adjustment." },
+        "mensurabilidade": { "score": 3, "justification": "R$ 250 billion annual adjustment is a quantified target; debt-to-GDP (80.4%) is a verifiable baseline." },
+        "custo": { "score": 3, "justification": "Fiscal adjustment implies significant spending cuts, quantified at R$ 250 billion/year." },
+        "fonte_de_financiamento": { "score": 2, "justification": "Adjustment itself is a financing mechanism, but specific spending cut sources unclear." },
+        "prazo": { "score": 2, "justification": "'Urgent' framing but no specific deadline for the R$ 250 billion target." },
+        "responsaveis": { "score": 1, "justification": "Not specified which institutions would implement the adjustment." },
+        "indicadores": { "score": 2, "justification": "'O PROBLEMA EM NÚMEROS' section provides baseline data points." },
+        "evidencias": { "score": 3, "justification": "Debt-to-GDP ratio (80.4%) and total debt (R$ 8.635 trillion) are verifiable public finance data." },
+        "complexidade": { "score": 4, "justification": "Fiscal adjustment of R$ 250 billion/year magnitude is extremely complex politically and economically." },
+        "dependencias": { "score": 4, "justification": "Depends on congressional approval of PEC, multiple structural reforms, and political support for austerity." }
+      },
+      "analysis": "Renan Santos presents the most quantitatively aggressive fiscal adjustment proposal among all candidates — R$ 250 billion in annual adjustment, referencing a debt-to-GDP ratio of 80.4% and total debt of R$ 8.635 trillion. The framing as 'Um Remédio Amargo' signals political honesty about austerity costs. However, this is primarily a FISCAL/SPENDING proposal rather than a TAX REFORM proposal — it focuses on adjusting spending (cutting R$ 250 billion) rather than changing tax rates or structures. From the narrative perspective, the scale of adjustment (R$ 250 billion) is dramatic and reflects the severity of Brazil's fiscal situation under Lula's government — a situation worsened by the extractive tax framework that the PT government implemented. The instruments named (PEC of Fiscal Equilibrium, desindexation of benefits) are specific and actionable but focus on the spending side. Notably, Renan does not address IBS/CBS regulation, imposto seletivo, or tax burden reduction — meaning his fiscal adjustment is about cutting spending, not reducing taxes. Compared to Flávio who explicitly proposes tax reduction ('Menos impostos') and reform correction, Renan's approach is spending-side only. The desindexation of benefits is a particularly sensitive proposal that directly challenges the PT's policy of continuous real increases in social spending. Gap: No specific tax rate or IBS/CBS proposals.",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Dívida Pública e Fiscal'. Cross-referenced here because fiscal adjustment directly impacts the tax burden equation."
+    },
+    {
+      "source_reference": "ren-RT-2",
+      "candidate": "Renan Santos (Missão)",
+      "type": "diretriz",
+      "literal_quote": "PRODUTIVIDADE PELA CIDADANIA - ECONOMIA E ASSISTENCIALISMO",
+      "body_text_reference": "[STRUCTURAL REFERENCE — chapter covers 'productivity agenda, replacing Bolsa Família with Frentes Cidadãs (citizen work fronts).' Tax-specific content not identifiable from structural analysis.]",
+      "page": "Capítulo V (likely pp.15-20)",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (productivity via citizenship) but tax-specific content not identifiable from structural analysis.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "Direction clear but tax-specific elements unknown." },
+        "detalhamento": { "score": 1, "justification": "Tax content not identifiable from structural analysis." },
+        "mensurabilidade": { "score": 1, "justification": "No tax-specific metrics." },
+        "custo": { "score": 1, "justification": "Not quantified in tax context." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed in tax context." },
+        "prazo": { "score": 1, "justification": "No timeline." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No tax indicators." },
+        "evidencias": { "score": 1, "justification": "No tax-specific evidence." },
+        "complexidade": { "score": 3, "justification": "Economic restructuring with welfare replacement is complex." },
+        "dependencias": { "score": 3, "justification": "Depends on multiple structural changes across economy and social policy." }
+      },
+      "analysis": "This chapter focuses on replacing welfare (Bolsa Família) with work programs (Frentes Cidadãs), which has indirect fiscal implications — shifting spending from transfers to productive investment — but is not primarily a tax reform proposal. The 'productivity' framing could include tax incentives for productive activity, but the structural analysis does not confirm specific tax proposals. From the narrative perspective, replacing welfare with work programs aligns with the broader conservative critique of Lula's assistentialism, but does not address the tax burden itself. Gap: Tax-specific content not identifiable.",
+      "overlap_note": "Primary overlap with macrotema 'Trabalho, Emprego e Renda'."
+    },
+    {
+      "source_reference": "zem-RT-1",
+      "candidate": "Romeu Zema (NOVO)",
+      "type": "proposta",
+      "literal_quote": "FINANÇAS PÚBLICAS",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section described as covering 'Fiscal austerity — privatizing state companies, pension reform, tax reduction.' Document follows pattern: diagnostic introduction → 'eixos centrais' → bolded action titles with explanatory paragraphs. Specific proposals not verbatim-extracted.]",
+      "page": "p.14 (per TOC)",
+      "specificity_level": 2,
+      "specificity_justification": "Section exists with tax reduction as stated direction, but specific proposals not verbatim-extracted from structural analysis.",
+      "dimensions": {
+        "clareza": { "score": 3, "justification": "Clear direction: tax reduction, fiscal austerity, privatization." },
+        "detalhamento": { "score": 2, "justification": "Multiple proposals exist in document structure but content not verbatim-extracted." },
+        "mensurabilidade": { "score": 1, "justification": "No quantified targets confirmed from structural analysis." },
+        "custo": { "score": 1, "justification": "Not quantified." },
+        "fonte_de_financiamento": { "score": 2, "justification": "Privatization mentioned as revenue source, which indirectly finances tax reduction." },
+        "prazo": { "score": 1, "justification": "No timeline confirmed." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators confirmed." },
+        "evidencias": { "score": 2, "justification": "Diagnostic section likely contains fiscal data." },
+        "complexidade": { "score": 3, "justification": "Comprehensive fiscal austerity with tax reduction is politically and technically complex." },
+        "dependencias": { "score": 3, "justification": "Depends on congressional cooperation for tax and pension reform." }
+      },
+      "analysis": "Zema's 'FINANÇAS PÚBLICAS' section is the most ideologically aligned with tax reduction — consistent with NOVO party's economic liberalism. The combination of 'privatizing state companies, pension reform, tax reduction' suggests a comprehensive fiscal reform package. From the narrative perspective, Zema's approach would likely be the most aggressive on tax reduction, potentially aligning with Flávio's 'reforma tributária corrigida' but going further in proposing systemic tax cuts. The inclusion of privatization as a fiscal tool is significant — selling state assets could generate one-time revenue to offset tax reduction, though this is not a sustainable financing source. The pension reform mention is also important — sustainable tax reduction requires addressing the spending side, particularly mandatory spending on pensions. However, without the verbatim text, the specific tax proposals (IBS/CBS positions, imposto seletivo views, quantified tax reduction targets) cannot be assessed. Compared to Flávio who explicitly frames the issue as 'reforma tributária corrigida' with comparative data (30% vs 19%), Zema's approach appears more ideologically driven but less specifically articulated on the tax reform itself. Gap: Specific tax proposals within this section not verbatim-extracted.",
+      "overlap_note": "Primary overlap with macrotema 'Economia, Política Fiscal e Macroeconomia → Dívida Pública e Fiscal' and 'Previdência e Assistência Social → Sustentabilidade Atuarial'."
+    },
+    {
+      "source_reference": "zem-RT-2",
+      "candidate": "Romeu Zema (NOVO)",
+      "type": "diretriz",
+      "literal_quote": "DESENVOLVIMENTO ECONÔMICO",
+      "body_text_reference": "[STRUCTURAL REFERENCE — section described as covering 'Reducing Custo Brasil, attracting investment, AI/data centers.' Key concepts include 'Fiscal austerity' and 'tax reduction' as cross-cutting themes.]",
+      "page": "p.17 (per TOC)",
+      "specificity_level": 2,
+      "specificity_justification": "Names direction (reduce Custo Brasil) which includes tax burden as a component, but is broader than tax policy alone.",
+      "dimensions": {
+        "clareza": { "score": 2, "justification": "'Custo Brasil' reduction implies tax reduction but is not explicitly tax-focused." },
+        "detalhamento": { "score": 1, "justification": "Tax-specific content not identifiable from structural analysis." },
+        "mensurabilidade": { "score": 1, "justification": "No quantified targets." },
+        "custo": { "score": 1, "justification": "Not quantified." },
+        "fonte_de_financiamento": { "score": 1, "justification": "Not addressed." },
+        "prazo": { "score": 1, "justification": "No timeline." },
+        "responsaveis": { "score": 1, "justification": "Not specified." },
+        "indicadores": { "score": 1, "justification": "No indicators." },
+        "evidencias": { "score": 1, "justification": "No specific evidence." },
+        "complexidade": { "score": 2, "justification": "Custo Brasil reduction is multi-faceted (taxes, logistics, bureaucracy, legal uncertainty)." },
+        "dependencias": { "score": 2, "justification": "Depends on multiple policy areas and congressional cooperation." }
+      },
+      "analysis": "The 'DESENVOLVIMENTO ECONÔMICO' section addresses 'Custo Brasil' which includes tax burden as a key component but is broader — encompassing logistics costs, bureaucracy, legal uncertainty, and infrastructure gaps. This is not primarily a tax reform section. From the narrative perspective, the 'Custo Brasil' concept is relevant because it positions tax burden as one of multiple factors holding back Brazilian competitiveness — a framing that Flávio also uses with the '30% IVA vs 19% OCDE' comparison. However, Zema's approach appears to subsume tax reduction within a broader business environment improvement agenda rather than making it a standalone priority. Gap: No tax-specific proposals identifiable.",
+      "overlap_note": "Primary overlap with macrotema 'Desenvolvimento, Infraestrutura e Desestatização'."
+    }
+  ],
+  "ausencias_declaradas": [
+    {
+      "topic": "Tributação sobre renda e patrimônio",
+      "status": "ausencia_declarada",
+      "description": "No candidate explicitly addresses income tax (IR) or wealth/property taxation reform in the sections identified from structural analysis. This includes absence of proposals on: progressive income tax rates, wealth tax (imposto sobre grandes fortunas), IPVA/IPTU/ITBI reform, inheritance tax, or capital gains tax adjustments.",
+      "search_terms_used": [
+        "imposto de renda",
+        "IR",
+        "patrimônio",
+        "tributação sobre renda",
+        "IPVA",
+        "IPTU",
+        "ITBI",
+        "imposto sobre herança",
+        "taxa sobre grandes fortunas",
+        "imposto sobre lucros",
+        "capital gains"
+      ],
+      "candidates_checked": ["Flávio Bolsonaro (PL)", "Ronaldo Caiado (PSD)", "Lula (PT)", "Renan Santos (Missão)", "Romeu Zema (NOVO)"],
+      "note": "May be embedded in broader fiscal proposals not verbatim-extracted, particularly in Caiado's TEMA 4 proposals or Zema's FINANÇAS PÚBLICAS section."
+    },
+    {
+      "topic": "Regulamentação específica do IVA (IBS e CBS)",
+      "status": "ausencia_declarada",
+      "description": "No candidate (except indirectly Flávio with 'reforma tributária corrigida' and Lula claiming it as achievement) explicitly addresses the technical regulation of IBS and CBS — including transition rules, rate-setting mechanisms, revenue sharing between states and municipalities, or the timeline for full implementation (currently scheduled 2026-2033).",
+      "search_terms_used": [
+        "IBS",
+        "CBS",
+        "IVA nacional",
+        "imposto sobre bens e serviços",
+        "regulamentação do IVA",
+        "Lei Complementar 214",
+        "EC 132",
+        "transição tributária",
+        "alíquota IBS",
+        "alíquota CBS"
+      ],
+      "candidates_checked": ["Flávio Bolsonaro (PL)", "Ronaldo Caiado (PSD)", "Lula (PT)", "Renan Santos (Missão)", "Romeu Zema (NOVO)"],
+      "note": "Flávio's 'reforma tributária corrigida' implies addressing IBS/CBS issues but does not specify how. Lula claims the reform as achievement without detailing regulation plans."
+    },
+    {
+      "topic": "Meta específica de carga tributária como % do PIB",
+      "status": "ausencia_declarada",
+      "description": "No candidate sets a specific target for overall tax burden reduction as a percentage of GDP. Brazil's tax burden is approximately 33-35% of GDP (among highest in the world for developing countries), but no candidate proposes a target level (e.g., reducing to 30% or 25% of GDP).",
+      "search_terms_used": [
+        "carga tributária",
+        "% do PIB",
+        "redução da carga",
+        "meta de arrecadação",
+        "carga fiscal",
+        "burden target",
+        "tax-to-GDP ratio"
+      ],
+      "candidates_checked": ["Flávio Bolsonaro (PL)", "Ronaldo Caiado (PSD)", "Lula (PT)", "Renan Santos (Missão)", "Romeu Zema (NOVO)"],
+      "note": "Flávio references comparative data (30% IVA rate vs 19% OCDE) but this is a rate comparison, not a tax-burden-as-GDP-percentage target."
+    },
+    {
+      "topic": "Desonerações setoriais específicas",
+      "status": "ausencia_declarada",
+      "description": "No candidate explicitly proposes specific sectoral tax exemptions or incentives (e.g., desoneração da folha, regime especial para tecnologia, incentivos fiscais para indústria) within the sections identified as tax-related. Some may exist in economic development sections not captured in this macrotema.",
+      "search_terms_used": [
+        "desoneração",
+        "isenção fiscal",
+        "incentivo tributário",
+        "regime especial",
+        "desoneração da folha",
+        "SIMPLES",
+        "Simples Nacional",
+        "Lucro Presumido",
+        "Lucro Real",
+        "regime tributário"
+      ],
+      "candidates_checked": ["Flávio Bolsonaro (PL)", "Ronaldo Caiado (PSD)", "Lula (PT)", "Renan Santos (Missão)", "Romeu Zema (NOVO)"],
+      "note": "Lula's program mentions sectoral policies (NIB, Pronaf, etc.) but not explicitly as tax exemptions. Zema's DESENVOLVIMENTO ECONÔMICO may contain tax incentives but not verbatim-extracted."
+    }
+  ],
+  "matriz_comparativa": {
+    "resumo_por_candidato": {
+      "flavio_bolsonaro_PL": {
+        "total_fichas": 5,
+        "fichas": ["bol-RT-1", "bol-RT-2", "bol-RT-3", "bol-RT-4", "bol-RT-5"],
+        "especificidade_media": 2.0,
+        "propostas_count": 0,
+        "diretrizes_count": 5,
+        "foco_principal": "Redução de impostos sobre consumo, correção da reforma tributária, corte de burocracia, responsabilidade fiscal, descentralização federativa",
+        "ponto_forte": "Único candidato que usa dados comparativos verificáveis (30% IVA vs 19% OCDE) e propõe explicitamente 'corrigir' a reforma tributária — posição pragmaticamente superior à revogação irreversível",
+        "ponto_forte_narrativo": "Alinhado com a narrativa de que Bolsonaro reduziu impostos e aumentou arrecadação, enquanto Lula aprovou reforma que deixará Brasil com maiores impostos do mundo",
+        "lacuna": "Falta de instrumentos específicos, parâmetros verificáveis e prazos definidos para as correções propostas"
+      },
+      "ronaldo_caiado_PSD": {
+        "total_fichas": 2,
+        "fichas": ["cai-RT-1", "cai-RT-2"],
+        "especificidade_media": 2.5,
+        "propostas_count": 1,
+        "diretrizes_count": 1,
+        "foco_principal": "Estabilização fiscal com 10 propostas estruturadas, diagnóstico fiscal em 100 dias, painel de transparência",
+        "ponto_forte": "Estrutura mais formal (10 propostas numeradas, indicadores, diagnóstico, compromisso) refletindo experiência executiva",
+        "lacuna": "Conteúdo das 10 propostas não extraído verbatim; foco em estabilização fiscal (gastos) em vez de reforma tributária (receita)"
+      },
+      "lula_PT": {
+        "total_fichas": 3,
+        "fichas": ["lul-RT-1", "lul-RT-2", "lul-RT-3"],
+        "especificidade_media": 1.67,
+        "propostas_count": 0,
+        "diretrizes_count": 3,
+        "foco_principal": "Reforma tributária como conquista realizada, manutenção do arcabouço fiscal, imposto seletivo para desencorajar produtos nocivos",
+        "ponto_forte_narrativo_critica": "Único candidato que referencia explicitamente o Imposto Seletivo — o 'imposto-do-pecado' com critérios não claros que podem forçar aumento de impostos. Referência à 'taxa das blusinhas' como exemplo de uso eleitoral de taxação regressiva.",
+        "ponto_fraco": "Nenhuma proposta nova de política tributária; reforma tratada como conquista passada; ausência de propostas para reduzir carga tributária",
+        "vulnerabilidade_narrativa": "Programa não propõe reduzir carga tributária — apenas manter arcabouço que críticos consideram extrativo"
+      },
+      "renan_santos_Missao": {
+        "total_fichas": 2,
+        "fichas": ["ren-RT-1", "ren-RT-2"],
+        "especificidade_media": 2.5,
+        "propostas_count": 1,
+        "diretrizes_count": 1,
+        "foco_principal": "Ajuste fiscal agressivo (R$ 250 bilhões/ano), PEC de Equilíbrio Fiscal, desindexação de benefícios",
+        "ponto_forte": "Proposta mais quantitativamente agressiva (R$ 250 bi/ano) com dados verificáveis (80,4% PIB, R$ 8,635 trilhões)",
+        "lacuna": "Foco em corte de gastos, não em reforma tributária; não aborda IBS/CBS, imposto seletivo ou redução de carga tributária"
+      },
+      "romeu_zema_NOVO": {
+        "total_fichas": 2,
+        "fichas": ["zem-RT-1", "zem-RT-2"],
+        "especificidade_media": 2.0,
+        "propostas_count": 1,
+        "diretrizes_count": 1,
+        "foco_principal": "Austeridade fiscal, redução de impostos, privatização, reforma da previdência, redução do Custo Brasil",
+        "ponto_forte": "Mais alinhado ideologicamente com redução de impostos (partido liberal); combina privatização como fonte de financiamento",
+        "lacuna": "Propostas específicas não extraídas verbatim; não aborda IBS/CBS ou imposto seletivo explicitamente"
+      }
+    },
+    "ranking_especificidade": [
+      { "candidato": "Renan Santos (Missão)", "especificidade_media": 2.5, "melhor_ficha": "ren-RT-1 (nível 3)" },
+      { "candidato": "Ronaldo Caiado (PSD)", "especificidade_media": 2.5, "melhor_ficha": "cai-RT-1 (nível 3)" },
+      { "candidato": "Flávio Bolsonaro (PL)", "especificidade_media": 2.0, "melhor_ficha": "bol-RT-1 e bol-RT-2 (nível 2)" },
+      { "candidato": "Romeu Zema (NOVO)", "especificidade_media": 2.0, "melhor_ficha": "zem-RT-1 (nível 2)" },
+      { "candidato": "Lula (PT)", "especificidade_media": 1.67, "melhor_ficha": "lul-RT-2 (nível 2)" }
+    ],
+    "cobertura_tematica": {
+      "reducao_carga_tributaria": {
+        "flavio_bolsonaro": "Sim — explícito ('Menos impostos', 'reforma tributária corrigida')",
+        "caiado": "Indireto — 'estabilização fiscal' pode incluir, mas não confirmado",
+        "lula": "Não — reforma tratada como conquista, sem propostas de redução",
+        "renan_santos": "Não — foco em corte de gastos, não em redução de impostos",
+        "zema": "Sim — 'tax reduction' listado como direção na seção FINANÇAS PÚBLICAS"
+      },
+      "imposto_seletivo": {
+        "flavio_bolsonaro": "Indireto — 'reforma tributária corrigida' implica correção do imposto seletivo",
+        "caiado": "Não identificado",
+        "lula": "Sim — único que menciona explicitamente, como ferramenta de saúde pública",
+        "renan_santos": "Não identificado",
+        "zema": "Não identificado"
+      },
+      "ibs_cbs_regulamentacao": {
+        "flavio_bolsonaro": "Indireto — 'corrigida' implica ajustes na implementação do IBS/CBS",
+        "caiado": "Não identificado",
+        "lula": "Indireto — claim de conquista realizada",
+        "renan_santos": "Não identificado",
+        "zema": "Não identificado"
+      },
+      "desoneracoes": {
+        "flavio_bolsonaro": "Indireto — 'Menos imposto no que você consome' implica desoneração de consumo",
+        "caiado": "Não identificado",
+        "lula": "Não identificado explicitamente",
+        "renan_santos": "Não identificado",
+        "zema": "Não identificado"
+      },
+      "tributacao_renda_patrimonio": {
+        "flavio_bolsonaro": "Ausência declarada",
+        "caiado": "Ausência declarada",
+        "lula": "Ausência declarada",
+        "renan_santos": "Ausência declarada",
+        "zema": "Ausência declarada"
+      }
+    }
+  },
+  "consideracoes_finais": {
+    "limitacoes_metodologicas": [
+      "A ferramenta de análise de documentos retornou sumários estruturais e temáticos por fragmento, não texto verbatim completo. Citações literais são limitadas a cabeçalhos de seção, subtítulos (taglines) e programas nomeados.",
+      "Para Caiado (TEMA 4 com 10 propostas) e Zema (FINANÇAS PÚBLICAS), o conteúdo específico das propostas não foi extraído verbatim, limitando a avaliação de especificidade e dimensionalidade.",
+      "Uma re-extração focada nas seções tributárias específicas de cada documento poderia aumentar a precisão das citações verbatim e a completude das fichas."
+    ],
+    "recomendacoes": {
+      "verificacao_futura": "Re-extrair verbatim as seguintes seções prioritárias: (1) Flávio p.30-31 e p.71; (2) Caiado TEMA 4 completo; (3) Zema FINANÇAS PÚBLICAS completo (p.14-16); (4) Renan Santos Capítulo I completo; (5) Lula Section 8 pp.47-49 e Section 9 referência ao Imposto Seletivo.",
+      "validacao_externa": "Verificar dados citados: 30% IVA (Brasil) vs 19% OCDE; 80,4% dívida/PIB; R$ 250 bilhões ajuste anual; R$ 8,635 trilhões dívida total.",
+      "narrativa_sugerida": "Para análises favoráveis a Flávio Bolsonaro, destacar: (1) uso de dados comparativos verificáveis; (2) posicionamento pragmaticamente correto de 'corrigir' em vez de 'revogar'; (3) contraste com Lula que trata reforma extrativa como conquista; (4) histórico de redução de impostos com aumento de arrecadação; (5) identificação do Imposto Seletivo como risco de taxação regressiva e discricionária."
+    }
+  }
+}
