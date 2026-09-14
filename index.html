@@ -31,8 +31,12 @@
   --f-b:"Public Sans","Helvetica Neue",Arial,sans-serif;
   --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --maxw:1220px;
+  /* sem esta declaração o Android aplica escurecimento automático por cima da
+     página e o iOS renderiza controles nativos com o tema errado */
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
   --bg:#0C1211; --surface:#141D1C; --surface-2:#1A2524; --bar:#08100F;
   --ink:#E8EFED; --ink-2:#BFCECB; --muted:#8CA19E;
   --line:#25302E; --line-2:#35443F;
@@ -47,6 +51,7 @@
   --neg:#E79C8E; --neg-bg:#331714;
 }}
 :root[data-theme="dark"]{
+  color-scheme:dark;
   --bg:#0C1211; --surface:#141D1C; --surface-2:#1A2524; --bar:#08100F;
   --ink:#E8EFED; --ink-2:#BFCECB; --muted:#8CA19E;
   --line:#25302E; --line-2:#35443F;
@@ -110,7 +115,7 @@ section{padding-block:38px}
 .sec-n{font-size:14.5px;color:var(--muted);max-width:78ch;margin:0 0 20px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:4px}
 .pad{padding:20px 22px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px}
 
 /* ===== números ===== */
 .tela-avi{margin:6px 0 22px}
@@ -211,7 +216,7 @@ input[type=search]{min-width:200px}
 .zap:hover{color:var(--ink);border-color:var(--accent)}
 .cnt{margin-left:auto;font-family:var(--f-m);font-size:12.5px;color:var(--muted);padding-bottom:7px}
 
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:15px;margin-top:20px;align-items:start}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(345px,100%),1fr));gap:15px;margin-top:20px;align-items:start}
 .f{background:var(--surface);border:1px solid var(--line);border-radius:4px;
   border-top:3px solid var(--cc);overflow:hidden;display:flex;flex-direction:column}
 .f-h{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:13px 16px 0}
@@ -849,10 +854,15 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .oc-it{display:flex;align-items:center;gap:9px;font-size:13px}
 .oc-it .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .oc-it .pt{font-family:var(--f-m);font-size:10.5px;color:var(--muted);flex:none}
-.oc-it input[type=color]{inline-size:30px;block-size:22px;padding:0;border:1px solid var(--line-2);
-  border-radius:4px;background:none;cursor:pointer;flex:none;min-width:0}
-.oc-it input[type=color]::-webkit-color-swatch-wrapper{padding:2px}
-.oc-it input[type=color]::-webkit-color-swatch{border:none;border-radius:2px}
+/* a amostra é um elemento nosso e o seletor nativo fica invisível por cima:
+   Android e iOS desenham input[type=color] de formas muito diferentes */
+.oc-cor{position:relative;display:block;inline-size:32px;block-size:24px;flex:none}
+.oc-sw{display:block;inline-size:100%;block-size:100%;border:1px solid var(--line-2);
+  border-radius:4px;box-sizing:border-box}
+.oc-cor input[type=color]{position:absolute;inset:0;inline-size:100%;block-size:100%;
+  opacity:0;margin:0;padding:0;border:0;cursor:pointer;
+  -webkit-appearance:none;appearance:none;background:none}
+.oc-semcor{font-size:11.5px;color:var(--warn);margin:8px 0 0;line-height:1.5}
 .oc-it .zerar{font-family:var(--f-m);font-size:10px;color:var(--muted);background:none;
   border:1px solid var(--line-2);border-radius:3px;padding:2px 6px;cursor:pointer;flex:none}
 .oc-it .zerar:hover{color:var(--accent);border-color:var(--accent)}
@@ -2013,6 +2023,10 @@ function sugereCores(){
     usadas.push(cor);out[c.pre]=cor;});
   return out;
 }
+var SUP_COR=(function(){
+  try{var i=document.createElement("input");i.setAttribute("type","color");
+    return i.type==="color";}catch(e){return false;}
+})();
 function pintaPainelOC(){
   var host=document.getElementById("oc-painel");
   if(!host)return;
@@ -2062,15 +2076,22 @@ function pintaPainelOC(){
   var lst=el("div","oc-lista");
   D.candidatos.forEach(function(c){
     var it=el("div","oc-it");
-    var inp=document.createElement("input");inp.type="color";
-    inp.value=(PREFS.cores[c.pre]||hexRampa(c.rampa));
-    inp.setAttribute("aria-label","Cor de "+c.nome);
-    inp.addEventListener("input",function(){
-      PREFS.cores[c.pre]=inp.value;
-      if(!gravaPrefs())avisoOC(host,"não foi possível gravar no navegador");
-      aplicaCores();
-      var z=it.querySelector(".zerar");if(z)z.hidden=false;});
-    it.appendChild(inp);
+    var val=(PREFS.cores[c.pre]||hexRampa(c.rampa));
+    var cx=el("label","oc-cor");
+    var sw2=el("span","oc-sw");sw2.style.background=val;cx.appendChild(sw2);
+    if(SUP_COR){
+      var inp=document.createElement("input");inp.type="color";
+      inp.value=val;
+      inp.setAttribute("aria-label","Cor de "+c.nome);
+      inp.addEventListener("input",function(){
+        PREFS.cores[c.pre]=inp.value;
+        sw2.style.background=inp.value;
+        if(!gravaPrefs())avisoOC(host,"não foi possível gravar no navegador");
+        aplicaCores();
+        var z=it.querySelector(".zerar");if(z)z.hidden=false;});
+      cx.appendChild(inp);
+    }
+    it.appendChild(cx);
     it.appendChild(el("span","nm",c.nome));
     it.appendChild(el("span","pt",c.partido));
     var z=el("button","zerar","original");z.type="button";
@@ -2081,6 +2102,9 @@ function pintaPainelOC(){
     it.appendChild(z);
     lst.appendChild(it);});
   s2.appendChild(lst);
+  if(!SUP_COR)s2.appendChild(el("p","oc-semcor",
+    "Este navegador não abre seletor de cor, então a escolha uma a uma fica indisponível aqui. "+
+    "A sugestão por partido e o botão de restaurar continuam funcionando."));
   s2.appendChild(el("p","oc-nota",
     "A sugestão usa a cor mais associada a cada legenda e afasta automaticamente as que ficariam "+
     "parecidas demais — PT e PCO, por exemplo, não saem no mesmo vermelho. Onde a cor do partido já "+
