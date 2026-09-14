@@ -1313,6 +1313,13 @@ D.fichas.sort(function(a,b){
   if(ma!==mb)return ma.localeCompare(mb,"pt");
   if(ORD[a.cand]!==ORD[b.cand])return ORD[a.cand]-ORD[b.cand];
   return a.id.localeCompare(b.id,"pt",{numeric:true});});
+/* blocos que rodam antes do módulo de exportação existir ficam nesta fila */
+var PEND=[];
+function rodaPendentes(){
+  if(!window.DL||!PEND.length)return;
+  var f=PEND.slice();PEND.length=0;
+  f.forEach(function(fn){try{fn();}catch(e){}});
+}
 function nomeMT(m,alvo){
   var n=m.nome, i=n.indexOf(": ");
   if(i<0){alvo.appendChild(document.createTextNode(n));return alvo;}
@@ -1593,7 +1600,7 @@ VIEWS.forEach(function(v){
 /* botões de download nas tabelas estáticas (Documentos, Método) */
 function dlTabelasEstaticas(){
   if(!window.DL)return;
-  var alvos=[["v-documentos","documentos"],["v-metodo","metodo"]];
+  var alvos=[["v-documentos","documentos"],["v-metodo","metodo"],["v-inicio","inicio"]];
   alvos.forEach(function(a){
     var v=document.getElementById(a[0]); if(!v)return;
     [].forEach.call(v.querySelectorAll("table"),function(tbl,i){
@@ -1683,7 +1690,7 @@ addEventListener("hashchange",rota);
   addEventListener("resize",mediNav);
   addEventListener("orientationchange",function(){setTimeout(mediNav,200);});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(mediNav);
-  function ciclo(){mediNav();dicaTabelas();try{dlTabelasEstaticas();}catch(e){}}
+  function ciclo(){mediNav();dicaTabelas();try{rodaPendentes();}catch(e){}try{dlTabelasEstaticas();}catch(e){}}
   ciclo();
   addEventListener("hashchange",function(){setTimeout(ciclo,120);});
   setInterval(ciclo,1500);
@@ -1774,8 +1781,27 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
   var tg=el("td",null,String(geral));tg.style.fontWeight="600";tg.style.background="var(--surface-2)";
   fr.appendChild(tg);tf.appendChild(fr);t.appendChild(tf);
   t.classList.add("t");
+  t.dataset.dl="1";
   document.getElementById("heat").appendChild(t);
   ordenavel(t);
+  PEND.push(function(){
+    window.DL.botoesDL(document.getElementById("heat"),{
+      nome:"panorama-citacoes-por-macrotema",
+      titulo:"Panorama — citações por macrotema e candidatura",
+      sub:D.fichas.length+" citações conferidas, distribuídas em "+D.macrotemas.length+
+        " macrotemas e "+D.candidatos.length+" documentos",
+      fonte:"Contagem de citações extraídas de cada plano; quantidade mede como o documento foi escrito, não o que ele vale",
+      linhas:function(){
+        var R=[["macrotema"].concat(D.candidatos.map(function(c){return c.nome+" ("+c.partido+")";})).concat(["total"])];
+        D.macrotemas.forEach(function(m){
+          var lin=[m.nome],soma=0;
+          D.candidatos.forEach(function(c){var n=cel[m.cod+c.pre];soma+=n;lin.push(n);});
+          lin.push(soma);R.push(lin);});
+        var fim=["TOTAL"],g=0;
+        D.candidatos.forEach(function(c){var n=fichasDe(null,c.pre).length;g+=n;fim.push(n);});
+        fim.push(g);R.push(fim);
+        return R;}});
+  });
   var lg=document.getElementById("hleg");
   [1,2,3,4,5,6,7].forEach(function(p){var i=el("i");i.style.background=SEQ[p];lg.appendChild(i);});
 })();
@@ -1804,6 +1830,22 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
   ["1 diretriz genérica","2 conceitual","3 estruturada","4 detalhada","5 operacional"].forEach(function(t,i){
     var s=el("span"),b=el("b");b.style.background=COR[i];s.appendChild(b);
     s.appendChild(document.createTextNode(t));lg.appendChild(s);});
+  PEND.push(function(){
+    window.DL.botoesDL(box.parentNode||box,{
+      nome:"grau-de-especificidade",
+      titulo:"Grau de especificidade das citações",
+      sub:"Quantas citações de cada documento ficam em cada nível de 1 a 5",
+      fonte:"Nível atribuído citação a citação segundo os critérios descritos na aba Método",
+      linhas:function(){
+        var R=[["candidatura","partido","nivel 1 diretriz generica","nivel 2 conceitual",
+                "nivel 3 estruturada","nivel 4 detalhada","nivel 5 operacional","total pontuadas"]];
+        D.candidatos.forEach(function(c){
+          var fs=fichasDe(null,c.pre).filter(function(f){return f.nivel;});
+          var lin=[c.nome,c.partido];
+          NIV.forEach(function(nv){lin.push(fs.filter(function(f){return f.nivel===nv;}).length);});
+          lin.push(fs.length);R.push(lin);});
+        return R;}});
+  });
 })();
 
 /* ---------- dimensões ---------- */
@@ -1818,6 +1860,17 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
     var tr=el("div","dtrack"),f=el("i");f.style.width=(l.m/5*100)+"%";tr.appendChild(f);
     comTip(tr,DIMN[l.k]+" — média "+l.m.toFixed(2)+" de 5, em "+l.q+" citações pontuadas");
     r.appendChild(tr);r.appendChild(el("em",null,l.m.toFixed(2)));box.appendChild(r);});
+  PEND.push(function(){
+    window.DL.botoesDL(box.parentNode||box,{
+      nome:"o-que-os-documentos-declaram",
+      titulo:"O que os documentos costumam declarar",
+      sub:"Média de cada dimensão, de 1 a 5, somando as citações pontuadas dos oito documentos",
+      fonte:"Média simples das notas por dimensão; não é nota de governo nem ranking de candidatura",
+      linhas:function(){
+        var R=[["dimensao","media_1_a_5","citacoes_pontuadas"]];
+        L.forEach(function(l){R.push([DIMN[l.k],l.m.toFixed(2),l.q]);});
+        return R;}});
+  });
 })();
 
 /* ---------- legenda de candidatos ---------- */
@@ -4112,7 +4165,9 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
         alerta("Este bloco não tem gráfico nem tabela para exportar como imagem.");
       }));
       barraFoot.appendChild(avisoTela());
-      foot.appendChild(barraFoot);
+      /* logo abaixo do gráfico: em blocos com muita análise embaixo,
+         no fim do rodapé ninguém acha */
+      foot.insertBefore(barraFoot,foot.firstChild);
       if(cfg.aviso){
         var av=el("div","ig-aviso");
         av.appendChild(el("span","rot","Como ler"));
