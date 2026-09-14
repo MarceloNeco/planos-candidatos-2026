@@ -404,7 +404,9 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .gsel button:hover{border-color:var(--accent);color:var(--ink)}
 .gsel button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:500}
 .gsel button .sw{width:9px;height:9px;border-radius:2px;flex:none}
-.gsel button[aria-pressed="true"] .sw{background:var(--accent-ink)!important}
+/* o quadradinho guarda a cor da candidatura mesmo selecionado; o anel claro
+   garante que ele apareça sobre o fundo escuro do botão ativo */
+.gsel button[aria-pressed="true"] .sw{box-shadow:0 0 0 1.5px var(--accent-ink)}
 .tl{border-left:2px solid var(--line-2);margin-left:6px;padding-left:20px;display:flex;flex-direction:column;gap:16px}
 .tl .ev{position:relative}
 .tl .ev::before{content:"";position:absolute;left:-26px;top:6px;width:9px;height:9px;border-radius:50%;
