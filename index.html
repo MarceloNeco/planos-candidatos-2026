@@ -1825,7 +1825,11 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
   function passo(n){return n?Math.max(1,Math.min(7,Math.ceil(n/max*7))):0;}
   var t=el("table"),th=el("thead"),hr=el("tr");
   hr.appendChild(el("th","row","Macrotema"));
-  D.candidatos.forEach(function(c){hr.appendChild(el("th",null,c.curto));});
+  D.candidatos.forEach(function(c){
+    var th3=el("th");
+    var dc=el("span","dot5");dc.style.background=c.cor;th3.appendChild(dc);
+    th3.appendChild(document.createTextNode(c.curto));
+    hr.appendChild(th3);});
   hr.appendChild(el("th",null,"Total"));th.appendChild(hr);t.appendChild(th);
   var tb=el("tbody");
   D.macrotemas.forEach(function(m){
@@ -1889,7 +1893,9 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
   D.candidatos.forEach(function(c){
     var fs=fichasDe(null,c.pre).filter(function(f){return f.nivel;});
     var row=el("div","srow");
-    var nm=el("div","nm");nm.appendChild(document.createTextNode(c.nome+" "));
+    var nm=el("div","nm");
+    var pd=el("span","dot5");pd.style.background=c.cor;nm.appendChild(pd);
+    nm.appendChild(document.createTextNode(c.nome+" "));
     nm.appendChild(el("span","pt-sig","("+c.partido+")"));row.appendChild(nm);
     var bar=el("div","sbar");
     NIV.forEach(function(nv,i){
@@ -1953,7 +1959,7 @@ document.getElementById("prog").textContent="Os "+D.macrotemas.length+
 /* paleta partidária já escolhida separada entre si: com os oito partidos de hoje
    nenhuma precisa ser deslocada, e todas ficam legíveis no tema claro e no escuro */
 var PARTCOR={PL:"#1152B8",PT:"#C4122F",PSD:"#12907A",NOVO:"#F07405",PRTB:"#46B04A",
-  Avante:"#E0B400",PCO:"#7A2233","Missão":"#7B5CB8",MISSAO:"#7B5CB8"};
+  "Missão":"#E0B400",MISSAO:"#E0B400",PCO:"#7A2233",Avante:"#7B5CB8"};
 var MIN_DIST=62;
 function hex2rgb(h){h=String(h).replace("#","");
   if(h.length===3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
@@ -2067,11 +2073,13 @@ function pintaPainelOC(){
     lst.appendChild(it);});
   s2.appendChild(lst);
   s2.appendChild(el("p","oc-nota",
-    "A sugestão por partido usa a cor mais associada a cada legenda e afasta automaticamente as que "+
-    "ficariam parecidas demais — PT e PCO, por exemplo, não saem no mesmo vermelho. Repare que cor "+
-    "partidária carrega significado, e é por isso que ela não é o padrão do site. Uma cor escolhida "+
-    "por você fica fixa nos dois temas, claro e escuro, enquanto as cores originais se ajustam sozinhas "+
-    "a cada um."));
+    "A sugestão usa a cor mais associada a cada legenda e afasta automaticamente as que ficariam "+
+    "parecidas demais — PT e PCO, por exemplo, não saem no mesmo vermelho. Onde a cor do partido já "+
+    "está tomada por outro, ou onde a legenda é nova e não tem cor firmada, entra um tom distinto "+
+    "qualquer, que não representa o partido: é o caso do Avante, cujo azul e amarelo já estão com PL "+
+    "e Missão. Repare que cor partidária carrega significado, e é por isso que ela não é o padrão do "+
+    "site. Uma cor escolhida por você fica fixa nos dois temas, claro e escuro, enquanto as cores "+
+    "originais se ajustam sozinhas a cada um."));
   host.appendChild(s2);
 }
 function avisoOC(host,msg){
@@ -2556,7 +2564,9 @@ function pintaScore(){
   var max=Math.max.apply(null,linhas.map(function(l){return l.idx||0;}));
   linhas.slice().sort(function(a,b){return (b.idx||0)-(a.idx||0);}).forEach(function(l){
     var row=el("div","score-row");
-    var w=el("div","who");w.appendChild(document.createTextNode(l.c.nome));
+    var w=el("div","who");
+    var dw=el("span","dot5");dw.style.background=l.c.cor;w.appendChild(dw);
+    w.appendChild(document.createTextNode(l.c.nome));
     w.appendChild(el("small",null,l.nf+" citações · cobre "+l.cob+" de "+lista.length+(modoIgual?" macrotemas":" temas escolhidos")));
     row.appendChild(w);
     var tr=el("div","strack"),f=el("i");
@@ -2585,7 +2595,11 @@ function pintaScore(){
 
   var t=el("table","t"),th=el("thead"),hr=el("tr");
   hr.appendChild(el("th",null,modoIgual?"Macrotema":"Macrotema escolhido"));hr.appendChild(el("th","n","Peso"));
-  D.candidatos.forEach(function(c){hr.appendChild(el("th","n",c.curto));});
+  D.candidatos.forEach(function(c){
+    var th4=el("th","n");
+    var d4=el("span","dot5");d4.style.background=c.cor;d4.style.marginRight="5px";
+    th4.appendChild(d4);th4.appendChild(document.createTextNode(c.curto));
+    hr.appendChild(th4);});
   th.appendChild(hr);t.appendChild(th);
   var tb=el("tbody");
   lista.forEach(function(cod,i){
