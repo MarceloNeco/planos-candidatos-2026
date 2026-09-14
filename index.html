@@ -84,14 +84,17 @@ a{color:var(--accent)}
   background:none;border:1px solid rgba(255,255,255,.25);color:#A9BDBA;border-radius:3px;padding:6px 10px;cursor:pointer}
 .tbtn:hover{color:#fff;border-color:#fff}
 @media (max-width:760px){
-  .nav-in{gap:10px;padding-block:8px;flex-wrap:nowrap;align-items:center}
-  .brand{font-size:14px;gap:7px;flex:none}
+  /* marca e tema na 1ª linha; o menu inteiro na 2ª, rolando na horizontal */
+  .nav-in{gap:6px 10px;padding-block:7px;flex-wrap:wrap;align-items:center}
+  .brand{font-size:13.5px;gap:6px;flex:1 1 auto;min-width:0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .brand .rail{display:none}
-  .menu{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scrollbar-width:none;margin-left:8px;min-width:0}
+  .tbtn{flex:0 0 auto;order:2;padding:5px 8px;font-size:9.5px}
+  .menu{order:3;flex:1 0 100%;margin-left:0;min-width:0;
+    flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:1px}
   .menu::-webkit-scrollbar{display:none}
-  .menu button{flex:none;font-size:12.5px;padding:6px 9px;white-space:nowrap}
-  .tbtn{flex:none;padding:5px 7px;font-size:9.5px}
+  .menu button{flex:0 0 auto;font-size:12.5px;padding:6px 10px;white-space:nowrap}
 }
 
 /* ===== comum ===== */
@@ -1486,11 +1489,19 @@ function infoEm(sel,k){var n=document.querySelector(sel);if(n)n.appendChild(info
 /* ---------- tooltip ---------- */
 var tip=document.getElementById("tip");
 function tipOn(e,t){tip.textContent=t;tip.classList.add("on");tipMove(e);}
-function tipMove(e){var x=e.clientX+14,y=e.clientY+16;
-  if(x+240>innerWidth)x=e.clientX-238;if(y+80>innerHeight)y=e.clientY-70;
+function tipMove(e){
+  var r=tip.getBoundingClientRect(), lg=r.width||240, al=r.height||80;
+  var x=e.clientX+14, y=e.clientY+16;
+  if(x+lg+8>innerWidth) x=Math.max(8,e.clientX-lg-14);
+  if(y+al+8>innerHeight) y=Math.max(8,e.clientY-al-12);
   tip.style.left=x+"px";tip.style.top=y+"px";}
 function tipOff(){tip.classList.remove("on");}
 function comTip(node,txt){
+  /* nunca deixar o balão nativo do navegador competir com este:
+     em HTML é o atributo title, em SVG é um filho <title> */
+  if(node.removeAttribute)node.removeAttribute("title");
+  var t0=node.querySelector&&node.querySelector(":scope > title");
+  if(t0)node.removeChild(t0);
   node.addEventListener("mouseenter",function(e){tipOn(e,txt);});
   node.addEventListener("mousemove",tipMove);
   node.addEventListener("mouseleave",tipOff);
@@ -2445,7 +2456,9 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
     var CEL=(W-ML-MR)/(x1-x0);
     var Y=function(v){return MT+(1-(v-v0)/(v1-v0))*(H-MT-MB);};
     var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img"});
-    var ttl=svgEl("title",{});ttl.textContent=cfg.titulo;svg.appendChild(ttl);
+    /* nome acessível por aria-label, não por <title>: <title> dentro de SVG vira
+       balão branco nativo do navegador e se sobrepõe ao balão de dados */
+    svg.setAttribute("aria-label",cfg.titulo);
 
     IG.governos.forEach(function(g,i){
       var a=Math.max(g.ini,x0), b=Math.min(g.fim,x1);
@@ -2464,7 +2477,9 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
         var R=21, img=svgEl("image",{x:cx-R,y:MT-38-R*2,width:R*2,height:R*2,href:IG.fotos[g.foto],
           preserveAspectRatio:"xMidYMid slice"});
         img.setAttribute("clip-path","circle("+R+"px at "+R+"px "+R+"px)");
-        var tt=svgEl("title",{});tt.textContent=g.pessoa;img.appendChild(tt);svg.appendChild(img);
+        img.setAttribute("aria-label",g.pessoa);
+        comTip(img,g.pessoa+" — "+g.rot+(g.sub?" ("+g.sub+")":""));
+        svg.appendChild(img);
       }
     });
 
@@ -2479,6 +2494,26 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       var t=svgEl("text",{x:ML-7,y:y+3,"text-anchor":"end","class":"ax"});t.textContent=fmt(v);svg.appendChild(t);
     }
     if(v0<0)svg.appendChild(svgEl("line",{x1:ML,x2:W-MR,y1:Y(0),y2:Y(0),stroke:"var(--line-2)","stroke-width":1.4}));
+
+    /* faixa invisível por ano, atrás de tudo: passar o mouse em qualquer ponto da
+       coluna mostra os valores daquele ano, mesmo no vão entre as barras */
+    (function(){
+      var porAno={};
+      ss.forEach(function(o){o.pontos.forEach(function(p){
+        if(!p.anual)return;
+        (porAno[p.ano]||(porAno[p.ano]=[])).push({t:o.titulo,v:p.v,u:o.unidade,tipo:p.tipo,obs:p.obs});});});
+      Object.keys(porAno).forEach(function(ano){
+        var itens=porAno[ano], xa=X(+ano), larg=CEL;
+        if(xa+larg<ML||xa>W-MR)return;
+        var txt=ano+" — "+itens.map(function(it){
+          return it.t+": "+fmt(it.v)+" "+it.u+(it.tipo!=="apurado"?" ("+(it.obs||"parcial")+")":"");
+        }).join(" · ");
+        var hit=svgEl("rect",{x:xa,y:MT,width:larg,height:H-MB-MT,fill:"transparent"});
+        comTip(hit,txt);
+        hit.setAttribute("tabindex","-1");
+        svg.appendChild(hit);
+      });
+    })();
     var passo=(x1-x0)>18?2:1;
     for(var a=Math.ceil(x0/passo)*passo;a<=x1;a+=passo){
       var t=svgEl("text",{x:XC(a),y:H-MB+16,"text-anchor":"middle","class":"ax"});t.textContent=a;svg.appendChild(t);
@@ -2491,7 +2526,9 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
         svg.appendChild(svgEl("line",{x1:x,x2:x,y1:ym,y2:H-MB,"class":"mk"}));
         var g2=svgEl("g",{});
         g2.appendChild(svgEl("circle",{cx:x,cy:ym,r:3.2,"class":"mk-dot"}));
-        g2.appendChild(svgEl("rect",{x:x-7,y:ym-8,width:14,height:H-MB-(ym-8),fill:"transparent"}));
+        /* a área sensível do marco fica só no topo, junto do ponto: o resto da
+           coluna pertence ao dado, que é o que a pessoa veio ler */
+        g2.appendChild(svgEl("rect",{x:x-7,y:ym-8,width:14,height:26,fill:"transparent"}));
         comTip(g2,m.rotulo+" — "+m.fato+" · "+m.cat);
         svg.appendChild(g2);
       });
