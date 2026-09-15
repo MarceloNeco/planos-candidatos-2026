@@ -660,6 +660,13 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .gv-lab{font-family:var(--f-b);font-size:11px;font-weight:600;fill:var(--ink-2)}
 .gv-sub{font-family:var(--f-m);font-size:8.5px;fill:var(--muted)}
 .ax{font-family:var(--f-m);font-size:9.5px;fill:var(--muted)}
+/* valor negativo no eixo sai em vermelho, e a faixa abaixo de zero ganha
+   fundo: sem isso, um resultado de -30 bilhões parece só uma barra curta */
+.ax.neg{fill:var(--neg)}
+.zona-neg{fill:var(--neg-bg);opacity:.72}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .zona-neg{opacity:.55}}
+:root[data-theme="dark"] .zona-neg{opacity:.55}
+.linha-zero{stroke:var(--neg);stroke-width:1.4;opacity:.5}
 .grid{stroke:var(--line);stroke-width:1}
 .divg{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
 .mk{stroke:var(--warn);stroke-width:1;stroke-dasharray:2 4;opacity:.55}
@@ -3762,7 +3769,17 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       }
     });
 
+    /* faixa abaixo de zero: entra depois das faixas de governo e antes dos dados,
+       para marcar o terreno negativo sem cobrir linha nem barra */
+    if(v0<0&&v1>0){
+      svg.appendChild(svgEl("rect",{x:ML,y:Y(0),width:W-ML-MR,height:Math.max(0,Y(v0)-Y(0)),
+        "class":"zona-neg"}));
+    }
+
     function fmt(v){
+      /* o zero do eixo é "0", nunca "0,0": é a fronteira entre positivo e
+         negativo e tem de ser lida de relance */
+      if(v===0) return "0";
       /* contagem de coisas não tem casa decimal: "30,2 empresas" não existe */
       if(cfg.inteiros) return dec(String(Math.round(v)));
       /* "3,2 mil" numa série cuja unidade já é bilhões faz o leitor multiplicar
@@ -3776,12 +3793,25 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       if(Math.abs(v)>=1000) return dec((v/1000).toFixed(v>=1e5?0:1))+SUF_MIL;
       return (Math.abs(v)>=100?v.toFixed(0):dec(v.toFixed(1)));
     }
-    for(var i=0;i<=5;i++){
-      var v=v0+(v1-v0)*i/5, y=Y(v);
-      svg.appendChild(svgEl("line",{x1:ML,x2:W-MR,y1:y,y2:y,"class":"grid"}));
-      var t=svgEl("text",{x:ML-7,y:y+3,"text-anchor":"end","class":"ax"});t.textContent=fmt(v);svg.appendChild(t);
+    /* marcas do eixo: as seis de sempre, mais o zero quando a série cruza a linha.
+       Uma marca que caia colada no zero é descartada, senão os dois rótulos se
+       sobrepõem e nenhum dos dois fica legível. */
+    var marcas=[];
+    for(var i=0;i<=5;i++) marcas.push(v0+(v1-v0)*i/5);
+    var cruzaZero=(v0<0&&v1>0);
+    if(cruzaZero){
+      var minDist=(v1-v0)*0.06;
+      marcas=marcas.filter(function(v){return Math.abs(v)>minDist;});
+      marcas.push(0);
+      marcas.sort(function(a,b){return a-b;});
     }
-    if(v0<0)svg.appendChild(svgEl("line",{x1:ML,x2:W-MR,y1:Y(0),y2:Y(0),stroke:"var(--line-2)","stroke-width":1.4}));
+    marcas.forEach(function(v){
+      var y=Y(v);
+      svg.appendChild(svgEl("line",{x1:ML,x2:W-MR,y1:y,y2:y,"class":"grid"}));
+      var t=svgEl("text",{x:ML-7,y:y+3,"text-anchor":"end","class":"ax"+(v<0?" neg":"")});
+      t.textContent=fmt(v);svg.appendChild(t);
+    });
+    if(v0<0)svg.appendChild(svgEl("line",{x1:ML,x2:W-MR,y1:Y(0),y2:Y(0),"class":"linha-zero"}));
 
     /* faixa invisível por ano, atrás de tudo: passar o mouse em qualquer ponto da
        coluna mostra os valores daquele ano, mesmo no vão entre as barras */
