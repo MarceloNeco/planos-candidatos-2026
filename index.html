@@ -999,9 +999,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .ig-ver{display:flex;flex-wrap:wrap;align-items:center;gap:8px;width:100%;margin-bottom:4px}
 .mnd-2{display:grid;gap:4px}
 .mnd-2 .stf-brt{height:19px}
-.mnd-l{font-family:var(--f-m);font-size:9px;letter-spacing:.07em;text-transform:uppercase;
-  color:var(--muted);align-self:center}
-.mnd-br{display:grid;grid-template-columns:76px 1fr;gap:9px;align-items:center}
+.mnd-br{display:block}
 .stf-brt i.mnd-sai,.leg-ig i.mnd-sai{background:var(--s600)}
 .stf-brt i.mnd-ent,.leg-ig i.mnd-ent{background:var(--warn)}
 .stf-brt i.mnd-zero{background:none;color:var(--muted);min-width:0;padding-left:5px}
@@ -3914,8 +3912,8 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       var cx=el("div","mnd-2");
       [[l.s,"mnd-sai",sai.titulo],[l.e,"mnd-ent",ent.titulo]].forEach(function(o){
         var lin=el("div","mnd-br");
-        /* o rótulo da série só na primeira linha: repeti-lo nove vezes é ruído */
-        lin.appendChild(el("span","mnd-l",li===0?o[2]:""));
+        /* sem rótulo de série aqui: a legenda logo acima do gráfico já diz
+           qual cor é qual, e repetir o texto custava uma coluna inteira */
         var tr=el("div","stf-brt");
         var i2=el("i",o[0]?o[1]:(o[1]+" mnd-zero"));
         i2.style.width=o[0]?Math.max(o[0]/mx*100,3)+"%":"auto";
