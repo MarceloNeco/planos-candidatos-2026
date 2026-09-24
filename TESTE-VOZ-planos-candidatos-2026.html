@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Teste de voz — Eleições 2026</title>
+<style>
+  body{font:16px/1.5 system-ui,sans-serif;max-width:720px;margin:24px auto;padding:0 16px;background:#140f22;color:#f2ecff}
+  h1{font-size:22px;margin:0 0 4px} h2{font-size:15px;color:#b6a8d8;margin:22px 0 8px;text-transform:uppercase;letter-spacing:.6px}
+  textarea,select,button,input{width:100%;margin-top:8px;padding:12px;border-radius:12px;border:1px solid #3a2f5e;background:#1d1633;color:#f2ecff;font-size:16px;box-sizing:border-box}
+  textarea{min-height:110px}
+  button{background:linear-gradient(135deg,#ffc879,#ff9d5c);color:#2a1705;font-weight:700;border:none;cursor:pointer}
+  button.sec{background:#2e2450;color:#f2ecff;border:1px solid #3a2f5e}
+  .row{display:flex;gap:10px} .row>*{flex:1}
+  .box{background:#241c3d;border:1px solid #3a2f5e;border-radius:14px;padding:14px;margin-top:12px;font-size:14px}
+  .ok{color:#5fd6a4} .warn{color:#ffc879} .err{color:#ff7a92}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px} td,th{padding:6px 8px;border-bottom:1px solid #3a2f5e;text-align:left;vertical-align:top}
+  small{color:#8c7cb4}
+  .lang{position:absolute;right:16px;top:16px;font-size:13px} .lang button{width:auto;padding:6px 10px;margin:0 2px}
+</style>
+</head>
+<body>
+<div class="lang"><button class="sec" onclick="setLang('pt')">PT</button><button class="sec" onclick="setLang('en')">EN</button></div>
+<h1 data-pt="🔈 Teste de voz do aparelho" data-en="🔈 Device voice test"></h1>
+<small data-pt="Eleições 2026 (planos de governo) · esta página não depende do app: serve para descobrir que vozes o navegador realmente entrega."
+       data-en="Elections 2026 (government plans) · this page is independent from the app: it shows which voices the browser really exposes."></small>
+
+<h2 data-pt="1. O que o navegador enxerga" data-en="1. What the browser can see"></h2>
+<div class="box" id="diag" data-pt="procurando vozes…" data-en="looking for voices…"></div>
+<div class="row">
+  <button class="sec" id="btn-reload" data-pt="🔄 Recarregar lista" data-en="🔄 Reload list"></button>
+</div>
+
+<h2 data-pt="2. Escolha a voz" data-en="2. Pick a voice"></h2>
+<select id="voice"></select>
+<small data-pt="“Padrão do aparelho” = sem escolher voz, só pedindo pt-BR: o Android usa o mecanismo padrão das Configurações (Google, Samsung, SherpaTTS, Acapela…)."
+       data-en="“Device default” = no voice chosen, only pt-BR requested: Android uses the default engine from Settings (Google, Samsung, SherpaTTS, Acapela…)."></small>
+
+<h2 data-pt="3. Fale" data-en="3. Speak"></h2>
+<textarea id="text">Olá! Este é um teste de voz em português do Brasil. Esta é a leitura em voz alta das citações dos planos de governo, com a página de onde cada trecho saiu.</textarea>
+<div class="row">
+  <button id="speak" data-pt="▶️ Falar" data-en="▶️ Speak"></button>
+  <button class="sec" id="stop" data-pt="⏹ Parar" data-en="⏹ Stop"></button>
+</div>
+<div class="box" id="status" aria-live="polite">—</div>
+
+<h2 data-pt="4. Todas as vozes" data-en="4. All voices"></h2>
+<div class="box" id="lista"></div>
+
+<h2 data-pt="5. Se a voz instalada não aparece" data-en="5. If the installed voice does not show up"></h2>
+<div class="box">
+  <ol style="margin:0;padding-left:18px">
+    <li data-pt="Configurações → 🔍 “conversão de texto em voz” → Mecanismo preferido → escolha o motor (SherpaTTS, Google, Samsung, Acapela) → Reproduzir."
+        data-en="Settings → 🔍 “text-to-speech” → Preferred engine → choose the engine (SherpaTTS, Google, Samsung, Acapela) → Play."></li>
+    <li data-pt="Feche o navegador DE VEZ: Configurações → Aplicativos → Chrome/Edge → Forçar parada. Recarregar a página não basta."
+        data-en="Close the browser FOR REAL: Settings → Apps → Chrome/Edge → Force stop. Reloading the page is not enough."></li>
+    <li data-pt="Abra esta página de novo e toque em Recarregar lista."
+        data-en="Open this page again and tap Reload list."></li>
+    <li data-pt="Se a voz não aparecer mesmo assim, use “Padrão do aparelho”: o navegador manda pt-BR e o Android responde com o mecanismo padrão."
+        data-en="If it still does not show, use “Device default”: the browser asks for pt-BR and Android answers with the default engine."></li>
+    <li data-pt="Ainda a voz antiga? Reinicie o celular uma vez."
+        data-en="Still the old voice? Restart the phone once."></li>
+  </ol>
+  <p style="margin:10px 0 0"><small data-pt="As vozes “Naturais” do Edge de computador não existem no Android (a Microsoft não as libera para sites no celular)."
+     data-en="Desktop Edge “Natural” voices do not exist on Android (Microsoft does not expose them to websites on mobile)."></small></p>
+</div>
+
+<script>
+(function(){
+  var lang = 'pt';
+  window.setLang = function(l){ lang=l; document.documentElement.lang = l==='pt'?'pt-BR':'en';
+    document.querySelectorAll('[data-pt]').forEach(function(el){ el.textContent = el.getAttribute('data-'+l); });
+    refresh(); };
+  var synth = window.speechSynthesis, sel = document.getElementById('voice'),
+      diag = document.getElementById('diag'), status = document.getElementById('status'),
+      lista = document.getElementById('lista'), all = [];
+  var PADRAO = '__padrao__';
+  function norm(l){ return String(l||'').replace('_','-').toLowerCase(); }
+  function ehPt(v){ var l=norm(v.lang); return l.indexOf('pt')===0 || l.indexOf('por')===0; }
+  function natural(v){ return /natural|online|neural|enhanced|premium|wavenet|piper|sherpa|coqui|vits|acapela|kokoro|woheller|ttsengine|-(low|medium|high)\b/i.test(v.name+' '+v.voiceURI); }
+  function motor(v){ var s=(v.name+' '+v.voiceURI).toLowerCase();
+    if(/sherpa|piper|coqui|vits|woheller|ttsengine|-(low|medium|high)\b/.test(s)) return 'SherpaTTS'; if(/acapela/.test(s)) return 'Acapela';
+    if(/samsung|smt/.test(s)) return 'Samsung'; if(/google|gsm/.test(s)) return 'Google';
+    if(/microsoft/.test(s)) return 'Microsoft'; if(/apple/.test(s)) return 'Apple'; return '?'; }
+  function t(pt,en){ return lang==='pt'?pt:en; }
+  function refresh(){
+    if(!synth){ diag.innerHTML='<span class="err">'+t('Este navegador não tem Web Speech API.','This browser has no Web Speech API.')+'</span>'; return; }
+    var antes = sel.value;
+    all = synth.getVoices()||[];
+    var pt = all.filter(ehPt);
+    var ordem = all.slice().sort(function(a,b){ return (ehPt(b)-ehPt(a)) || (natural(b)-natural(a)) || a.name.localeCompare(b.name); });
+    var motores = {}; all.forEach(function(v){ motores[motor(v)]=1; });
+    diag.innerHTML = all.length
+      ? t('O navegador enxerga <b>'+all.length+'</b> voz(es), <b>'+pt.length+'</b> em português · mecanismos: <b>'+Object.keys(motores).join(', ')+'</b>',
+          'The browser sees <b>'+all.length+'</b> voice(s), <b>'+pt.length+'</b> in Portuguese · engines: <b>'+Object.keys(motores).join(', ')+'</b>')
+      : '<span class="warn">'+t('Nenhuma voz devolvida ainda. Toque em Recarregar; se continuar vazio, feche o navegador de vez.',
+                                'No voices returned yet. Tap Reload; if still empty, force-stop the browser.')+'</span>';
+    sel.innerHTML = '<option value="'+PADRAO+'">🔧 '+t('Padrão do aparelho (pt-BR, mecanismo das Configurações)','Device default (pt-BR, engine from Settings)')+'</option>' +
+      ordem.map(function(v){ return '<option value="'+v.voiceURI.replace(/"/g,'&quot;')+'">'+(natural(v)?'⭐ ':'')+v.name+' — '+v.lang+(ehPt(v)?' ✅':'')+(v.default?' ('+t('padrão','default')+')':'')+'</option>'; }).join('');
+    if(antes && (antes===PADRAO || all.some(function(v){return v.voiceURI===antes;}))) sel.value=antes;
+    else if(pt[0]) sel.value=pt[0].voiceURI; else sel.value=PADRAO;
+    lista.innerHTML = all.length ? '<table><tr><th>'+t('Nome','Name')+'</th><th>'+t('Idioma','Lang')+'</th><th>'+t('Motor','Engine')+'</th><th>Local</th></tr>' +
+      ordem.map(function(v){ return '<tr><td>'+(natural(v)?'⭐ ':'')+v.name+'</td><td>'+v.lang+'</td><td>'+motor(v)+'</td><td>'+(v.localService?t('sim','yes'):t('não','no'))+'</td></tr>'; }).join('')+'</table>'
+      : '<small>—</small>';
+  }
+  refresh();
+  if(synth){ synth.addEventListener('voiceschanged', refresh); [400,1500,4000].forEach(function(ms){ setTimeout(refresh, ms); }); }
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(refresh, 400); });
+  document.getElementById('btn-reload').onclick = function(){ refresh(); setTimeout(refresh,700); };
+  document.getElementById('stop').onclick = function(){ if(synth) synth.cancel(); status.textContent = t('parado','stopped'); };
+  document.getElementById('speak').onclick = function(){
+    var txt = document.getElementById('text').value.trim(); if(!txt||!synth) return;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(txt);
+    var v = sel.value!==PADRAO ? all.filter(function(x){return x.voiceURI===sel.value;})[0] : null;
+    if(v) u.voice = v;
+    u.lang = (v && !ehPt(v)) ? v.lang : 'pt-BR';
+    u.rate = 0.95; u.pitch = 1.0; u.volume = 1;
+    var t0 = Date.now();
+    u.onstart = function(){ status.innerHTML = '<span class="ok">'+t('Falando com: ','Speaking with: ')+'<b>'+(v?v.name+' ('+v.lang+')':t('padrão do aparelho','device default'))+'</b> · '+(Date.now()-t0)+' ms</span>'; };
+    u.onend = function(){ status.innerHTML += '<br>'+t('Concluído.','Done.'); };
+    u.onerror = function(e){ status.innerHTML = '<span class="err">'+t('Erro de voz: ','Speech error: ')+e.error+'</span>'; };
+    status.textContent = t('pedindo a voz…','requesting voice…');
+    setTimeout(function(){ synth.speak(u); }, 60);
+  };
+  setLang('pt');
+})();
+</script>
+</body>
+</html>
