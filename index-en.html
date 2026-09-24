@@ -41494,7 +41494,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       var inp=el("input");inp.type="search";inp.placeholder="nome do indicador ou unidade";
       inp.value=busca;inp.className="idx-b";
       inp.addEventListener("input",function(){busca=inp.value;render();
-        var e=document.querySelector(".idx-b");if(e)e.focus();});
+        var e=lB.querySelector(".idx-b");if(e){e.focus();try{var n=e.value.length;e.setSelectionRange(n,n);}catch(x){}}});
       lB.appendChild(inp);
       var cnt=el("span","idx-cnt");lB.appendChild(cnt);
 
@@ -42186,7 +42186,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
 
       if(!S.length){corpo.appendChild(el("p","gl-vazio",TR("Escolha um ou mais marcos na lista acima.")));return;}
 
-      var grade=el("div","pz-grade"),alvo=el("div"),tab=el("div");
+      var grade=el("div","pz-grade"+(S.length>3?" cm-empilha":"")),alvo=el("div"),tab=el("div");
       grade.appendChild(alvo);grade.appendChild(tab);corpo.appendChild(grade);
 
       /* ---- radar, escala fixa de 0 a 3 ---- */
@@ -42411,15 +42411,19 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       if(!porCat[cat]){porCat[cat]=[];ordem.push(cat);}
       porCat[cat].push(g);});
     ordem.forEach(function(cat){
-      var gr=el("div","ig-sum-g");
-      gr.appendChild(el("h3",null,TR(cat)));
+      /* cada categoria é uma gaveta fechada: abre só a que interessa */
+      var gr=document.createElement("details");gr.className="ig-sum-g ig-sum-cat";
+      var sc=document.createElement("summary");
+      sc.appendChild(el("span","ig-sum-cn",TR(cat)));
+      sc.appendChild(el("span","ig-sum-n",String(porCat[cat].length)));
+      gr.appendChild(sc);
       var ul=el("ul");
       porCat[cat].forEach(function(g){
         var li=el("li"),a=vai(slugG(g.titulo),false);a.textContent=g.titulo;li.appendChild(a);ul.appendChild(li);});
       gr.appendChild(ul);grade.appendChild(gr);});
-    /* no celular o índice nasce fechado, para não empurrar os comparadores */
-    var dt=document.createElement("details");dt.className="ig-sum-d";dt.open=!estreito;
-    var st=document.createElement("summary");st.textContent=TR("Ver todos os gráficos, por categoria");
+    /* a lista inteira nasce fechada, para não empurrar os comparadores */
+    var dt=document.createElement("details");dt.className="ig-sum-d";dt.open=false;
+    var st=document.createElement("summary");st.textContent=TR("Ver todos os gráficos, por categoria")+" ("+IG.graficos.length+")";
     dt.appendChild(st);dt.appendChild(grade);nav.appendChild(dt);
     sec.appendChild(nav);
     main.insertBefore(sec,main.firstChild);
@@ -43629,6 +43633,27 @@ dialog.tela-dlg{max-width:min(460px,calc(100vw - 32px))}
 .cm-por{margin-top:-2px}
 .cm-por>summary{text-transform:none;letter-spacing:0;font-family:var(--f-b)}
 @media (max-width:640px){.cm-row{grid-template-columns:minmax(0,1fr) auto}}
+
+/* ---------- v1.7: índice recolhido, por categoria ---------- */
+.ig-sum-grade{align-items:start}
+.ig-sum-cat{border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.ig-sum-cat>summary{display:flex;align-items:center;gap:8px;cursor:pointer;padding:9px 12px;min-height:40px;
+  font-family:var(--f-m);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);list-style:none}
+.ig-sum-cat>summary::-webkit-details-marker{display:none}
+.ig-sum-cat>summary::before{content:"";border:4.5px solid transparent;border-left-color:currentColor;margin-right:2px;transition:transform .15s}
+.ig-sum-cat[open]>summary::before{transform:rotate(90deg) translate(2px,2px)}
+.ig-sum-n{margin-left:auto;color:var(--muted)}
+.ig-sum-cat ul{padding:2px 12px 10px}
+
+/* ---------- v1.7: aproveitar telas largas ----------
+   Os textos corridos já têm largura máxima própria (em ch), então alargar a
+   página só dá mais espaço a tabelas, gráficos e comparadores. */
+@media (min-width:1440px){:root{--maxw:min(1680px,calc(100vw - 48px))}}
+@media (min-width:1900px){:root{--maxw:1840px}}
+.pz-grade.cm-empilha{grid-template-columns:minmax(0,1fr)}
+.pz-grade.cm-empilha .pz-plot{max-width:820px;margin:0 auto}
+/* nome longo no quadro comparativo quebra linha em vez de invadir a coluna vizinha */
+.cmp-t .num{white-space:normal;overflow-wrap:anywhere}
 </style>
 <script>
 /* =====================================================================
