@@ -98,7 +98,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-
   background:none;border:1px solid rgba(255,255,255,.25);color:#A9BDBA;border-radius:3px;padding:6px 10px;cursor:pointer}
 .tbtn:hover{color:#fff;border-color:#fff}
 .en-aviso{background:var(--prop-bg);border-left:3px solid var(--prop);border-radius:0 6px 6px 0;
-  padding:12px 15px;margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--ink-2);max-width:92ch}
+  padding:12px 15px;margin:14px 0 0;font-size:13px;line-height:1.6;color:var(--ink-2);max-width:var(--txtw,92ch)}
 .en-aviso b{color:var(--ink)}
 .ibtn{flex:none;display:inline-flex;align-items:center;justify-content:center;
   width:32px;height:28px;padding:0;background:none;border:1px solid rgba(255,255,255,.25);
@@ -210,10 +210,10 @@ details.dob .ig-aviso,details.dob .uf-alerta,details.dob .bal,details.dob .en-av
 section{padding-block:38px}
 .eyebrow{font-family:var(--f-m);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
 .h-lead{font-size:clamp(27px,4vw,40px);line-height:1.13;margin-top:8px}
-.lede{font-size:17.5px;color:var(--ink-2);max-width:64ch;margin-top:14px}
+.lede{font-size:17.5px;color:var(--ink-2);max-width:var(--txtw,64ch);margin-top:14px}
 .sec-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:7px}
 .sec-h h2{font-size:23px}
-.sec-n{font-size:14.5px;color:var(--muted);max-width:78ch;margin:0 0 20px}
+.sec-n{font-size:14.5px;color:var(--muted);max-width:var(--txtw,78ch);margin:0 0 20px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:4px}
 .pad{padding:20px 22px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px}
@@ -225,7 +225,7 @@ section{padding-block:38px}
 .tela-box.forte{background:var(--warn-bg);border-color:var(--warn)}
 .tela-ic{flex:0 0 auto;color:var(--muted);padding-top:1px}
 .tela-box.forte .tela-ic{color:var(--warn)}
-.tela-t{font-size:13px;color:var(--ink-2);line-height:1.55;max-width:86ch}
+.tela-t{font-size:13px;color:var(--ink-2);line-height:1.55;max-width:var(--txtw,86ch)}
 .tela-t b{color:var(--ink)}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:34px;
   align-items:center;padding-block:34px 26px}
@@ -249,7 +249,7 @@ section{padding-block:38px}
 
 /* ===== notas ===== */
 .note h3{font-size:18px;margin-bottom:10px}
-.note p{margin:0 0 11px;color:var(--ink-2);font-size:15px;max-width:74ch}
+.note p{margin:0 0 11px;color:var(--ink-2);font-size:15px;max-width:var(--txtw,74ch)}
 .note p:last-child{margin-bottom:0}
 .note b{color:var(--ink)}
 .flag{border-left:3px solid var(--warn);background:var(--warn-bg)}
@@ -367,7 +367,7 @@ summary:hover{color:var(--ink)}
 .empty{padding:52px 0;text-align:center;color:var(--muted)}
 
 .foot{border-top:1px solid var(--line);background:var(--surface);margin-top:26px}
-.foot .in{padding-block:26px 36px;font-size:13.5px;color:var(--muted);max-width:80ch}
+.foot .in{padding-block:26px 36px;font-size:13.5px;color:var(--muted);max-width:var(--txtw,80ch)}
 .foot p{margin:0 0 9px}
 .tip{position:fixed;z-index:80;pointer-events:none;background:var(--bar);color:#EAF1EF;
   font-size:12.5px;line-height:1.4;padding:7px 10px;border-radius:4px;max-width:230px;opacity:0;transition:opacity .1s}
@@ -425,7 +425,7 @@ summary:hover{color:var(--ink)}
 .nota[hidden]{display:none}
 .nota .card{padding:18px 20px}
 .nota h4{font-family:var(--f-d);font-size:17px;margin:0 0 9px}
-.nota p{margin:0 0 10px;font-size:14.5px;color:var(--ink-2);max-width:76ch}
+.nota p{margin:0 0 10px;font-size:14.5px;color:var(--ink-2);max-width:var(--txtw,76ch)}
 .nota p:last-child{margin-bottom:0}
 .nota .mini{display:flex;flex-wrap:wrap;gap:18px;margin:14px 0 0;padding-top:13px;border-top:1px solid var(--line)}
 .nota .mini div{font-size:12.5px;color:var(--muted)}
@@ -684,7 +684,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .ig-esboco{display:flex;align-items:center;justify-content:center;min-height:180px;
   font-family:var(--f-m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .ig-foot{border-top:1px solid var(--line);padding:14px 22px 18px;margin-top:10px}
-.ig-foot p{margin:0 0 8px;font-size:12.5px;color:var(--ink-2);line-height:1.5;max-width:82ch}
+.ig-foot p{margin:0 0 8px;font-size:12.5px;color:var(--ink-2);line-height:1.5;max-width:var(--txtw,82ch)}
 .ig-foot p:last-child{margin-bottom:0}
 .ig-foot b{color:var(--ink)}
 .ig-src{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px}
@@ -693,11 +693,11 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .leg-ig i{display:inline-block;width:16px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
 .leg-ig .tracejado{background:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 8px);height:2px}
 .leg-ig .uni-so{font-family:var(--f-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
-.tl .ctx{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.55;max-width:76ch;
+.tl .ctx{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.55;max-width:var(--txtw,76ch);
   border-left:2px solid var(--line-2);padding-left:11px}
 .lk-g{margin-bottom:26px}
 .lk-g h3{font-family:var(--f-d);font-size:17px;margin:0 0 4px}
-.lk-n{font-size:13px;color:var(--muted);margin:0 0 10px;max-width:80ch}
+.lk-n{font-size:13px;color:var(--muted);margin:0 0 10px;max-width:var(--txtw,80ch)}
 .lk-g ul{margin:0;padding-left:18px;columns:2;column-gap:30px}
 @media (max-width:760px){.lk-g ul{columns:1}}
 .lk-g li{font-size:13.5px;margin-bottom:7px;break-inside:avoid;line-height:1.45}
@@ -707,7 +707,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .patr{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
 .patr h4{font-family:var(--f-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
   font-weight:500;margin:0 0 6px}
-.patr-n{font-size:12.5px;color:var(--muted);margin:0 0 12px;max-width:78ch;line-height:1.5}
+.patr-n{font-size:12.5px;color:var(--muted);margin:0 0 12px;max-width:var(--txtw,78ch);line-height:1.5}
 .patr-dst{background:var(--prop-bg);border-left:3px solid var(--prop);border-radius:0 6px 6px 0;
   padding:13px 17px;margin:0 0 16px}
 .patr-dst .rot{display:block;font-family:var(--f-m);font-size:9.5px;letter-spacing:.11em;
@@ -717,7 +717,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   font-variant-numeric:tabular-nums;letter-spacing:-.015em}
 .patr-dst-v b.semv{font-size:19px;color:var(--ink-2)}
 .patr-dst-a{font-family:var(--f-m);font-size:11.5px;letter-spacing:.05em;color:var(--ink-2)}
-.patr-dst-n{font-size:12.5px;color:var(--ink-2);margin:7px 0 0;line-height:1.5;max-width:78ch}
+.patr-dst-n{font-size:12.5px;color:var(--ink-2);margin:7px 0 0;line-height:1.5;max-width:var(--txtw,78ch)}
 .patr-lin{display:grid;gap:0}
 .patr-row{display:grid;grid-template-columns:62px 1fr 52px;gap:12px;align-items:baseline;
   padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
@@ -727,17 +727,17 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .patr-v b{font-variant-numeric:tabular-nums}
 .patr-c{font-size:12px;color:var(--muted)}
 .patr-sem{color:var(--muted);font-style:italic;font-size:13px}
-.patr-o{display:block;font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:3px;max-width:70ch}
+.patr-o{display:block;font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:3px;max-width:var(--txtw,70ch)}
 .patr-f{font-size:11.5px;text-align:right}
 .proc-av{background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 6px 6px 0;
   padding:12px 16px;margin:0 0 16px}
 .proc-av .rot{display:block;font-family:var(--f-m);font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--warn);margin-bottom:7px}
 .proc-av ul{margin:0;padding-left:17px}
-.proc-av li{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-bottom:7px;max-width:84ch}
+.proc-av li{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-bottom:7px;max-width:var(--txtw,84ch)}
 .proc-av li:last-child{margin-bottom:0}
 .proc-zero{font-size:13.5px;color:var(--ink-2);background:var(--surface-2);border-radius:5px;
-  padding:14px 16px;margin:0;max-width:84ch}
+  padding:14px 16px;margin:0;max-width:var(--txtw,84ch)}
 .proc-box .proc-lin{display:grid;gap:12px}
 .proc-box .proc-it{border:1px solid var(--line);border-radius:5px;padding:13px 16px;background:var(--surface)}
 .proc-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
@@ -765,16 +765,16 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .proc-part h4{font-family:var(--f-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);font-weight:500;margin:0 0 6px}
 .proc-m{font-family:var(--f-m);font-size:11px;color:var(--muted);margin-bottom:7px}
-.proc-o{font-size:13.5px;color:var(--ink);margin:0 0 6px;max-width:82ch}
-.proc-r{font-size:12.5px;color:var(--ink-2);margin:0 0 8px;line-height:1.55;max-width:82ch}
+.proc-o{font-size:13.5px;color:var(--ink);margin:0 0 6px;max-width:var(--txtw,82ch)}
+.proc-r{font-size:12.5px;color:var(--ink-2);margin:0 0 8px;line-height:1.55;max-width:var(--txtw,82ch)}
 .proc-f{font-size:11.5px}
-.proc-obs{display:block;font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.45;max-width:80ch}
+.proc-obs{display:block;font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.45;max-width:var(--txtw,80ch)}
 .patr-res{margin-top:14px;background:var(--surface-2);border-left:3px solid var(--warn);
   border-radius:0 6px 6px 0;padding:11px 15px}
 .patr-res .rot{display:block;font-family:var(--f-m);font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--warn);margin-bottom:6px}
 .patr-res ul{margin:0;padding-left:17px}
-.patr-res li{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-bottom:5px;max-width:80ch}
+.patr-res li{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-bottom:5px;max-width:var(--txtw,80ch)}
 .patr-res li:last-child{margin-bottom:0}
 @media (max-width:640px){.patr-row{grid-template-columns:52px 1fr;}.patr-f{grid-column:2}}
 .pt-sig{font-family:var(--f-m);font-size:11px;color:var(--muted)}
@@ -819,7 +819,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .gl-t{font-weight:600;font-size:14.5px}
 .gl-t .gl-tipo{display:block;font-family:var(--f-m);font-size:9.5px;letter-spacing:.07em;
   text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:3px}
-.gl-d{font-size:14px;color:var(--ink-2);line-height:1.55;max-width:78ch}
+.gl-d{font-size:14px;color:var(--ink-2);line-height:1.55;max-width:var(--txtw,78ch)}
 .gl-d .gl-ex{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
 .gl-vazio{padding:40px 0;text-align:center;color:var(--muted)}
 @media (max-width:640px){.gl-item{grid-template-columns:1fr;gap:4px}}
@@ -833,7 +833,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .stf-o{display:block;font-size:11.5px;color:var(--ink-2);margin-top:7px;line-height:1.45}
 .mk-lista{padding:4px 22px 16px}
 .mk-nome{font-size:15px;font-weight:600;margin-bottom:2px}
-.mk-au{font-size:12px;color:var(--ink-2);margin:6px 0;line-height:1.5;max-width:84ch;
+.mk-au{font-size:12px;color:var(--ink-2);margin:6px 0;line-height:1.5;max-width:var(--txtw,84ch);
   background:var(--surface-2);border-radius:4px;padding:7px 11px}
 .mk-au .rot{display:block;font-family:var(--f-m);font-size:9px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--muted);margin-bottom:3px}
@@ -890,7 +890,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .stf-dt b{font-family:var(--f-m);font-size:12px;color:var(--ink)}
 .stf-oj{display:block;font-family:var(--f-m);font-size:10px;color:var(--muted);margin-top:3px}
 .stf-p{font-family:var(--f-m);font-size:11.5px;color:var(--accent);margin-bottom:4px}
-.stf-c p{margin:0 0 5px;font-size:13.5px;color:var(--ink-2);line-height:1.55;max-width:84ch}
+.stf-c p{margin:0 0 5px;font-size:13.5px;color:var(--ink-2);line-height:1.55;max-width:var(--txtw,84ch)}
 .stf-123 .ig-aviso{margin:8px 0 12px}
 @media (max-width:640px){.stf-it{grid-template-columns:1fr;gap:4px}}
 .uf-ctl{padding:0 22px 6px}
@@ -954,7 +954,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .ra-med .n s{text-decoration:none;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
 .ra-med .nd{font-size:11px;color:var(--ink-3);font-style:italic}
 .uf-alerta{background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 6px 6px 0;
-  padding:11px 14px;margin:8px 0 14px;font-size:12.5px;line-height:1.55;color:var(--ink-2);max-width:86ch}
+  padding:11px 14px;margin:8px 0 14px;font-size:12.5px;line-height:1.55;color:var(--ink-2);max-width:var(--txtw,86ch)}
 .uf-alerta b{color:var(--ink)}
 .uf-lista{padding:6px 22px 16px}
 .uf-obs{font-size:12px;color:var(--warn);margin:0 0 10px}
@@ -992,7 +992,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .bal h4{margin-top:18px}
 .bal h4:first-child{margin-top:0}
 .bal .tw{background:var(--surface)}
-.bal .bal-n{font-size:12px;color:var(--muted);margin:12px 0 0;line-height:1.5;max-width:82ch}
+.bal .bal-n{font-size:12px;color:var(--muted);margin:12px 0 0;line-height:1.5;max-width:var(--txtw,82ch)}
 .bal .ato{font-family:var(--f-m);font-size:11px;color:var(--muted)}
 .bal [class^="tag-"]{font-family:var(--f-m);font-size:9px;letter-spacing:.06em;text-transform:uppercase;
   padding:2px 6px;border-radius:2px;background:var(--surface);border:1px solid var(--line-2);color:var(--muted)}
@@ -1228,7 +1228,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .chip-cat.on{background:var(--ink);border-color:var(--ink);color:var(--surface)}
 .ig-aviso{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.55;color:var(--ink-2);
   background:var(--surface-2);border-left:3px solid var(--warn);border-radius:0 6px 6px 0;
-  padding:10px 14px;margin:0 0 14px;max-width:86ch}
+  padding:10px 14px;margin:0 0 14px;max-width:var(--txtw,86ch)}
 .ig-aviso .rot{flex:0 0 auto;font-family:var(--f-m);font-size:9.5px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--warn);padding-top:2px}
 .ig-foot p.ig-res{color:var(--warn)}
@@ -1251,7 +1251,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 @media (max-width:520px){.bio-ft{width:64px;height:89px}}
 .bio h3{font-family:var(--f-d);font-size:22px;margin:0}
 .bio .nomec{font-size:13px;color:var(--muted);margin-top:3px}
-.bio .res{font-size:15px;color:var(--ink-2);margin:14px 0 0;max-width:80ch;line-height:1.6}
+.bio .res{font-size:15px;color:var(--ink-2);margin:14px 0 0;max-width:var(--txtw,80ch);line-height:1.6}
 .bio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 26px;margin-top:18px;
   padding-top:16px;border-top:1px solid var(--line)}
 .bio-b h4{font-family:var(--f-m);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
@@ -2984,6 +2984,37 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "mr-cobre":"What each dimension covers",
 "mr-nao":"Does not count here:",
 "mr-alt":"A six-axis radar with the reach of each chosen milestone, from 0 to 3, in every dimension.",
+"cm-info-escala":"How the score goes from 0 to 3:",
+"cm-x-nada":"does not touch any of the six dimensions.",
+"cm-x-mais":"changes most in",
+"cm-x-todos":"All of them change the rule (2 or more) in",
+"cm-x-nenhum":"None of them touches",
+"cm-x-dif":"The biggest difference is in",
+"cm-x-oposto-1":"In",
+"cm-x-oposto-2":"the directions are opposite:",
+"cm-x-ressalva":"Reading built automatically from the scores in the table. It measures the size of the change each text made, never whether it was good or bad — and milestones from different periods changed rules that were already different.",
+"cm-por-intro":"Each suggestion groups milestones from different governments that act on the same part of the machinery. The criterion is the act's subject and its score in the main dimension — not the outcome it had.",
+"cm-por-fiscal":"Acts whose highest score is in Public finances: spending and debt rules, and who wins a tie when federal tax cases are judged.",
+"cm-por-infra":"Milestones that redesign infrastructure sectors (Investment and capacity scored 3): concessions, partnerships and market opening.",
+"cm-por-negocios":"General rules for companies and contracts: state-owned companies, labour relations, economic freedom and credit guarantees.",
+"cm-por-liberdades":"Acts scored 2 or 3 in Freedom of expression: who may restrict content and personal data, by what procedure and with what protection. Grouping them does not mean they widen or restrict — each one's direction is in the table.",
+"cm-gov-alt":"Six-axis radar with the average reach of each chosen government's milestones, from 0 to 3.",
+"cm-gov-nota":"Simple average of the scores of all the government's milestones in this collection. With few milestones per term, a single act moves the average a lot; and the collection was chosen for relevance, not to be a balanced sample. It shows where each government's collection is concentrated — not which government regulated more or better.",
+"Agregado por governo":"Aggregate by government",
+"governos no radar":"governments on the radar",
+"marcos":"milestones",
+"média de":"average of",
+"Ano":"Year",
+"O que mede":"What it measures",
+"Conta:":"Counts:",
+"Não conta:":"Does not count:",
+"Leitura automática desta comparação":"Automatic reading of this comparison",
+"e":"and",
+"contra":"versus",
+"ampliam":"widen",
+"restringem":"restrict",
+"Como as sugestões foram montadas":"How the suggestions were put together",
+"Liberdades individuais":"Individual liberties",
 "tw-tela":"Best on a large screen or with the phone sideways.",
 "tela-dlg-t":"This site works best on a large screen",
 "tela-dlg-1":"There are tables with many columns, series spanning almost forty years, radars and charts comparing eight documents side by side — a lot of fine-grained information. On a computer, a large monitor or a phone held sideways (landscape), it all fits at once.",
@@ -23242,7 +23273,10 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "Comparison tools at the top of the Charts tab, with a clickable index of every chart",
 "New comparison tool: estimated impact of regulatory milestones — up to six milestones on the same radar, with each one's government, and a by-dimension reading",
 "Ready-made suggestions in both comparison tools, which set the filters and switch off by themselves when the choice changes",
-"Minimum wage since the real, and each year's increase beside the INPC"]},
+"Minimum wage since the real, and each year's increase beside the INPC",
+"Milestone comparison: aggregate by government, an \"Individual liberties\" suggestion, an automatic reading of the comparison and an \"i\" button explaining each dimension",
+"\"Reach of milestones\": list from newest to oldest, filters by government and year, and a Clear button",
+"Text, tables and boxes use the full width on large screens; ▶ button also on boxes that open and close"]},
 {"v":"1.6",
 "itens":["Overlay indicators: build your own chart with up to six series, in values, base-100 index or 0-100 range",
 "Category and theme filters in the comparison tool, with each indicator's category visible in the list",
@@ -36216,6 +36250,22 @@ function unidadeJaEscalada(u){
 }
 var STR={};
 var CHAVES={
+ "cm-info-escala":"Como a nota vai de 0 a 3:",
+ "cm-x-nada":"não mexe em nenhuma das seis dimensões.",
+ "cm-x-mais":"mexe mais em",
+ "cm-x-todos":"Todos mudam a regra (2 ou mais) em",
+ "cm-x-nenhum":"Nenhum deles toca em",
+ "cm-x-dif":"A maior diferença está em",
+ "cm-x-oposto-1":"Em",
+ "cm-x-oposto-2":"os sentidos se opõem:",
+ "cm-x-ressalva":"Leitura montada automaticamente a partir das notas da tabela. Mede o tamanho da mudança que cada texto fez, nunca se ela foi boa ou ruim — e marcos de épocas diferentes mexeram em regras que já eram diferentes.",
+ "cm-por-intro":"Cada sugestão junta marcos de governos diferentes que mexem na mesma engrenagem. O critério é o assunto do ato e a nota que ele recebeu na dimensão principal — não o resultado que teve.",
+ "cm-por-fiscal":"Atos cuja maior nota está em Contas públicas: regras de gasto e dívida, e quem ganha o empate no julgamento de tributos federais.",
+ "cm-por-infra":"Marcos que redesenham setores de infraestrutura (Investimento e capacidade com nota 3): concessões, parcerias e abertura de mercado.",
+ "cm-por-negocios":"Regras gerais para empresas e contratos: estatais, relações de trabalho, liberdade econômica e garantias de crédito.",
+ "cm-por-liberdades":"Atos com nota 2 ou 3 em Liberdade de expressão: quem pode restringir conteúdo e dados pessoais, com que procedimento e com que proteção. Juntá-los não quer dizer que ampliem ou restrinjam — o sentido de cada um está na tabela.",
+ "cm-gov-alt":"Radar de seis eixos com a média de alcance dos marcos de cada governo escolhido, de 0 a 3.",
+ "cm-gov-nota":"Média simples das notas de todos os marcos do governo nesta coleção. Com poucos marcos por mandato, um ato só muda muito a média; e a coleção foi escolhida por relevância, não para ser amostra equilibrada. Serve para ver onde a coleção de cada governo se concentra — não para dizer qual governo regulou mais ou melhor.",
  "tw-tela":"Melhor em tela grande ou com o celular deitado.",
  "tela-dlg-t":"Este site fica melhor em tela grande",
  "tela-dlg-1":"Há tabelas de muitas colunas, séries de quase quarenta anos, radares e gráficos que comparam oito documentos lado a lado — muita informação miúda. No computador, num monitor grande ou com o celular deitado (paisagem), tudo cabe de uma vez.",
@@ -39271,7 +39321,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
      polígono não sabe dizer direção. A régua está escrita nos critérios e vale
      igual nos 37 marcos; marco ainda não classificado não recebe nota
      provisória — some do comparador até ser conferido. */
-  var MRSEL=[], MRABRE={a:false};
+  var MRSEL=[], MRABRE={a:false}, MRFILT={gov:"",ano:""};
   /* quem desenha usando os pesos se inscreve aqui; blocos que saíram da página
      são descartados na hora do aviso, para não repintar órfãos */
   var OUVE_PESOS=[];
@@ -39389,7 +39439,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       var tb=document.createElement("tbody");
       D.forEach(function(d){
         var tr=document.createElement("tr");
-        tr.appendChild(el("td",null,d.rot));
+        var td0=el("td",null,d.rot+" ");td0.appendChild(dimInfo(d));tr.appendChild(td0);
         S.forEach(function(m){
           var o=m.dim&&m.dim[d.id], n=(o&&typeof o.n==="number")?o.n:0;
           var td=el("td");td.style.textAlign="right";td.className="pz-num"+(n?" on":"");
@@ -39445,7 +39495,30 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       sm.appendChild(el("span","idx-dd-v",sel().map(rotMl).join(" · ")||TR("mr-nenhum-v")));
       d.appendChild(sm);
       var c=el("div","idx-dd-c");
-      M.forEach(function(m,i){
+      /* filtros por governo e por ano, e a lista do mais recente para o mais antigo */
+      var fl=el("div","mr-flt"),govs=[],anos=[];
+      M.forEach(function(m){var g=m.governo||"—";if(govs.indexOf(g)<0)govs.push(g);
+        var a=anoMl(m);if(anos.indexOf(a)<0)anos.push(a);});
+      function ano1(g){var x=String(g).match(/\d{4}/);return x?+x[0]:0;}
+      govs.sort(function(a,b){return ano1(b)-ano1(a);});anos.sort().reverse();
+      function caixa(rot,lista,val,fn){
+        var w=el("label","mr-fl");w.appendChild(el("span","uf-rot",rot));
+        var sl=document.createElement("select");
+        [["",TR("Todos")]].concat(lista.map(function(x){return [x,x];})).forEach(function(o){
+          var op=el("option",null,o[1]);op.value=o[0];sl.appendChild(op);});
+        sl.value=val;sl.addEventListener("change",function(){fn(sl.value);});
+        w.appendChild(sl);return w;}
+      fl.appendChild(caixa(TR("Governo"),govs,MRFILT.gov,function(v){MRFILT.gov=v;pinta();}));
+      fl.appendChild(caixa(TR("Ano"),anos,MRFILT.ano,function(v){MRFILT.ano=v;pinta();}));
+      var lp=el("button","zap",TR("Limpar"));lp.type="button";
+      lp.addEventListener("click",function(){MRSEL.length=0;MRFILT.gov="";MRFILT.ano="";pinta();});
+      fl.appendChild(lp);c.appendChild(fl);
+      var ordem=M.map(function(m,i){return i;}).sort(function(a,b){
+        return String(M[b].data_sancao).localeCompare(String(M[a].data_sancao));}).filter(function(i){
+        var m=M[i];if(MRSEL.indexOf(i)>=0)return true;
+        return (!MRFILT.gov||(m.governo||"—")===MRFILT.gov)&&(!MRFILT.ano||anoMl(m)===MRFILT.ano);});
+      if(!ordem.length)c.appendChild(el("p","gl-vazio",TR("Nenhum marco neste recorte.")));
+      ordem.forEach(function(i){var m=M[i];
         var lab=el("label","idx-dd-i");
         var ip=document.createElement("input");ip.type="checkbox";
         ip.checked=MRSEL.indexOf(i)>=0;
@@ -39478,6 +39551,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       alvo.appendChild(lg);
       alvo.appendChild(radar());
       tab.appendChild(tabela());
+      tab.appendChild(cmExplica(sel(),D));
       var C0=critMl();
       if(C0&&C0.estado){var pe=el("p","pz-nota mr-est",C0.estado);tab.appendChild(pe);}
       detalhes();
@@ -42003,6 +42077,123 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
   function cmSinalCls(s){return "mr-sn sn"+(s==="+"?"p":(s==="-"?"n":(s==="="?"e":"d")));}
   function cmN(m,id){var o=m.dim&&m.dim[id];return (o&&typeof o.n==="number")?o.n:0;}
 
+  /* ---------- "i" das dimensões: um toque abre a explicação ---------- */
+  function abreInfo(titulo,partes){
+    var d=document.getElementById("cm-info");
+    if(!d){d=document.createElement("dialog");d.className="cfg";d.id="cm-info";
+      var h=el("div","cfg-h");h.appendChild(el("h3"));var x=el("button","cfg-x","×");x.type="button";
+      x.setAttribute("aria-label",TR("Fechar"));h.appendChild(x);d.appendChild(h);d.appendChild(el("div","cfg-b"));
+      document.body.appendChild(d);
+      x.addEventListener("click",function(){d.close?d.close():d.removeAttribute("open");});
+      d.addEventListener("click",function(e){if(e.target===d&&d.close)d.close();});}
+    d.querySelector("h3").textContent=titulo;
+    var c=d.querySelector(".cfg-b");c.textContent="";
+    partes.forEach(function(p){
+      if(typeof p==="string")c.appendChild(el("p","sb-p",p));
+      else{var q=el("p","sb-p");q.appendChild(el("b",null,p[0]+" "));q.appendChild(document.createTextNode(p[1]));c.appendChild(q);}});
+    if(d.showModal){if(!d.open)d.showModal();}else d.setAttribute("open","");
+  }
+  function dimInfo(d){
+    var b=el("button","i","i");b.type="button";
+    b.setAttribute("aria-label",TR("O que mede")+": "+d.rot);b.title=b.getAttribute("aria-label");
+    b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();
+      var C=critMl()||{}, P=[d.des];
+      P.push(TR("cm-info-escala"));
+      (C.escala||[]).forEach(function(x){P.push([x.n+" · "+x.rot+" —",x.des]);});
+      var cb=(C.cobre||[]).filter(function(o){return o.id===d.id;})[0];
+      if(cb){P.push([TR("Conta:"),cb.conta]);P.push([TR("Não conta:"),cb.nao_conta]);}
+      abreInfo(d.rot,P);});
+    return b;
+  }
+  /* ---------- leitura automática da comparação ----------
+     Frases montadas só com o que está na tabela: onde cada marco mexe mais,
+     onde todos coincidem, onde diferem mais e onde o sentido se opõe. Não diz
+     qual é melhor — o radar mede alcance, não qualidade. */
+  function cmExplica(S,D){
+    var box=el("div","card pad cm-ins cm-exp");
+    box.appendChild(el("h4",null,TR("Leitura automática desta comparação")));
+    var ul=el("ul");
+    function n(m,d){return cmN(m,d.id);}
+    function nome(m){return rotMl(m)+(m.governo?" ("+m.governo+")":"");}
+    function lista(a){return a.length<2?a.join(""):a.slice(0,-1).join(", ")+" "+TR("e")+" "+a[a.length-1];}
+    S.forEach(function(m){
+      var mx=Math.max.apply(null,D.map(function(d){return n(m,d);}));
+      if(mx<1){ul.appendChild(el("li",null,nome(m)+": "+TR("cm-x-nada")));return;}
+      var top=D.filter(function(d){return n(m,d)===mx;}).map(function(d){return d.rot;});
+      ul.appendChild(el("li",null,nome(m)+" "+TR("cm-x-mais")+" "+lista(top)+" ("+mx+" · "+nivelRot(mx)+")."));});
+    if(S.length>1){
+      var todos=D.filter(function(d){return S.every(function(m){return n(m,d)>=2;});}).map(function(d){return d.rot;});
+      if(todos.length)ul.appendChild(el("li",null,TR("cm-x-todos")+" "+lista(todos)+"."));
+      var nenhum=D.filter(function(d){return S.every(function(m){return n(m,d)===0;});}).map(function(d){return d.rot;});
+      if(nenhum.length)ul.appendChild(el("li",null,TR("cm-x-nenhum")+" "+lista(nenhum)+"."));
+      var dif=D.map(function(d){var v=S.map(function(m){return n(m,d);});return {d:d,a:Math.max.apply(null,v)-Math.min.apply(null,v),v:v};})
+        .sort(function(a,b){return b.a-a.a;})[0];
+      if(dif&&dif.a>=2){
+        var hi=S.filter(function(m){return n(m,dif.d)===Math.max.apply(null,dif.v);}).map(rotMl);
+        var lo=S.filter(function(m){return n(m,dif.d)===Math.min.apply(null,dif.v);}).map(rotMl);
+        ul.appendChild(el("li",null,TR("cm-x-dif")+" "+dif.d.rot+": "+Math.max.apply(null,dif.v)+" ("+lista(hi)+") "+TR("contra")+" "+Math.min.apply(null,dif.v)+" ("+lista(lo)+")."));}
+      D.forEach(function(d){
+        var amp=S.filter(function(m){var o=m.dim&&m.dim[d.id];return o&&o.n>0&&o.s==="+";}),
+            res=S.filter(function(m){var o=m.dim&&m.dim[d.id];return o&&o.n>0&&o.s==="-";});
+        if(amp.length&&res.length)ul.appendChild(el("li",null,TR("cm-x-oposto-1")+" "+d.rot+", "+TR("cm-x-oposto-2")+" "+
+          lista(amp.map(rotMl))+" "+TR("ampliam")+"; "+lista(res.map(rotMl))+" "+TR("restringem")+"."));});
+    }
+    box.appendChild(ul);
+    box.appendChild(el("p","pz-nota",TR("cm-x-ressalva")));
+    return box;
+  }
+  /* radar genérico: itens {k, cor, vals[0..3], tip(i,v)} — serve aos marcos e aos governos */
+  function radarSVG(itens,rotulo){
+    var D=dimensoes();
+    var W=760,H=470,R=162,FOLGA=32,CORTE=17,RENDA=true;
+    if(estreito){W=392;H=318;R=86;FOLGA=17;CORTE=13;RENDA=false;}
+    var CX=W/2,CY=H/2,TOPO=3;
+    var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img"});
+    svg.setAttribute("aria-label",rotulo||"");
+    var ang=function(i){return -Math.PI/2+i*2*Math.PI/D.length;};
+    var px=function(i,v){return CX+Math.cos(ang(i))*R*(v/TOPO);};
+    var py=function(i,v){return CY+Math.sin(ang(i))*R*(v/TOPO);};
+    [1,2,3].forEach(function(v){
+      var pts=[];for(var i=0;i<D.length;i++)pts.push(px(i,v)+","+py(i,v));
+      svg.appendChild(svgEl("polygon",{points:pts.join(" "),fill:"none",stroke:"var(--line)","stroke-width":1}));
+      if(RENDA){var t=svgEl("text",{x:CX+4,y:py(0,v)+4,"class":"ax"});t.textContent=String(v);svg.appendChild(t);}});
+    for(var i0=0;i0<D.length;i0++)
+      svg.appendChild(svgEl("line",{x1:CX,y1:CY,x2:px(i0,TOPO),y2:py(i0,TOPO),stroke:"var(--line)","stroke-width":1}));
+    itens.forEach(function(it,q){
+      var k=it.k, cor=it.cor, vals=it.vals;
+      var pts=[];for(var i=0;i<D.length;i++)pts.push(px(i,vals[i])+","+py(i,vals[i]));
+      svg.appendChild(svgEl("polygon",{points:pts.join(" "),fill:cor,"fill-opacity":itens.length>2?".05":".09",
+        stroke:cor,"stroke-width":2.2,"stroke-dasharray":CM_TRACO[k%CM_TRACO.length],"stroke-linejoin":"round"}));
+      /* marcadores que coincidem num eixo ganham um pequeno deslocamento lateral */
+      vals.forEach(function(v,i){
+        var desl=(q-(itens.length-1)/2)*(estreito?3:4), a=ang(i)+Math.PI/2;
+        var x=px(i,v)+Math.cos(a)*desl, y=py(i,v)+Math.sin(a)*desl;
+        var g=svgEl("g",{});g.appendChild(cmForma(k,x,y,cor,estreito?3.6:4.6));
+        comTip(g,it.tip(i,v));svg.appendChild(g);});});
+    D.forEach(function(x,i){
+      var a=ang(i), rx=CX+Math.cos(a)*(R+FOLGA), ry=CY+Math.sin(a)*(R+FOLGA*0.78);
+      var anc=Math.cos(a)>0.25?"start":(Math.cos(a)<-0.25?"end":"middle");
+      var pal=String(x.rot).split(" "), l1=[], l2=[];
+      pal.forEach(function(w){(l1.join(" ").length+w.length<=CORTE?l1:l2).push(w);});
+      var g=svgEl("g",{});
+      var t1=svgEl("text",{x:rx,y:ry+(l2.length?-4:4),"text-anchor":anc,"class":"pz-eixo"});
+      t1.textContent=l1.join(" ");g.appendChild(t1);
+      if(l2.length){var t2=svgEl("text",{x:rx,y:ry+12,"text-anchor":anc,"class":"pz-eixo"});
+        t2.textContent=l2.join(" ");g.appendChild(t2);}
+      comTip(g,x.rot+" — "+x.des);svg.appendChild(g);});
+    var env=el("div","ig-plot pz-plot");env.style.padding="0";env.appendChild(svg);
+    return env;
+  }
+  function cmForma(k,x,y,cor,r){
+    var f=k%4;
+    if(f===0) return svgEl("circle",{cx:x,cy:y,r:r,fill:cor,stroke:"var(--surface)","stroke-width":1.5});
+    if(f===1) return svgEl("rect",{x:x-r,y:y-r,width:2*r,height:2*r,fill:cor,stroke:"var(--surface)","stroke-width":1.5});
+    if(f===2) return svgEl("polygon",{points:x+","+(y-r-1)+" "+(x+r+1)+","+(y+r)+" "+(x-r-1)+","+(y+r),
+      fill:cor,stroke:"var(--surface)","stroke-width":1.5});
+    return svgEl("polygon",{points:x+","+(y-r-1)+" "+(x+r+1)+","+y+" "+x+","+(y+r+1)+" "+(x-r-1)+","+y,
+      fill:cor,stroke:"var(--surface)","stroke-width":1.5});
+  }
+
   function comparaMarcos(){
     var D=dimensoes(), M=marcosComDim();
     var box=el("div","ig sob cm");box.id="g-marcos-comp";box.style.scrollMarginTop="64px";
@@ -42041,8 +42232,16 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       {pt:"Investimento em infraestrutura",en:"Infrastructure investment",
        d:["2004-12-30","2020-07-15","2021-04-08","2025-11-24"]},
       {pt:"Ambiente de negócios",en:"Business environment",
-       d:["2016-06-30","2017-07-13","2019-09-20","2023-10-30"]}
+       d:["2016-06-30","2017-07-13","2019-09-20","2023-10-30"]},
+      {pt:"Liberdades individuais",en:"Individual liberties",
+       d:["2011-09-12","2014-04-23","2018-08-14","2026-05-20"]}
     ];
+    /* por que cada sugestão junta esses marcos: aparece no "i" e embaixo das bolhas */
+    var CM_POR={
+      "Contas públicas e arrecadação":["cm-por-fiscal"],
+      "Investimento em infraestrutura":["cm-por-infra"],
+      "Ambiente de negócios":["cm-por-negocios"],
+      "Liberdades individuais":["cm-por-liberdades"]};
     function sugIdx(s){
       var r=[];s.d.forEach(function(dt){
         M.forEach(function(m,i){if(m.data_sancao===dt&&r.indexOf(i)<0)r.push(i);});});
@@ -42056,8 +42255,15 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       var ok=CM_SUG.filter(function(s){return sugIdx(s).length>=2;});
       if(!ok.length)return;
       hSug.appendChild(el("span","uf-rot",TR("Sugestões prontas")));
+      var bi=el("button","i","i");bi.type="button";bi.setAttribute("aria-label",TR("Como as sugestões foram montadas"));
+      bi.title=bi.getAttribute("aria-label");
+      bi.addEventListener("click",function(){
+        abreInfo(TR("Como as sugestões foram montadas"),[TR("cm-por-intro")].concat(ok.map(function(s){
+          return [(ENUS?s.en:s.pt)+" —",TR(CM_POR[s.pt][0])+" "+sugIdx(s).map(function(i){return rotMl(M[i])+" ("+(M[i].governo||"—")+")";}).join("; ")+"."];})));});
+      hSug.appendChild(bi);
+      var ativa=null;
       ok.forEach(function(s){
-        var on=sugOn(s);
+        var on=sugOn(s);if(on)ativa=s;
         var b=el("button","chip-cat sob-sg"+(on?" on":""),ENUS?s.en:s.pt);b.type="button";
         b.setAttribute("aria-pressed",on?"true":"false");
         b.title=sugIdx(s).map(function(i){return rotMl(M[i])+" ("+(M[i].governo||"—")+")";}).join(" · ");
@@ -42069,6 +42275,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
             if(a&&a.scrollIntoView){try{a.scrollIntoView({behavior:"smooth",block:"nearest"});}catch(e){}}}
         });
         hSug.appendChild(b);});
+      if(ativa)hSug.appendChild(el("p","cm-sug-por",TR(CM_POR[ativa.pt][0])));
     }
 
     function visiveis(){return M.filter(function(m){return !CMGOV.length||CMGOV.indexOf(m.governo||"—")>=0;});}
@@ -42084,7 +42291,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       s.appendChild(forma(k,14,6,cor,4));
       return s;
     }
-    function forma(k,x,y,cor,r){
+    function forma(k,x,y,cor,r){return cmForma(k,x,y,cor,r);
       var f=k%4;
       if(f===0) return svgEl("circle",{cx:x,cy:y,r:r,fill:cor,stroke:"var(--surface)","stroke-width":1.5});
       if(f===1) return svgEl("rect",{x:x-r,y:y-r,width:2*r,height:2*r,fill:cor,stroke:"var(--surface)","stroke-width":1.5});
@@ -42098,7 +42305,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
     function pintaModo(){
       hModo.textContent="";
       hModo.appendChild(el("span","uf-rot",TR("Ver")));
-      [["radar",TR("Radar de vários marcos")],["dim",TR("Por dimensão")]].forEach(function(o){
+      [["radar",TR("Radar de vários marcos")],["dim",TR("Por dimensão")],["gov",TR("Agregado por governo")]].forEach(function(o){
         var b=el("button","chip-cat"+(CMMODO===o[0]?" on":""),o[1]);b.type="button";
         b.setAttribute("aria-pressed",CMMODO===o[0]?"true":"false");
         b.addEventListener("click",function(){CMMODO=o[0];pinta();});
@@ -42135,8 +42342,8 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       dd.appendChild(dsm);
       var lc=el("div","idx-dd-c");dd.appendChild(lc);
       var vis=visiveis();
-      GOVS.forEach(function(g){
-        var doG=vis.filter(function(m){return (m.governo||"—")===g;});
+      GOVS.slice().reverse().forEach(function(g){
+        var doG=vis.filter(function(m){return (m.governo||"—")===g;}).reverse();
         if(!doG.length)return;
         var cab=el("div","cm-grp");cab.appendChild(selo(g));lc.appendChild(cab);
         doG.forEach(function(m){
@@ -42190,48 +42397,11 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       grade.appendChild(alvo);grade.appendChild(tab);corpo.appendChild(grade);
 
       /* ---- radar, escala fixa de 0 a 3 ---- */
-      var W=760,H=470,R=162,FOLGA=32,CORTE=17,RENDA=true;
-      if(estreito){W=392;H=318;R=86;FOLGA=17;CORTE=13;RENDA=false;}
-      var CX=W/2,CY=H/2,TOPO=3;
-      var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img"});
-      svg.setAttribute("aria-label",TR("cm-radar-alt"));
-      var ang=function(i){return -Math.PI/2+i*2*Math.PI/D.length;};
-      var px=function(i,v){return CX+Math.cos(ang(i))*R*(v/TOPO);};
-      var py=function(i,v){return CY+Math.sin(ang(i))*R*(v/TOPO);};
-      [1,2,3].forEach(function(v){
-        var pts=[];for(var i=0;i<D.length;i++)pts.push(px(i,v)+","+py(i,v));
-        svg.appendChild(svgEl("polygon",{points:pts.join(" "),fill:"none",stroke:"var(--line)","stroke-width":1}));
-        if(RENDA){var t=svgEl("text",{x:CX+4,y:py(0,v)+4,"class":"ax"});t.textContent=String(v);svg.appendChild(t);}});
-      for(var i0=0;i0<D.length;i0++)
-        svg.appendChild(svgEl("line",{x1:CX,y1:CY,x2:px(i0,TOPO),y2:py(i0,TOPO),stroke:"var(--line)","stroke-width":1}));
-      /* marcos que coincidem num eixo ficariam um sobre o outro: cada um ganha
-         um pequeno deslocamento lateral, para todos os marcadores aparecerem */
-      S.forEach(function(m,k){
-        var cor=corDe(m,k), vals=D.map(function(d){return cmN(m,d.id);});
-        var pts=[];for(var i=0;i<D.length;i++)pts.push(px(i,vals[i])+","+py(i,vals[i]));
-        svg.appendChild(svgEl("polygon",{points:pts.join(" "),fill:cor,"fill-opacity":S.length>2?".05":".09",
-          stroke:cor,"stroke-width":2.2,"stroke-dasharray":CM_TRACO[k%CM_TRACO.length],"stroke-linejoin":"round"}));
-        D.forEach(function(d,i){
-          var desl=(k-(S.length-1)/2)*(estreito?3:4), a=ang(i)+Math.PI/2;
-          var x=px(i,vals[i])+Math.cos(a)*desl, y=py(i,vals[i])+Math.sin(a)*desl;
-          var g=svgEl("g",{});g.appendChild(forma(k,x,y,cor,estreito?3.6:4.6));
-          var o=m.dim&&m.dim[d.id];
-          comTip(g,rotMl(m)+" ("+(m.governo||"—")+") — "+d.rot+": "+vals[i]+" · "+nivelRot(vals[i])+
-            (o&&o.s&&vals[i]?" · "+sinalRot(o.s):""));
-          svg.appendChild(g);});});
-      D.forEach(function(x,i){
-        var a=ang(i), rx=CX+Math.cos(a)*(R+FOLGA), ry=CY+Math.sin(a)*(R+FOLGA*0.78);
-        var anc=Math.cos(a)>0.25?"start":(Math.cos(a)<-0.25?"end":"middle");
-        var pal=String(x.rot).split(" "), l1=[], l2=[];
-        pal.forEach(function(w){(l1.join(" ").length+w.length<=CORTE?l1:l2).push(w);});
-        var g=svgEl("g",{});
-        var t1=svgEl("text",{x:rx,y:ry+(l2.length?-4:4),"text-anchor":anc,"class":"pz-eixo"});
-        t1.textContent=l1.join(" ");g.appendChild(t1);
-        if(l2.length){var t2=svgEl("text",{x:rx,y:ry+12,"text-anchor":anc,"class":"pz-eixo"});
-          t2.textContent=l2.join(" ");g.appendChild(t2);}
-        comTip(g,x.rot+" — "+x.des);svg.appendChild(g);});
-      var env=el("div","ig-plot pz-plot");env.style.padding="0";env.appendChild(svg);
-      alvo.appendChild(env);
+      alvo.appendChild(radarSVG(S.map(function(m,k){
+        return {k:k,cor:corDe(m,k),vals:D.map(function(d){return cmN(m,d.id);}),
+          tip:function(i,v){var d=D[i],o=m.dim&&m.dim[d.id];
+            return rotMl(m)+" ("+(m.governo||"—")+") — "+d.rot+": "+v+" · "+nivelRot(v)+(o&&o.s&&v?" · "+sinalRot(o.s):"");}};}),
+        TR("cm-radar-alt")));
 
       /* ---- a mesma informação em tabela ---- */
       var w=el("div","tw"),t=document.createElement("table");t.className="pz-t mr-t cm-t";
@@ -42247,7 +42417,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
       th.appendChild(hr);t.appendChild(th);
       var tb=document.createElement("tbody");
       D.forEach(function(d){
-        var tr=document.createElement("tr");tr.appendChild(el("td",null,d.rot));
+        var tr=document.createElement("tr");var td0=el("td",null,d.rot+" ");td0.appendChild(dimInfo(d));tr.appendChild(td0);
         S.forEach(function(m){
           var o=m.dim&&m.dim[d.id], n=cmN(m,d.id);
           var td=el("td");td.style.textAlign="right";td.className="pz-num"+(n?" on":"");
@@ -42258,6 +42428,40 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
         tb.appendChild(tr);});
       t.appendChild(tb);w.appendChild(t);tab.appendChild(w);
       tab.appendChild(el("p","pz-nota",TR("cm-nota-radar")));
+      corpo.appendChild(cmExplica(S,D));
+    }
+
+    /* ================= modo 3: agregado por governo =================
+       Para cada governo, a média do alcance de todos os marcos dele na coleção,
+       dimensão por dimensão, num radar só. É um resumo da COLEÇÃO, não do
+       governo: com 2 a 12 marcos por mandato, um ato muda muito a média. */
+    function modoGov(){
+      var escolhidos=CMGOV.length?GOVS.filter(function(g){return CMGOV.indexOf(g)>=0;}):GOVS;
+      cnt.textContent=escolhidos.length+" "+TR("governos no radar");
+      var dados=escolhidos.map(function(g,k){
+        var doG=M.filter(function(m){return (m.governo||"—")===g;});
+        var med=D.map(function(d){return doG.reduce(function(a,m){return a+cmN(m,d.id);},0)/(doG.length||1);});
+        return {g:g,n:doG.length,med:med,k:k};});
+      var lg=el("div","sob-chips");
+      dados.forEach(function(x){var b=el("span","chip-cat on cm-chip");b.appendChild(amostra(x.k,corGov(x.g)));
+        b.appendChild(document.createTextNode(" "+x.g+" · "+x.n+" "+TR("marcos")));lg.appendChild(b);});
+      corpo.appendChild(lg);
+      var grade=el("div","pz-grade"+(dados.length>3?" cm-empilha":"")),alvo=el("div"),tab=el("div");grade.appendChild(alvo);grade.appendChild(tab);corpo.appendChild(grade);
+      alvo.appendChild(radarSVG(dados.map(function(x){return {k:x.k,cor:corGov(x.g),vals:x.med,
+        tip:function(i,v){return x.g+" — "+D[i].rot+": "+dec(v.toFixed(2))+" ("+TR("média de")+" "+x.n+" "+TR("marcos")+")";}};}),
+        TR("cm-gov-alt")));
+      var w=el("div","tw"),t=document.createElement("table");t.className="pz-t cm-t";
+      var th=document.createElement("thead"),hr=document.createElement("tr");
+      var h0=el("th",null,TR("Dimensão"));h0.style.textAlign="left";h0.className="pz-est";hr.appendChild(h0);
+      dados.forEach(function(x){var h=el("th","cm-thc");h.style.textAlign="right";h.appendChild(amostra(x.k,corGov(x.g)));
+        h.appendChild(el("span","cm-th",x.g));h.appendChild(el("span","cm-th mr-nv",x.n+" "+TR("marcos")));hr.appendChild(h);});
+      th.appendChild(hr);t.appendChild(th);
+      var tb=document.createElement("tbody");
+      D.forEach(function(d,i){var tr=document.createElement("tr");var td0=el("td",null,d.rot+" ");td0.appendChild(dimInfo(d));tr.appendChild(td0);
+        dados.forEach(function(x){var td=el("td","pz-num"+(x.med[i]?" on":""),dec(x.med[i].toFixed(2)));td.style.textAlign="right";tr.appendChild(td);});
+        tb.appendChild(tr);});
+      t.appendChild(tb);w.appendChild(t);tab.appendChild(w);
+      tab.appendChild(el("p","pz-nota",TR("cm-gov-nota")));
     }
 
     /* ================= modo 2: uma dimensão, todos os marcos ================= */
@@ -42272,7 +42476,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
         b.addEventListener("click",function(){CMDIM=x.id;pinta();});
         lin.appendChild(b);});
       corpo.appendChild(lin);
-      corpo.appendChild(el("p","cm-des",d.des));
+      var pd=el("p","cm-des",d.des+" ");pd.appendChild(dimInfo(d));corpo.appendChild(pd);
 
       var vis=visiveis();
       var tocam=vis.filter(function(m){return cmN(m,d.id)>0;});
@@ -42364,7 +42568,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
     function pinta(){
       corpo.textContent="";
       pintaSug();pintaModo();pintaGov();
-      if(CMMODO==="dim")modoDim();else modoRadar();
+      if(CMMODO==="dim")modoDim();else if(CMMODO==="gov")modoGov();else modoRadar();
     }
     pinta();
     return box;
@@ -43683,6 +43887,35 @@ dialog.tela-dlg{max-width:min(460px,calc(100vw - 32px))}
 .hm thead th{white-space:normal;overflow-wrap:anywhere;line-height:1.3}
 @media (max-width:780px){.hm table{min-width:760px}.hm th.row{width:180px}}
 .hm td,.hm thead th:not(.row){text-align:center!important}
+
+/* ---------- v1.7.3: texto em tela grande ocupa a largura toda ---------- */
+@media (min-width:1100px){
+  :root{--txtw:none}
+  /* listas longas dentro de caixas se dividem em colunas, como os parágrafos */
+  details.dob>.dob-c ul:has(>li+li), .note ul:has(>li+li){column-width:34em;column-gap:48px}
+  details.dob>.dob-c ul>li, .note ul>li{break-inside:avoid}
+}
+/* "Alcance dos marcos": a lista usa a largura e vem em colunas */
+.mr-dd{max-width:none}
+.mr-dd .idx-dd-c{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));column-gap:18px}
+.mr-flt{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:6px 2px 10px;
+  border-bottom:1px solid var(--line);margin-bottom:4px}
+.mr-fl{display:flex;align-items:center;gap:6px}
+.mr-fl select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink)}
+.mr-dd .gl-vazio{grid-column:1/-1}
+.cm-sug-por{flex-basis:100%;margin:4px 0 0;font-size:13px;color:var(--ink-2)}
+.cm-exp{margin-top:14px}
+.cm-exp ul{columns:auto 34em;column-gap:40px}
+.cm-exp li{break-inside:avoid;margin-bottom:4px}
+td .i{margin-left:4px;vertical-align:1px}
+.cm-des .i{margin-left:6px}
+/* ícones pequenos não herdam o "svg ocupa a largura toda" dos gráficos */
+.tts-ctl svg,.tts-bar svg{min-width:0!important;max-width:none!important}
+.tts-som svg{width:15px!important;height:15px!important}
+.tts-b svg,.tts-s svg{width:13px!important;height:13px!important}
+.tts-bb svg{width:14px!important;height:14px!important}
+svg.cm-am{width:28px!important;height:12px!important;min-width:0!important}
+.cm-t td:first-child{min-width:200px}
 </style>
 <script>
 /* =====================================================================
