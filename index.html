@@ -1320,9 +1320,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
     <div class="hero-t">
       <div class="eyebrow">Eleição presidencial 2026 · mandato 2027-2030</div>
       <h1 class="h-lead">Oito candidaturas,<br>lidas com o mesmo critério</h1>
-      <p class="lede">O que cada plano propõe, com o trecho e a página de onde saiu; a trajetória, o
-        patrimônio e os processos de cada candidatura, em registro oficial; e as séries de dados
-        públicos que dão o contexto. Sem análise, sem ranking, sem recomendação de voto.</p>
+      <p class="lede">O que cada plano promete, com o trecho e a página de onde saiu. Quem é cada candidato, com patrimônio e processos em registro oficial. E os dados públicos que dão o contexto. Sem análise, sem ranking, sem pedir voto.</p>
     </div>
     <div class="hero-i" id="banner"></div>
   </header>
@@ -1332,48 +1330,35 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <main class="wrap">
     <section>
       <div class="card pad note">
-        <h3>Toda citação desta página foi conferida contra o PDF</h3>
+        <h3>Toda citação daqui foi conferida no PDF</h3>
         <p id="prog"></p>
-        <p>O texto dos oito planos foi extraído dos PDFs registrados e guardado página a página.
-          Cada citação declara um trecho e uma página; um script compara o trecho com o texto daquela
-          página e <b>descarta a citação se não bater</b>. É por isso que a frase “confira na fonte”
-          pode ser levada a sério aqui: se a citação não existisse no documento, ela não estaria nesta
-          página.</p>
-        <p>O que a conferência <b>não</b> garante: que o trecho escolhido seja o mais importante da
-          seção, e que o macrotema onde ele foi colocado seja o certo. As duas coisas são julgamento
-          de quem extrai, e estão explicadas em <b>Método</b>.</p>
+        <p>O texto dos oito planos foi tirado dos PDFs registrados e guardado página a página. Cada citação diz o trecho e a página; um programa confere se o trecho está mesmo lá e <b>descarta a citação se não bater</b>. Por isso “confira na fonte” aqui não é força de expressão: se a frase não estivesse no documento, não estaria nesta página.</p>
+        <p>O que a conferência <b>não</b> garante: que o trecho escolhido seja o mais importante da seção, nem que o tema onde ele foi encaixado seja o certo. Isso é julgamento de quem leu, e está explicado em <b>Método</b>.</p>
       </div>
     </section>
 
     <section>
       <div class="sec-h"><h2>Panorama</h2></div>
-      <p class="sec-n">Quantas citações cada documento rendeu em cada macrotema. A intensidade da cor
-        acompanha a contagem, e o número está escrito em todas as células — a cor não carrega
-        informação que o número já não dê. Passe o cursor para ver o detalhe.</p>
+      <p class="sec-n">Quantas citações cada plano rendeu em cada tema. Quanto mais escura a célula, mais citações; o número está sempre escrito, então a cor é só ajuda visual. Passe o cursor para ver o detalhe.</p>
       <div class="card pad chart"><div class="hm" id="heat"></div>
         <div class="legend"><span>menos citações</span><span class="sw" id="hleg"></span><span>mais citações</span>
-          <span style="margin-left:14px">Célula vazia = nenhuma citação extraída neste macrotema para este documento.</span></div>
+          <span style="margin-left:14px">Célula vazia: nenhuma citação desse plano nesse tema.</span></div>
       </div>
-      <p class="sec-n" style="margin-top:14px"><b>Mais citações não significa plano melhor.</b> A contagem mede
-        como aquele documento foi escrito e organizado — não a importância que a candidatura dá ao
-        assunto. Um tema pode estar tratado dentro de outro capítulo e não aparecer com citação própria.</p>
+      <p class="sec-n" style="margin-top:14px"><b>Mais citações não significa plano melhor.</b> A contagem mostra como o documento foi escrito e organizado, não o quanto a candidatura se importa com o assunto. Um tema pode estar dentro de outro capítulo e não render citação própria.</p>
     </section>
 
     <section>
       <div class="grid2">
         <div class="card pad chart">
           <div class="sec-h"><h2 style="font-size:19px">Grau de especificidade</h2></div>
-          <p class="sec-n" style="font-size:13.5px;margin-bottom:16px">Quantas citações de cada documento
-            em cada nível de 1 a 5. Mede o texto, não o mérito: quanta informação a frase carrega sobre
-            o que exatamente será feito.</p>
+          <p class="sec-n" style="font-size:13.5px;margin-bottom:16px">Quantas citações de cada plano em cada nível, de 1 a 5. Mede o texto, não o mérito: quanto a frase diz sobre o que exatamente será feito.</p>
           <div class="stack" id="stack"></div>
           <div class="lv" id="lvleg"></div>
         </div>
         <div class="card pad chart">
           <div class="sec-h"><h2 style="font-size:19px">O que os documentos costumam declarar</h2></div>
           <p class="sec-n" style="font-size:13.5px;margin-bottom:16px">Média de cada dimensão nas
-            <span id="ndim"></span> citações pontuadas, somando os oito documentos. Não compara
-            candidatos: mostra em que os planos, como gênero de texto, são detalhados e em que são vagos.</p>
+            <span id="ndim"></span> citações com nota, somando os oito planos. Não compara candidatos: mostra em que esse tipo de documento costuma ser detalhado e em que costuma ser vago.</p>
           <div class="dims-chart" id="dimc"></div>
         </div>
       </div>
@@ -1386,23 +1371,14 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
           <h3>Os quatro avisos que mudam a leitura</h3>
           <p><b>O grau de especificidade mede o texto, não o mérito.</b> Uma proposta nível 5 pode ser
             ruim; uma nível 1 pode ser excelente.</p>
-          <p><b>Ausência de informação não é informação negativa.</b> Quando um tema não aparece, isso
-            descreve a cobertura daquele texto — não a posição da candidatura.</p>
-          <p><b>Proposta e diretriz são coisas diferentes.</b> Lendo apenas o que está escrito, dá para
-            dizer sim ou não sobre o cumprimento ao fim do mandato? Se dá, é proposta. Se não dá, é
-            diretriz. Nenhuma das duas é melhor que a outra.</p>
-          <p><b>Os documentos não são comparáveis em extensão</b> — têm de 7 a 200 páginas. Por isso não há aqui índice agregado por candidatura, nem
-            nota geral, nem ranking.</p>
+          <p><b>Ausência de informação não é informação negativa.</b> Se um tema não aparece, isso diz algo sobre o texto, não sobre o que a candidatura pensa.</p>
+          <p><b>Proposta e diretriz são coisas diferentes.</b> Só pelo que está escrito, dá para dizer no fim do mandato se foi cumprido ou não? Se dá, é proposta. Se não dá, é diretriz. Nenhuma é melhor que a outra.</p>
+          <p><b>Os documentos não são comparáveis em extensão</b> — vão de 7 a 200 páginas. Por isso não existe aqui nota geral nem ranking por candidatura.</p>
         </div>
         <div class="card pad note">
           <h3>Ordem e cor</h3>
-          <p>Na versão publicada, candidatos aparecem em <b>ordem alfabética de sobrenome</b> e as cores
-            vêm de uma mesma rampa de luminância atribuída por essa ordem: <b>não têm relação com cores
-            partidárias e não carregam significado</b>.</p>
-          <p>Nenhum gráfico desta página usa a cor como única forma de identificar alguém — o nome
-            está escrito em toda citação, em toda linha e em toda coluna. Por isso é possível trocar
-            ordem e cores à vontade abaixo, sem perder nada: <b>a mudança fica só neste navegador</b>,
-            não altera o site publicado nem o que outra pessoa vê.</p>
+          <p>Os candidatos aparecem em <b>ordem alfabética de primeiro nome</b>. As cores vêm de uma escala de tons definida antes, pela ordem de sobrenome: <b>não têm nada a ver com cores de partido e não querem dizer nada</b>.</p>
+          <p>Nenhum gráfico usa a cor como única forma de dizer quem é quem: o nome está escrito em toda citação, linha e coluna. Por isso você pode trocar a ordem e as cores à vontade, sem perder nada. <b>A mudança fica só neste navegador</b> e não muda o que outra pessoa vê.</p>
           <button class="cfg-atalho" id="oc-atalho" type="button"></button>
           <div class="lv" id="candleg" style="margin-top:16px"></div>
         </div>
@@ -1416,9 +1392,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 16px">
     <div class="eyebrow">Relatório</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">As citações, macrotema por macrotema</h1>
-    <p class="lede" style="font-size:16px">Cada cartão é uma citação: o trecho, a página,
-      o tipo e o grau de especificidade. Abra “dimensões” para ver as onze notas de forma do texto —
-      elas nunca são somadas, porque a média esconderia justamente o que interessa.</p>
+    <p class="lede" style="font-size:16px">Cada cartão é uma citação: o trecho, a página, o tipo e o grau de especificidade. Em “Dimensões” estão as onze notas de forma do texto. Elas nunca viram média, porque a média esconderia justamente o que interessa.</p>
   </header>
   <div class="wrap"><div class="mt-pick" id="mtpick"></div></div>
 
@@ -1448,22 +1422,16 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Fontes</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Os documentos</h1>
-    <p class="lede" style="font-size:16px">De onde veio e como cada plano está escrito. Nada neste
-      relatório existe fora destes oito arquivos.</p>
+    <p class="lede" style="font-size:16px">De onde veio cada plano e como ele está escrito. Tudo neste relatório sai destes oito arquivos.</p>
   </header>
   <main class="wrap">
     <section style="padding-top:22px">
       <div class="tw"><table class="t" id="docs"></table></div>
-      <p class="sec-n" style="margin-top:14px">Os oito PDFs são os arquivos registrados, sem alteração —
-        estão no repositório deste site e podem ser baixados na coluna à direita, para que qualquer
-        citação possa ser conferida na página indicada. Páginas contadas no PDF registrado. “Citações” é quanto
-        cada documento rendeu nos 20 macrotemas da grade — não no plano inteiro.</p>
+      <p class="sec-n" style="margin-top:14px">Os oito PDFs são os arquivos registrados, sem nenhuma alteração. Baixe na coluna da direita e confira qualquer citação na página indicada. “Citações” conta o que cada plano rendeu nos 20 macrotemas, não no plano inteiro.</p>
     </section>
     <section>
       <div class="sec-h"><h2>Perfil de cada documento</h2></div>
-      <p class="sec-n">Este bloco descreve <b>documentos, não candidaturas</b>. Ele responde a uma
-        pergunta só: como cada plano foi escrito. Não responde qual é melhor, qual governaria melhor,
-        nem qual tem as políticas mais acertadas — nenhum número aqui pode ser lido nesse sentido.</p>
+      <p class="sec-n">Este bloco fala de <b>documentos, não de candidaturas</b>. Ele responde a uma pergunta só: como cada plano foi escrito. Não diz qual é melhor nem quem governaria melhor. Nenhum número aqui serve para isso.</p>
       <div class="tw"><table class="t" id="perfil"></table></div>
       <div class="card pad note" style="margin-top:18px">
         <h3>O que estes números não dizem</h3>
@@ -1481,9 +1449,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
     </section>
     <section style="padding-top:6px">
       <div class="sec-h"><h2>Links úteis</h2></div>
-      <p class="sec-n">Todo endereço que este site consulta, reunido num lugar só. As fontes de cada citação,
-        de cada série e de cada fato do Currículo também aparecem ao lado do item correspondente — esta lista
-        é o atalho, não a única indicação de procedência.</p>
+      <p class="sec-n">Todos os endereços que o site consulta, num lugar só. A fonte de cada citação, série e fato também aparece ao lado do próprio item; esta lista é só o atalho.</p>
       <div id="links-uteis"></div>
     </section>
   </main>
@@ -1494,9 +1460,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Método</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Como isto foi feito — e o que não garante</h1>
-    <p class="lede" style="font-size:16px">Um estudo que compara planos de candidatos e afirma ser
-      imparcial deve provar a afirmação, não repeti-la. Esta página separa o que é verificável do que
-      depende de julgamento — e, por isso, continua sendo risco.</p>
+    <p class="lede" style="font-size:16px">Quem compara planos de candidatos e diz que é imparcial precisa provar, não só repetir. Esta página separa o que dá para conferir do que depende de julgamento, que é onde o estudo pode errar.</p>
   </header>
   <main class="wrap">
     <section style="padding-top:22px">
@@ -1537,11 +1501,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
     </section>
     <section style="padding-top:6px">
       <div class="sec-h"><h2>Controle de viés — o teste que este estudo aplica em si mesmo</h2></div>
-      <p class="sec-n">Um estudo que compara candidatos e se diz imparcial deve mostrar a prova, não
-        repetir a afirmação. Se o mesmo critério foi aplicado aos oito documentos, as notas médias
-        de forma devem ficar próximas entre eles — porque medem como o texto foi escrito, e os oito
-        são documentos do mesmo gênero. Uma diferença grande em qualquer coluna seria sinal de que o
-        critério variou conforme o nome.</p>
+      <p class="sec-n">Se a mesma régua foi usada nos oito planos, as notas médias de forma devem ficar parecidas entre eles, porque medem como o texto foi escrito, e os oito são o mesmo tipo de documento. Uma diferença grande em qualquer coluna seria sinal de que a régua mudou conforme o nome.</p>
       <div class="tw"><table class="t" id="vies"></table></div>
       <p class="sec-n" style="margin-top:14px"><b>Como ler.</b> A última linha traz a amplitude:
         a diferença entre o maior e o menor valor de cada coluna. Amplitude pequena indica que a
@@ -1572,9 +1532,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Fora do relatório dos planos</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Infográficos</h1>
-    <p class="lede" style="font-size:16px">Séries oficiais de 1998 até hoje, separadas por período de
-      governo. Como a aba Currículo, esta parte <b>não</b> sai dos planos de governo: sai de órgãos
-      públicos de estatística, e vem com regra própria.</p>
+    <p class="lede" style="font-size:16px">Séries oficiais de 1998 até hoje, separadas por governo. Esta parte <b>não</b> sai dos planos: vem de órgãos públicos de estatística, e tem regras próprias de leitura.</p>
   </header>
   <main class="wrap">
     <section class="sec-dob-1">
@@ -1606,10 +1564,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Fora do relatório dos planos</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Currículo</h1>
-    <p class="lede" style="font-size:16px">Quem é cada candidato: nascimento, formação, trajetória
-      profissional, filiações partidárias, cargos exercidos e séries oficiais dos períodos de governo.
-      Esta aba <b>não</b> faz parte do relatório dos planos — ela não sai dos PDFs, sai de fontes
-      externas, e por isso vem separada e com regra própria.</p>
+    <p class="lede" style="font-size:16px">Quem é cada candidato: nascimento, formação, carreira, partidos, cargos e os números oficiais dos governos que ocupou. Esta aba <b>não</b> sai dos planos: vem de fontes externas, e por isso fica separada e com regras próprias.</p>
   </header>
   <main class="wrap">
     <section class="sec-dob-1">
@@ -1658,32 +1613,21 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Ferramenta do leitor</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Montar o recorte</h1>
-    <p class="lede" style="font-size:16px">Escolha até cinco macrotemas e coloque-os em ordem de
-      importância <b>para quem lê</b>. A página calcula, com os pesos definidos, o quanto cada documento
-      detalha exatamente esses temas.</p>
+    <p class="lede" style="font-size:16px">Escolha até cinco temas e ponha na ordem que importa <b>para você</b>. A página calcula o quanto cada plano detalha exatamente esses temas.</p>
   </header>
   <main class="wrap">
     <section class="sec-dob-1">
       <div class="card pad note flag">
         <h3>Leia isto antes de olhar o número</h3>
-        <p><b>O índice mede o texto, não o governo.</b> Ele responde a uma pergunta estreita: nos
-          temas escolhidos, o quanto o documento declara meta, custo, fonte de financiamento,
-          prazo e indicador — isto é, o quanto dá para cobrar depois. Um plano pode detalhar muito
-          uma política ruim, e enunciar em uma linha uma política excelente.</p>
-        <p><b>Os pesos são definidos por quem usa a página, o cálculo é aberto, e o resultado não é recomendação de voto.</b>
-          Este estudo não produz ranking: quem ordena aqui é quem lê, e a ordem muda conforme a escolha.
-          Trocar o Top 1 troca o resultado.</p>
-        <p><b>Ausência não vira nota baixa.</b> Se um documento não tem citação num macrotema
-          escolhido, ele não é punido com zero — aquele tema simplesmente não entra na conta dele, e a
-          cobertura aparece ao lado do índice, separada. Somar as duas coisas num número só esconderia
-          justamente o que precisa ser visto.</p>
+        <p><b>O índice mede o texto, não o governo.</b> Ele responde a uma pergunta só: nos temas escolhidos, quanto o plano diz de meta, custo, de onde vem o dinheiro, prazo e indicador. Ou seja, quanto dá para cobrar depois. Um plano pode detalhar muito uma ideia ruim e resumir numa linha uma ideia ótima.</p>
+        <p><b>Os pesos são seus, a conta é aberta e o resultado não é recomendação de voto.</b> Este estudo não faz ranking: quem ordena é você, e a ordem muda o resultado. Trocar o 1º lugar troca tudo.</p>
+        <p><b>Ausência não vira nota baixa.</b> Se um plano não tem citação num tema escolhido, ele não leva zero: o tema fica fora da conta dele, e a cobertura aparece ao lado, separada. Juntar as duas coisas num número só esconderia justamente o que precisa ser visto.</p>
       </div>
     </section>
 
     <section style="padding-top:6px">
       <div class="sec-h"><h2>1 · Escolha e ordene</h2></div>
-      <p class="sec-n">Clique num macrotema para adicioná-lo. Use as setas para mudar a ordem. Pesos:
-        Top 1 vale 5, Top 2 vale 4, e assim por diante até 1.</p>
+      <p class="sec-n">Toque num tema para incluir. Use as setas para mudar a ordem. O 1º vale 5, o 2º vale 4, e assim até 1.</p>
       <div id="recortes" style="margin-bottom:26px"></div>
       <div class="pick">
         <div>
@@ -1715,8 +1659,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <header class="wrap" style="padding-block:30px 8px">
     <div class="eyebrow">Referência</div>
     <h1 class="h-lead" style="font-size:clamp(24px,3.2vw,33px)">Glossário</h1>
-    <p class="lede" style="font-size:16px">Toda sigla, termo técnico e palavra em inglês que aparece neste site,
-      com o significado ao lado. Se algo no site não ficou claro, procure nesta página.</p>
+    <p class="lede" style="font-size:16px">Toda sigla, termo técnico e palavra em inglês do site, com o significado ao lado. Ficou alguma dúvida? Procure aqui.</p>
   </header>
   <div class="bar2"><div class="wrap bar2-in">
     <div class="fld" style="flex:1;min-width:240px">
@@ -1732,22 +1675,10 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 </div>
 
 <footer class="foot"><div class="wrap in">
-  <p><b>Sobre este relatório.</b> Comparação de oito planos de governo registrados ou publicados para
-    a eleição presidencial de 2026, mandato 2027-2030. Publica a camada factual da extração: trecho
-    literal conferido por script contra o PDF, página, tipo, grau de especificidade e onze dimensões
-    de forma. Os oito PDFs originais estão no repositório do projeto.</p>
-  <p>Nenhuma nota é somada em índice único. Não há ranking, não há nota geral e não há recomendação de voto.</p>
-  <p><b>Finalidade.</b> Este é um trabalho de pesquisa e comparação documental, feito por iniciativa
-    particular e sem vínculo com candidatura, partido, campanha, empresa ou órgão público. Ele não pede voto,
-    não recomenda candidato e não produz ranking: o que publica é o que está escrito nos planos registrados,
-    com a página de onde cada trecho saiu, sob o mesmo critério para os oito documentos. As escolhas editoriais
-    — quais trechos citar, em que macrotema encaixá-los, quem agrupar no Currículo — estão declaradas na aba
-    Método, porque são o ponto em que este estudo pode errar.</p>
-  <p><b>Correções e atualizações.</b> Este material pode ser corrigido ou atualizado a qualquer momento, sem
-    aviso prévio: trechos citados, datas, classificações, séries de dados e textos de análise podem mudar quando
-    surge fonte melhor, dado revisado pelo órgão que o publica ou erro identificado. Por isso, o que está aqui
-    vale para a versão indicada abaixo, e não há garantia de que uma página consultada hoje esteja idêntica
-    amanhã. O repositório é público para consulta e verificação das fontes; não é aberto a edição por terceiros.</p>
+  <p><b>Sobre este relatório.</b> Comparação dos oito planos de governo registrados para a eleição presidencial de 2026, mandato 2027-2030. Publica só a parte factual: o trecho literal conferido no PDF, a página, o tipo, o grau de especificidade e as onze dimensões de forma. Os oito PDFs originais estão no repositório do projeto.</p>
+  <p>Nenhuma nota vira índice único. Não há ranking, nota geral nem recomendação de voto.</p>
+  <p><b>Finalidade.</b> Trabalho de pesquisa feito por iniciativa particular, sem ligação com candidatura, partido, campanha, empresa ou órgão público. Não pede voto, não recomenda candidato e não faz ranking: publica o que está escrito nos planos, com a página de cada trecho, sob o mesmo critério para os oito. As escolhas editoriais (quais trechos citar, em que tema encaixar, quem agrupar no Currículo) estão na aba Método, porque é aí que este estudo pode errar.</p>
+  <p><b>Correções e atualizações.</b> Este material pode ser corrigido ou atualizado a qualquer momento, sem aviso: trechos, datas, classificações e séries podem mudar quando aparece fonte melhor, dado revisado ou erro. O que está aqui vale para a versão indicada abaixo. O repositório é público para consulta e conferência; não aceita edição de terceiros.</p>
   <p><b>Fotos dos presidentes.</b> Retrato de Itamar Franco: Arquivo Nacional, domínio público.
     Retrato de Fernando Collor: Ubirajara Dettimar / Presidência da República, 1992, via Wikimedia
     Commons, licença CC BY-SA 2.0 — o recorte circular publicado aqui é obra derivada e segue a mesma
@@ -1769,9 +1700,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
     <button class="cfg-x" id="cfg-x" type="button" aria-label="Fechar">×</button>
   </div>
   <div class="cfg-b" id="cfg-corpo"></div>
-  <p class="cfg-n">Fora o idioma, que viaja no endereço da página, as escolhas ficam gravadas apenas
-    neste navegador. Elas não alteram o site publicado nem o que outra pessoa vê, e não são enviadas
-    a lugar nenhum.</p>
+  <p class="cfg-n">As escolhas ficam só neste navegador e não são enviadas a lugar nenhum. A única exceção é o idioma, que vai no endereço da página.</p>
 </dialog>
 
 <script id="traden" type="application/json">{" vezes o menor. Num eixo único, o painel menor viraria uma linha reta colada no zero e a variação dele deixaria de aparecer, que é o que interessa. A comparação deve ser feita olhando os números, não a altura.":" times the smaller one. On a single axis, the smaller panel would become a straight line stuck to zero and its variation would stop being visible, which is what matters. The comparison must be made by looking at the numbers, not at the height.",
@@ -3017,8 +2946,8 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "Liberdades individuais":"Individual liberties",
 "tw-tela":"Best on a large screen or with the phone sideways.",
 "tela-dlg-t":"This site works best on a large screen",
-"tela-dlg-1":"There are tables with many columns, series spanning almost forty years, radars and charts comparing eight documents side by side — a lot of fine-grained information. On a computer, a large monitor or a phone held sideways (landscape), it all fits at once.",
-"tela-dlg-2":"On an upright phone everything can still be read, but charts and tables scroll sideways and comparing is harder.",
+"tela-dlg-1":"There are tables with many columns, series spanning almost forty years and charts with eight plans side by side. On a computer or with the phone sideways, it all fits at once.",
+"tela-dlg-2":"Upright you can still read everything; charts and tables just scroll sideways, and comparing gets harder.",
 "Estou ciente":"I understand",
 "Comparadores":"Comparison tools",
 "Impacto estimado de marcos regulatórios":"Estimated impact of regulatory milestones",
@@ -3063,8 +2992,68 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "cm-i-sin":"Direction among those that touch it:",
 "cm-i-ressalva":"Counts describe the milestones in this collection, not each government's legislative output: the collection is more complete in recent years and was chosen for public relevance, not to be a balanced sample. A high average reach means larger rule changes, not better ones.",
 "cm-nota-gov":"Only counts and the simple average of scores from 0 to 3 — no weights, no ranking. With so few milestones per government, one act changes the average a lot.",
-"ig-comp-p":"Two tools to build your own comparison: put official indicators on the same timeline, or set regulatory milestones from different governments side by side. Both start with ready-made suggestions and let you change everything."}</script>
-<script id="dados" type="application/json">{"versao":"1.7",
+"ig-comp-p":"Two tools to build your own comparison: put official indicators on the same timeline, or set regulatory milestones from different governments side by side. Both start with ready-made suggestions and let you change everything.",
+"O que cada plano promete, com o trecho e a página de onde saiu. Quem é cada candidato, com patrimônio e processos em registro oficial. E os dados públicos que dão o contexto. Sem análise, sem ranking, sem pedir voto.":"What each plan promises, with the passage and the page it came from. Who each candidate is, with assets and court cases from official records. And the public data that gives the context. No analysis, no ranking, no vote asked.",
+"Toda citação daqui foi conferida no PDF":"Every quotation here was checked against the PDF",
+"O texto dos oito planos foi tirado dos PDFs registrados e guardado página a página. Cada citação diz o trecho e a página; um programa confere se o trecho está mesmo lá e":"The text of the eight plans was taken from the registered PDFs and stored page by page. Each quotation states the passage and the page; a program checks that the passage is really there and",
+". Por isso “confira na fonte” aqui não é força de expressão: se a frase não estivesse no documento, não estaria nesta página.":". That is why “check the source” is not a figure of speech here: if the sentence were not in the document, it would not be on this page.",
+"garante: que o trecho escolhido seja o mais importante da seção, nem que o tema onde ele foi encaixado seja o certo. Isso é julgamento de quem leu, e está explicado em":"guarantee: that the chosen passage is the most important in the section, or that the topic it was filed under is the right one. That is the reader's judgement, and it is explained under",
+"Quantas citações cada plano rendeu em cada tema. Quanto mais escura a célula, mais citações; o número está sempre escrito, então a cor é só ajuda visual. Passe o cursor para ver o detalhe.":"How many quotations each plan yielded per topic. The darker the cell, the more quotations; the number is always written, so the colour is only a visual aid. Hover to see the detail.",
+"Célula vazia: nenhuma citação desse plano nesse tema.":"Empty cell: no quotation from that plan on that topic.",
+"A contagem mostra como o documento foi escrito e organizado, não o quanto a candidatura se importa com o assunto. Um tema pode estar dentro de outro capítulo e não render citação própria.":"The count shows how the document was written and organised, not how much the candidacy cares about the subject. A topic may sit inside another chapter and yield no quotation of its own.",
+"Quantas citações de cada plano em cada nível, de 1 a 5. Mede o texto, não o mérito: quanto a frase diz sobre o que exatamente será feito.":"How many quotations from each plan at each level, 1 to 5. It measures the text, not the merit: how much the sentence says about what exactly will be done.",
+"citações com nota, somando os oito planos. Não compara candidatos: mostra em que esse tipo de documento costuma ser detalhado e em que costuma ser vago.":"scored quotations, adding up the eight plans. It does not compare candidates: it shows where this kind of document tends to be detailed and where it tends to be vague.",
+"Se um tema não aparece, isso diz algo sobre o texto, não sobre o que a candidatura pensa.":"If a topic does not appear, that says something about the text, not about what the candidacy thinks.",
+"Só pelo que está escrito, dá para dizer no fim do mandato se foi cumprido ou não? Se dá, é proposta. Se não dá, é diretriz. Nenhuma é melhor que a outra.":"From the text alone, could you say at the end of the term whether it was done or not? If yes, it is a proposal. If not, it is a guideline. Neither is better than the other.",
+"— vão de 7 a 200 páginas. Por isso não existe aqui nota geral nem ranking por candidatura.":"— they run from 7 to 200 pages. That is why there is no overall score or ranking per candidacy here.",
+"Os candidatos aparecem em":"Candidates appear in",
+"ordem alfabética de primeiro nome":"alphabetical order of first name",
+". As cores vêm de uma escala de tons definida antes, pela ordem de sobrenome:":". The colours come from a tone scale set earlier, by surname order:",
+"não têm nada a ver com cores de partido e não querem dizer nada":"they have nothing to do with party colours and mean nothing",
+"Nenhum gráfico usa a cor como única forma de dizer quem é quem: o nome está escrito em toda citação, linha e coluna. Por isso você pode trocar a ordem e as cores à vontade, sem perder nada.":"No chart uses colour as the only way to say who is who: the name is written on every quotation, row and column. So you can change the order and colours as you like without losing anything.",
+"A mudança fica só neste navegador":"The change stays in this browser only",
+"e não muda o que outra pessoa vê.":"and does not change what anyone else sees.",
+"Cada cartão é uma citação: o trecho, a página, o tipo e o grau de especificidade. Em “Dimensões” estão as onze notas de forma do texto. Elas nunca viram média, porque a média esconderia justamente o que interessa.":"Each card is a quotation: the passage, the page, the type and the specificity level. Under “Dimensions” are the eleven scores for the form of the text. They are never averaged, because an average would hide exactly what matters.",
+"De onde veio cada plano e como ele está escrito. Tudo neste relatório sai destes oito arquivos.":"Where each plan came from and how it is written. Everything in this report comes from these eight files.",
+"Os oito PDFs são os arquivos registrados, sem nenhuma alteração. Baixe na coluna da direita e confira qualquer citação na página indicada. “Citações” conta o que cada plano rendeu nos 20 macrotemas, não no plano inteiro.":"The eight PDFs are the registered files, unchanged. Download them in the right-hand column and check any quotation on the page indicated. “Quotations” counts what each plan yielded across the 20 macro-topics, not the whole plan.",
+"Este bloco fala de":"This block is about",
+"documentos, não de candidaturas":"documents, not candidacies",
+". Ele responde a uma pergunta só: como cada plano foi escrito. Não diz qual é melhor nem quem governaria melhor. Nenhum número aqui serve para isso.":". It answers one question only: how each plan was written. It does not say which is better or who would govern better. No number here is meant for that.",
+"Todos os endereços que o site consulta, num lugar só. A fonte de cada citação, série e fato também aparece ao lado do próprio item; esta lista é só o atalho.":"Every address the site consults, in one place. The source of each quotation, series and fact also appears next to the item itself; this list is just the shortcut.",
+"Quem compara planos de candidatos e diz que é imparcial precisa provar, não só repetir. Esta página separa o que dá para conferir do que depende de julgamento, que é onde o estudo pode errar.":"Anyone who compares candidates' plans and claims to be impartial has to prove it, not just repeat it. This page separates what can be checked from what depends on judgement, which is where the study can go wrong.",
+"Se a mesma régua foi usada nos oito planos, as notas médias de forma devem ficar parecidas entre eles, porque medem como o texto foi escrito, e os oito são o mesmo tipo de documento. Uma diferença grande em qualquer coluna seria sinal de que a régua mudou conforme o nome.":"If the same yardstick was used on all eight plans, the average form scores should be similar across them, because they measure how the text was written, and all eight are the same kind of document. A big gap in any column would be a sign that the yardstick changed with the name.",
+"Séries oficiais de 1998 até hoje, separadas por governo. Esta parte":"Official series from 1998 to today, split by government. This part does",
+"sai dos planos: vem de órgãos públicos de estatística, e tem regras próprias de leitura.":"come from the plans: it comes from public statistics agencies, and has its own reading rules.",
+"Quem é cada candidato: nascimento, formação, carreira, partidos, cargos e os números oficiais dos governos que ocupou. Esta aba":"Who each candidate is: birth, education, career, parties, offices and the official figures of the governments they held. This tab does",
+"sai dos planos: vem de fontes externas, e por isso fica separada e com regras próprias.":"come from the plans: it comes from external sources, so it stays separate, with its own rules.",
+"Escolha até cinco temas e ponha na ordem que importa":"Pick up to five topics and put them in the order that matters",
+"para você":"to you",
+". A página calcula o quanto cada plano detalha exatamente esses temas.":". The page works out how much each plan details exactly those topics.",
+"Ele responde a uma pergunta só: nos temas escolhidos, quanto o plano diz de meta, custo, de onde vem o dinheiro, prazo e indicador. Ou seja, quanto dá para cobrar depois. Um plano pode detalhar muito uma ideia ruim e resumir numa linha uma ideia ótima.":"It answers one narrow question: on the chosen topics, how much the plan states about goal, cost, where the money comes from, deadline and indicator. In other words, how much can be held to account later. A plan can detail a bad idea at length and sum up a great idea in one line.",
+"Os pesos são seus, a conta é aberta e o resultado não é recomendação de voto.":"The weights are yours, the maths is open and the result is not a voting recommendation.",
+"Este estudo não faz ranking: quem ordena é você, e a ordem muda o resultado. Trocar o 1º lugar troca tudo.":"This study makes no ranking: you do the ordering, and the order changes the result. Swap the 1st place and everything changes.",
+"Se um plano não tem citação num tema escolhido, ele não leva zero: o tema fica fora da conta dele, e a cobertura aparece ao lado, separada. Juntar as duas coisas num número só esconderia justamente o que precisa ser visto.":"If a plan has no quotation on a chosen topic, it does not get a zero: the topic is left out of its calculation, and the coverage appears alongside, separately. Merging the two into one number would hide exactly what needs to be seen.",
+"Toque num tema para incluir. Use as setas para mudar a ordem. O 1º vale 5, o 2º vale 4, e assim até 1.":"Tap a topic to add it. Use the arrows to change the order. 1st counts 5, 2nd counts 4, and so on down to 1.",
+"Toda sigla, termo técnico e palavra em inglês do site, com o significado ao lado. Ficou alguma dúvida? Procure aqui.":"Every acronym, technical term and English word on the site, with its meaning. Something unclear? Look it up here.",
+"Comparação dos oito planos de governo registrados para a eleição presidencial de 2026, mandato 2027-2030. Publica só a parte factual: o trecho literal conferido no PDF, a página, o tipo, o grau de especificidade e as onze dimensões de forma. Os oito PDFs originais estão no repositório do projeto.":"A comparison of the eight government plans registered for the 2026 presidential election, 2027-2030 term. It publishes only the factual part: the literal passage checked against the PDF, the page, the type, the specificity level and the eleven form dimensions. The eight original PDFs are in the project's repository.",
+"Nenhuma nota vira índice único. Não há ranking, nota geral nem recomendação de voto.":"No score becomes a single index. There is no ranking, no overall score and no voting recommendation.",
+"Trabalho de pesquisa feito por iniciativa particular, sem ligação com candidatura, partido, campanha, empresa ou órgão público. Não pede voto, não recomenda candidato e não faz ranking: publica o que está escrito nos planos, com a página de cada trecho, sob o mesmo critério para os oito. As escolhas editoriais (quais trechos citar, em que tema encaixar, quem agrupar no Currículo) estão na aba Método, porque é aí que este estudo pode errar.":"Research done as a private initiative, with no ties to any candidacy, party, campaign, company or public body. It does not ask for votes, recommend a candidate or rank anyone: it publishes what is written in the plans, with the page of each passage, under the same criterion for all eight. The editorial choices (which passages to quote, which topic to file them under, whom to group in Candidates) are in the Method tab, because that is where this study can go wrong.",
+"Este material pode ser corrigido ou atualizado a qualquer momento, sem aviso: trechos, datas, classificações e séries podem mudar quando aparece fonte melhor, dado revisado ou erro. O que está aqui vale para a versão indicada abaixo. O repositório é público para consulta e conferência; não aceita edição de terceiros.":"This material may be corrected or updated at any time, without notice: passages, dates, classifications and series can change when a better source, revised data or an error turns up. What is here applies to the version shown below. The repository is public for consultation and checking; it does not accept third-party edits.",
+"As escolhas ficam só neste navegador e não são enviadas a lugar nenhum. A única exceção é o idioma, que vai no endereço da página.":"Your choices stay in this browser only and are sent nowhere. The one exception is the language, which travels in the page address.",
+"Esta tela é estreita.":"This screen is narrow.",
+"O site tem tabelas largas e gráficos com oito planos lado a lado. Dá para ler tudo aqui, mas comparar fica mais fácil com o celular deitado ou no computador.":"The site has wide tables and charts with eight plans side by side. You can read everything here, but comparing is easier with the phone sideways or on a computer.",
+"Tabela larga: role para o lado ou deite o celular.":"Wide table: scroll sideways or turn the phone sideways.",
+"Gráfico largo: role para o lado ou deite o celular.":"Wide chart: scroll sideways or turn the phone sideways.",
+"Escolha um macrotema acima para ver a nota de leitura dele.":"Pick a macro-topic above to see its reading note.",
+"Cada idioma é uma página com endereço próprio, então o link continua compartilhável. As citações e os nomes dos documentos ficam em português nas duas: traduzidas, deixariam de ser a citação.":"Each language is a page with its own address, so the link stays shareable. Quotations and document names stay in Portuguese in both: translated, they would no longer be the quotation.",
+"O alto-falante do cabeçalho liga e desliga a qualquer hora. Navegador não deixa site tocar som sozinho: mesmo “começar ligada”, a trilha só entra no primeiro toque na página.":"The speaker icon in the header switches it on and off at any time. Browsers do not let a site play sound on its own: even with “start on”, the soundtrack only begins at the first tap on the page.",
+"O padrão é a ordem alfabética de primeiro nome. Cada candidatura mantém a própria cor em qualquer ordem. Trocar a ordem recarrega a página.":"The default is alphabetical order of first name. Each candidacy keeps its own colour in any order. Changing the order reloads the page.",
+"A sugestão usa a cor mais ligada a cada partido e afasta as que ficariam parecidas (PT e PCO não saem no mesmo vermelho). Partido sem cor firmada, ou com a cor já tomada, recebe um tom qualquer, que não representa a legenda. Cor de partido carrega significado, por isso não é o padrão do site. Uma cor escolhida a mão fica igual nos temas claro e escuro.":"The suggestion uses the colour most linked to each party and pushes apart any that would look alike (PT and PCO do not come out in the same red). A party with no settled colour, or whose colour is already taken, gets an arbitrary tone that does not represent it. Party colour carries meaning, which is why it is not the site's default. A hand-picked colour stays the same in light and dark themes.",
+"Valem para todos os gráficos. Marcos são as linhas verticais de acontecimentos importantes; retratos mostram quem era o presidente em cada faixa. No celular os dois começam desligados, para não roubar espaço do gráfico.":"They apply to every chart. Markers are the vertical lines for major events; portraits show who was president in each band. On phones both start off, so they do not steal space from the chart.",
+"f-copiar":"Copy quotation",
+"f-copiar-tip":"Copies the passage with the name, the page and the link to this screen",
+"f-copiado":"Quotation copied, with the page and the link."}</script>
+<script id="dados" type="application/json">{"versao":"1.8",
 "macrotemas_previstos":20,
 "macrotemas":[{"cod":"AGRO",
 "nome":"AGRICULTURA: Agronegócio e competitividade",
@@ -22988,7 +22977,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "rui":"29 PCO Rui Costa Pimenta 2026BR280002552487_01.pdf",
 "cur":"70 AVANTE Augusto Cury 2026BR280002551547_01.pdf"},
 "criado_em":"2026-09-05",
-"atualizado_em":"2026-09-24",
+"atualizado_em":"2026-09-26",
 "recortes":[{"id":"fiscal",
 "nome":"Contas públicas primeiro",
 "desc":"Quem acha que nada funciona enquanto o Estado gastar mais do que arrecada.",
@@ -23267,8 +23256,8 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Fotos: TSE — DivulgaCandContas, imagem do registro de candidatura de 2026. Publicadas como o TSE publica, sem recorte nem tratamento.",
 "experiencia_privada_nota":"Critério desta lista: organizações privadas — empresas, institutos, fundações e movimentos — que a pessoa fundou, dirigiu ou das quais é sócia, fora de cargo eletivo ou de governo. Partidos políticos não entram aqui, porque têm bloco próprio nas filiações; sindicatos e centrais sindicais entram, porque são organizações formais fora do Estado. A lista registra o que a pessoa é ou foi na organização, não o que a organização fez: processo judicial fica na seção de processos, com o desfecho. Onde a única fonte disponível é um agregador de dados de CNPJ, isso está dito na fonte da linha — são dados públicos da Receita Federal republicados por terceiros, e este site não conferiu registro a registro no sistema oficial. A lista não é exaustiva e candidaturas com menos cobertura de imprensa deixam menos rastro documentado: ausência de linha aqui significa que nada foi localizado nas fontes consultadas, não que nada exista.",
-"versoes":[{"v":"1.7",
-"atual":true,
+"versoes":[{"v":"1.8","atual":true,"itens":["AssistONE: assistente no canto de baixo à direita que diz em que tela você está, explica os avisos recolhidos (\"Como ler\", \"Ressalvas\") em palavras simples, lê a tela em voz alta, procura telas, temas, candidatos e siglas, muda ajustes rápidos e faz um tour de um minuto; liga e desliga em Configurações", "Menu ☰ no celular com as oito páginas e uma linha dizendo o que há em cada uma, ações rápidas (procurar, compartilhar, ouvir, ajustes), tema, idioma e ajuda; o botão Voltar do celular fecha o menu em vez de sair do site", "Compartilhar no cabeçalho: link desta tela pelo WhatsApp, Telegram, e-mail ou copiando; no celular abre o compartilhamento do aparelho", "\"Copiar citação\" em cada cartão dos macrotemas: o trecho vai com o nome, a página e o link", "Acessibilidade em Configurações: texto maior (A+ e A++) e reduzir animações", "Textos de interface reescritos em português mais direto: capa, avisos, cabeçalhos das abas, rodapé e notas das Configurações; o quadro \"feita para tela larga\" só aparece em tela estreita"]},
+{"v":"1.7",
 "itens":["Leitura em voz alta: botão ▶ ao lado de cada título, com voz do aparelho ou voz natural (Gemini, OpenAI, ElevenLabs) e preferências em Configurações",
 "Comparadores no topo da aba Infográficos, com índice clicável de todos os gráficos",
 "Novo comparador: impacto estimado de marcos regulatórios — até seis marcos no mesmo radar, com o governo de cada um, e leitura por dimensão",
@@ -36268,8 +36257,8 @@ var CHAVES={
  "cm-gov-nota":"Média simples das notas de todos os marcos do governo nesta coleção. Com poucos marcos por mandato, um ato só muda muito a média; e a coleção foi escolhida por relevância, não para ser amostra equilibrada. Serve para ver onde a coleção de cada governo se concentra — não para dizer qual governo regulou mais ou melhor.",
  "tw-tela":"Melhor em tela grande ou com o celular deitado.",
  "tela-dlg-t":"Este site fica melhor em tela grande",
- "tela-dlg-1":"Há tabelas de muitas colunas, séries de quase quarenta anos, radares e gráficos que comparam oito documentos lado a lado — muita informação miúda. No computador, num monitor grande ou com o celular deitado (paisagem), tudo cabe de uma vez.",
- "tela-dlg-2":"No celular em pé dá para ler tudo, mas os gráficos e as tabelas rolam para o lado e comparar fica mais difícil.",
+ "tela-dlg-1":"Tem tabelas com muitas colunas, séries de quase quarenta anos e gráficos com oito planos lado a lado. No computador ou com o celular deitado, tudo cabe de uma vez.",
+ "tela-dlg-2":"Em pé também dá para ler tudo; só que gráficos e tabelas rolam para o lado, e comparar fica mais difícil.",
  "cm-intro":"Até seis marcos no mesmo radar, cada um com o governo que o sancionou — ou escolha uma dimensão e veja todos os marcos nela. O radar mede ALCANCE, o tamanho da mudança que o texto do ato faz em cada dimensão, de 0 a 3; ele não diz se a mudança foi boa. Os critérios da nota estão no gráfico “Alcance dos marcos”, mais abaixo na página.",
  "cm-radar-alt":"Radar de seis eixos com até seis marcos escolhidos, cada um com nota de 0 a 3 em cada dimensão.",
  "cm-nota-radar":"Marcadores que coincidem num eixo são deslocados um pouco para o lado, para todos aparecerem. Cada marco se distingue também pelo traço e pela forma do marcador, não só pela cor.",
@@ -36375,6 +36364,8 @@ var CHAVES={
  "sb-ult":"Última atualização em",
  "gr-1":" grupo","gr-n":" grupos","gr-per":" períodos",
  "share-bt":"Compartilhar","share-tip":"Gera uma imagem grande deste gráfico e abre o compartilhamento do aparelho",
+ "f-copiar":"Copiar citação","f-copiar-tip":"Copia o trecho com o nome, a página e o link desta tela",
+ "f-copiado":"Citação copiada, com a página e o link.",
  "idx-todas":"todas","idx-sel":" selecionadas","idx-todas-bt":"Limpar seleção",
  "idx-ir":"Ir direto a um gráfico",
  "share-fonte":"Fonte e método no site:",
@@ -36955,6 +36946,8 @@ function avisoTelaPopup(estreito){
   var host=document.getElementById("tela-avi");
   if(host){
     var estreito=window.matchMedia&&window.matchMedia("(max-width: 780px)").matches;
+    /* no computador o quadro não diz nada útil: só aparece em tela estreita */
+    if(!estreito)host.hidden=true;
     var d=el("div","tela-box"+(estreito?" forte":""));
     var ic=el("span","tela-ic");
     ic.innerHTML='<svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true">'+
@@ -36963,13 +36956,11 @@ function avisoTelaPopup(estreito){
     d.appendChild(ic);
     var t=el("div","tela-t");
     t.appendChild(el("b",null,estreito
-      ? "Esta é uma tela estreita. "
+      ? "Esta tela é estreita. "
       : "Esta página foi feita para tela larga. "));
     t.appendChild(document.createTextNode(
-      "Ela tem tabelas de vinte colunas, séries de quase quarenta anos e gráficos que comparam oito documentos "+
-      "lado a lado. Em computador, ou no celular deitado na posição paisagem, tudo isso cabe de uma vez. Em tela "+
-      "estreita e em pé, os gráficos rolam na horizontal e as tabelas ficam apertadas — dá para ler, mas comparar "+
-      "fica mais difícil."));
+      "O site tem tabelas largas e gráficos com oito planos lado a lado. Dá para ler tudo aqui, mas comparar "+
+      "fica mais fácil com o celular deitado ou no computador."));
     d.appendChild(t);
     host.appendChild(d);
     avisoTelaPopup(estreito);
@@ -36985,7 +36976,7 @@ function avisoTelaPopup(estreito){
          lista própria lá — a dica sumiria sozinha, senão ficaria mandando
          rolar uma tabela que não está na tela */
       if(w.classList.contains("idx-tw"))p.className="aviso-tela idx-tw";
-      p.textContent="Tabela larga: em telas estreitas, role na horizontal ou vire o aparelho para a posição paisagem.";
+      p.textContent="Tabela larga: role para o lado ou deite o celular.";
       if(w.parentNode)w.parentNode.insertBefore(p,w.nextSibling);});
   }
   function mediNav(){
@@ -37461,11 +37452,8 @@ function pintaPainelOC(){
     li.appendChild(b);});
   si.appendChild(li);
   si.appendChild(el("p","oc-nota",
-    "Este é o único ajuste que não fica gravado no navegador: cada idioma é uma página com "+
-    "endereço próprio, e trocar de idioma abre o outro endereço — o que mantém o link "+
-    "compartilhável e legível por buscadores. As citações dos planos e os nomes dos documentos "+
-    "de origem seguem em português nos dois, porque cada trecho foi conferido contra o PDF: "+
-    "traduzido, deixaria de ser a citação."));
+    "Cada idioma é uma página com endereço próprio, então o link continua compartilhável. "+
+    "As citações e os nomes dos documentos ficam em português nas duas: traduzidas, deixariam de ser a citação."));
   host.appendChild(si);
 
   var s0=el("div","oc-sec");
@@ -37484,6 +37472,10 @@ function pintaPainelOC(){
     "Do sistema segue a preferência do aparelho e muda sozinho quando ele muda."));
   host.appendChild(s0);
 
+  /* cartões dos blocos de apoio (AssistONE e Acessibilidade), quando carregados */
+  if(window.CfgAssist)try{window.CfgAssist(host);}catch(e){}
+  if(window.CfgAcess)try{window.CfgAcess(host);}catch(e){}
+
   /* só aparece quando existe trilha publicada: sem arquivo, a opção mentiria */
   if(!(document.getElementById("som")||{}).hidden){
     var sS=el("div","oc-sec");
@@ -37499,9 +37491,8 @@ function pintaPainelOC(){
       lS.appendChild(b);});
     sS.appendChild(lS);
     sS.appendChild(el("p","oc-nota",
-      "O ícone de alto-falante no cabeçalho liga e desliga a qualquer momento. "+
-      "Os navegadores não deixam um site começar a tocar som sozinho: mesmo com "+
-      "\u201ccomeçar ligada\u201d, a trilha só entra no primeiro clique ou toque na página."));
+      "O alto-falante do cabeçalho liga e desliga a qualquer hora. Navegador não deixa site tocar som sozinho: "+
+      "mesmo \u201ccomeçar ligada\u201d, a trilha só entra no primeiro toque na página."));
     host.appendChild(sS);
   }
 
@@ -37525,9 +37516,8 @@ function pintaPainelOC(){
     l1.appendChild(r1);}
   s1.appendChild(l1);
   s1.appendChild(el("p","oc-nota",
-    "A ordem publicada é a alfabética de primeiro nome. A rampa de cores foi definida antes, "+
-    "pela ordem de sobrenome, e não acompanha a ordenação: cada candidatura mantém a própria cor "+
-    "em qualquer ordem. Trocar a ordem recarrega a página para reordenar tabelas e colunas."));
+    "O padrão é a ordem alfabética de primeiro nome. Cada candidatura mantém a própria cor "+
+    "em qualquer ordem. Trocar a ordem recarrega a página."));
   host.appendChild(s1);
 
   var s2=el("div","oc-sec");
@@ -37581,13 +37571,10 @@ function pintaPainelOC(){
     "Este navegador não abre seletor de cor, então a escolha uma a uma fica indisponível aqui. "+
     "A sugestão por partido e o botão de restaurar continuam funcionando."));
   s2.appendChild(el("p","oc-nota",
-    "A sugestão usa a cor mais associada a cada legenda e afasta automaticamente as que ficariam "+
-    "parecidas demais — PT e PCO, por exemplo, não saem no mesmo vermelho. Onde a cor do partido já "+
-    "está tomada por outro, ou onde a legenda é nova e não tem cor firmada, entra um tom distinto "+
-    "qualquer, que não representa o partido: é o caso do Avante, cujo azul e amarelo já estão com PL "+
-    "e Missão. Repare que cor partidária carrega significado, e é por isso que ela não é o padrão do "+
-    "site. Uma cor escolhida manualmente fica fixa nos dois temas, claro e escuro, enquanto as cores "+
-    "originais se ajustam sozinhas a cada um."));
+    "A sugestão usa a cor mais ligada a cada partido e afasta as que ficariam parecidas "+
+    "(PT e PCO não saem no mesmo vermelho). Partido sem cor firmada, ou com a cor já tomada, "+
+    "recebe um tom qualquer, que não representa a legenda. Cor de partido carrega significado, "+
+    "por isso não é o padrão do site. Uma cor escolhida a mão fica igual nos temas claro e escuro."));
   host.appendChild(s2);
 
   /* aba Infográficos: as mesmas duas marcações que aparecem no cartão de índice,
@@ -37608,9 +37595,9 @@ function pintaPainelOC(){
     l3.appendChild(b);});
   s3.appendChild(l3);
   s3.appendChild(el("p","oc-nota",
-    "Valem para todos os gráficos da aba Infográficos. Os marcos são linhas verticais de "+
-    "acontecimentos de grande alcance; os retratos identificam quem ocupava a Presidência em cada "+
-    "faixa. Em telas estreitas os dois nascem desligados, porque disputariam espaço com o gráfico."));
+    "Valem para todos os gráficos. Marcos são as linhas verticais de acontecimentos importantes; "+
+    "retratos mostram quem era o presidente em cada faixa. No celular os dois começam desligados, "+
+    "para não roubar espaço do gráfico."));
   host.appendChild(s3);
 
   /* Sobre: versão, o que mudou e aviso de uso — leitura, não ajuste, mas é aqui
@@ -37869,7 +37856,18 @@ function cartao(f){
       :"A citação literal não pôde ser extraída do documento."));
   var lo=el("div","loc");
   lo.appendChild(el("span","k",(mtAtual?"":m.nome+" · ")+TR("Localização")+" "));
-  lo.appendChild(document.createTextNode(f.page||"não declarada"));a.appendChild(lo);
+  lo.appendChild(document.createTextNode(f.page||"não declarada"));
+  if(f.quote){
+    /* copiar/compartilhar: o trecho, quem disse, a página e o link desta tela */
+    var cp=el("button","f-share",TR("f-copiar"));cp.type="button";
+    cp.title=TR("f-copiar-tip");
+    cp.addEventListener("click",function(e){e.preventDefault();
+      var txt=(f.verbatim?"“"+f.quote+"”":f.quote)+"\n— "+c.nome+" ("+c.partido+"), "+
+        ((DOCS[c.pre]||{}).doc||TR("plano-de")+c.nome)+(f.page?", "+f.page:"")+"\n"+
+        TR("share-fonte")+" "+location.href.split("#")[0]+"#macrotemas/"+f.macro;
+      if(window.PGShare)window.PGShare.texto(txt,cp,TR("f-copiado"));});
+    lo.appendChild(cp);}
+  a.appendChild(lo);
   if(f.nivel){
     var sp=el("div","spec"),dt=el("div","dots");
     for(var i=1;i<=5;i++)dt.appendChild(el("i",i<=f.nivel?"on":null));
@@ -37993,7 +37991,7 @@ function render(){
   } else {
     var b2=el("div","mt-acts");
     D.macrotemas.slice(0,0).forEach(function(){});
-    var hint=el("p","sec-n","Escolha um macrotema acima para abrir a nota de leitura daquele tema.");
+    var hint=el("p","sec-n","Escolha um macrotema acima para ver a nota de leitura dele.");
     hint.style.margin="16px 0 0";b2.appendChild(hint);acts.appendChild(b2);
   }
   box.textContent="";
@@ -40766,7 +40764,7 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
   function avisoTela(){
     var p=el("p","aviso-tela");
     p.appendChild(document.createTextNode(
-      "Gráfico largo: em telas estreitas, role na horizontal ou vire o aparelho para a posição paisagem."));
+      "Gráfico largo: role para o lado ou deite o celular."));
     return p;
   }
 
@@ -43709,6 +43707,19 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
   pinta();
 })();
 
+/* ---------- ponte para os blocos de apoio (AssistONE, menu ☰, compartilhar) ----------
+   Só o que eles precisam; o resto continua privado. */
+window.PG={
+  VIEWS:VIEWS, D:D, MACRO:MACRO, CAND:CAND, TR:TR, el:el, IDIOMA:IDIOMA,
+  prefs:function(){return PREFS;}, grava:gravaPrefs,
+  abreConfig:abreConfig, repintaConfig:pintaPainelOC,
+  temaAtual:temaAtual, escuroAgora:escuroAgora, aplicaTema:aplicaTema,
+  vaiParaIdioma:vaiParaIdioma, mtAtual:function(){return mtAtual;},
+  abreGloss:abreGloss, abreDoc:abreDoc, traduz:traduzDOM,
+  escreveVer:function(){if(window.escreveVer)window.escreveVer();},
+  repintaIG:function(){if(window.repintaIG)window.repintaIG();}
+};
+try{dispatchEvent(new Event("pg-pronto"));}catch(e){}
 marca();render();pintaTudo();rota();
 })();
 </script>
@@ -44734,6 +44745,833 @@ function inicia(){
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&Leitor.estado!=="parado"&&!document.querySelector("dialog[open]"))Leitor.pausa();});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",inicia);else inicia();
+})();
+</script>
+<style>
+/* =====================================================================
+   v1.8: blocos de apoio — AssistONE, menu ☰ no celular, compartilhar,
+   acessibilidade. Tudo aqui é interface: nada muda os dados nem as citações.
+   ===================================================================== */
+/* ---- acessibilidade: tamanho do texto e menos movimento ---- */
+html.pg-f1 body{zoom:1.12}
+html.pg-f2 body{zoom:1.25}
+html.pg-calmo *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+/* espaço embaixo para o último item não ficar atrás do personagem ou da barra de voz */
+html.ao-on body{padding-bottom:84px}
+@media (max-width:760px){html.ao-on .tts-bar{bottom:88px}}
+
+/* ---- cabeçalho: ☰, página atual e compartilhar ---- */
+@media (min-width:761px){
+  /* com o botão de compartilhar, o cabeçalho não pode quebrar em duas linhas:
+     se faltar espaço, as abas rolam de lado em vez de empurrar os ícones para baixo */
+  .nav-in{flex-wrap:nowrap;gap:14px}
+  .menu{flex-wrap:nowrap;min-width:0;overflow-x:auto;scrollbar-width:none}
+  .menu::-webkit-scrollbar{display:none}
+  .menu button{white-space:nowrap;padding:7px 11px}
+}
+.nav-h{display:none}
+.nav-cur{display:none}
+@media (max-width:760px){
+  .nav-h{display:inline-flex;order:0;width:40px;height:36px;border-color:transparent}
+  .nav-h svg{width:20px;height:20px}
+  .brand{order:1}
+  .nav-cur{display:inline-flex;order:2;align-items:center;gap:6px;max-width:44vw;
+    font-family:var(--f-b);font-size:12.5px;color:#E7EFED;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 10px;cursor:pointer;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:32px}
+  .nav-cur svg{width:10px;height:10px;flex:none;opacity:.8}
+  .nav-in>.idi{display:none}          /* no celular o idioma mora dentro do ☰ */
+  .nav-in>.ibtn,.nav-in>.shr{order:3}
+  .nav-in>.nav-h{order:0}
+  .nav-in>#theme,.nav-in>#som{display:none}   /* no celular, tema e trilha ficam na gaveta ☰ */
+  .menu{display:none}                  /* as abas moram na gaveta ☰ */
+  .nav-in{flex-wrap:nowrap;gap:6px}
+  .brand{flex:0 1 auto;font-size:13px}
+  .brand-ic{width:20px;height:20px}
+}
+/* ---- gaveta ☰ ---- */
+.gav-fundo{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
+.gav-fundo.on{opacity:1;pointer-events:auto}
+.gav{position:fixed;top:0;left:0;bottom:0;width:min(330px,88vw);z-index:91;background:var(--surface);color:var(--ink);
+  box-shadow:0 0 40px rgba(0,0,0,.3);transform:translateX(-102%);transition:transform .22s cubic-bezier(.2,.8,.3,1);
+  display:flex;flex-direction:column;overflow:hidden}
+.gav.on{transform:none}
+.gav-h{display:flex;align-items:center;gap:10px;padding:12px 12px 10px 16px;border-bottom:1px solid var(--line);background:var(--bar);color:#E7EFED}
+.gav-h b{font-family:var(--f-d);font-size:16px;flex:1}
+.gav-h .gav-x{width:40px;height:40px;border:0;background:none;color:#E7EFED;font-size:24px;cursor:pointer;border-radius:6px}
+.gav-h .gav-x:hover{background:rgba(255,255,255,.1)}
+.gav-c{overflow-y:auto;overscroll-behavior:contain;padding:8px 10px 24px;scrollbar-width:thin}
+.gav-rap{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:4px 2px 10px}
+.gav-rap button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 4px;border:1px solid var(--line);
+  border-radius:8px;background:var(--surface-2);color:var(--ink);font:inherit;font-size:11px;cursor:pointer;min-height:56px}
+.gav-rap button span:first-child{font-size:19px;line-height:1}
+.gav-rap button:hover{border-color:var(--accent)}
+.gav-g{margin:10px 0 2px;padding:0 6px;font-family:var(--f-m);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.gav-it{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:none;color:var(--ink);
+  font:inherit;font-size:14px;padding:10px 8px;border-radius:6px;cursor:pointer;min-height:44px;text-decoration:none}
+.gav-it:hover{background:var(--surface-2)}
+.gav-it[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.gav-it small{display:block;font-size:11.5px;color:var(--muted);font-weight:400;line-height:1.3;margin-top:1px}
+.gav-it .gav-ic{flex:none;width:22px;text-align:center;font-size:15px}
+.gav-it>div{flex:1;min-width:0}
+.gav-lg{display:flex;gap:6px;padding:4px 8px 6px}
+.gav-lg button{flex:1;font:inherit;font-size:12.5px;padding:8px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;min-height:40px}
+.gav-lg button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.gav-f{padding:12px 8px 0;font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ---- compartilhar (popover no computador) ---- */
+.shr{position:relative;flex:none}
+.shr-pop{position:absolute;top:calc(100% + 6px);right:0;z-index:70;min-width:220px;background:var(--surface);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:8px;box-shadow:0 12px 34px rgba(0,0,0,.22);padding:6px}
+.shr-pop[hidden]{display:none}
+.shr-pop a,.shr-pop button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;
+  color:var(--ink);background:none;border:0;padding:9px 10px;border-radius:5px;cursor:pointer;text-decoration:none;min-height:40px}
+.shr-pop a:hover,.shr-pop button:hover{background:var(--surface-2)}
+.shr-pop .shr-ic{width:20px;text-align:center;font-size:15px;flex:none}
+.shr-pop .shr-t{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 10px 2px}
+.f-share{margin-left:auto;font-family:var(--f-m);font-size:10px;letter-spacing:.04em;color:var(--muted);background:none;
+  border:1px solid var(--line-2);border-radius:3px;padding:3px 7px;cursor:pointer;flex:none;min-height:24px}
+.f-share:hover{color:var(--accent);border-color:var(--accent)}
+article.f .loc{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+
+/* ---- AssistONE: personagem ---- */
+.ao-btn{position:fixed;right:18px;bottom:18px;z-index:66;width:58px;height:58px;padding:0;border:0;border-radius:50%;
+  background:none;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.3,1),width .25s,height .25s;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.28));animation:ao-flutua 3.6s ease-in-out infinite}
+.ao-btn svg{width:100%;height:100%;display:block}
+.ao-btn:hover{transform:scale(1.06)}
+.ao-btn[aria-expanded="true"]{width:96px;height:96px;animation:none}
+.ao-btn:focus-visible{outline:3px solid #E8B84A;outline-offset:3px}
+@keyframes ao-flutua{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media (prefers-reduced-motion:reduce){.ao-btn{animation:none;transition:none}}
+html.pg-calmo .ao-btn{animation:none;transition:none}
+@media (max-width:760px){.ao-btn{right:14px;bottom:16px;width:54px;height:54px}.ao-btn[aria-expanded="true"]{width:80px;height:80px}}
+/* o balão-dica pequeno (uma vez por tela) */
+.ao-dica{position:fixed;right:84px;bottom:26px;z-index:66;max-width:min(300px,calc(100vw - 110px));background:var(--surface);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:12px 12px 2px 12px;box-shadow:0 10px 30px rgba(0,0,0,.2);
+  padding:10px 12px;font-size:13px;line-height:1.45}
+.ao-dica[hidden]{display:none}
+.ao-dica .ao-dk{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#B8860B;display:block;margin-bottom:3px}
+.ao-dica .ao-da{display:flex;gap:6px;margin-top:8px}
+.ao-dica .ao-da button{font:inherit;font-size:12px;padding:6px 10px;border-radius:6px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;min-height:32px}
+.ao-dica .ao-da button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+@media (max-width:760px){.ao-dica{right:78px;bottom:22px}}
+/* ---- AssistONE: balão ---- */
+.ao-box{position:fixed;right:18px;bottom:124px;z-index:67;width:min(400px,calc(100vw - 28px));max-height:calc(100vh - 150px);
+  background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:14px 14px 4px 14px;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;
+  transform-origin:bottom right;transition:transform .2s cubic-bezier(.2,.8,.3,1),opacity .2s}
+.ao-box[hidden]{display:none}
+.ao-box.ao-entra{transform:scale(.92);opacity:0}
+@media (max-width:760px){.ao-box{right:12px;bottom:106px;max-height:calc(100vh - 126px)}}
+.ao-h{display:flex;align-items:center;gap:8px;padding:10px 10px 8px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.ao-h b{font-family:var(--f-d);font-size:15px;flex:1}
+.ao-h b span{color:#B8860B}
+.ao-h button{width:34px;height:34px;border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer;border-radius:6px}
+.ao-h button:hover{background:var(--surface);color:var(--ink)}
+.ao-c{overflow-y:auto;overscroll-behavior:contain;padding:12px 14px 14px;scrollbar-width:thin;font-size:13.5px;line-height:1.5}
+.ao-onde{display:flex;gap:8px;align-items:flex-start;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:9px 11px;margin:0 0 10px}
+.ao-onde .ao-pin{flex:none;font-size:15px;line-height:1.3}
+.ao-onde b{display:block;color:var(--accent);font-size:13.5px}
+.ao-onde p{margin:2px 0 0;color:var(--ink-2);font-size:12.5px}
+.ao-atalhos{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.ao-atalhos button{font:inherit;font-size:12.5px;padding:7px 11px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer;min-height:34px}
+.ao-atalhos button:hover{border-color:var(--accent);color:var(--accent)}
+.ao-lista{display:flex;flex-direction:column;gap:2px;margin:0}
+.ao-it{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13.5px;color:var(--ink);
+  background:none;border:0;border-radius:7px;padding:9px 8px;cursor:pointer;min-height:44px}
+.ao-it:hover{background:var(--surface-2)}
+.ao-it .ao-ic{flex:none;width:24px;text-align:center;font-size:16px}
+.ao-it>div{flex:1;min-width:0}
+.ao-it small{display:block;font-size:11.5px;color:var(--muted);line-height:1.3}
+.ao-it .ao-n{font-family:var(--f-m);font-size:10.5px;color:var(--muted);flex:none}
+.ao-rodape{display:flex;justify-content:space-between;gap:8px;margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+.ao-rodape button{font:inherit;font-size:11.5px;color:var(--muted);background:none;border:0;padding:6px 4px;cursor:pointer;text-decoration:underline;min-height:28px}
+.ao-rodape button:hover{color:var(--ink)}
+.ao-volta{font:inherit;font-size:12px;color:var(--accent);background:none;border:0;padding:0 0 8px;cursor:pointer;min-height:28px}
+.ao-p{margin:0 0 8px;color:var(--ink-2)}
+.ao-p b{color:var(--ink)}
+.ao-busca{display:flex;gap:6px;margin:4px 0 10px}
+.ao-busca input{flex:1;min-width:0;font:inherit;font-size:14px;padding:9px 11px;border:1px solid var(--line-2);border-radius:8px;background:var(--bg);color:var(--ink)}
+.ao-res{display:flex;flex-direction:column;gap:2px}
+.ao-res button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:13px;color:var(--ink);
+  background:none;border:0;border-radius:6px;padding:8px;cursor:pointer;min-height:40px}
+.ao-res button:hover{background:var(--surface-2)}
+.ao-res .ao-tipo{font-family:var(--f-m);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex:none;width:74px}
+.ao-res .ao-tt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ao-vazio{color:var(--muted);font-size:12.5px;margin:6px 0}
+.ao-aviso{border:1px solid var(--line);border-radius:8px;padding:9px 10px;margin:0 0 8px;background:var(--surface-2)}
+.ao-aviso.rs{background:var(--warn-bg);border-color:var(--warn)}
+.ao-aviso .ao-at{font-family:var(--f-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);display:block;margin-bottom:4px}
+.ao-aviso p{margin:0 0 6px;font-size:12.5px;color:var(--ink-2)}
+.ao-aviso .ao-aa{display:flex;flex-wrap:wrap;gap:6px}
+.ao-aviso .ao-aa button{font:inherit;font-size:11.5px;padding:5px 9px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);color:var(--ink);cursor:pointer;min-height:30px}
+.ao-aviso .ao-aa button:hover{border-color:var(--accent);color:var(--accent)}
+.ao-sec{margin:10px 0 4px;font-family:var(--f-m);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.ao-chips{display:flex;flex-wrap:wrap;gap:6px}
+.ao-chips button{font:inherit;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;min-height:34px}
+.ao-chips button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.ao-passo{font-family:var(--f-m);font-size:10.5px;color:var(--muted);margin:0 0 6px}
+.ao-tour-a{display:flex;gap:6px;margin-top:10px}
+.ao-tour-a button{font:inherit;font-size:13px;padding:8px 14px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer;min-height:40px}
+.ao-tour-a button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.ao-foco{outline:3px solid #E8B84A!important;outline-offset:3px;border-radius:6px;box-shadow:0 0 0 6px rgba(232,184,74,.25)!important;position:relative;z-index:68}
+/* cartão do AssistONE nas Configurações */
+.ao-card{display:flex;align-items:center;gap:12px;border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;background:var(--surface-2)}
+.ao-card svg{width:46px;height:46px;flex:none}
+.ao-card>div{flex:1;min-width:0}
+.ao-card b{display:block;font-size:13px}
+.ao-card small{display:block;font-size:11.5px;color:var(--muted);line-height:1.35}
+.ao-chave{flex:none;display:inline-flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid #B8860B;color:#7A5A0B;background:#FBF1D6;border-radius:999px;padding:6px 10px 6px 6px;cursor:pointer;min-height:36px}
+.ao-chave i{display:block;width:30px;height:16px;border-radius:999px;background:#C9CFCE;position:relative;transition:background .15s}
+.ao-chave i::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .15s}
+.ao-chave[aria-pressed="true"] i{background:#D4A017}
+.ao-chave[aria-pressed="true"] i::after{left:16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ao-chave{background:#33290F;color:#E8C77A}}
+:root[data-theme="dark"] .ao-chave{background:#33290F;color:#E8C77A}
+/* nada do assistente por cima de janela, gaveta ou impressão */
+body:has(dialog[open]) .ao-btn,body:has(dialog[open]) .ao-box,body:has(dialog[open]) .ao-dica,
+body:has(.gav.on) .ao-btn,body:has(.gav.on) .ao-box,body:has(.gav.on) .ao-dica{display:none}
+@media print{.ao-btn,.ao-box,.ao-dica,.gav,.gav-fundo,.nav-h,.shr,.f-share{display:none!important}}
+</style>
+<script>
+/* =====================================================================
+   v1.8: blocos de apoio — menu ☰ no celular, compartilhar, acessibilidade
+   e o assistente AssistONE. Depende só de window.PG (ponte do script
+   principal) e, para narrar, de window.VozLeitor (leitura em voz alta).
+   Regras: nada aqui grava fora deste navegador; texto sempre em PT e EN.
+   ===================================================================== */
+(function(){
+"use strict";
+var EN=/^en/i.test(document.documentElement.getAttribute("lang")||"")||/index-en\.html$/.test(location.pathname);
+function T(pt,en){return EN?en:pt;}
+function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+function $(id){return document.getElementById(id);}
+var PG=null;
+function prefs(){return PG?PG.prefs():{};}
+function grava(){if(PG)PG.grava();}
+var REDUZ=function(){try{return matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){return false;}};
+var ESTREITO=function(){try{return matchMedia("(max-width: 760px)").matches;}catch(e){return false;}};
+var TOQUE=function(){try{return matchMedia("(pointer: coarse)").matches;}catch(e){return false;}};
+
+/* ---------------- o que é cada tela (mapa usado pelo ☰, pela busca e pelo assistente) ---------------- */
+var TELAS={
+  inicio:{ic:"🏠",t:T("Início","Home"),d:T("Visão geral: quantas citações cada plano rendeu por tema, e os avisos para ler tudo direito.",
+    "Overview: how many quotations each plan yielded per topic, plus the notes for reading it right."),
+    sin:"capa home panorama mapa de calor"},
+  historico:{ic:"👤",t:T("Currículo","Candidates"),d:T("Quem é cada candidato: trajetória, patrimônio, processos e os números dos governos que ocupou.",
+    "Who each candidate is: career, assets, court cases and the figures of the governments they held."),
+    sin:"candidatos biografia patrimonio processos vice equipe comparar candidaturas"},
+  infograficos:{ic:"📈",t:T("Infográficos","Charts"),d:T("Séries oficiais desde 1998, divididas por governo, e comparadores para montar o seu gráfico.",
+    "Official series since 1998, split by government, plus tools to build your own chart."),
+    sin:"graficos series indicadores pib inflacao desemprego marcos radar sobrepor"},
+  macrotemas:{ic:"🗂️",t:T("Macrotemas","Macro-topics"),d:T("As citações dos planos, tema por tema: o trecho, a página, o tipo e a especificidade.",
+    "The plans' quotations, topic by topic: the passage, the page, the type and the specificity."),
+    sin:"citacoes propostas diretrizes temas cartoes filtros relatorio"},
+  score:{ic:"🎚️",t:T("Índice sob medida","Custom index"),d:T("Escolha até cinco temas e veja o quanto cada plano detalha o que importa para você.",
+    "Pick up to five topics and see how much each plan details what matters to you."),
+    sin:"recorte pesos ranking meu indice score prioridades"},
+  documentos:{ic:"📄",t:T("Documentos","Documents"),d:T("Os oito PDFs originais, o perfil de cada um e todos os links que o site usa.",
+    "The eight original PDFs, each one's profile and every link the site uses."),
+    sin:"pdf planos fontes links uteis baixar tse"},
+  metodo:{ic:"🔬",t:T("Método","Method"),d:T("Como as citações foram extraídas e conferidas, e onde o estudo pode errar.",
+    "How the quotations were extracted and checked, and where the study can be wrong."),
+    sin:"metodologia vies garantias limites criterio conferencia"},
+  glossario:{ic:"📚",t:T("Glossário","Glossary"),d:T("Toda sigla e termo técnico do site, explicados.","Every acronym and technical term on the site, explained."),
+    sin:"siglas termos definicoes significado"}
+};
+function telaAtual(){var h=(location.hash||"#inicio").slice(1).split("/")[0];if(/^g-/.test(h))return "infograficos";return TELAS[h]?h:"inicio";}
+function vai(id){if(location.hash!=="#"+id)location.hash="#"+id;else scrollTo({top:0,behavior:"smooth"});}
+function rola(sel){var e=typeof sel==="string"?document.querySelector(sel):sel;if(!e)return false;
+  if(window.ancoraEm)window.ancoraEm(e);else e.scrollIntoView({behavior:REDUZ()?"auto":"smooth",block:"start"});
+  e.classList.add("ao-foco");setTimeout(function(){e.classList.remove("ao-foco");},1800);return true;}
+function depois(fn,ms){setTimeout(fn,ms||350);}
+
+/* ---------------- avisos (toast) sem cobrir o assistente ---------------- */
+function toast(m){try{var t=$("tip");if(t){t.textContent=m;t.classList.add("on");t.style.left="";t.style.top="";
+  t.style.right="18px";t.style.bottom=(document.documentElement.classList.contains("ao-on")?"96px":"18px");t.style.maxWidth="300px";
+  setTimeout(function(){t.classList.remove("on");t.style.right="";t.style.bottom="";t.style.maxWidth="";},3200);}}catch(e){}}
+
+/* ================= compartilhar ================= */
+var Share={
+  dados:function(){
+    var v=TELAS[telaAtual()], tit="Eleições 2026 · "+v.t;
+    return {title:tit,text:v.d,url:location.href};
+  },
+  texto:function(txt,ancora,msgOk){
+    /* citação, trecho, link: no celular abre o compartilhar do aparelho; no computador copia */
+    var self=this;
+    if(navigator.share&&TOQUE()){navigator.share({text:txt}).catch(function(err){if(err&&err.name==="AbortError")return;self.copia(txt,msgOk);});return;}
+    this.copia(txt,msgOk);
+  },
+  copia:function(txt,msgOk){
+    function ok(){toast(msgOk||T("Copiado.","Copied."));}
+    function falha(){toast(T("Não deu para copiar sozinho. Selecione o texto e copie.","Could not copy automatically. Select the text and copy it."));}
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,falha);return;}}catch(e){}
+    try{var ta=mk("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+      var r=document.execCommand("copy");document.body.removeChild(ta);r?ok():falha();}catch(e){falha();}
+  },
+  pagina:function(btn){
+    var d=this.dados(), self=this;
+    if(navigator.share&&TOQUE()){navigator.share(d).catch(function(err){if(err&&err.name==="AbortError")return;self.popover(btn,d);});return;}
+    this.popover(btn,d);
+  },
+  popover:function(btn,d){
+    var host=btn.parentNode, pop=host.querySelector(".shr-pop");
+    if(pop){pop.hidden=!pop.hidden;btn.setAttribute("aria-expanded",pop.hidden?"false":"true");return;}
+    pop=mk("div","shr-pop");
+    var enc=encodeURIComponent, txt=d.title+" — "+d.text;
+    pop.appendChild(mk("div","shr-t",T("Compartilhar esta tela","Share this screen")));
+    [["💬","WhatsApp","https://wa.me/?text="+enc(txt+"\n"+d.url)],
+     ["✈️","Telegram","https://t.me/share/url?url="+enc(d.url)+"&text="+enc(txt)],
+     ["✉️","E-mail","mailto:?subject="+enc(d.title)+"&body="+enc(txt+"\n\n"+d.url)]].forEach(function(o){
+      var a=mk("a");a.href=o[2];a.target="_blank";a.rel="noopener noreferrer";
+      a.appendChild(mk("span","shr-ic",o[0]));a.appendChild(mk("span",null,o[1]));pop.appendChild(a);});
+    var b=mk("button");b.type="button";b.appendChild(mk("span","shr-ic","🔗"));b.appendChild(mk("span",null,T("Copiar o link","Copy the link")));
+    b.addEventListener("click",function(){Share.copia(d.url,T("Link copiado.","Link copied."));pop.hidden=true;btn.setAttribute("aria-expanded","false");});
+    pop.appendChild(b);
+    if(navigator.share){var n=mk("button");n.type="button";n.appendChild(mk("span","shr-ic","📤"));n.appendChild(mk("span",null,T("Outros aplicativos…","Other apps…")));
+      n.addEventListener("click",function(){pop.hidden=true;navigator.share(d).catch(function(){});});pop.appendChild(n);}
+    host.appendChild(pop);btn.setAttribute("aria-expanded","true");
+    pop.addEventListener("click",function(e){e.stopPropagation();});
+    document.addEventListener("click",function(){pop.hidden=true;btn.setAttribute("aria-expanded","false");});
+  }
+};
+window.PGShare=Share;
+function montaShare(){
+  var nav=document.querySelector(".nav-in"), ref=$("theme");
+  if(!nav||!ref||$("share-b"))return;
+  var w=mk("div","shr");
+  var b=mk("button","ibtn");b.id="share-b";b.type="button";
+  b.setAttribute("aria-label",T("Compartilhar esta tela","Share this screen"));b.title=b.getAttribute("aria-label");
+  b.setAttribute("aria-haspopup","true");b.setAttribute("aria-expanded","false");
+  b.innerHTML='<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="15" cy="4.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="15" cy="15.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 9l6-3.4M7 11l6 3.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
+  b.addEventListener("click",function(e){e.stopPropagation();Share.pagina(b);});
+  w.appendChild(b);nav.insertBefore(w,ref);
+}
+
+/* ================= acessibilidade (Configurações) ================= */
+function aplicaAcess(){
+  var p=prefs(), r=document.documentElement;
+  r.classList.toggle("pg-f1",p.fonte===1);r.classList.toggle("pg-f2",p.fonte===2);
+  r.classList.toggle("pg-calmo",p.calmo===true);
+}
+window.CfgAcess=function(host){
+  var el=PG.el, p=prefs();
+  var s=el("div","oc-sec");s.appendChild(el("span","oc-rot",T("Acessibilidade","Accessibility")));
+  var l=el("div","oc-linha");
+  l.appendChild(el("span",null,T("Tamanho do texto:","Text size:")));
+  [[0,"A"],[1,"A+"],[2,"A++"]].forEach(function(o){
+    var on=(p.fonte||0)===o[0];
+    var b=el("button","chip-cat"+(on?" on":""),o[1]);b.type="button";b.setAttribute("aria-pressed",on?"true":"false");
+    b.setAttribute("aria-label",[T("Texto normal","Normal text"),T("Texto maior","Larger text"),T("Texto bem maior","Much larger text")][o[0]]);
+    b.addEventListener("click",function(){if(o[0])p.fonte=o[0];else delete p.fonte;grava();aplicaAcess();PG.repintaConfig();});
+    l.appendChild(b);});
+  s.appendChild(l);
+  var l2=el("div","oc-linha");l2.style.marginTop="8px";
+  var on2=p.calmo===true;
+  var b2=el("button","chip-cat"+(on2?" on":""),T("Reduzir animações","Reduce animations"));b2.type="button";b2.setAttribute("aria-pressed",on2?"true":"false");
+  b2.addEventListener("click",function(){if(on2)delete p.calmo;else p.calmo=true;grava();aplicaAcess();PG.repintaConfig();});
+  l2.appendChild(b2);
+  s.appendChild(l2);
+  s.appendChild(el("p","oc-nota",T("O texto maior vale para o site inteiro, inclusive tabelas e gráficos. \"Reduzir animações\" tira os movimentos de menus, balões e do AssistONE. A leitura em voz alta fica logo abaixo.",
+    "Larger text applies to the whole site, tables and charts included. \"Reduce animations\" removes the motion of menus, balloons and AssistONE. Read-aloud settings are right below.")));
+  host.appendChild(s);
+};
+
+/* ================= menu ☰ (celular) ================= */
+var Gav={el:null,fundo:null,btn:null,aberta:false,
+  monta:function(){
+    var nav=document.querySelector(".nav-in"), brand=document.querySelector(".brand");
+    if(!nav||!brand||$("nav-h"))return;
+    var b=mk("button","ibtn nav-h");b.id="nav-h";b.type="button";
+    b.setAttribute("aria-label",T("Abrir o menu","Open the menu"));b.setAttribute("aria-expanded","false");b.setAttribute("aria-controls","gav");
+    b.innerHTML='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+    b.addEventListener("click",function(){Gav.abre();});
+    nav.insertBefore(b,brand);
+    var cur=mk("button","nav-cur");cur.id="nav-cur";cur.type="button";cur.setAttribute("aria-label",T("Página atual. Abre o menu.","Current page. Opens the menu."));
+    cur.addEventListener("click",function(){Gav.abre();});
+    nav.insertBefore(cur,brand.nextSibling);
+    this.btn=b;
+    var f=mk("div","gav-fundo");f.addEventListener("click",function(){Gav.fecha();});
+    var g=mk("nav","gav");g.id="gav";g.setAttribute("aria-label",T("Menu","Menu"));g.setAttribute("aria-hidden","true");
+    document.body.appendChild(f);document.body.appendChild(g);
+    this.el=g;this.fundo=f;
+    this.pintaAtual();
+    addEventListener("hashchange",function(){Gav.pintaAtual();});
+    addEventListener("popstate",function(e){if(Gav.aberta)Gav.fecha(true);});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&Gav.aberta){Gav.fecha();}});
+  },
+  pintaAtual:function(){var c=$("nav-cur");if(!c)return;var v=TELAS[telaAtual()];c.textContent="";
+    c.appendChild(document.createTextNode(v.t));
+    var s=mk("span");s.innerHTML='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';c.appendChild(s);},
+  conteudo:function(){
+    var g=this.el;g.textContent="";
+    var h=mk("div","gav-h");
+    var ic=document.querySelector(".brand-ic");if(ic){var i2=ic.cloneNode(true);i2.style.width="22px";i2.style.height="22px";h.appendChild(i2);}
+    h.appendChild(mk("b",null,"Eleições 2026"));
+    var x=mk("button","gav-x","×");x.type="button";x.setAttribute("aria-label",T("Fechar o menu","Close the menu"));x.addEventListener("click",function(){Gav.fecha();});
+    h.appendChild(x);g.appendChild(h);
+    var c=mk("div","gav-c");g.appendChild(c);
+    /* ações rápidas */
+    var r=mk("div","gav-rap");
+    [["🔍",T("Procurar","Search"),function(){Gav.fecha();depois(function(){AO.abre("busca");});}],
+     ["📤",T("Compartilhar","Share"),function(){Gav.fecha();depois(function(){var b=$("share-b");if(b)Share.pagina(b);});}],
+     ["🔊",T("Ouvir","Listen"),function(){Gav.fecha();depois(function(){AO.lerTela();});}],
+     ["⚙️",T("Ajustes","Settings"),function(){Gav.fecha();depois(function(){PG.abreConfig();});}]].forEach(function(o){
+      var b=mk("button");b.type="button";b.appendChild(mk("span",null,o[0]));b.appendChild(mk("span",null,o[1]));b.addEventListener("click",o[2]);r.appendChild(b);});
+    c.appendChild(r);
+    c.appendChild(mk("div","gav-g",T("Páginas","Pages")));
+    var at=telaAtual();
+    Object.keys(TELAS).forEach(function(k){
+      var v=TELAS[k], b=mk("button","gav-it");b.type="button";
+      if(k===at)b.setAttribute("aria-current","page");
+      b.appendChild(mk("span","gav-ic",v.ic));
+      var d=mk("div");d.appendChild(document.createTextNode(v.t));d.appendChild(mk("small",null,v.d));b.appendChild(d);
+      b.addEventListener("click",function(){Gav.fecha();depois(function(){vai(k);},200);});
+      c.appendChild(b);});
+    c.appendChild(mk("div","gav-g",T("Tema","Theme")));
+    var tm=mk("div","gav-lg");
+    [["sistema",T("Do sistema","System")],["claro",T("Claro","Light")],["escuro",T("Escuro","Dark")]].forEach(function(o){var b=mk("button",null,o[1]);b.type="button";
+      b.setAttribute("aria-pressed",(PG.temaAtual()===o[0])?"true":"false");
+      b.addEventListener("click",function(){var p=prefs();if(o[0]==="sistema")delete p.tema;else p.tema=o[0];grava();PG.aplicaTema();Gav.conteudo();});tm.appendChild(b);});
+    c.appendChild(tm);
+    var som=$("som");
+    if(som&&!som.hidden){
+      var bs=mk("button","gav-it");bs.type="button";bs.appendChild(mk("span","gav-ic","🎵"));
+      var ds=mk("div");ds.appendChild(document.createTextNode(T("Trilha sonora","Soundtrack")));
+      ds.appendChild(mk("small",null,(window.somLigado&&window.somLigado())?T("Tocando · toque para desligar","Playing · tap to turn off"):T("Desligada · toque para ligar","Off · tap to turn on")));
+      bs.appendChild(ds);bs.addEventListener("click",function(){som.click();setTimeout(function(){Gav.conteudo();},300);});c.appendChild(bs);}
+    c.appendChild(mk("div","gav-g",T("Idioma","Language")));
+    var lg=mk("div","gav-lg");
+    [["pt","PT-BR"],["en","EN-US"]].forEach(function(o){var b=mk("button",null,o[1]);b.type="button";
+      b.setAttribute("aria-pressed",(PG.IDIOMA===o[0])?"true":"false");
+      b.addEventListener("click",function(){PG.vaiParaIdioma(o[0]);});lg.appendChild(b);});
+    c.appendChild(lg);
+    c.appendChild(mk("div","gav-g",T("Ajuda e mais","Help and more")));
+    [["✨","AssistONE",T("Ajuda desta tela, tour e busca","Help for this screen, tour and search"),function(){Gav.fecha();depois(function(){AO.abre();});}],
+     ["🧭",T("Tour rápido","Quick tour"),null,function(){Gav.fecha();depois(function(){AO.abre("tour");});}],
+     ["🆕",T("O que mudou","What changed"),null,function(){Gav.fecha();depois(function(){PG.abreDoc("novidades");});}],
+     ["🛡️",T("Aviso de uso e privacidade","Terms of use and privacy"),null,function(){Gav.fecha();depois(function(){PG.abreDoc("aviso");});}],
+     ["🏠",T("Portal SolverONE","SolverONE portal"),T("Os outros apps, em outra aba","The other apps, in a new tab"),null]].forEach(function(o){
+      var b;
+      if(o[3]){b=mk("button","gav-it");b.type="button";b.addEventListener("click",o[3]);}
+      else{b=mk("a","gav-it");b.href=location.origin+"/";b.target="_blank";b.rel="noopener";}
+      b.appendChild(mk("span","gav-ic",o[0]));
+      var d=mk("div");d.appendChild(document.createTextNode(o[1]));if(o[2])d.appendChild(mk("small",null,o[2]));b.appendChild(d);
+      c.appendChild(b);});
+    c.appendChild(mk("p","gav-f",T("Os ajustes ficam só neste aparelho. Nada é enviado a lugar nenhum.","Settings stay on this device only. Nothing is sent anywhere.")));
+  },
+  abre:function(){
+    if(!this.el)return;
+    this.conteudo();
+    this.aberta=true;this.el.classList.add("on");this.fundo.classList.add("on");this.el.setAttribute("aria-hidden","false");
+    this.btn.setAttribute("aria-expanded","true");
+    try{history.pushState({gav:1},"");}catch(e){}
+    var x=this.el.querySelector(".gav-x");if(x)x.focus();
+  },
+  fecha:function(porHistorico){
+    if(!this.aberta)return;
+    this.aberta=false;this.el.classList.remove("on");this.fundo.classList.remove("on");this.el.setAttribute("aria-hidden","true");
+    this.btn.setAttribute("aria-expanded","false");
+    if(!porHistorico&&history.state&&history.state.gav){try{history.back();}catch(e){}}
+    try{this.btn.focus({preventScroll:true});}catch(e){}
+  }
+};
+
+/* ================= AssistONE ================= */
+var SVG_AO='<svg viewBox="0 0 100 100" aria-hidden="true">'+
+ '<defs><radialGradient id="aoG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFE9A8"/><stop offset=".55" stop-color="#E8B84A"/><stop offset="1" stop-color="#9C6A0C"/></radialGradient>'+
+ '<linearGradient id="aoF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6D6"/><stop offset="1" stop-color="#F2D27A"/></linearGradient></defs>'+
+ '<circle cx="50" cy="50" r="47" fill="url(#aoG)"/>'+
+ '<circle cx="50" cy="50" r="47" fill="none" stroke="#7A5208" stroke-width="2"/>'+
+ '<path d="M14 62c8 6 14 4 20-2M86 62c-8 6-14 4-20-2M22 30c6-4 10-3 14 1M78 30c-6-4-10-3-14 1" fill="none" stroke="#B98A2E" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>'+
+ '<path d="M36 40c0-10 8-16 16-16 9 0 15 6 15 13 0 9-9 11-12 16-1.4 2.2-1.8 4.4-1.8 7.5" fill="none" stroke="url(#aoF)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>'+
+ '<path d="M36 40c0-10 8-16 16-16 9 0 15 6 15 13 0 9-9 11-12 16-1.4 2.2-1.8 4.4-1.8 7.5" fill="none" stroke="#7A5208" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>'+
+ '<circle cx="53" cy="73" r="6" fill="url(#aoF)" stroke="#7A5208" stroke-width="1.2"/>'+
+ '<circle cx="51" cy="71" r="1.8" fill="#fff" opacity=".9"/>'+
+ '<circle cx="44" cy="35" r="2" fill="#5A3B05"/>'+
+ '<path d="M41 44c3 2 6 2 9 0" fill="none" stroke="#5A3B05" stroke-width="1.6" stroke-linecap="round"/>'+
+ '</svg>';
+var AO={
+  btn:null, box:null, dica:null, ligado:true, modo:"inicio", tourI:0, tourFoco:null, ctl:null,
+  monta:function(){
+    var p=prefs();
+    this.ligado=(p.assist!==false);
+    if(!this.btn){
+      var b=mk("button","ao-btn");b.id="ao-btn";b.type="button";b.innerHTML=SVG_AO;
+      b.setAttribute("aria-label","AssistONE — "+T("ajuda desta tela","help for this screen"));b.setAttribute("aria-expanded","false");b.setAttribute("aria-controls","ao-box");
+      b.addEventListener("click",function(e){e.stopPropagation();AO.alterna();});
+      document.body.appendChild(b);this.btn=b;
+      var x=mk("div","ao-box");x.id="ao-box";x.hidden=true;x.setAttribute("role","dialog");x.setAttribute("aria-label","AssistONE");
+      x.addEventListener("click",function(e){e.stopPropagation();});
+      document.body.appendChild(x);this.box=x;
+      var d=mk("div","ao-dica");d.id="ao-dica";d.hidden=true;d.setAttribute("role","status");
+      d.addEventListener("click",function(e){e.stopPropagation();});
+      document.body.appendChild(d);this.dica=d;
+      document.addEventListener("click",function(){if(!AO.box.hidden)AO.fecha();});
+      document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!AO.box.hidden){AO.fecha();e.stopPropagation();}});
+      addEventListener("hashchange",function(){if(!AO.box.hidden&&AO.modo!=="tour")AO.pinta("inicio");AO.agendaDica();});
+      /* o ▶ do leitor precisa de um "controle": um invisível serve para os pedidos do assistente */
+      var c=mk("span","tts-ctl");c.hidden=true;c.innerHTML='<button type="button" class="tts-b" tabindex="-1"></button><button type="button" class="tts-s" tabindex="-1"></button>';
+      document.body.appendChild(c);this.ctl=c;
+    }
+    this.aplica();
+  },
+  aplica:function(){
+    document.documentElement.classList.toggle("ao-on",this.ligado);
+    this.btn.hidden=!this.ligado;
+    if(!this.ligado){this.box.hidden=true;this.dica.hidden=true;}
+  },
+  liga:function(v){var p=prefs();if(v)delete p.assist;else p.assist=false;grava();this.ligado=!!v;this.aplica();},
+  alterna:function(){if(this.box.hidden)this.abre();else this.fecha();},
+  abre:function(modo){
+    if(!this.ligado){this.liga(true);}
+    this.dica.hidden=true;
+    this.box.hidden=false;this.btn.setAttribute("aria-expanded","true");
+    if(!REDUZ()&&!document.documentElement.classList.contains("pg-calmo")){this.box.classList.add("ao-entra");
+      requestAnimationFrame(function(){requestAnimationFrame(function(){AO.box.classList.remove("ao-entra");});});}
+    this.pinta(modo||(prefs().aoVisto?"inicio":"ola"));
+  },
+  fecha:function(){
+    if(this.modo==="tour")this.tourSai(true);
+    this.box.hidden=true;this.btn.setAttribute("aria-expanded","false");
+    try{this.btn.focus({preventScroll:true});}catch(e){}
+  },
+  cabeca:function(tit){
+    var h=mk("div","ao-h");var b=mk("b");b.innerHTML=T("Assist<span>ONE</span>","Assist<span>ONE</span>");
+    if(tit){b.textContent="";b.appendChild(document.createTextNode(tit));}
+    h.appendChild(b);
+    var x=mk("button",null,"×");x.type="button";x.setAttribute("aria-label",T("Fechar","Close"));x.addEventListener("click",function(){AO.fecha();});
+    h.appendChild(x);return h;
+  },
+  item:function(ic,t,sub,fn,n){
+    var b=mk("button","ao-it");b.type="button";b.appendChild(mk("span","ao-ic",ic));
+    var d=mk("div");d.appendChild(document.createTextNode(t));if(sub)d.appendChild(mk("small",null,sub));b.appendChild(d);
+    if(n!=null)b.appendChild(mk("span","ao-n",String(n)));
+    b.addEventListener("click",fn);return b;
+  },
+  volta:function(c){var b=mk("button","ao-volta","‹ "+T("Voltar","Back"));b.type="button";b.addEventListener("click",function(){AO.pinta("inicio");});c.appendChild(b);},
+  pinta:function(modo){
+    this.modo=modo;var box=this.box;box.textContent="";
+    var c=mk("div","ao-c");
+    if(modo==="ola")this.pOla(c);
+    else if(modo==="busca")this.pBusca(c);
+    else if(modo==="avisos")this.pAvisos(c);
+    else if(modo==="ajustes")this.pAjustes(c);
+    else if(modo==="tour"){this.tourI=0;this.pTour(c);}
+    else this.pInicio(c);
+    box.appendChild(this.cabeca(modo==="tour"?T("Tour rápido","Quick tour"):null));box.appendChild(c);
+    if(PG&&PG.traduz)try{PG.traduz(box);}catch(e){}
+    var f=box.querySelector("input,button.ao-it,button");if(f&&modo!=="inicio"&&modo!=="ola")try{f.focus({preventScroll:true});}catch(e){}
+  },
+  /* ---- primeira visita ---- */
+  pOla:function(c){
+    var p=mk("p","ao-p");p.innerHTML=T("<b>Olá! Eu sou o AssistONE 👋</b><br>Estou aqui embaixo para explicar cada tela, ler o que está escrito em voz alta e mudar os ajustes. Por onde quer começar?",
+      "<b>Hi! I'm AssistONE 👋</b><br>I sit down here to explain each screen, read what is written out loud and change settings. Where would you like to start?");
+    c.appendChild(p);
+    var l=mk("div","ao-lista");
+    l.appendChild(this.item("🧭",T("Tour rápido","Quick tour"),T("Um minuto: onde fica cada coisa","One minute: where everything is"),function(){AO.viu();AO.pinta("tour");}));
+    l.appendChild(this.item("📍",T("Ajuda desta tela","Help for this screen"),TELAS[telaAtual()].t,function(){AO.viu();AO.pinta("inicio");}));
+    l.appendChild(this.item("🔍",T("Procurar algo","Search for something"),T("Telas, temas, candidatos, siglas…","Screens, topics, candidates, acronyms…"),function(){AO.viu();AO.pinta("busca");}));
+    c.appendChild(l);
+    var r=mk("div","ao-rodape");
+    var a=mk("button",null,T("Agora não","Not now"));a.type="button";a.addEventListener("click",function(){AO.viu();AO.fecha();});
+    var d=mk("button",null,T("Desligar o AssistONE","Turn AssistONE off"));d.type="button";d.addEventListener("click",function(){AO.viu();AO.desliga();});
+    r.appendChild(a);r.appendChild(d);c.appendChild(r);
+  },
+  viu:function(){var p=prefs();if(!p.aoVisto){p.aoVisto=true;grava();}},
+  desliga:function(){
+    toast(T("AssistONE desligado. Para religar: ⚙ Configurações → AssistONE.","AssistONE is off. To turn it back on: ⚙ Settings → AssistONE."));
+    this.fecha();this.liga(false);
+  },
+  /* ---- tela atual ---- */
+  atalhosDe:function(k){
+    var A={
+      inicio:[[T("Ver o panorama","See the overview"),function(){rola("#heat");}],
+              [T("Ir para as citações","Go to the quotations"),function(){vai("macrotemas");}],
+              [T("Conhecer os candidatos","Meet the candidates"),function(){vai("historico");}]],
+      historico:[[T("Escolher um candidato","Pick a candidate"),function(){rola("#gsel");}],
+                 [T("Comparar candidaturas","Compare candidacies"),function(){var b=document.querySelectorAll("#cv-modo button")[1];if(b){b.click();rola("#cv-comp");}}]],
+      infograficos:[[T("Índice dos gráficos","Chart index"),function(){rola(".ig-sum");}],
+                    [T("Sobrepor indicadores","Overlay indicators"),function(){var d=document.querySelector("#v-infograficos details.sob-d, #v-infograficos .ig-comp-s details");if(d){d.open=true;rola(d);}}],
+                    [T("Mostrar/ocultar retratos","Show/hide portraits"),function(){var p=prefs();p.fotos=!(p.fotos!==undefined?!!p.fotos:!ESTREITO());grava();PG.repintaIG();PG.escreveVer();toast(T("Pronto.","Done."));}]],
+      macrotemas:[[T("Escolher um macrotema","Pick a macro-topic"),function(){rola("#mtpick");}],
+                  [T("Buscar uma palavra","Search a word"),function(){var i=$("f-busca");if(i){rola(i);i.focus();}}],
+                  [T("Baixar em CSV","Download as CSV"),function(){var b=document.querySelector("#mt-dl button");if(b)b.click();else toast(T("Os botões de download aparecem logo acima dos cartões.","The download buttons appear right above the cards."));}]],
+      score:[[T("Escolher os temas","Pick the topics"),function(){rola("#pool");}],
+             [T("Ver o resultado","See the result"),function(){rola("#sc-box");}]],
+      documentos:[[T("Baixar um plano (PDF)","Download a plan (PDF)"),function(){rola("#docs");}],
+                  [T("Links úteis","Useful links"),function(){rola("#links-uteis");}]],
+      metodo:[[T("O que esta versão garante","What this version guarantees"),function(){rola("#v-metodo .grid2");}],
+              [T("Controle de viés","Bias check"),function(){rola("#vies");}]],
+      glossario:[[T("Buscar um termo","Search a term"),function(){var i=$("gl-busca");if(i){rola(i);i.focus();}}]]
+    };
+    return A[k]||[];
+  },
+  gotIts:function(){
+    /* os avisos recolhíveis ("Como ler", "Ressalvas", "Leia antes") da tela atual */
+    var v=document.querySelector(".view.on");if(!v)return [];
+    return [].filter.call(v.querySelectorAll("details.dob"),function(d){return d.offsetParent!==null||d.closest(".view.on");});
+  },
+  pInicio:function(c){
+    var k=telaAtual(), v=TELAS[k];
+    var o=mk("div","ao-onde");o.appendChild(mk("span","ao-pin","📍"));
+    var d=mk("div");d.appendChild(mk("b",null,T("Você está em: ","You are in: ")+v.t));d.appendChild(mk("p",null,v.d));o.appendChild(d);c.appendChild(o);
+    var at=this.atalhosDe(k);
+    if(at.length){var a=mk("div","ao-atalhos");at.forEach(function(x){var b=mk("button",null,x[0]);b.type="button";b.addEventListener("click",function(){AO.fecha();depois(x[1],150);});a.appendChild(b);});c.appendChild(a);}
+    var l=mk("div","ao-lista");
+    var n=this.gotIts().length;
+    l.appendChild(this.item("💡",T("Explicar os avisos desta tela","Explain the notices on this screen"),
+      n?T("Os quadros \"Como ler\" e \"Ressalvas\", em português simples","The \"How to read\" and \"Caveats\" boxes, in plain words"):T("Esta tela não tem avisos recolhidos","This screen has no collapsed notices"),
+      function(){AO.pinta("avisos");},n||null));
+    l.appendChild(this.item("🔊",T("Ler esta tela em voz alta","Read this screen aloud"),T("Começa do topo; ■ para","Starts at the top; ■ stops"),function(){AO.fecha();AO.lerTela();}));
+    l.appendChild(this.item("🔍",T("Procurar algo","Search for something"),T("Telas, temas, candidatos, siglas, ajustes","Screens, topics, candidates, acronyms, settings"),function(){AO.pinta("busca");}));
+    l.appendChild(this.item("🎛️",T("Ajustes rápidos","Quick settings"),T("Tema, texto maior, idioma, retratos","Theme, larger text, language, portraits"),function(){AO.pinta("ajustes");}));
+    l.appendChild(this.item("📤",T("Compartilhar esta tela","Share this screen"),null,function(){AO.fecha();depois(function(){var b=$("share-b");if(b)Share.pagina(b);},100);}));
+    l.appendChild(this.item("🧭",T("Tour rápido","Quick tour"),T("Onde fica cada coisa no site","Where everything is on the site"),function(){AO.pinta("tour");}));
+    c.appendChild(l);
+    var r=mk("div","ao-rodape");
+    var a2=mk("button",null,T("Agora não","Not now"));a2.type="button";a2.addEventListener("click",function(){AO.fecha();});
+    var d2=mk("button",null,T("Desligar o AssistONE","Turn AssistONE off"));d2.type="button";d2.addEventListener("click",function(){AO.desliga();});
+    r.appendChild(a2);r.appendChild(d2);c.appendChild(r);
+  },
+  /* ---- narração: usa o mesmo leitor do ▶ dos títulos ---- */
+  ler:function(escopo,titulo){
+    var L=window.VozLeitor;
+    if(!L){toast(T("A leitura em voz alta não carregou nesta página.","Read-aloud did not load on this page."));return;}
+    L.para();
+    L.alterna(this.ctl,function(){return escopo;},function(){return titulo||"";});
+  },
+  lerTela:function(){
+    var v=document.querySelector(".view.on");if(!v)return;
+    scrollTo({top:0,behavior:REDUZ()?"auto":"smooth"});
+    this.ler(v,TELAS[telaAtual()].t);
+  },
+  /* ---- os "got-its": avisos recolhidos da tela ---- */
+  resumoDe:function(d){
+    /* o que o quadro diz, em uma linha: os títulos em negrito, ou a primeira frase */
+    var bs=[].filter.call(d.querySelectorAll(".dob-c b, .dob-c strong"),function(b){
+        var p=b.parentNode;return p&&/^(P|LI)$/.test(p.tagName)&&p.firstElementChild===b&&!(p.firstChild.nodeType===3&&p.firstChild.nodeValue.trim());})
+      .map(function(b){return b.textContent.replace(/\s+/g," ").replace(/[.:]\s*$/,"").trim();})
+      .filter(function(t,i,a){return t&&t.length>8&&t.length<120&&a.indexOf(t)===i;});
+    if(bs.length)return bs.slice(0,4).join(" · ")+(bs.length>4?" · …":"");
+    var t=(d.querySelector(".dob-c")||d).textContent.replace(/\s+/g," ").trim();
+    var m=t.match(/^.{20,200}?[.!?](\s|$)/);return (m?m[0]:t.slice(0,180)+"…").trim();
+  },
+  pAvisos:function(c){
+    this.volta(c);
+    var ds=this.gotIts();
+    var p=mk("p","ao-p");
+    p.innerHTML=ds.length?T("Estes quadros ficam recolhidos para não atrapalhar a leitura, mas dizem <b>como ler os números sem se enganar</b>. Toque em um para abrir na tela, ou peça para eu ler.",
+      "These boxes stay collapsed so they don't get in the way, but they say <b>how to read the numbers without being misled</b>. Tap one to open it on the screen, or ask me to read it.")
+      :T("Esta tela não tem avisos recolhidos. Os avisos gerais do site estão na aba <b>Método</b>.","This screen has no collapsed notices. The site's general notices are in the <b>Method</b> tab.");
+    c.appendChild(p);
+    if(!ds.length){var b0=mk("button","ao-it");b0.type="button";b0.appendChild(mk("span","ao-ic","🔬"));b0.appendChild(mk("div",null,T("Abrir a aba Método","Open the Method tab")));b0.addEventListener("click",function(){AO.fecha();vai("metodo");});c.appendChild(b0);return;}
+    if(ds.length>1){var la=mk("div","ao-atalhos");
+      var ba=mk("button",null,T("🔊 Ler todos em voz alta","🔊 Read them all aloud"));ba.type="button";
+      ba.addEventListener("click",function(){ds.forEach(function(d){d.open=true;});AO.fecha();
+        var w=mk("div");ds.forEach(function(d){var cl=d.cloneNode(true);cl.open=true;w.appendChild(cl);});
+        /* o leitor lê um escopo só: um pacote com cópias dos quadros, sem mexer na tela */
+        w.hidden=true;document.body.appendChild(w);AO.ler(w,T("Avisos desta tela","Notices on this screen"));
+        setTimeout(function(){if(w.parentNode&&window.VozLeitor&&window.VozLeitor.escopo!==w)w.parentNode.removeChild(w);},4000);});
+      la.appendChild(ba);
+      var bb=mk("button",null,T("Abrir todos na tela","Open them all on the screen"));bb.type="button";
+      bb.addEventListener("click",function(){ds.forEach(function(d){d.open=true;});AO.fecha();rola(ds[0]);});
+      la.appendChild(bb);c.appendChild(la);}
+    ds.forEach(function(d){
+      var sm=d.querySelector("summary"), tit=sm?sm.textContent.replace(/\s+/g," ").trim():T("Aviso","Notice");
+      var w=mk("div","ao-aviso"+(d.classList.contains("rs")?" rs":""));
+      w.appendChild(mk("span","ao-at",(d.classList.contains("rs")?"⚠️ ":"ℹ️ ")+tit));
+      w.appendChild(mk("p",null,AO.resumoDe(d)));
+      var aa=mk("div","ao-aa");
+      var b1=mk("button",null,T("Abrir na tela","Open on the screen"));b1.type="button";b1.addEventListener("click",function(){d.open=true;AO.fecha();rola(d);});
+      var b2=mk("button",null,T("🔊 Ler para mim","🔊 Read it to me"));b2.type="button";b2.addEventListener("click",function(){d.open=true;AO.fecha();rola(d);AO.ler(d,tit);});
+      aa.appendChild(b1);aa.appendChild(b2);w.appendChild(aa);c.appendChild(w);});
+  },
+  /* ---- busca ---- */
+  indice:function(){
+    if(this._idx)return this._idx;
+    var I=[], D=PG.D;
+    Object.keys(TELAS).forEach(function(k){I.push({tipo:T("tela","screen"),t:TELAS[k].t,s:TELAS[k].sin+" "+TELAS[k].d,go:function(){vai(k);}});});
+    (D.macrotemas||[]).forEach(function(m){I.push({tipo:T("macrotema","macro-topic"),t:m.nome,s:m.familia||"",go:function(){location.hash="#macrotemas/"+m.cod;}});});
+    (D.candidatos||[]).forEach(function(cd){I.push({tipo:T("candidato","candidate"),t:cd.nome+" ("+cd.partido+")",s:cd.curto||"",go:function(){
+      vai("historico");depois(function(){var b=[].filter.call(document.querySelectorAll("#gsel button"),function(x){return x.textContent.indexOf(cd.nome.split(" ")[0])>=0;})[0];if(b){b.click();rola("#hbox");}},400);}});});
+    (window.__GLOS__||[]).forEach(function(g){I.push({tipo:T("glossário","glossary"),t:g.t,s:(g.d||"").slice(0,120),go:function(){
+      vai("glossario");depois(function(){var i=$("gl-busca");if(i){i.value=g.t;i.dispatchEvent(new Event("input"));rola(i);}},300);}});});
+    [[T("Tema claro ou escuro","Light or dark theme"),"tema escuro claro dark"],[T("Idioma PT-BR / EN-US","Language PT-BR / EN-US"),"idioma ingles portugues language"],
+     [T("Leitura em voz alta (voz)","Read aloud (voice)"),"voz audio narrar ouvir tts"],[T("Tamanho do texto","Text size"),"fonte letra maior acessibilidade zoom"],
+     [T("Cores e ordem dos candidatos","Candidate colours and order"),"cor partido ordem"],[T("Trilha sonora","Soundtrack"),"musica som"],
+     [T("AssistONE (ligar/desligar)","AssistONE (on/off)"),"assistente ajuda clipe tutorial wizard ajudante"],[T("O que mudou (versões)","What changed (versions)"),"novidades versao historico"]]
+      .forEach(function(o){I.push({tipo:T("ajuste","setting"),t:o[0],s:o[1],go:function(){PG.abreConfig();}});});
+    this._idx=I;return I;
+  },
+  norm:function(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");},
+  lev:function(a,b){var m=a.length,n=b.length,p=[],i,j;for(j=0;j<=n;j++)p[j]=j;
+    for(i=1;i<=m;i++){var pr=p[0];p[0]=i;for(j=1;j<=n;j++){var tmp=p[j];p[j]=Math.min(p[j]+1,p[j-1]+1,pr+(a[i-1]===b[j-1]?0:1));pr=tmp;}}return p[n];},
+  busca:function(q){
+    var self=this, nq=this.norm(q).trim();if(nq.length<2)return {r:[],sug:[]};
+    var termos=nq.split(/\s+/), I=this.indice();
+    var r=I.map(function(it){var h=self.norm(it.t+" "+it.s);var pts=0;
+      termos.forEach(function(t){if(self.norm(it.t).indexOf(t)===0)pts+=3;else if(self.norm(it.t).indexOf(t)>=0)pts+=2;else if(h.indexOf(t)>=0)pts+=1;});
+      return {it:it,p:pts};}).filter(function(x){return x.p>0;}).sort(function(a,b){return b.p-a.p;}).slice(0,12).map(function(x){return x.it;});
+    var sug=[];
+    if(!r.length){var pal={};I.forEach(function(it){self.norm(it.t).split(/[^a-z0-9]+/).forEach(function(w){if(w.length>3)pal[w]=1;});});
+      sug=Object.keys(pal).map(function(w){return {w:w,d:self.lev(termos[0],w)};}).filter(function(x){return x.d<=Math.max(1,Math.floor(termos[0].length/3));})
+        .sort(function(a,b){return a.d-b.d;}).slice(0,4).map(function(x){return x.w;});}
+    return {r:r,sug:sug};
+  },
+  pBusca:function(c){
+    this.volta(c);
+    var w=mk("div","ao-busca");var i=mk("input");i.type="search";i.placeholder=T("Digite o que procura…","Type what you are looking for…");
+    i.setAttribute("aria-label",T("Procurar no site","Search the site"));w.appendChild(i);c.appendChild(w);
+    var res=mk("div","ao-res");c.appendChild(res);
+    var dica=mk("p","ao-vazio",T("Exemplos: educação, Lula, IPCA, tema escuro, glossário.","Examples: education, Lula, IPCA, dark theme, glossary."));c.appendChild(dica);
+    function pinta(){
+      res.textContent="";var q=i.value;var o=AO.busca(q);
+      dica.hidden=q.trim().length>=2;
+      if(q.trim().length>=2&&!o.r.length){
+        var v=mk("p","ao-vazio",T("Nada encontrado com esse nome.","Nothing found with that name."));res.appendChild(v);
+        if(o.sug.length){var s=mk("p","ao-vazio");s.appendChild(document.createTextNode(T("Você quis dizer: ","Did you mean: ")));
+          o.sug.forEach(function(sg,k){var b=mk("button",null,sg);b.type="button";b.style.cssText="font:inherit;color:var(--accent);background:none;border:0;padding:0 4px;cursor:pointer;text-decoration:underline";
+            b.addEventListener("click",function(){i.value=sg;pinta();});s.appendChild(b);});res.appendChild(s);}
+        var g=mk("button",null,T("Abrir o glossário","Open the glossary"));g.type="button";g.addEventListener("click",function(){AO.fecha();vai("glossario");});res.appendChild(g);
+        return;}
+      o.r.forEach(function(it){var b=mk("button");b.type="button";b.appendChild(mk("span","ao-tipo",it.tipo));b.appendChild(mk("span","ao-tt",it.t));
+        b.addEventListener("click",function(){AO.fecha();depois(it.go,120);});res.appendChild(b);});
+    }
+    i.addEventListener("input",pinta);
+    i.addEventListener("keydown",function(e){if(e.key==="Enter"){var b=res.querySelector("button");if(b)b.click();}});
+  },
+  /* ---- ajustes rápidos ---- */
+  pAjustes:function(c){
+    this.volta(c);var p=prefs(), self=this;
+    function chips(rot,ops,val,fn){c.appendChild(mk("div","ao-sec",rot));var w=mk("div","ao-chips");
+      ops.forEach(function(o){var b=mk("button",null,o[1]);b.type="button";b.setAttribute("aria-pressed",val===o[0]?"true":"false");
+        b.addEventListener("click",function(){fn(o[0]);self.pinta("ajustes");});w.appendChild(b);});c.appendChild(w);}
+    chips(T("Tema","Theme"),[["sistema",T("Do sistema","System")],["claro",T("Claro","Light")],["escuro",T("Escuro","Dark")]],PG.temaAtual(),function(v){
+      if(v==="sistema")delete p.tema;else p.tema=v;grava();PG.aplicaTema();});
+    chips(T("Tamanho do texto","Text size"),[[0,"A"],[1,"A+"],[2,"A++"]],p.fonte||0,function(v){if(v)p.fonte=v;else delete p.fonte;grava();aplicaAcess();});
+    chips(T("Movimento","Motion"),[[false,T("Normal","Normal")],[true,T("Reduzir animações","Reduce animations")]],p.calmo===true,function(v){if(v)p.calmo=true;else delete p.calmo;grava();aplicaAcess();});
+    chips(T("Idioma","Language"),[["pt","PT-BR"],["en","EN-US"]],PG.IDIOMA,function(v){PG.vaiParaIdioma(v);});
+    if(telaAtual()==="infograficos"){
+      var est=ESTREITO();
+      var vf=(p.fotos!==undefined)?!!p.fotos:!est, vm=(p.marcos!==undefined)?!!p.marcos:!est;
+      chips(T("Retratos nos gráficos","Portraits on charts"),[[true,T("Mostrar","Show")],[false,T("Ocultar","Hide")]],vf,function(v){p.fotos=v;grava();PG.repintaIG();PG.escreveVer();});
+      chips(T("Marcos de acontecimentos","Event markers"),[[true,T("Mostrar","Show")],[false,T("Ocultar","Hide")]],vm,function(v){p.marcos=v;grava();PG.repintaIG();PG.escreveVer();});
+    }
+    c.appendChild(mk("div","ao-sec",T("Mais","More")));
+    var l=mk("div","ao-lista");
+    l.appendChild(this.item("⚙️",T("Todas as configurações","All settings"),T("Voz, cores, ordem, trilha sonora, versão","Voice, colours, order, soundtrack, version"),function(){AO.fecha();PG.abreConfig();}));
+    l.appendChild(this.item("🔊",T("Escolher a voz da leitura","Choose the reading voice"),null,function(){AO.fecha();PG.abreConfig();depois(function(){var s=$("tts-cfg");if(s)s.scrollIntoView({block:"start"});},200);}));
+    c.appendChild(l);
+  },
+  /* ---- tour ---- */
+  passos:function(){
+    var P=[
+      {sel:ESTREITO()?"#nav-h":".menu",t:T("As páginas do site","The site's pages"),d:ESTREITO()?T("O ☰ abre a lista das oito páginas, com uma linha dizendo o que há em cada uma. O nome ao lado mostra onde você está.","The ☰ opens the list of the eight pages, each with a line saying what is in it. The name beside it shows where you are.")
+        :T("Oito páginas: Currículo e Infográficos (quem são e o contexto), Macrotemas e Índice (o que os planos dizem), Documentos, Método e Glossário (de onde tudo veio).","Eight pages: Candidates and Charts (who they are and the context), Macro-topics and Index (what the plans say), Documents, Method and Glossary (where it all comes from).")},
+      {sel:"#share-b",t:T("Compartilhar","Share"),d:T("Manda o link desta tela pelo WhatsApp, Telegram, e-mail, ou copia o link. Cada gráfico também tem o próprio botão de compartilhar como imagem.","Sends this screen's link via WhatsApp, Telegram, e-mail, or copies it. Every chart also has its own share-as-image button.")},
+      {sel:"#theme",t:T("Claro ou escuro","Light or dark"),d:T("Troca o tema. Nas Configurações dá para fixar um dos dois ou seguir o aparelho.","Switches the theme. In Settings you can fix one or follow the device.")},
+      {sel:"#cfg-b",t:T("Configurações","Settings"),d:T("Idioma, tema, tamanho do texto, voz da leitura, cores dos candidatos, o que mudou em cada versão. Tudo fica só neste aparelho.","Language, theme, text size, reading voice, candidate colours, what changed in each version. Everything stays on this device.")},
+      {sel:".tts-ctl",t:T("Ouvir em vez de ler","Listen instead of reading"),d:T("O ▶ ao lado dos títulos lê aquela seção em voz alta. Tocar de novo pausa; ■ para.","The ▶ beside headings reads that section aloud. Tap again to pause; ■ stops.")},
+      {sel:"details.dob",t:T("Os avisos recolhidos","The collapsed notices"),d:T("Os quadros \"Como ler\" e \"Ressalvas\" ficam fechados para não atrapalhar. Eles dizem como não se enganar com os números. Eu explico cada um em \"Explicar os avisos desta tela\".","The \"How to read\" and \"Caveats\" boxes stay closed to keep out of the way. They say how not to be misled by the numbers. I explain each one under \"Explain the notices on this screen\".")},
+      {sel:"#ao-btn",t:T("E eu fico aqui","And I stay here"),d:T("Toque em mim em qualquer tela para saber onde está, procurar algo, ouvir a tela ou mudar ajustes. Para me desligar: ⚙ Configurações → AssistONE.","Tap me on any screen to know where you are, search for something, listen to the screen or change settings. To turn me off: ⚙ Settings → AssistONE.")}
+    ];
+    return P.filter(function(s){var e=document.querySelector(s.sel);return e&&(e.offsetParent!==null||s.sel==="#ao-btn");});
+  },
+  pTour:function(c){
+    var P=this.passos(), i=this.tourI, s=P[i];
+    if(!s){this.tourSai();this.pinta("inicio");return;}
+    this.tourFocoTira();
+    var e=document.querySelector(s.sel);if(e){e.classList.add("ao-foco");this.tourFoco=e;
+      if(s.sel!=="#ao-btn"&&!/^#(nav-h|share-b|theme|cfg-b)$|^\.menu$/.test(s.sel))e.scrollIntoView({behavior:REDUZ()?"auto":"smooth",block:"center"});}
+    c.appendChild(mk("p","ao-passo",T("Passo ","Step ")+(i+1)+T(" de "," of ")+P.length));
+    var p=mk("p","ao-p");p.appendChild(mk("b",null,s.t));p.appendChild(mk("br"));p.appendChild(document.createTextNode(s.d));c.appendChild(p);
+    var a=mk("div","ao-tour-a");
+    var n=mk("button","pri",i+1<P.length?T("Próximo ›","Next ›"):T("Concluir","Finish"));n.type="button";
+    n.addEventListener("click",function(){AO.tourI++;AO.box.textContent="";var cc=mk("div","ao-c");AO.pTour(cc);if(AO.modo==="tour"){AO.box.appendChild(AO.cabeca(T("Tour rápido","Quick tour")));AO.box.appendChild(cc);n=AO.box.querySelector(".pri");if(n)try{n.focus({preventScroll:true});}catch(e){}}});
+    var x=mk("button",null,T("Sair","Exit"));x.type="button";x.addEventListener("click",function(){AO.tourSai();AO.pinta("inicio");});
+    a.appendChild(n);a.appendChild(x);c.appendChild(a);
+  },
+  tourFocoTira:function(){if(this.tourFoco){this.tourFoco.classList.remove("ao-foco");this.tourFoco=null;}},
+  tourSai:function(silencio){this.tourFocoTira();this.tourI=0;if(this.modo==="tour")this.modo="inicio";var p=prefs();if(!p.aoTour){p.aoTour=true;grava();}},
+  /* ---- dica por tela, uma vez ---- */
+  agendaDica:function(){
+    clearTimeout(this._dt);this.dica.hidden=true;
+    if(!this.ligado)return;
+    var self=this;
+    this._dt=setTimeout(function(){
+      var p=prefs(), k=telaAtual();
+      if(!p.aoVisto||!self.box.hidden||document.querySelector("dialog[open]")||Gav.aberta)return;
+      p.aoDicas=p.aoDicas||{};if(p.aoDicas[k])return;
+      var D={inicio:T("O quadro Panorama é clicável: as setas ao lado de cada tema reordenam as colunas.","The Overview grid is clickable: the arrows beside each topic reorder the columns."),
+        historico:T("Dá para pôr até oito candidaturas lado a lado em \"Comparar candidaturas\".","You can put up to eight candidacies side by side under \"Compare candidacies\"."),
+        infograficos:T("Todo gráfico tem \"Compartilhar\": vira imagem pronta para o WhatsApp, com fonte e data.","Every chart has \"Share\": it becomes an image ready for WhatsApp, with source and date."),
+        macrotemas:T("Cada cartão tem \"Copiar citação\": o trecho vai com a página e o link.","Each card has \"Copy quotation\": the passage goes with the page and the link."),
+        score:T("A ordem que você escolhe muda o resultado. Trocar o Top 1 troca tudo.","The order you choose changes the result. Swapping the Top 1 swaps everything."),
+        documentos:T("Os oito PDFs originais estão aqui para baixar, sem alteração.","The eight original PDFs are here to download, unchanged."),
+        metodo:T("A tabela de viés é o teste que o estudo aplica em si mesmo.","The bias table is the test the study applies to itself."),
+        glossario:T("O botão \"i\" espalhado pelo site abre estes mesmos verbetes.","The \"i\" button around the site opens these same entries.")}[k];
+      if(!D)return;
+      p.aoDicas[k]=1;grava();
+      self.dica.textContent="";self.dica.appendChild(mk("span","ao-dk",T("Dica · ","Tip · ")+TELAS[k].t));
+      self.dica.appendChild(document.createTextNode(D));
+      var a=mk("div","ao-da");
+      var b1=mk("button","pri",T("Entendi","Got it"));b1.type="button";b1.addEventListener("click",function(){self.dica.hidden=true;});
+      var b2=mk("button",null,T("Mais ajuda","More help"));b2.type="button";b2.addEventListener("click",function(){self.dica.hidden=true;self.abre("inicio");});
+      a.appendChild(b1);a.appendChild(b2);self.dica.appendChild(a);
+      self.dica.hidden=false;
+      setTimeout(function(){self.dica.hidden=true;},12000);
+    },4500);
+  },
+  /* ---- primeira visita: espera a tela ficar livre (aviso de tela pequena etc.) ---- */
+  primeira:function(){
+    var p=prefs();if(p.aoVisto||!this.ligado)return;
+    var self=this, n=0;
+    (function tenta(){
+      if(!self.ligado||prefs().aoVisto)return;
+      if(document.querySelector("dialog[open]")||Gav.aberta){if(n++<120)setTimeout(tenta,500);return;}
+      self.abre("ola");
+    })();
+  }
+};
+/* cartão do AssistONE nas Configurações → logo abaixo do Tema */
+window.CfgAssist=function(host){
+  var el=PG.el;
+  var s=el("div","oc-sec");s.appendChild(el("span","oc-rot","AssistONE"));
+  var card=el("div","ao-card");var ic=el("span");ic.innerHTML=SVG_AO;card.appendChild(ic.firstChild);
+  var d=el("div");d.appendChild(el("b",null,T("Assistente do site","Site assistant")));
+  d.appendChild(el("small",null,T("Explica cada tela e os avisos, lê em voz alta, procura e muda ajustes. Fica no canto de baixo à direita.",
+    "Explains each screen and its notices, reads aloud, searches and changes settings. Lives in the bottom-right corner.")));
+  card.appendChild(d);
+  var ch=el("button","ao-chave");ch.type="button";ch.setAttribute("aria-pressed",AO.ligado?"true":"false");
+  ch.appendChild(el("i"));ch.appendChild(document.createTextNode(AO.ligado?T("Ativado","On"):T("Desativado","Off")));
+  ch.addEventListener("click",function(){AO.liga(!AO.ligado);PG.repintaConfig();});
+  card.appendChild(ch);s.appendChild(card);
+  var l=el("div","oc-linha");l.style.marginTop="8px";
+  var b1=el("button","chip-cat",T("Abrir o AssistONE","Open AssistONE"));b1.type="button";
+  b1.addEventListener("click",function(){var dg=document.getElementById("cfg");if(dg&&dg.close)dg.close();AO.liga(true);depois(function(){AO.abre("inicio");},150);});
+  var b2=el("button","chip-cat",T("Recomeçar o tour e as dicas","Restart the tour and tips"));b2.type="button";
+  b2.addEventListener("click",function(){var p=prefs();delete p.aoVisto;delete p.aoDicas;delete p.aoTour;grava();AO.liga(true);
+    var dg=document.getElementById("cfg");if(dg&&dg.close)dg.close();depois(function(){AO.abre("ola");},150);});
+  l.appendChild(b1);l.appendChild(b2);s.appendChild(l);
+  host.appendChild(s);
+};
+
+/* ---------------- ligar tudo ---------------- */
+function inicia(){
+  PG=window.PG;if(!PG)return;
+  aplicaAcess();
+  montaShare();
+  Gav.monta();
+  AO.monta();
+  AO.agendaDica();
+  setTimeout(function(){AO.primeira();},1500);
+}
+if(window.PG)inicia();else addEventListener("pg-pronto",inicia);
+if(document.readyState!=="loading"&&!window.PG){/* o script principal já rodou sem a ponte: nada a fazer */}
 })();
 </script>
 </body>
