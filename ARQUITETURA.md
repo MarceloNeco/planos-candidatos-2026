@@ -13,9 +13,9 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
-| `congresso-pautas.json` | as perguntas da aba Congresso: cada uma aponta para uma votação nominal da Câmara e/ou do Senado, com o texto em PT e EN | **sim — é a fonte das perguntas** |
-| `congresso-sync.py` | baixa das APIs da Câmara e do Senado e do arquivo de candidaturas do TSE e gera a pasta `congresso/` | rodar depois de mexer nas perguntas |
-| `congresso/` | `indice.json` (perguntas, placares, datas) + um arquivo por estado (`SP.json`…) com os candidatos e seus votos | **nunca à mão**: é gerada pelo script |
+| `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
+| `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
+| `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta | **nunca à mão**: é gerada pelo script |
 | `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava a pasta `congresso/`; também pelo botão "Run workflow" na aba Actions | — |
 
 ## Dentro do `index.html` (de cima para baixo)
@@ -36,11 +36,16 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 6. **Blocos de apoio** (`<style>` + `<script>` "v1.8"): AssistONE, menu ☰ do celular,
    compartilhar (`window.PGShare`), acessibilidade (`window.CfgAcess`, `window.CfgAssist`).
 7. **Escolha e Congresso** (`<style>` + `<script>` "v2.0", no fim): a tela de escolha (`#hub`), o botão
-   "Presidência ▾ / Congresso ▾" ao lado do nome do site e a aba Congresso (`#congresso`, objeto `Cg`).
+   "Presidência ▾ / Congresso ▾" ao lado do nome do site e o módulo Congresso (objeto `Cg`), com abas
+   próprias no topo (`#cg-menu`): `#congresso` (início), `#congresso/afinidade`, `/favoritos`, `/comparar`,
+   `/metodo` e a ficha `#congresso/ficha/<UF>/<id do TSE>`.
    As duas telas são `.view` vazias no HTML (`v-hub`, `v-congresso`) e entram no roteador pela lista
-   `MODOS_V`; no ☰, na busca e no AssistONE entram pelas chaves `hub` e `congresso` do `TELAS`.
+   `MODOS_V`; no ☰, na busca e no AssistONE entram pelas chaves `hub` e `congresso…` do `TELAS`
+   (o ☰ mostra só as páginas da parte em que a pessoa está).
    Endereço sem `#`: a primeira visita abre a escolha; depois, a última parte usada (`planos2026:modo`).
-   Respostas e filtros do Congresso ficam em `planos2026:congresso`. Os textos usam `T(pt, en)`.
+   Prioridades, posições, favoritos, comparação e cola ficam em `planos2026:congresso`. Textos em `T(pt, en)`.
+   Contas: `Cg.pos` (posição num eixo: voto próprio → padrão geral → bancada do partido), `Cg.afPos`,
+   `Cg.afPri`, `Cg.geral`; arrastar e soltar em `ordenavel()`.
 
 ## Como a tradução funciona
 
@@ -76,5 +81,5 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | seções das Configurações | `pintaPainelOC` (script principal); cartões do AssistONE e Acessibilidade em `CfgAssist`/`CfgAcess` |
 | cores, tema | `:root` no `<style>` principal |
 | citações, candidatos | bloco `dados` (nos dois arquivos) |
-| perguntas do Congresso | `congresso-pautas.json` e depois `python3 congresso-sync.py` |
-| tela de escolha, aba Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg`, `Seletor`) |
+| tela de escolha, módulo Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg.tela…`, `Seletor`) |
+| pautas, eixos e votações usadas na afinidade | `congresso-pautas.json` e depois `python3 congresso-sync.py` |

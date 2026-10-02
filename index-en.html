@@ -23260,7 +23260,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Photographs: TSE — DivulgaCandContas, image from the 2026 candidacy registration. Published as the TSE publishes them, with no cropping or retouching.",
 "experiencia_privada_nota":"Criterion for this list: private organisations — companies, institutes, foundations and movements — that the person founded, led or holds a stake in, outside elected or government office. Political parties do not appear here, because they have their own block under party affiliations; trade unions and union federations do appear, because they are formal organisations outside the state. The list records what the person is or was in the organisation, not what the organisation did: court cases belong in the proceedings section, with their outcome. Where the only available source is a company-registry aggregator, the line's source says so — these are public federal revenue service records republished by third parties, and this site has not checked them record by record in the official system. The list is not exhaustive, and candidacies with less press coverage leave less documented trace: the absence of a line here means nothing was found in the sources consulted, not that nothing exists.",
-"versoes":[{"v":"2.0","atual":true,"itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress tab: Senate and federal Chamber candidates in your state (electoral court list), with the actual vote of those who held office on 11 roll-call votes in the Chamber and the Senate between 2023 and 2026; you say whether you are in favour or against and see the share of votes matching yours, vote by vote, with a link to the official source", "Refresh button showing the date of the official data; the site checks the Chamber, the Senate and the electoral court once a day"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
+"versoes":[{"v":"2.0","atual":true,"itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress part with its own tabs: Home (what deputies and senators do and why the vote matters), Affinity, Favourites, Compare and Method, plus a record for each Senate and federal Chamber candidate in your state (career, assets, votes and bills)", "Affinity: drag 10 priorities into order and pick a side (or Neutral / Not sure) on 9 topics; the candidate list changes instantly, based on real roll-call votes in the Chamber and the Senate since 2019 and on each one's bills, and it shows when a number is an estimate", "Favourites with your ballot memo (2 senators and 1 federal deputy), side-by-side comparison of up to 3 candidacies and a Refresh button with the date of the official data, checked every day"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
 {"v":"1.8","itens":["AssistONE: an assistant in the bottom-right corner that says which screen you are on, explains the collapsed notices (\"How to read\", \"Caveats\") in plain words, reads the screen aloud, searches screens, topics, candidates and acronyms, changes quick settings and gives a one-minute tour; switch it on or off in Settings", "☰ menu on phones with the eight pages and a line saying what is in each one, quick actions (search, share, listen, settings), theme, language and help; the phone's Back button closes the menu instead of leaving the site", "Share in the header: this screen's link via WhatsApp, Telegram, e-mail or by copying; on phones it opens the device's share sheet", "\"Copy quotation\" on every macro-topic card: the passage goes with the name, the page and the link", "Accessibility in Settings: larger text (A+ and A++) and reduce animations", "Interface texts rewritten in more direct Portuguese: cover, notices, tab headers, footer and Settings notes; the \"made for a wide screen\" box now appears only on narrow screens"]},
 {"v":"1.7",
 "itens":["Read aloud: a ▶ button next to each heading, with the device voice or a natural voice (Gemini, OpenAI, ElevenLabs) and preferences in Settings",
@@ -44970,9 +44970,19 @@ var TELAS={
   hub:{ic:"🧭",t:T("Início · escolher","Start · choose"),d:T("A porta de entrada: escolha entre os planos dos presidenciáveis e os votos de quem disputa o Congresso.",
     "The front door: choose between the presidential plans and the votes of those running for Congress."),
     sin:"hub escolher entrada trocar modo presidencia congresso"},
-  congresso:{ic:"⚖️",t:T("Congresso","Congress"),d:T("Senadores e deputados federais do seu estado: como votaram nas votações que mais dividiram o Congresso, e a afinidade com você.",
-    "Senators and federal deputies in your state: how they voted on the most divisive votes in Congress, and their affinity with you."),
-    sin:"senado camara deputados senadores votos votacoes afinidade estado candidatos legislativo"},
+  congresso:{ic:"⚖️",t:T("Congresso · início","Congress · home"),d:T("O que fazem deputados e senadores, por que o voto pesa e como usar esta parte.",
+    "What deputies and senators do, why the vote matters and how to use this part."),
+    sin:"congresso senado camara deputados senadores legislativo"},
+  "congresso/afinidade":{ic:"🎯",t:T("Congresso · afinidade","Congress · affinity"),d:T("Ordene suas pautas, diga sua posição em 9 temas e veja quem pensa parecido, do seu estado.",
+    "Rank your priorities, give your view on 9 topics and see who in your state thinks alike."),
+    sin:"afinidade pautas prioridades posicao posicionamento candidatos estado lista"},
+  "congresso/favoritos":{ic:"⭐",t:T("Congresso · favoritos","Congress · favourites"),d:T("Quem você marcou com ★ e a sua cola para a urna.","Who you starred ★ and your ballot memo."),
+    sin:"favoritos estrela cola cedula urna numero"},
+  "congresso/comparar":{ic:"⇄",t:T("Congresso · comparar","Congress · compare"),d:T("Até três candidaturas lado a lado.","Up to three candidacies side by side."),
+    sin:"comparar lado a lado comparacao"},
+  "congresso/metodo":{ic:"🔬",t:T("Congresso · método","Congress · method"),d:T("De onde vêm os dados e como cada pauta e posição é ligada a cada candidato.",
+    "Where the data comes from and how each priority and position is linked to each candidate."),
+    sin:"metodo calculo fontes votacoes como funciona limites"},
   inicio:{ic:"🏠",t:T("Início","Home"),d:T("Visão geral: quantas citações cada plano rendeu por tema, e os avisos para ler tudo direito.",
     "Overview: how many quotations each plan yielded per topic, plus the notes for reading it right."),
     sin:"capa home panorama mapa de calor"},
@@ -44997,7 +45007,7 @@ var TELAS={
   glossario:{ic:"📚",t:T("Glossário","Glossary"),d:T("Toda sigla e termo técnico do site, explicados.","Every acronym and technical term on the site, explained."),
     sin:"siglas termos definicoes significado"}
 };
-function telaAtual(){var h=(location.hash||"#inicio").slice(1).split("/")[0];if(/^g-/.test(h))return "infograficos";return TELAS[h]?h:"inicio";}
+function telaAtual(){var t=(location.hash||"#inicio").slice(1),h=t.split("/")[0];if(TELAS[t])return t;if(h==="congresso"&&TELAS[t.split("/").slice(0,2).join("/")])return t.split("/").slice(0,2).join("/");if(/^g-/.test(h))return "infograficos";return TELAS[h]?h:"inicio";}
 function vai(id){if(location.hash!=="#"+id)location.hash="#"+id;else scrollTo({top:0,behavior:"smooth"});}
 function rola(sel){var e=typeof sel==="string"?document.querySelector(sel):sel;if(!e)return false;
   if(window.ancoraEm)window.ancoraEm(e);else e.scrollIntoView({behavior:REDUZ()?"auto":"smooth",block:"start"});
@@ -45139,8 +45149,9 @@ var Gav={el:null,fundo:null,btn:null,aberta:false,
       var b=mk("button");b.type="button";b.appendChild(mk("span",null,o[0]));b.appendChild(mk("span",null,o[1]));b.addEventListener("click",o[2]);r.appendChild(b);});
     c.appendChild(r);
     c.appendChild(mk("div","gav-g",T("Páginas","Pages")));
-    var at=telaAtual();
+    var at=telaAtual(), cg=/^congresso/.test(at);
     Object.keys(TELAS).forEach(function(k){
+      if(at!=="hub"&&k!=="hub"&&/^congresso/.test(k)!==cg)return;
       var v=TELAS[k], b=mk("button","gav-it");b.type="button";
       if(k===at)b.setAttribute("aria-current","page");
       b.appendChild(mk("span","gav-ic",v.ic));
@@ -45593,10 +45604,13 @@ if(document.readyState!=="loading"&&!window.PG){/* o script principal já rodou 
 </script>
 <style>
 /* =====================================================================
-   v2.0: escolha inicial (hub), seletor Presidência | Congresso no topo e a
-   aba Congresso. Estilos com prefixo hub-, modo- e cg-.
+   v2.0: escolha inicial (hub), seletor Presidência | Congresso no topo e o
+   módulo Congresso (Início, Afinidade, Favoritos, Comparar, Método, ficha).
+   Estilos com prefixo hub-, modo- e cg-.
    ===================================================================== */
-html[data-modo="hub"] .menu,html[data-modo="congresso"] .menu{display:none}
+html[data-modo="hub"] #menu,html[data-modo="congresso"] #menu{display:none}
+#cg-menu{display:none}
+@media (min-width:761px){html[data-modo="congresso"] #cg-menu{display:flex}}   /* no celular as abas moram no ☰ */
 .modo{position:relative;flex:none}
 .modo-b{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-b);font-size:13.5px;color:#E7EFED;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 12px;cursor:pointer;min-height:32px;white-space:nowrap}
@@ -45616,6 +45630,7 @@ html[data-modo="hub"] .menu,html[data-modo="congresso"] .menu{display:none}
 .modo-pop hr{border:0;border-top:1px solid var(--line);margin:4px 6px}
 @media (max-width:760px){.modo{display:none}}   /* no celular a troca mora no ☰ e no nome da página */
 
+section.hub{padding-block:56px 40px}
 .hub{text-align:center}
 .hub h1{font-size:clamp(32px,5vw,48px)}
 .hub h1 span{color:var(--accent)}
@@ -45633,83 +45648,173 @@ html[data-modo="hub"] .menu,html[data-modo="congresso"] .menu{display:none}
 .hub-c .hf{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-family:var(--f-m);font-size:11px;color:var(--muted);letter-spacing:.04em}
 .hub-c ul+.hf{margin-top:16px}
 .hub-p{margin-top:26px;font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){.modo-pop{animation:none}.hub-c{transition:none}.hub-c:hover{transform:none}}
-
-.cg-h{padding-block:30px 8px}
-.cg-sync{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:16px;font-size:13.5px;color:var(--ink-2)}
-.cg-sync button,.cg-bt{font:inherit;font-size:13.5px;background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:999px;
-  padding:6px 14px;cursor:pointer;min-height:36px}
-.cg-sync button:hover,.cg-bt:hover{border-color:var(--accent)}
-.cg-sync [role=status]{color:var(--muted)}
-section.cg-sec{margin-top:26px;padding-block:0}
-section.hub{padding-block:56px 40px}
 html[data-modo="hub"] #avi-en,html[data-modo="congresso"] #avi-en{display:none!important}
-.cg-sec>h2{font-size:22px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.cg-sec>h2 .n{font-family:var(--f-m);font-size:11px;color:var(--muted);font-weight:400;letter-spacing:.05em}
-.cg-uf{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
-.cg-uf select,.cg-f select,.cg-f input[type=search]{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line-2);border-radius:6px;
-  background:var(--surface);color:var(--ink);min-height:40px}
-.cg-pautas{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;margin-top:12px}
-.cg-p{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:0;min-width:0}
-.cg-p legend{padding:0;font-family:var(--f-m);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.cg-p .q{margin:6px 0 10px;font-size:15px;line-height:1.45}
-.cg-op{display:flex;gap:6px;flex-wrap:wrap}
-.cg-op button{font:inherit;font-size:13.5px;flex:1 1 0;min-height:40px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;padding:6px 8px}
-.cg-op button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
-.cg-op button.nao[aria-pressed=true]{background:var(--neg);border-color:var(--neg);color:#fff}
-:root[data-theme=dark] .cg-op button.nao[aria-pressed=true]{color:#1a0805}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .cg-op button.nao[aria-pressed=true]{color:#1a0805}}
-.cg-meta{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.5}
-.cg-meta a{white-space:nowrap}
-.cg-f{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
-.cg-f label{font-size:14px;display:inline-flex;align-items:center;gap:6px}
+/* o rodapé "Sobre este relatório" fala do estudo dos planos: só aparece na Presidência (a versão fica sempre) */
+html[data-modo="hub"] .foot p:not(#ver),html[data-modo="congresso"] .foot p:not(#ver){display:none}
+
+/* ---------- módulo Congresso ---------- */
+.cg-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-block:14px 0;font-size:13px;color:var(--ink-2)}
+.cg-top select{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);min-height:36px}
+.cg-top button{font:inherit;font-size:13px;background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;cursor:pointer;min-height:34px}
+.cg-top button:hover{border-color:var(--accent)}
+.cg-top [role=status]{color:var(--muted)}
+.cg-h{padding-block:22px 6px}
+.cg-h .lede{max-width:72ch}
+.cg-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:15px;font-weight:600;background:var(--accent);color:var(--accent-ink);
+  border:0;border-radius:8px;padding:11px 18px;cursor:pointer;min-height:44px;text-decoration:none}
+.cg-btn.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line-2);font-weight:500}
+.cg-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+section.cg-s{padding-block:18px}
+.cg-s>h2{font-size:22px;margin-bottom:10px}
+.cg-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.cg-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.cg-card h3{font-size:18px;display:flex;gap:8px;align-items:center}
+.cg-card p,.cg-card li{color:var(--ink-2);font-size:14.5px;margin:8px 0 0}
+.cg-card ol,.cg-card ul{padding-left:20px;margin:6px 0 0}
+.cg-card.dest{border-left:4px solid var(--accent)}
+.cg-card.alerta{border-left:4px solid var(--warn)}
+.cg-num{font-family:var(--f-m);font-size:28px;color:var(--ink);line-height:1.1}
+
+/* afinidade: controles à esquerda, lista à direita (fixa enquanto rola) */
+.cg-af{display:grid;grid-template-columns:minmax(300px,430px) minmax(0,1fr);gap:22px;align-items:start;padding-bottom:40px}
+.cg-res{position:sticky;top:calc(var(--navh) + 8px);max-height:calc(100vh - var(--navh) - 16px);overflow:auto;padding-right:4px;scrollbar-gutter:stable}
+@media (max-width:900px){.cg-af{grid-template-columns:1fr}.cg-res{position:static;max-height:none;overflow:visible}}
+.cg-box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.cg-box>h2{font-size:19px}
+.cg-box>p{font-size:13.5px;color:var(--ink-2);margin:4px 0 10px}
+.cg-box .cg-lim{font:inherit;font-size:12.5px;background:none;border:0;color:var(--accent);text-decoration:underline;cursor:pointer;padding:4px 0}
+/* lista ordenável */
+.cg-ord{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cg-ord li{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:6px 6px 6px 4px;
+  transition:box-shadow .15s ease,background .15s ease;touch-action:pan-y;user-select:none}
+.cg-ord li.arr{background:var(--surface);box-shadow:0 10px 28px rgba(0,0,0,.2);position:relative;z-index:3;transition:none}
+.cg-ord .h{flex:none;width:34px;height:40px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;color:var(--muted);cursor:grab;touch-action:none;border-radius:6px}
+.cg-ord .h:active{cursor:grabbing}
+.cg-ord .h:focus-visible{outline:2px solid var(--accent)}
+.cg-ord .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-family:var(--f-m);font-size:12px;display:inline-flex;align-items:center;justify-content:center}
+.cg-ord li:nth-child(n+4) .n{background:var(--s300);color:var(--ink)}
+.cg-ord li:nth-child(n+8) .n{background:var(--line-2)}
+.cg-ord .t{flex:1;font-size:14.5px;min-width:0}
+.cg-ord .ud{display:flex;gap:2px}
+.cg-ord .ud button{width:32px;height:32px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink-2);cursor:pointer;font-size:12px}
+.cg-ord .ud button:disabled{opacity:.3;cursor:default}
+/* eixos A | neutro | B */
+.cg-ax{border-top:1px solid var(--line);padding:10px 0 4px}
+.cg-ax:first-of-type{border-top:0}
+.cg-ax b{display:block;font-size:13px;font-family:var(--f-m);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:400}
+.cg-tri{display:grid;grid-template-columns:1fr auto 1fr;gap:6px}
+.cg-tri button{font:inherit;font-size:13px;line-height:1.3;text-align:left;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);
+  padding:8px 10px;cursor:pointer;min-height:44px;transition:background .15s ease,border-color .15s ease}
+.cg-tri button.neu{text-align:center;font-size:12px;color:var(--ink-2);max-width:92px}
+.cg-tri button[aria-checked=true]{background:var(--accent-soft);border-color:var(--accent);font-weight:600}
+.cg-tri button.neu[aria-checked=true]{background:var(--surface-2);border-color:var(--ink-2)}
+@media (max-width:520px){.cg-tri{grid-template-columns:1fr}.cg-tri button.neu{max-width:none}}
+/* resultados */
+.cg-f{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.cg-f input[type=search],.cg-f select{font:inherit;font-size:14px;padding:7px 9px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);min-height:38px}
+.cg-f input[type=search]{flex:1 1 180px;min-width:0}
+.cg-f label{font-size:13.5px;display:inline-flex;gap:6px;align-items:center}
 .cg-seg{display:inline-flex;border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
-.cg-seg button{font:inherit;font-size:14px;background:var(--surface);color:var(--ink);border:0;padding:8px 12px;cursor:pointer;min-height:40px}
+.cg-seg button{font:inherit;font-size:13.5px;background:var(--surface);color:var(--ink);border:0;padding:7px 11px;cursor:pointer;min-height:38px}
 .cg-seg button+button{border-left:1px solid var(--line-2)}
 .cg-seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
-.cg-cont{margin-top:12px;font-size:13.5px;color:var(--ink-2)}
-.cg-lista{margin-top:10px;display:grid;gap:8px}
-.cg-c{background:var(--surface);border:1px solid var(--line);border-radius:8px}
-.cg-c>summary{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;list-style:none;
-  font-family:var(--f-b);font-size:inherit;letter-spacing:normal;text-transform:none;color:var(--ink)}
-.cg-c>summary::-webkit-details-marker{display:none}
-.cg-c>summary::before{content:none}
-.cg-c>summary:hover{background:var(--surface-2);border-radius:8px}
+.cg-cont{font-size:13px;color:var(--ink-2);margin-bottom:8px}
+.cg-lista{display:grid;gap:8px}
+.cg-c{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 10px 10px 12px;cursor:pointer;
+  transition:border-color .15s ease,transform .15s ease}
+.cg-c:hover{border-color:var(--accent)}
+.cg-c:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cg-av{position:relative;flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--f-m);font-size:14px;color:#fff;background:hsl(var(--h,180) 35% 38%)}
+.cg-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cg-av.g{width:72px;height:72px;font-size:22px}
 .cg-nm{flex:1;min-width:0}
-.cg-nm b{display:block;font-size:15.5px;overflow-wrap:anywhere}
+.cg-nm b{display:block;font-size:15px;overflow-wrap:anywhere}
 .cg-nm small{display:block;color:var(--muted);font-size:12.5px}
-.cg-af{flex:none;text-align:right;font-size:12px;color:var(--muted);min-width:96px}
-.cg-af b{display:block;font-family:var(--f-m);font-size:22px;color:var(--ink);line-height:1.1}
+.cg-tg{display:inline-block;font-family:var(--f-m);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin:4px 4px 0 0;
+  background:var(--surface-2);color:var(--ink-2)}
+.cg-tg.v{background:var(--accent-soft);color:var(--ink)}
+.cg-tg.e{background:var(--warn-bg);color:var(--warn)}
+.cg-tg.r{background:var(--prop-bg);color:var(--prop)}
+.cg-pc{flex:none;text-align:right;min-width:86px}
+.cg-pc b{display:block;font-family:var(--f-m);font-size:22px;line-height:1.1}
+.cg-pc small{display:block;font-size:11px;color:var(--muted);line-height:1.35}
 .cg-bar{height:5px;border-radius:3px;background:var(--surface-2);margin-top:4px;overflow:hidden}
-.cg-bar i{display:block;height:100%;background:var(--accent)}
-.cg-res{font-family:var(--f-m);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--accent-soft);color:var(--ink);margin-left:6px;white-space:nowrap}
-.cg-d{padding:4px 14px 14px;border-top:1px solid var(--line)}
-.cg-d table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
-.cg-d th,.cg-d td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}
-.cg-d th{font-family:var(--f-m);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
-.cg-v{font-weight:600;white-space:nowrap}
-.cg-v.cg-ok{color:var(--accent)}
-.cg-v.cg-dif{color:var(--neg)}
-.cg-v.cg-nd{color:var(--muted);font-weight:400}
-.cg-d p{font-size:13px;color:var(--ink-2);margin:10px 0 0}
-.cg-mais{margin:14px auto 0;display:block}
-.cg-vazio{padding:16px;border:1px dashed var(--line-2);border-radius:8px;color:var(--ink-2);margin-top:12px}
-.cg-met{margin-top:30px;margin-bottom:40px}
-.cg-met summary{cursor:pointer;font-weight:600}
-.cg-met div{font-size:14.5px;color:var(--ink-2);max-width:80ch}
-@media (max-width:560px){.cg-pautas{grid-template-columns:1fr}.cg-af{min-width:72px}.cg-af b{font-size:18px}}
-@media print{.cg-sync button,.cg-f,.cg-mais,.modo{display:none}.cg-c{break-inside:avoid}}
+.cg-bar i{display:block;height:100%;background:var(--accent);transition:width .25s ease}
+.cg-ic{flex:none;display:flex;flex-direction:column;gap:4px}
+.cg-ic button{width:34px;height:34px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--muted);cursor:pointer;font-size:15px;line-height:1}
+.cg-ic button[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.cg-ic button.fav[aria-pressed=true]{color:#B8860B}
+.cg-mais{margin:12px auto 0;display:block;font:inherit;font-size:14px;background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:8px 16px;cursor:pointer;color:var(--ink)}
+.cg-vazio{padding:18px;border:1px dashed var(--line-2);border-radius:10px;color:var(--ink-2);font-size:14.5px}
+.cg-mob{display:none}
+@media (max-width:900px){
+  .cg-mob{display:flex;position:sticky;bottom:10px;z-index:20;margin-top:10px;gap:8px;align-items:center;background:var(--bar);color:#E7EFED;
+    border-radius:12px;padding:9px 12px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .cg-mob span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cg-mob button{flex:none;font:inherit;font-size:13px;background:#E7EFED;color:var(--bar);border:0;border-radius:999px;padding:6px 12px;cursor:pointer}
+  html.ao-on .cg-mob{margin-right:70px}
+}
+/* ficha */
+.cg-fh{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.cg-fh h1{font-size:clamp(24px,4vw,34px)}
+.cg-cv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:14px}
+.cg-cv div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.cg-cv small{display:block;font-family:var(--f-m);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cg-cv span{font-size:15px}
+.cg-esc{position:relative;height:10px;border-radius:5px;background:linear-gradient(90deg,var(--s300),var(--surface-2) 50%,var(--warn-bg));margin:22px 0 8px}
+.cg-esc i{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.cg-esc i.c{background:var(--ink)}
+.cg-esc i.u{background:var(--accent);width:12px;height:12px}
+.cg-esc em{position:absolute;bottom:14px;transform:translateX(-50%);font-style:normal;font-family:var(--f-m);font-size:10px;color:var(--muted);white-space:nowrap}
+.cg-esc-l{display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--ink-2)}
+.cg-esc-l span:last-child{text-align:right}
+.cg-vl{list-style:none;padding:0;margin:8px 0 0;font-size:13.5px}
+.cg-vl li{padding:5px 0;border-top:1px dashed var(--line)}
+.cg-vl .ok{color:var(--accent);font-weight:600}
+.cg-vl .nd{color:var(--muted)}
+.cg-pb{display:grid;grid-template-columns:minmax(120px,220px) 1fr auto;gap:6px 10px;align-items:center;font-size:13.5px;margin-top:6px}
+.cg-pb .cg-bar{margin:0;height:8px}
+.cg-pb .q{font-family:var(--f-m);font-size:12px;color:var(--muted)}
+.cg-ex{grid-column:1/-1;font-size:12px;color:var(--muted);margin:-2px 0 4px}
+/* comparar */
+.cg-cmp{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.cg-cmp table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+.cg-cmp th,.cg-cmp td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cg-cmp th[scope=row]{position:sticky;left:0;background:var(--surface);font-family:var(--f-m);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:400;min-width:120px}
+.cg-cmp thead th{position:sticky;top:0;background:var(--surface-2);z-index:1}
+.cg-cmp .cg-esc{margin:16px 0 4px}
+.cg-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.cg-chips span{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border-radius:999px;padding:4px 6px 4px 12px;font-size:13.5px}
+.cg-chips button{border:0;background:none;cursor:pointer;font-size:15px;color:var(--ink-2);width:26px;height:26px;border-radius:50%}
+/* cola */
+.cg-cola{border:2px solid var(--ink);border-radius:12px;padding:16px;background:var(--surface);max-width:520px}
+.cg-cola h3{font-size:18px}
+.cg-cola .lin{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:8px 0;font-size:15px}
+.cg-cola .lin b{font-family:var(--f-m);font-size:20px;letter-spacing:.08em}
+.cg-met table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--surface)}
+.cg-met th,.cg-met td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.cg-met th{background:var(--surface-2);font-weight:600}
+.cg-met .tw{overflow-x:auto}
+.cg-met p,.cg-met li{max-width:80ch;color:var(--ink-2)}
+.cg-aviso{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);z-index:95;background:var(--bar);color:#E7EFED;padding:10px 16px;border-radius:10px;
+  font-size:14px;max-width:min(440px,90vw);opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.cg-aviso.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.modo-pop{animation:none}.hub-c,.cg-c,.cg-ord li,.cg-bar i,.cg-tri button{transition:none}.hub-c:hover{transform:none}}
+@media print{.cg-top,.cg-f,.cg-mais,.cg-ic,.cg-mob,.modo,.cg-btns{display:none!important}.cg-res{position:static;max-height:none;overflow:visible}}
 </style>
 <script>
 /* =====================================================================
-   v2.0: escolha inicial (hub) + aba Congresso.
-   - A primeira visita (endereço sem #) abre a escolha; depois o site lembra
-     a última parte usada (Presidência ou Congresso) em planos2026:modo.
-   - A aba Congresso lê congresso/indice.json e congresso/<UF>.json, gerados
-     por congresso-sync.py a partir das APIs oficiais (Câmara, Senado, TSE).
-   - As respostas da pessoa ficam só neste navegador (planos2026:congresso).
+   v2.0: escolha inicial (hub) + módulo Congresso.
+   - Endereço sem #: a primeira visita abre a escolha; depois, a última parte
+     usada (planos2026:modo).
+   - Congresso: #congresso (início), #congresso/afinidade, /favoritos,
+     /comparar, /metodo e #congresso/ficha/<UF>/<id do TSE>.
+   - Dados: congresso/indice.json e congresso/<UF>.json, gerados por
+     congresso-sync.py a partir das APIs oficiais. O método está escrito em
+     congresso-pautas.json e explicado na aba Método.
+   - O que a pessoa marca fica só neste navegador (planos2026:congresso).
    - Aqui, e só aqui, há % de afinidade: decisão do dono do site (02/Out/2026).
-     É a contagem de votos iguais aos da pessoa, nada além disso.
    ===================================================================== */
 (function(){
 "use strict";
@@ -45719,28 +45824,38 @@ function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cl
 function $(id){return document.getElementById(id);}
 function le(k){try{return JSON.parse(localStorage.getItem(k)||"null");}catch(e){return null;}}
 function grava(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function link(txt,href){var a=mk("a",null,txt);a.href=href;a.target="_blank";a.rel="noopener";return a;}
 var KM="planos2026:modo", KC="planos2026:congresso";
 var MES=EN?["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-function dia(iso){var d=new Date(iso.length===10?iso+"T12:00:00":iso);if(isNaN(d))return iso;
+function dia(iso){if(!iso)return "";var d=new Date(iso.length===10?iso+"T12:00:00":iso);if(isNaN(d))return iso;
   var dd=("0"+d.getDate()).slice(-2),m=MES[d.getMonth()],y=d.getFullYear();return EN?m+"/"+dd+"/"+y:dd+"/"+m+"/"+y;}
 function hora(d){return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2);}
 function semAcento(s){return (s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();}
+function sigla(p){var s=semAcento(p).toUpperCase().replace(/\s+/g,"");return {PODEMOS:"PODE",UNIAOBRASIL:"UNIAO"}[s]||s;}
+function reais(v){if(v==null)return "—";try{return new Intl.NumberFormat(EN?"en-US":"pt-BR",{style:"currency",currency:"BRL",notation:v>=1e6?"compact":"standard",maximumFractionDigits:v>=1e6?1:0}).format(v);}catch(e){return "R$ "+Math.round(v);}}
 var SETA='<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+var ALCA='<svg viewBox="0 0 12 18" width="12" height="18" aria-hidden="true"><g fill="currentColor"><circle cx="3" cy="3" r="1.6"/><circle cx="9" cy="3" r="1.6"/><circle cx="3" cy="9" r="1.6"/><circle cx="9" cy="9" r="1.6"/><circle cx="3" cy="15" r="1.6"/><circle cx="9" cy="15" r="1.6"/></g></svg>';
 var UFN={AC:"Acre",AL:"Alagoas",AM:"Amazonas",AP:"Amapá",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",
   MA:"Maranhão",MG:"Minas Gerais",MS:"Mato Grosso do Sul",MT:"Mato Grosso",PA:"Pará",PB:"Paraíba",PE:"Pernambuco",PI:"Piauí",PR:"Paraná",
   RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RO:"Rondônia",RR:"Roraima",RS:"Rio Grande do Sul",SC:"Santa Catarina",SE:"Sergipe",SP:"São Paulo",TO:"Tocantins"};
+var CARGO={S:T("Senado","Senate"),F:T("Câmara","Chamber")};
+var CARGO_L={S:T("Senador(a)","Senator"),F:T("Deputado(a) federal","Federal deputy")};
 
 /* ---------------- as três partes ---------------- */
 var MODOS={
   hub:{ic:"🧭",t:T("Início","Start"),d:T("Eleições 2026 · as duas partes juntas","Elections 2026 · both parts together")},
   presidencia:{ic:"🏛️",t:T("Presidência","Presidency"),d:T("Os oito planos de governo, lidos com o mesmo critério.","The eight government plans, read with the same criteria."),go:"#inicio"},
-  congresso:{ic:"⚖️",t:T("Congresso","Congress"),d:T("Como votaram os candidatos a senador e deputado federal do seu estado.","How the Senate and Chamber candidates in your state voted."),go:"#congresso"}
+  congresso:{ic:"⚖️",t:T("Congresso","Congress"),d:T("Senadores e deputados federais do seu estado: o que já votaram e propuseram.","Senators and federal deputies in your state: what they have voted and proposed."),go:"#congresso"}
 };
-function modoAtual(){var h=(location.hash||"").slice(1).split("/")[0];return h==="hub"?"hub":h==="congresso"?"congresso":"presidencia";}
+function partesHash(){return (location.hash||"").slice(1).split("/");}
+function modoAtual(){var h=partesHash()[0];return h==="hub"?"hub":h==="congresso"?"congresso":"presidencia";}
 function vaiModo(m){var alvo=m==="hub"?"#hub":MODOS[m].go;if(location.hash!==alvo)location.hash=alvo;else scrollTo(0,0);}
+function vai(h){if(location.hash!==h)location.hash=h;else scrollTo(0,0);}
 
-/* botão "Presidência ▾" no topo (computador); no celular a troca fica no ☰ */
-var Seletor={b:null,pop:null,
+/* botão "Presidência ▾" no topo (computador) e as abas do Congresso; no celular, tudo no ☰ */
+var ABAS=[["",T("Início","Home")],["afinidade",T("Afinidade","Affinity")],["favoritos",T("Favoritos","Favourites")],
+          ["comparar",T("Comparar","Compare")],["metodo",T("Método","Method")]];
+var Seletor={b:null,pop:null,menu:null,
   monta:function(){
     var brand=document.querySelector(".nav-in .brand");if(!brand||$("modo-b"))return;
     var w=mk("div","modo");var b=mk("button","modo-b");b.id="modo-b";b.type="button";
@@ -45753,11 +45868,19 @@ var Seletor={b:null,pop:null,
     p.addEventListener("click",function(e){e.stopPropagation();});
     document.addEventListener("click",function(){Seletor.fecha();});
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!p.hidden){Seletor.fecha();b.focus();}});
+    var orig=$("menu");
+    if(orig){var m=mk("span","menu");m.id="cg-menu";
+      ABAS.forEach(function(a){var x=mk("button",null,a[1]);x.type="button";x.dataset.s=a[0];
+        x.addEventListener("click",function(){vai("#congresso"+(a[0]?"/"+a[0]:""));});m.appendChild(x);});
+      orig.parentNode.insertBefore(m,orig.nextSibling);this.menu=m;}
     this.pinta();
   },
   pinta:function(){if(!this.b)return;var m=MODOS[modoAtual()];
     this.b.innerHTML="";this.b.appendChild(document.createTextNode(m.ic+" "+m.t));
-    var s=mk("span");s.innerHTML=SETA;this.b.appendChild(s);},
+    var s=mk("span");s.innerHTML=SETA;this.b.appendChild(s);
+    if(this.menu){var sub=partesHash()[1]||"";if(sub==="ficha")sub="afinidade";
+      [].forEach.call(this.menu.children,function(x){if(x.dataset.s===sub)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current");
+        if(x.dataset.s==="favoritos"){var n=Cg.estado().fav.length;x.textContent=T("Favoritos","Favourites")+(n?" ("+n+")":"");}});}},
   alterna:function(){if(this.pop.hidden)this.abre();else this.fecha();},
   abre:function(){var p=this.pop,at=modoAtual();p.textContent="";
     ["hub","presidencia","congresso"].forEach(function(k,i){
@@ -45784,8 +45907,8 @@ function pintaHub(){
     li:[T("O que cada plano promete, com a página","What each plan promises, with the page"),T("Currículo, patrimônio e processos","Career, assets and court cases"),T("Dados públicos desde 1998","Public data since 1998")],
     f:T("8 candidaturas · sem ranking","8 candidacies · no ranking")},
    {k:"congresso",cls:"cg",h:T("Congresso","Congress"),
-    p:T("Senadores e deputados federais do seu estado: como votaram de verdade no que mais dividiu o Congresso.","Senators and federal deputies in your state: how they actually voted on what divided Congress most."),
-    li:[T("Você diz o que pensa sobre 11 votações reais","You say what you think about 11 real votes"),T("% de afinidade com quem já tem mandato","% affinity with those who already hold office"),T("Votos oficiais da Câmara e do Senado","Official votes from the Chamber and the Senate")],
+    p:T("Senadores e deputados federais do seu estado: o que já votaram e o que propuseram.","Senators and federal deputies in your state: what they have voted and proposed."),
+    li:[T("Ordene suas pautas e diga sua posição em 9 temas","Rank your priorities and give your view on 9 topics"),T("Afinidade calculada com votos e propostas reais","Affinity built on real votes and bills"),T("Favoritos, comparação e a sua cola para a urna","Favourites, side-by-side comparison and your ballot memo")],
     f:T("Senado e Câmara · do seu estado","Senate and Chamber · in your state")}].forEach(function(o){
     var c=mk("button","hub-c "+o.cls);c.type="button";
     c.appendChild(mk("span","hi",MODOS[o.k].ic));c.appendChild(mk("h2",null,o.h));c.appendChild(mk("p",null,o.p));
@@ -45797,201 +45920,528 @@ function pintaHub(){
   v.appendChild(w);
 }
 
-/* ---------------- aba Congresso ---------------- */
-var VOTO={S:T("Sim","Yes"),N:T("Não","No"),A:T("Absteve-se","Abstained"),O:T("Obstrução","Obstruction")};
-var Cg={ind:null,uf:{},st:null,mostra:60,busca:"",montado:false,
-  estado:function(){if(!this.st){var s=le(KC)||{};this.st={uf:s.uf||"",resp:s.resp||{},cargo:s.cargo||"T",ord:s.ord||"af",so:!!s.so};}return this.st;},
+/* ---------------- lista que se ordena arrastando (ou pelas setas) ---------------- */
+/* arrastar funciona com mouse, toque e caneta (Pointer Events); as setas ↑↓ e o
+   teclado na alça são a alternativa de um toque (WCAG 2.5.7) */
+function ordenavel(ul,aoMudar){
+  var arr=null,y0=0;
+  function ordem(){return [].map.call(ul.children,function(li){return li.dataset.id;});}
+  function numera(){[].forEach.call(ul.children,function(li,i){li.querySelector(".n").textContent=i+1;
+    var b=li.querySelectorAll(".ud button");b[0].disabled=i===0;b[1].disabled=i===ul.children.length-1;});}
+  function move(li,dir){var alvo=dir<0?li.previousElementSibling:li.nextElementSibling;if(!alvo)return;
+    if(dir<0)ul.insertBefore(li,alvo);else ul.insertBefore(alvo,li);numera();aoMudar(ordem());}
+  ul.addEventListener("click",function(e){var b=e.target.closest(".ud button");if(!b)return;var li=b.closest("li");
+    move(li,b.dataset.d==="-1"?-1:1);var f=li.querySelector('.ud button[data-d="'+b.dataset.d+'"]');if(f&&!f.disabled)f.focus();else li.querySelector(".h").focus();});
+  ul.addEventListener("keydown",function(e){var h=e.target.closest(".h");if(!h)return;
+    if(e.key==="ArrowUp"||e.key==="ArrowDown"){e.preventDefault();var li=h.closest("li");move(li,e.key==="ArrowUp"?-1:1);h.focus();}});
+  ul.addEventListener("pointerdown",function(e){var h=e.target.closest(".h");if(!h||(e.button!==undefined&&e.button!==0))return;
+    e.preventDefault();arr=h.closest("li");y0=e.clientY;arr.classList.add("arr");try{h.setPointerCapture(e.pointerId);}catch(x){}});
+  ul.addEventListener("pointermove",function(e){if(!arr)return;
+    var dy=e.clientY-y0;arr.style.transform="translateY("+dy+"px)";
+    var r=arr.getBoundingClientRect(),meio=r.top+r.height/2;
+    var ant=arr.previousElementSibling,prox=arr.nextElementSibling,mudou=false;
+    if(ant){var ra=ant.getBoundingClientRect();if(meio<ra.top+ra.height/2){var t0=arr.offsetTop;ul.insertBefore(arr,ant);y0+=arr.offsetTop-t0;mudou=true;}}
+    if(!mudou&&prox){var rp=prox.getBoundingClientRect();if(meio>rp.top+rp.height/2){var t1=arr.offsetTop;ul.insertBefore(prox,arr);y0+=arr.offsetTop-t1;mudou=true;}}
+    if(mudou){arr.style.transform="translateY("+(e.clientY-y0)+"px)";numera();aoMudar(ordem());}});
+  function solta(){if(!arr)return;arr.classList.remove("arr");arr.style.transform="";arr=null;numera();aoMudar(ordem());}
+  ul.addEventListener("pointerup",solta);ul.addEventListener("pointercancel",solta);
+  numera();
+}
+
+/* ---------------- módulo Congresso ---------------- */
+var VOTO={S:T("Sim","Yes"),N:T("Não","No"),A:T("absteve-se","abstained"),O:T("obstrução","obstruction")};
+var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
+  estado:function(){if(!this.st){var s=le(KC)||{};
+      this.st={uf:s.uf||"",cargo:s.cargo||"T",ord:s.ord||"geral",so:!!s.so,pri:s.pri||null,priOk:!!s.priOk,pos:s.pos||{},fav:s.fav||[],cmp:s.cmp||[],cola:s.cola||{}};}
+    return this.st;},
   salva:function(){grava(KC,this.st);},
   /* baixa um arquivo da pasta congresso/. novo=true fura o cache do navegador (botão Atualizar) */
-  pega:function(nome,novo){
-    return fetch("congresso/"+nome,novo?{cache:"no-cache"}:{}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});
-  },
+  pega:function(nome,novo){return fetch("congresso/"+nome,novo?{cache:"no-cache"}:{}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();});},
+  garanteInd:function(novo){var self=this;
+    if(this.ind&&!novo)return Promise.resolve(this.ind);
+    if(this.carregando&&!novo)return this.carregando;
+    this.carregando=this.pega("indice.json",novo).then(function(ind){self.ind=ind;self.carregando=null;
+      var s=self.estado(),ids=ind.pautas.map(function(p){return p.id;});
+      if(!s.pri||s.pri.length!==ids.length||ids.some(function(i){return s.pri.indexOf(i)<0;})){s.pri=ids;s.priOk=false;}
+      return ind;},function(e){self.carregando=null;throw e;});
+    return this.carregando;},
+  garanteUF:function(uf,novo){var self=this;if(!uf)return Promise.resolve(null);
+    if(this.uf[uf]&&!novo)return Promise.resolve(this.uf[uf]);
+    return this.pega(uf+".json",novo).then(function(d){d.c.forEach(function(c){c.uf=uf;});self.uf[uf]=d;return d;});},
+  falha:function(){return location.protocol==="file:"?T("Os dados do Congresso só carregam pelo site (não pelo arquivo aberto no computador).","Congress data only loads from the website (not from the file opened on the computer)."):
+    T("Não consegui baixar os dados agora. Confira a internet e toque em Atualizar.","Could not download the data now. Check the connection and tap Refresh.");},
+  acha:function(uf,id){var d=this.uf[uf];if(!d)return null;for(var i=0;i<d.c.length;i++)if(d.c[i].id===id)return d.c[i];return null;},
+
+  /* ---------- contas ---------- */
+  /* posição do candidato num eixo: o próprio voto; senão o padrão geral dos votos dele;
+     senão a média da bancada do partido. Devolve {s: -1 (lado A) … +1 (lado B), f: fonte} */
+  pos:function(c,eixo){
+    if(c.e&&c.e[eixo])return {s:c.e[eixo][0],f:"voto",n:c.e[eixo][1]};
+    if(c.g&&c.g[1]>=5)return {s:c.g[0],f:"geral",n:c.g[1]};
+    var P=this.ind&&this.ind.partidos[sigla(c.p)];
+    if(P)return {s:P.e[eixo]!=null?P.e[eixo]:P.g,f:"partido"};
+    return null;},
+  afPos:function(c){var s=this.estado(),self=this,soma=0,n=0,proprio=0;
+    this.ind.eixos.forEach(function(e){var u=s.pos[e.id];if(!u)return;var p=self.pos(c,e.id);if(!p)return;
+      soma+=1-Math.abs(u-p.s)/2;n++;if(p.f==="voto")proprio++;});
+    return n?{pct:Math.round(100*soma/n),n:n,proprio:proprio}:null;},
+  /* prioridades: cada proposta conta pelo peso da pauta (1ª = 1,0 … 10ª = 0,1) */
+  afPri:function(c){var s=this.estado();if(!s.priOk||!c.t||c.t.n<3)return null;var soma=0;
+    s.pri.forEach(function(id,i){soma+=((c.t.p[id]||0)/c.t.n)*(10-i)/10;});
+    return {pct:Math.min(100,Math.round(100*soma)),n:c.t.n};},
+  geral:function(c){var a=this.afPos(c),b=this.afPri(c),v=[];if(a)v.push(a.pct);if(b)v.push(b.pct);
+    return {g:v.length?Math.round(v.reduce(function(x,y){return x+y;},0)/v.length):null,pos:a,pri:b};},
+
+  /* ---------- favoritos e comparação ---------- */
+  ehFav:function(c){return this.estado().fav.some(function(f){return f.u===c.uf&&f.i===c.id;});},
+  ehCmp:function(c){return this.estado().cmp.some(function(f){return f.u===c.uf&&f.i===c.id;});},
+  alternaFav:function(c){var s=this.estado();
+    if(this.ehFav(c)){s.fav=s.fav.filter(function(f){return !(f.u===c.uf&&f.i===c.id);});
+      [c.cg].forEach(function(k){if(s.cola[k])s.cola[k]=s.cola[k].filter(function(i){return i!==c.uf+"/"+c.id;});});}
+    else s.fav.push({u:c.uf,i:c.id});
+    this.salva();Seletor.pinta();},
+  alternaCmp:function(c){var s=this.estado();
+    if(this.ehCmp(c))s.cmp=s.cmp.filter(function(f){return !(f.u===c.uf&&f.i===c.id);});
+    else{if(s.cmp.length>=3){aviso(T("Dá para comparar até 3. Tire um na aba Comparar.","You can compare up to 3. Remove one in the Compare tab."));return false;}s.cmp.push({u:c.uf,i:c.id});}
+    this.salva();return true;},
+  /* carrega os estados de uma lista de {u,i} e devolve os candidatos achados */
+  resolve:function(lst){var self=this,ufs={};lst.forEach(function(f){ufs[f.u]=1;});
+    return Promise.all(Object.keys(ufs).map(function(u){return self.garanteUF(u).catch(function(){return null;});}))
+      .then(function(){return lst.map(function(f){return self.acha(f.u,f.i);}).filter(Boolean);});},
+
+  /* ---------- telas ---------- */
   abre:function(){
-    var v=$("v-congresso");if(!v)return;
-    if(!this.montado){this.montado=true;this.monta(v);}
-    if(!this.ind)this.carrega(false);
+    var v=$("v-congresso");if(!v)return;var self=this,p=partesHash(),sub=p[1]||"inicio";
+    if(!v.dataset.ok){v.dataset.ok="1";this.casca(v);}
+    var corpo=$("cg-corpo");corpo.textContent="";
+    var ufSel=$("cg-uf-top");if(ufSel)ufSel.value=this.estado().uf;
+    this.garanteInd(false).then(function(){self.pintaData();
+      if(sub==="afinidade")self.telaAf(corpo);
+      else if(sub==="favoritos")self.telaFav(corpo);
+      else if(sub==="comparar")self.telaCmp(corpo);
+      else if(sub==="metodo")self.telaMet(corpo);
+      else if(sub==="ficha")self.telaFicha(corpo,p[2],p[3]);
+      else self.telaInicio(corpo);
+    },function(){corpo.appendChild(mk("div","wrap cg-vazio",self.falha()));});
   },
-  carrega:function(novo){
-    var self=this,s=this.estado(),antes=this.ind&&this.ind.conferido_em;
-    this.msg(T("Carregando os dados oficiais…","Loading the official data…"));
-    return this.pega("indice.json",novo).then(function(ind){
-      self.ind=ind;
-      var pUF=s.uf?self.pega(s.uf+".json",novo).then(function(d){self.uf[s.uf]=d;}):Promise.resolve();
-      return pUF.then(function(){
-        self.pintaData();self.pintaPautas();self.pintaLista();
-        if(novo)self.msg(ind.conferido_em!==antes&&antes?T("Dados novos carregados às ","New data loaded at ")+hora(new Date())+".":
-          T("Conferido às ","Checked at ")+hora(new Date())+T(": já está na versão mais nova.",": already the newest version."));
-        else self.msg("");
-      });
-    }).catch(function(){
-      self.msg(location.protocol==="file:"?T("Os dados do Congresso só carregam pelo site (não pelo arquivo aberto no computador).","Congress data only loads from the website (not from the file opened on the computer)."):
-        T("Não consegui baixar os dados agora. Confira a internet e toque em Atualizar.","Could not download the data now. Check the connection and tap Refresh."));
-    });
-  },
-  msg:function(t){var m=$("cg-msg");if(m)m.textContent=t;},
-  pintaData:function(){var d=$("cg-data"),i=this.ind;if(!d||!i)return;
-    d.textContent=T("Dados oficiais atualizados em ","Official data updated on ")+dia(i.atualizado_em)+
-      (i.conferido_em&&dia(i.conferido_em)!==dia(i.atualizado_em)?" · "+T("conferidos em ","checked on ")+dia(i.conferido_em):"");},
-  monta:function(v){
+  /* faixa fixa no alto: estado, data dos dados e Atualizar */
+  casca:function(v){
     var self=this,s=this.estado();
-    var h=mk("header","wrap cg-h");
-    h.appendChild(mk("div","eyebrow",T("Eleição 2026 · Senado e Câmara dos Deputados","2026 election · Senate and Chamber of Deputies")));
-    h.appendChild(mk("h1","h-lead",T("Como votaram os candidatos ao Congresso","How the candidates for Congress voted")));
-    h.appendChild(mk("p","lede",T("Diga o que você pensa sobre votações reais da Câmara e do Senado entre 2023 e 2026. Para cada candidato do seu estado que já tinha mandato, o site conta quantas vezes ele votou como você.",
-      "Say what you think about real votes in the Chamber and the Senate between 2023 and 2026. For each candidate in your state who already held office, the site counts how often they voted like you.")));
-    var sy=mk("div","cg-sync");
-    sy.appendChild(mk("span",null,"")).id="cg-data";
-    var bt=mk("button",null,"🔄 "+T("Atualizar","Refresh"));bt.type="button";bt.id="cg-sync";
+    var top=mk("div","wrap cg-top");
+    var lb=mk("label",null,T("Seu estado ","Your state "));var sel=mk("select");sel.id="cg-uf-top";
+    sel.appendChild(mk("option",null,T("Escolha…","Choose…"))).value="";
+    Object.keys(UFN).sort(function(a,b){return UFN[a].localeCompare(UFN[b]);}).forEach(function(k){var o=mk("option",null,UFN[k]);o.value=k;sel.appendChild(o);});
+    sel.value=s.uf;lb.appendChild(sel);top.appendChild(lb);
+    sel.addEventListener("change",function(){s.uf=sel.value;self.mostra=40;self.salva();self.abre();});
+    var d=mk("span");d.id="cg-data";top.appendChild(d);
+    var bt=mk("button",null,"🔄 "+T("Atualizar","Refresh"));bt.type="button";
     bt.title=T("Busca de novo os dados oficiais (o site os confere todo dia)","Fetches the official data again (the site checks them every day)");
-    bt.addEventListener("click",function(){bt.disabled=true;self.uf={};self.carrega(true).then(function(){bt.disabled=false;},function(){bt.disabled=false;});});
-    sy.appendChild(bt);var m=mk("span");m.id="cg-msg";m.setAttribute("role","status");sy.appendChild(m);
-    h.appendChild(sy);v.appendChild(h);
-    var w=mk("main","wrap");v.appendChild(w);
-    /* 1. estado */
-    var s1=mk("section","cg-sec");s1.appendChild(mk("h2",null,T("1. Seu estado","1. Your state")));
-    var u=mk("div","cg-uf");var lb=mk("label",null,T("Onde você vota","Where you vote"));lb.setAttribute("for","cg-uf");
-    var sel=mk("select");sel.id="cg-uf";sel.appendChild(mk("option",null,T("Escolha…","Choose…"))).value="";
-    Object.keys(UFN).sort(function(a,b){return UFN[a].localeCompare(UFN[b]);}).forEach(function(k){var o=mk("option",null,UFN[k]+" ("+k+")");o.value=k;sel.appendChild(o);});
-    sel.value=s.uf;
-    sel.addEventListener("change",function(){s.uf=sel.value;self.mostra=60;self.salva();
-      if(s.uf&&!self.uf[s.uf]){self.msg(T("Carregando ","Loading ")+UFN[s.uf]+"…");
-        self.pega(s.uf+".json").then(function(d){self.uf[s.uf]=d;self.msg("");self.pintaLista();},function(){self.msg(T("Não consegui baixar este estado. Toque em Atualizar.","Could not download this state. Tap Refresh."));});}
-      else self.pintaLista();});
-    u.appendChild(lb);u.appendChild(sel);s1.appendChild(u);w.appendChild(s1);
-    /* 2. posições */
-    var s2=mk("section","cg-sec");var h2=mk("h2",null,T("2. O que você pensa","2. What you think"));var n=mk("span","n");n.id="cg-nresp";h2.appendChild(n);s2.appendChild(h2);
-    s2.appendChild(mk("p",null,T("Responda as que quiser. Cada pergunta é uma votação que aconteceu: \"a favor\" quer dizer que você votaria Sim.",
-      "Answer as many as you like. Each question is a vote that actually happened: \"in favour\" means you would have voted Yes.")));
-    var pp=mk("div","cg-pautas");pp.id="cg-pautas";s2.appendChild(pp);w.appendChild(s2);
-    /* 3. candidatos */
-    var s3=mk("section","cg-sec");s3.appendChild(mk("h2",null,T("3. Os candidatos","3. The candidates")));
+    var m=mk("span");m.id="cg-msg";m.setAttribute("role","status");
+    bt.addEventListener("click",function(){bt.disabled=true;var antes=self.ind&&self.ind.conferido_em;m.textContent=T("Conferindo…","Checking…");
+      self.garanteInd(true).then(function(ind){var u=self.estado().uf;self.uf={};return self.garanteUF(u,true).then(function(){return ind;});})
+        .then(function(ind){bt.disabled=false;m.textContent=ind.conferido_em!==antes?T("Dados novos carregados às ","New data loaded at ")+hora(new Date())+".":
+          T("Conferido às ","Checked at ")+hora(new Date())+T(": já está na versão mais nova.",": already the newest version.");self.abre();},
+          function(){bt.disabled=false;m.textContent=self.falha();});});
+    top.appendChild(bt);top.appendChild(m);v.appendChild(top);
+    var corpo=mk("div");corpo.id="cg-corpo";v.appendChild(corpo);
+  },
+  pintaData:function(){var d=$("cg-data"),i=this.ind;if(!d||!i)return;
+    d.textContent=T("Dados oficiais de ","Official data from ")+dia(i.atualizado_em)+
+      (i.conferido_em&&dia(i.conferido_em)!==dia(i.atualizado_em)?" · "+T("conferidos em ","checked on ")+dia(i.conferido_em):"");},
+  cab:function(corpo,eyebrow,titulo,lede){var h=mk("header","wrap cg-h");h.appendChild(mk("div","eyebrow",eyebrow));
+    h.appendChild(mk("h1","h-lead",titulo));if(lede)h.appendChild(mk("p","lede",lede));corpo.appendChild(h);return h;},
+
+  /* ===== Início ===== */
+  telaInicio:function(corpo){
+    var self=this,s=this.estado();
+    var h=this.cab(corpo,T("Congresso 2026 · Senado e Câmara dos Deputados","Congress 2026 · Senate and Chamber of Deputies"),
+      T("Quem escreve as leis também está na urna","Those who write the laws are on the ballot too"),
+      T("No dia 4 de outubro você não escolhe só presidente e governador. Escolhe também dois senadores e um deputado federal — e são eles que aprovam, mudam ou barram o que qualquer governo quiser fazer. Aqui você vê o que cada candidato já fez com o voto que recebeu.",
+        "On 4 October you are not only choosing a president and a governor. You also choose two senators and one federal deputy — and they are the ones who pass, change or block whatever any government wants to do. Here you can see what each candidate has already done with the vote they received."));
+    var bb=mk("div","cg-btns");var b1=mk("button","cg-btn",T("Começar: minha afinidade →","Start: my affinity →"));b1.type="button";b1.addEventListener("click",function(){vai("#congresso/afinidade");});
+    var b2=mk("button","cg-btn sec",T("Como os números são feitos","How the numbers are made"));b2.type="button";b2.addEventListener("click",function(){vai("#congresso/metodo");});
+    bb.appendChild(b1);bb.appendChild(b2);h.appendChild(bb);
+    var w=mk("main","wrap");corpo.appendChild(w);
+    var s1=mk("section","cg-s");s1.appendChild(mk("h2",null,T("Quem faz o quê","Who does what")));
+    var g=mk("div","cg-cards");
+    [["🏛️",T("Deputado(a) federal","Federal deputy"),T("Propõe e vota as leis do país, aprova o Orçamento da União e fiscaliza o governo federal. São 513 cadeiras, divididas entre os estados conforme a população. Mandato de 4 anos.",
+        "Proposes and votes on national laws, approves the federal budget and oversees the federal government. There are 513 seats, split among the states by population. Four-year term.")],
+     ["⚖️",T("Senador(a)","Senator"),T("Também vota as leis e ainda aprova — ou rejeita — ministros do STF, o procurador-geral da República, embaixadores e a diretoria do Banco Central. São 3 por estado. Mandato de 8 anos.",
+        "Also votes on laws and approves — or rejects — Supreme Court justices, the Prosecutor-General, ambassadors and the Central Bank board. There are 3 per state. Eight-year term.")],
+     ["⏳",T("Por que este voto pesa","Why this vote matters"),T("Em 2026 cada estado renova dois terços do Senado: você vota em dois nomes, e quem entrar fica até 2035. O deputado eleito agora decide por você até 2031.",
+        "In 2026 each state renews two thirds of its Senate seats: you vote for two names, and whoever wins stays until 2035. The deputy elected now decides on your behalf until 2031.")]
+    ].forEach(function(x){var c=mk("div","cg-card");var h3=mk("h3");h3.appendChild(mk("span",null,x[0]));h3.appendChild(document.createTextNode(x[1]));c.appendChild(h3);c.appendChild(mk("p",null,x[2]));g.appendChild(c);});
+    s1.appendChild(g);w.appendChild(s1);
+    var s2=mk("section","cg-s");s2.appendChild(mk("h2",null,T("Antes da urna, o histórico","Before the ballot, the record")));
+    var g2=mk("div","cg-cards");
+    var c1=mk("div","cg-card dest");c1.appendChild(mk("h3",null,T("Discurso se confere no voto","Speeches are checked against votes")));
+    c1.appendChild(mk("p",null,T("Muita gente decide o voto para o Congresso na última hora, pelo santinho ou pela indicação de alguém. Só que todo voto de deputado e senador no plenário fica registrado. Olhar esse registro é o jeito mais direto de saber se o que a pessoa diz bate com o que ela faz.",
+      "Many people decide their vote for Congress at the last minute, from a flyer or a friend's tip. But every floor vote by a deputy or senator is on record. Looking at that record is the most direct way to know whether what someone says matches what they do.")));
+    var c2=mk("div","cg-card");c2.appendChild(mk("h3",null,T("Como usar, em 4 passos","How to use it, in 4 steps")));
+    var ol=mk("ol");[T("Escolha o seu estado (lá em cima).","Choose your state (at the top)."),
+      T("Na aba Afinidade, arraste suas pautas na ordem que importa para você e diga o que pensa em 9 temas.","In the Affinity tab, drag your priorities into the order that matters to you and say what you think on 9 topics."),
+      T("Toque ★ em quem quiser acompanhar e ⇄ para comparar lado a lado.","Tap ★ on whoever you want to follow and ⇄ to compare side by side."),
+      T("Em Favoritos, monte a sua cola com os números para levar à urna.","In Favourites, build your memo with the numbers to take to the polls.")].forEach(function(t){ol.appendChild(mk("li",null,t));});
+    c2.appendChild(ol);
+    var c3=mk("div","cg-card alerta");c3.appendChild(mk("h3",null,T("O que isto é — e o que não é","What this is — and what it is not")));
+    var ul=mk("ul");[T("É uma lupa sobre dados oficiais do TSE, da Câmara e do Senado, com link para cada fonte.","It is a magnifying glass on official data from the electoral court, the Chamber and the Senate, with a link to each source."),
+      T("Não diz em quem votar: o percentual mede só o quanto o histórico parece com as suas respostas.","It does not tell you who to vote for: the percentage only measures how much the record resembles your answers."),
+      T("Quando um número é estimativa, está escrito na tela.","When a number is an estimate, it says so on screen."),
+      T("Nada do que você marca sai do seu aparelho.","Nothing you mark leaves your device.")].forEach(function(t){ul.appendChild(mk("li",null,t));});
+    c3.appendChild(ul);g2.appendChild(c1);g2.appendChild(c2);g2.appendChild(c3);s2.appendChild(g2);w.appendChild(s2);
+    var s3=mk("section","cg-s");s3.appendChild(mk("h2",null,T("Os números do seu estado","Your state in numbers")));
+    var g3=mk("div","cg-cards");s3.appendChild(g3);w.appendChild(s3);
+    if(!s.uf){g3.appendChild(mk("div","cg-vazio",T("Escolha o estado lá em cima para ver quantos disputam e quantos já passaram pelo Congresso.","Choose your state at the top to see how many are running and how many have already sat in Congress.")));return;}
+    var r=this.ind.ufs[s.uf]||{};
+    [[r.S,T("candidaturas ao Senado","Senate candidacies")],[r.F,T("candidaturas à Câmara","Chamber candidacies")],[r.mandato,T("já passaram pelo Congresso desde 2019 (têm votos ou propostas)","have sat in Congress since 2019 (have votes or bills)")]]
+      .forEach(function(x){var c=mk("div","cg-card");c.appendChild(mk("div","cg-num",x[0]!=null?String(x[0]):"—"));c.appendChild(mk("p",null,x[1]));g3.appendChild(c);});
+  },
+
+  /* ===== Afinidade ===== */
+  telaAf:function(corpo){
+    var self=this,s=this.estado(),ind=this.ind;
+    this.cab(corpo,T("Congresso 2026 · Afinidade","Congress 2026 · Affinity"),T("Quem pensa parecido com você","Who thinks like you"),
+      T("Arraste as pautas na ordem que importa para você e diga o que pensa em cada tema. A lista muda na hora.","Drag the priorities into the order that matters to you and say what you think on each topic. The list changes instantly."));
+    var w=mk("div","wrap cg-af");corpo.appendChild(w);
+    var esq=mk("div");w.appendChild(esq);
+    /* 1. prioridades */
+    var b1=mk("section","cg-box");b1.appendChild(mk("h2",null,T("1. Suas prioridades","1. Your priorities")));
+    b1.appendChild(mk("p",null,T("Arraste pela alça ⠿ (ou use as setas). No topo, o que mais pesa no seu voto.","Drag by the ⠿ handle (or use the arrows). At the top, what weighs most in your vote.")));
+    var ul=mk("ol","cg-ord");ul.setAttribute("aria-label",T("Ordem das prioridades","Order of priorities"));
+    var pm={};ind.pautas.forEach(function(p){pm[p.id]=p;});
+    s.pri.forEach(function(id){var p=pm[id],li=mk("li");li.dataset.id=id;
+      var h=mk("button","h");h.type="button";h.innerHTML=ALCA;h.setAttribute("aria-label",T("Mover ","Move ")+(EN?p.en:p.pt)+T(" (setas para cima e para baixo)"," (up and down arrows)"));
+      li.appendChild(h);li.appendChild(mk("span","n"));li.appendChild(mk("span","t",EN?p.en:p.pt));
+      var ud=mk("span","ud");var up=mk("button",null,"▲");up.type="button";up.dataset.d="-1";up.setAttribute("aria-label",T("Subir ","Move up ")+(EN?p.en:p.pt));
+      var dn=mk("button",null,"▼");dn.type="button";dn.dataset.d="1";dn.setAttribute("aria-label",T("Descer ","Move down ")+(EN?p.en:p.pt));
+      ud.appendChild(up);ud.appendChild(dn);li.appendChild(ud);ul.appendChild(li);});
+    b1.appendChild(ul);
+    var nota=mk("p",null,"");nota.style.fontSize="12.5px";nota.style.color="var(--muted)";nota.style.margin="8px 0 0";
+    function pintaNota(){nota.textContent=s.priOk?T("Ordem salva neste aparelho.","Order saved on this device."):T("Mexa na ordem ao menos uma vez para as prioridades entrarem na conta.","Change the order at least once for priorities to count.");}
+    pintaNota();b1.appendChild(nota);esq.appendChild(b1);
+    ordenavel(ul,function(o){s.pri=o;s.priOk=true;self.salva();pintaNota();self.agenda();});
+    /* 2. posicionamento */
+    var b2=mk("section","cg-box");b2.appendChild(mk("h2",null,T("2. Posicionamento político sobre cada tema","2. Political position on each topic")));
+    b2.appendChild(mk("p",null,T("Escolha um lado ou deixe em \"Neutro / Não sei\": esse tema fica fora da conta.","Pick a side or leave it on \"Neutral / Not sure\": that topic is left out of the count.")));
+    ind.eixos.forEach(function(e){var tx=EN?e.en:e.pt,row=mk("div","cg-ax");row.appendChild(mk("b",null,tx.t));
+      var tri=mk("div","cg-tri");tri.setAttribute("role","radiogroup");tri.setAttribute("aria-label",tx.t);
+      [[-1,tx.a,""],[0,T("Neutro / Não sei","Neutral / Not sure"),"neu"],[1,tx.b,""]].forEach(function(o){
+        var b=mk("button",o[2],o[1]);b.type="button";b.setAttribute("role","radio");b.setAttribute("aria-checked",String((s.pos[e.id]||0)===o[0]));
+        b.addEventListener("click",function(){if(o[0])s.pos[e.id]=o[0];else delete s.pos[e.id];self.salva();
+          [].forEach.call(tri.children,function(x){x.setAttribute("aria-checked",String(x===b));});self.agenda();});
+        tri.appendChild(b);});
+      row.appendChild(tri);b2.appendChild(row);});
+    var lim=mk("button","cg-lim",T("Voltar tudo para Neutro","Reset everything to Neutral"));lim.type="button";
+    lim.addEventListener("click",function(){s.pos={};self.salva();self.abre();});b2.appendChild(lim);esq.appendChild(b2);
+    /* 3. resultados */
+    var dir=mk("section","cg-res");dir.id="cg-res";dir.setAttribute("aria-label",T("Candidatos","Candidates"));w.appendChild(dir);
     var f=mk("div","cg-f");
     var seg=mk("div","cg-seg");seg.setAttribute("role","group");seg.setAttribute("aria-label",T("Cargo","Office"));
     [["T",T("Todos","All")],["S",T("Senado","Senate")],["F",T("Câmara","Chamber")]].forEach(function(o){
-      var b=mk("button",null,o[1]);b.type="button";b.dataset.k=o[0];b.setAttribute("aria-pressed",String(s.cargo===o[0]));
-      b.addEventListener("click",function(){s.cargo=o[0];self.mostra=60;self.salva();[].forEach.call(seg.children,function(x){x.setAttribute("aria-pressed",String(x===b));});self.pintaLista();});
+      var b=mk("button",null,o[1]);b.type="button";b.setAttribute("aria-pressed",String(s.cargo===o[0]));
+      b.addEventListener("click",function(){s.cargo=o[0];self.mostra=40;self.salva();[].forEach.call(seg.children,function(x){x.setAttribute("aria-pressed",String(x===b));});self.pintaLista();});
       seg.appendChild(b);});
     f.appendChild(seg);
-    var bu=mk("input");bu.type="search";bu.placeholder=T("Buscar nome, partido ou número","Search name, party or number");
-    bu.setAttribute("aria-label",T("Buscar candidato","Search candidate"));
-    bu.addEventListener("input",function(){self.busca=semAcento(bu.value.trim());self.mostra=60;self.pintaLista();});f.appendChild(bu);
     var or=mk("select");or.setAttribute("aria-label",T("Ordenar","Sort"));
-    [["af",T("Maior afinidade primeiro","Highest affinity first")],["nm",T("Nome (A–Z)","Name (A–Z)")]].forEach(function(o){var x=mk("option",null,o[1]);x.value=o[0];or.appendChild(x);});
+    [["geral",T("Afinidade geral","Overall affinity")],["pos",T("Posicionamento","Political position")],["pri",T("Prioridades","Priorities")],["nome",T("Nome (A–Z)","Name (A–Z)")]].forEach(function(o){var x=mk("option",null,o[1]);x.value=o[0];or.appendChild(x);});
     or.value=s.ord;or.addEventListener("change",function(){s.ord=or.value;self.salva();self.pintaLista();});f.appendChild(or);
-    var cl=mk("label");var cb=mk("input");cb.type="checkbox";cb.checked=s.so;cl.appendChild(cb);cl.appendChild(document.createTextNode(T("Só quem tem votos registrados","Only those with recorded votes")));
-    cb.addEventListener("change",function(){s.so=cb.checked;self.mostra=60;self.salva();self.pintaLista();});f.appendChild(cl);
-    s3.appendChild(f);var ct=mk("div","cg-cont");ct.id="cg-cont";ct.setAttribute("aria-live","polite");s3.appendChild(ct);
-    var li=mk("div","cg-lista");li.id="cg-lista";s3.appendChild(li);w.appendChild(s3);
-    /* método */
-    var met=mk("details","cg-met card");met.style.padding="14px 18px";
-    met.appendChild(mk("summary",null,T("Como a afinidade é calculada e de onde vêm os dados","How affinity is calculated and where the data comes from")));
-    var md=mk("div");
-    [T("Afinidade = votos iguais ÷ votos comparáveis. Só contam as perguntas que você respondeu e em que o parlamentar votou Sim ou Não. Abstenção, obstrução e ausência aparecem na ficha, mas não entram na conta. Com menos de 3 votos comparáveis, o site não mostra percentual.",
-       "Affinity = matching votes ÷ comparable votes. Only the questions you answered and on which the legislator voted Yes or No count. Abstention, obstruction and absence appear in the details but are not counted. With fewer than 3 comparable votes, no percentage is shown."),
-     T("Quem não tinha mandato na Câmara ou no Senado entre 2023 e 2026 aparece sem percentual. Isso não diz nada contra nem a favor da pessoa: só que não há voto para comparar.",
-       "Those without a seat in the Chamber or the Senate between 2023 and 2026 appear without a percentage. That says nothing for or against them: only that there is no vote to compare."),
-     T("Diferente das outras partes deste site, aqui há um percentual e uma ordem. Ele mede só concordância de votos nas perguntas escolhidas — não é nota, não avalia o mandato e não é recomendação de voto. Outras perguntas dariam outro resultado.",
-       "Unlike the other parts of this site, here there is a percentage and an order. It measures only agreement of votes on the chosen questions — it is not a grade, does not assess the term in office and is not a voting recommendation. Other questions would give another result."),
-     T("Fontes: candidaturas do TSE (consulta_cand_2026); votos nominais das APIs de dados abertos da Câmara dos Deputados e do Senado Federal. O site confere essas fontes uma vez por dia; o botão Atualizar busca a versão mais nova publicada aqui.",
-       "Sources: candidacies from the electoral court (TSE, consulta_cand_2026); roll-call votes from the open-data APIs of the Chamber of Deputies and the Federal Senate. The site checks these sources once a day; the Refresh button fetches the newest version published here."),
-     T("Como candidato e parlamentar são ligados: pelo nome civil completo e o estado (a Câmara não publica o CPF). Se um nome não bater, a pessoa aparece sem votos — avise se notar um caso assim.",
-       "How candidate and legislator are linked: by full legal name and state (the Chamber does not publish the CPF tax number). If a name does not match, the person appears without votes — let us know if you spot such a case.")
-    ].forEach(function(t){md.appendChild(mk("p",null,t));});
-    met.appendChild(md);w.appendChild(met);
+    var bu=mk("input");bu.type="search";bu.placeholder=T("Buscar nome, partido ou número","Search name, party or number");bu.value=this.busca;
+    bu.setAttribute("aria-label",T("Buscar candidato","Search candidate"));
+    bu.addEventListener("input",function(){self.busca=semAcento(bu.value.trim());self.mostra=40;self.pintaLista();});f.appendChild(bu);
+    var cl=mk("label");var cb=mk("input");cb.type="checkbox";cb.checked=s.so;cl.appendChild(cb);cl.appendChild(document.createTextNode(T("Só quem já passou pelo Congresso","Only those who have sat in Congress")));
+    cb.addEventListener("change",function(){s.so=cb.checked;self.mostra=40;self.salva();self.pintaLista();});f.appendChild(cl);
+    dir.appendChild(f);var ct=mk("div","cg-cont");ct.id="cg-cont";ct.setAttribute("aria-live","polite");dir.appendChild(ct);
+    var li=mk("div","cg-lista");li.id="cg-lista";dir.appendChild(li);
+    var mob=mk("div","cg-mob");mob.id="cg-mob";var ms=mk("span");var mb=mk("button",null,T("Ver lista ↓","See list ↓"));mb.type="button";
+    mb.addEventListener("click",function(){dir.scrollIntoView({behavior:"smooth",block:"start"});});mob.appendChild(ms);mob.appendChild(mb);esq.appendChild(mob);
+    if(!s.uf){li.appendChild(mk("div","cg-vazio",T("Escolha o seu estado lá em cima para ver os candidatos.","Choose your state at the top to see the candidates.")));return;}
+    ct.textContent=T("Carregando…","Loading…");
+    this.garanteUF(s.uf).then(function(){self.pintaLista();},function(){ct.textContent=self.falha();});
   },
-  pintaPautas:function(){
-    var self=this,s=this.estado(),box=$("cg-pautas");if(!box||!this.ind)return;box.textContent="";
-    this.ind.pautas.forEach(function(p){
-      var fs=mk("fieldset","cg-p"),tx=p[EN?"en":"pt"];
-      fs.appendChild(mk("legend",null,tx.t+" · "+p.prop));
-      fs.appendChild(mk("p","q",tx.q));
-      var op=mk("div","cg-op");
-      [["S",T("A favor","In favour"),""],["N",T("Contra","Against"),"nao"],["",T("Pular","Skip"),""]].forEach(function(o){
-        var b=mk("button",o[2],o[1]);b.type="button";b.setAttribute("aria-pressed",String((s.resp[p.id]||"")===o[0]));
-        b.addEventListener("click",function(){if(o[0])s.resp[p.id]=o[0];else delete s.resp[p.id];self.salva();
-          [].forEach.call(op.children,function(x){x.setAttribute("aria-pressed",String(x===b));});self.pintaN();self.pintaLista();});
-        op.appendChild(b);});
-      fs.appendChild(op);
-      var me=mk("div","cg-meta");
-      if(p.camara){me.appendChild(document.createTextNode(T("Câmara, ","Chamber, ")+dia(p.camara.data)+": "+p.camara.placar[0]+" "+T("sim","yes")+" × "+p.camara.placar[1]+" "+T("não","no")+" "));
-        if(p.camara.prop_id){var a=mk("a",null,T("ver ↗","see ↗"));a.href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao="+p.camara.prop_id;a.target="_blank";a.rel="noopener";me.appendChild(a);}
-        me.appendChild(mk("br"));}
-      if(p.senado){me.appendChild(document.createTextNode(T("Senado, ","Senate, ")+dia(p.senado.data)+": "+p.senado.placar[0]+" "+T("sim","yes")+" × "+p.senado.placar[1]+" "+T("não","no")+" "));
-        if(p.senado.materia){var b2=mk("a",null,T("ver ↗","see ↗"));b2.href="https://www25.senado.leg.br/web/atividade/materias/-/materia/"+p.senado.materia;b2.target="_blank";b2.rel="noopener";me.appendChild(b2);}}
-      fs.appendChild(me);box.appendChild(fs);});
-    this.pintaN();
-  },
-  pintaN:function(){var n=$("cg-nresp");if(!n||!this.ind)return;var s=this.estado();
-    var k=this.ind.pautas.filter(function(p){return s.resp[p.id];}).length;
-    n.textContent=k+" "+T("de","of")+" "+this.ind.pautas.length+" "+T("respondidas","answered");},
-  /* afinidade de um candidato: {i: iguais, c: comparáveis, pct: 0-100 ou null} */
-  afin:function(c){var s=this.estado(),i=0,n=0;if(!c.v)return {i:0,c:0,pct:null};
-    Object.keys(s.resp).forEach(function(k){var v=c.v[k];if(v==="S"||v==="N"){n++;if(v===s.resp[k])i++;}});
-    return {i:i,c:n,pct:n>=3?Math.round(100*i/n):null};},
-  pintaLista:function(){
-    var self=this,s=this.estado(),box=$("cg-lista"),ct=$("cg-cont");if(!box)return;box.textContent="";
-    if(!this.ind){ct.textContent="";return;}
-    if(!s.uf){ct.textContent="";box.appendChild(mk("div","cg-vazio",T("Escolha o seu estado no passo 1 para ver os candidatos.","Choose your state in step 1 to see the candidates.")));return;}
-    var d=this.uf[s.uf];if(!d){ct.textContent=T("Carregando…","Loading…");return;}
+  /* redesenha a lista logo depois de cada toque (agrupa toques seguidos) */
+  agenda:function(){var self=this;if(this.tReq)cancelAnimationFrame(this.tReq);this.tReq=requestAnimationFrame(function(){self.tReq=0;self.pintaLista();});},
+  ordenada:function(){var self=this,s=this.estado(),d=this.uf[s.uf];if(!d)return [];
     var L=d.c.filter(function(c){
       if(s.cargo!=="T"&&c.cg!==s.cargo)return false;
-      if(s.so&&!c.v)return false;
+      if(s.so&&!c.v&&!c.t)return false;
       if(self.busca&&semAcento(c.n+" "+c.p+" "+c.num).indexOf(self.busca)<0)return false;
-      return true;}).map(function(c){return {c:c,a:self.afin(c)};});
+      return true;}).map(function(c){return {c:c,a:self.geral(c)};});
     var nome=function(a,b){return a.c.n.localeCompare(b.c.n,"pt");};
-    if(s.ord==="af")L.sort(function(a,b){
-      var pa=a.a.pct==null?-1:a.a.pct,pb=b.a.pct==null?-1:b.a.pct;if(pb!==pa)return pb-pa;
-      var va=a.c.v?1:0,vb=b.c.v?1:0;if(vb!==va)return vb-va;
-      if(b.a.c!==a.a.c)return b.a.c-a.a.c;return nome(a,b);});
+    var val={geral:function(x){return x.a.g;},pos:function(x){return x.a.pos?x.a.pos.pct:null;},pri:function(x){return x.a.pri?x.a.pri.pct:null;}}[s.ord];
+    if(val)L.sort(function(a,b){var va=val(a),vb=val(b);va=va==null?-1:va;vb=vb==null?-1:vb;if(vb!==va)return vb-va;
+      var ma=(a.c.v||a.c.t)?1:0,mb=(b.c.v||b.c.t)?1:0;if(mb!==ma)return mb-ma;return nome(a,b);});
     else L.sort(nome);
-    var com=L.filter(function(x){return x.c.v;}).length,nr=Object.keys(s.resp).length;
-    ct.textContent=L.length+" "+T("candidaturas em ","candidacies in ")+UFN[s.uf]+" · "+com+" "+T("com votos registrados no Congresso","with votes recorded in Congress")+
-      (nr?"":" · "+T("responda o passo 2 para ver a afinidade","answer step 2 to see the affinity"));
+    return L;},
+  pintaLista:function(){
+    var self=this,s=this.estado(),box=$("cg-lista"),ct=$("cg-cont");if(!box)return;
+    var d=this.uf[s.uf];if(!d)return;
+    var L=this.ordenada();box.textContent="";
+    var nPos=Object.keys(s.pos).length;
+    ct.textContent=L.length+" "+T("candidaturas em ","candidacies in ")+UFN[s.uf]+
+      (!nPos&&!s.priOk?" · "+T("ordene as pautas ou escolha um lado em algum tema para ver a afinidade","rank the priorities or pick a side on a topic to see the affinity"):"");
+    var mob=$("cg-mob");if(mob){var tops=L.filter(function(x){return x.a.g!=null;}).slice(0,3);
+      mob.firstChild.textContent=tops.length?T("No topo: ","Top: ")+tops.map(function(x){return x.c.n+" "+x.a.g+"%";}).join(" · "):L.length+" "+T("candidaturas","candidacies");}
     if(!L.length){box.appendChild(mk("div","cg-vazio",T("Nenhum candidato com esse filtro.","No candidate matches this filter.")));return;}
     L.slice(0,this.mostra).forEach(function(x){box.appendChild(self.cartao(x.c,x.a));});
-    if(L.length>this.mostra){var b=mk("button","cg-bt cg-mais",T("Mostrar mais ","Show more ")+"("+(L.length-this.mostra)+")");b.type="button";
-      b.addEventListener("click",function(){self.mostra+=60;self.pintaLista();});box.appendChild(b);}
+    if(L.length>this.mostra){var b=mk("button","cg-mais",T("Mostrar mais ","Show more ")+"("+(L.length-this.mostra)+")");b.type="button";
+      b.addEventListener("click",function(){self.mostra+=40;self.pintaLista();});box.appendChild(b);}
   },
+  avatar:function(c,grande){var a=mk("span","cg-av"+(grande?" g":""));var h=7;for(var i=0;i<c.n.length;i++)h=(h*31+c.n.charCodeAt(i))%360;
+    a.style.setProperty("--h",h);a.appendChild(document.createTextNode(c.n.split(/\s+/).filter(Boolean).map(function(w){return w[0];}).slice(0,2).join("")));
+    /* foto oficial do TSE; se não vier, ficam as iniciais */
+    var im=mk("img");im.alt="";im.loading="lazy";im.referrerPolicy="no-referrer";
+    im.src="https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/"+c.id+"/"+c.uf;
+    im.addEventListener("error",function(){im.remove();});a.appendChild(im);return a;},
+  marcas:function(c,a){var w=mk("span");
+    if(c.v||c.t)w.appendChild(mk("span","cg-tg v",T("No Congresso desde ","In Congress since ")+(Math.min(c.dep_desde||9999,c.sen_desde||9999)<9999?Math.min(c.dep_desde||9999,c.sen_desde||9999):"2019")));
+    else w.appendChild(mk("span","cg-tg",T("Sem mandato no Congresso","No seat in Congress")));
+    if(a&&a.pos&&a.pos.proprio<a.pos.n)w.appendChild(mk("span","cg-tg e",a.pos.proprio?T("Posição em parte estimada","Position partly estimated"):T("Posição estimada","Position estimated")));
+    if(c.r)w.appendChild(mk("span","cg-tg r",c.r));
+    return w;},
   cartao:function(c,a){
-    var self=this,s=this.estado(),dt=mk("details","cg-c"),sm=mk("summary");
-    var nm=mk("div","cg-nm"),b=mk("b",null,c.n);
-    if(c.r)b.appendChild(mk("span","cg-res",c.r));
-    nm.appendChild(b);
-    nm.appendChild(mk("small",null,(c.cg==="S"?T("Senado","Senate"):T("Câmara","Chamber"))+" · "+c.p+" · nº "+c.num));
-    sm.appendChild(nm);
-    var af=mk("div","cg-af");
-    if(!c.v)af.appendChild(document.createTextNode(T("sem votos no Congresso","no votes in Congress")));
-    else if(a.pct!=null){af.appendChild(mk("b",null,a.pct+"%"));af.appendChild(document.createTextNode(a.i+" "+T("de","of")+" "+a.c+" "+T("votos iguais","matching votes")));
-      var br=mk("div","cg-bar");var i=mk("i");i.style.width=a.pct+"%";br.appendChild(i);af.appendChild(br);
-      af.setAttribute("aria-label",a.pct+"% "+T("de afinidade","affinity")+", "+a.i+" "+T("de","of")+" "+a.c);}
-    else af.appendChild(document.createTextNode(a.c?a.c+" "+T("voto(s) para comparar: poucos","vote(s) to compare: too few"):T("responda o passo 2","answer step 2")));
-    sm.appendChild(af);dt.appendChild(sm);
-    dt.addEventListener("toggle",function(){if(dt.open&&!dt.dataset.ok){dt.dataset.ok="1";dt.appendChild(self.ficha(c));}});
-    return dt;
+    var self=this,el=mk("div","cg-c");el.tabIndex=0;el.setAttribute("role","link");
+    el.setAttribute("aria-label",c.n+", "+CARGO_L[c.cg]+", "+c.p+(a.g!=null?", "+a.g+"% "+T("de afinidade","affinity"):""));
+    el.appendChild(this.avatar(c));
+    var nm=mk("div","cg-nm");nm.appendChild(mk("b",null,c.n));nm.appendChild(mk("small",null,CARGO[c.cg]+" · "+c.p+" · nº "+c.num));
+    nm.appendChild(this.marcas(c,a));el.appendChild(nm);
+    var pc=mk("div","cg-pc");
+    if(a.g!=null){pc.appendChild(mk("b",null,a.g+"%"));
+      var det=[];if(a.pos)det.push(T("posição ","position ")+a.pos.pct+"%");if(a.pri)det.push(T("pautas ","priorities ")+a.pri.pct+"%");
+      pc.appendChild(mk("small",null,det.join(" · ")));var br=mk("div","cg-bar");var i=mk("i");i.style.width=a.g+"%";br.appendChild(i);pc.appendChild(br);}
+    else pc.appendChild(mk("small",null,c.v||c.t?T("responda ao lado","answer alongside"):T("sem histórico para comparar","no record to compare")));
+    el.appendChild(pc);
+    var ic=mk("div","cg-ic");
+    var fv=mk("button","fav","★");fv.type="button";fv.setAttribute("aria-pressed",String(this.ehFav(c)));fv.setAttribute("aria-label",T("Favorito","Favourite"));fv.title=T("Guardar nos favoritos","Save to favourites");
+    fv.addEventListener("click",function(e){e.stopPropagation();self.alternaFav(c);fv.setAttribute("aria-pressed",String(self.ehFav(c)));});
+    var cp=mk("button",null,"⇄");cp.type="button";cp.setAttribute("aria-pressed",String(this.ehCmp(c)));cp.setAttribute("aria-label",T("Comparar","Compare"));cp.title=T("Pôr na comparação","Add to comparison");
+    cp.addEventListener("click",function(e){e.stopPropagation();self.alternaCmp(c);cp.setAttribute("aria-pressed",String(self.ehCmp(c)));});
+    ic.appendChild(fv);ic.appendChild(cp);el.appendChild(ic);
+    var abre=function(){vai("#congresso/ficha/"+c.uf+"/"+c.id);};
+    el.addEventListener("click",abre);el.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target===el){e.preventDefault();abre();}});
+    return el;},
+
+  /* ===== Ficha do candidato ===== */
+  telaFicha:function(corpo,uf,id){
+    var self=this,w=mk("main","wrap");w.style.paddingBlock="18px 40px";corpo.appendChild(w);
+    var volta=mk("button","cg-lim","← "+T("Voltar","Back"));volta.type="button";volta.style.fontSize="14px";
+    volta.addEventListener("click",function(){if(history.length>1)history.back();else vai("#congresso/afinidade");});w.appendChild(volta);
+    this.garanteUF(uf).then(function(){var c=self.acha(uf,id);
+      if(!c){w.appendChild(mk("div","cg-vazio",T("Não achei esta candidatura.","Candidacy not found.")));return;}
+      self.ficha(w,c);},function(){w.appendChild(mk("div","cg-vazio",self.falha()));});
   },
-  ficha:function(c){
-    var s=this.estado(),d=mk("div","cg-d");
-    if(!c.v){d.appendChild(mk("p",null,T("Não encontramos mandato desta pessoa na Câmara ou no Senado entre 2023 e 2026 (ou o nome não bateu com o cadastro do Congresso). Não há voto para comparar.",
-      "We found no seat for this person in the Chamber or the Senate between 2023 and 2026 (or the name did not match the Congress records). There is no vote to compare.")));return d;}
-    var tb=mk("table"),th=mk("tr");[T("Votação","Vote"),T("Você","You"),T("Candidato","Candidate")].forEach(function(t){th.appendChild(mk("th",null,t));});
-    var thead=mk("thead");thead.appendChild(th);tb.appendChild(thead);var tbody=mk("tbody");
-    this.ind.pautas.forEach(function(p){
-      var tr=mk("tr"),r=s.resp[p.id],v=c.v[p.id];
-      tr.appendChild(mk("td",null,p[EN?"en":"pt"].t));
-      tr.appendChild(mk("td","cg-v"+(r?"":" cg-nd"),r==="S"?T("A favor","In favour"):r==="N"?T("Contra","Against"):"—"));
-      var cl="cg-v";if(!v)cl+=" cg-nd";else if(r&&(v==="S"||v==="N"))cl+=(v===r?" cg-ok":" cg-dif");
-      var tv=v?VOTO[v]:T("não votou","did not vote");
-      if(r&&(v==="S"||v==="N"))tv+=v===r?" ✓":" ✗";
-      tr.appendChild(mk("td",cl,tv));tbody.appendChild(tr);});
-    tb.appendChild(tbody);d.appendChild(tb);
-    d.appendChild(mk("p",null,T("\"Não votou\" = ausente, de licença ou sem mandato naquela data. ✓ igual ao seu, ✗ diferente.",
-      "\"Did not vote\" = absent, on leave or not in office on that date. ✓ same as yours, ✗ different.")));
-    var lk=mk("p");
-    if(c.dep){var a=mk("a",null,T("Perfil na Câmara ↗","Chamber profile ↗"));a.href="https://www.camara.leg.br/deputados/"+c.dep;a.target="_blank";a.rel="noopener";lk.appendChild(a);}
-    if(c.sen){if(c.dep)lk.appendChild(document.createTextNode(" · "));var b=mk("a",null,T("Perfil no Senado ↗","Senate profile ↗"));b.href="https://www25.senado.leg.br/web/senadores/senador/-/perfil/"+c.sen;b.target="_blank";b.rel="noopener";lk.appendChild(b);}
-    d.appendChild(lk);return d;
+  ficha:function(w,c){
+    var self=this,s=this.estado(),ind=this.ind,a=this.geral(c);
+    var hd=mk("div","cg-fh");hd.appendChild(this.avatar(c,true));var nm=mk("div");nm.style.flex="1";
+    nm.appendChild(mk("div","eyebrow",CARGO_L[c.cg]+" · "+UFN[c.uf]));nm.appendChild(mk("h1",null,c.n));
+    nm.appendChild(mk("p",null,c.p+" · "+T("número ","number ")+c.num));nm.appendChild(this.marcas(c,a));hd.appendChild(nm);
+    var ic=mk("div","cg-btns");ic.style.marginTop="0";
+    var fv=mk("button","cg-btn sec","");fv.type="button";var pf=function(){fv.textContent=self.ehFav(c)?"★ "+T("Nos favoritos","In favourites"):"☆ "+T("Guardar","Save");};pf();
+    fv.addEventListener("click",function(){self.alternaFav(c);pf();});
+    var cp=mk("button","cg-btn sec","⇄ "+T("Comparar","Compare"));cp.type="button";cp.addEventListener("click",function(){if(!self.ehCmp(c))if(!self.alternaCmp(c))return;vai("#congresso/comparar");});
+    ic.appendChild(fv);ic.appendChild(cp);hd.appendChild(ic);w.appendChild(hd);
+    /* currículo */
+    var cv=mk("div","cg-cv");
+    var mand=[];if(c.dep)mand.push(T("Câmara desde ","Chamber since ")+(c.dep_desde||"2019"));if(c.sen)mand.push(T("Senado desde ","Senate since ")+(c.sen_desde||"2019"));
+    [[T("Idade na eleição","Age on election day"),c.idade!=null?c.idade+T(" anos"," years"):"—"],[T("Escolaridade","Education"),c.esc||"—"],
+     [T("Ocupação declarada","Declared occupation"),c.ocup||"—"],[T("Patrimônio declarado ao TSE","Assets declared to the court"),reais(c.bens)],
+     [T("Congresso","Congress"),mand.length?mand.join(" · "):T("sem mandato desde 2019","no seat since 2019")]]
+      .forEach(function(x){var d=mk("div");d.appendChild(mk("small",null,x[0]));d.appendChild(mk("span",null,x[1]));cv.appendChild(d);});
+    w.appendChild(cv);
+    var lk=mk("p");lk.style.fontSize="14px";
+    if(c.dep)lk.appendChild(link(T("Perfil na Câmara ↗","Chamber profile ↗"),"https://www.camara.leg.br/deputados/"+c.dep));
+    if(c.sen){if(c.dep)lk.appendChild(document.createTextNode(" · "));lk.appendChild(link(T("Perfil no Senado ↗","Senate profile ↗"),"https://www25.senado.leg.br/web/senadores/senador/-/perfil/"+c.sen));}
+    if(lk.firstChild)w.appendChild(lk);
+    /* afinidade */
+    var sa=mk("section","cg-s");sa.appendChild(mk("h2",null,T("Afinidade com você","Affinity with you")));
+    var g=mk("div","cg-cards");
+    [[T("Geral","Overall"),a.g,T("média das duas abaixo","average of the two below")],
+     [T("Posicionamento","Political position"),a.pos&&a.pos.pct,a.pos?a.pos.n+T(" tema(s) comparado(s), "," topic(s) compared, ")+a.pos.proprio+T(" pelo voto dele(a)"," by their own vote"):T("escolha um lado em algum tema","pick a side on some topic")],
+     [T("Prioridades","Priorities"),a.pri&&a.pri.pct,a.pri?a.pri.n+T(" propostas desde 2019"," bills since 2019"):(c.t?T("mexa na ordem das pautas","change the order of priorities"):T("sem propostas registradas","no bills on record"))]]
+      .forEach(function(x){var d=mk("div","cg-card");d.appendChild(mk("small",null,x[0]));d.appendChild(mk("div","cg-num",x[1]!=null?x[1]+"%":"—"));d.appendChild(mk("p",null,x[2]));g.appendChild(d);});
+    sa.appendChild(g);w.appendChild(sa);
+    /* posicionamento por eixo */
+    var sp=mk("section","cg-s");sp.appendChild(mk("h2",null,T("Posicionamento, tema a tema","Position, topic by topic")));
+    sp.appendChild(mk("p",null,T("Bolinha escura: o candidato. Bolinha verde: você. Esquerda = lado A, direita = lado B.","Dark dot: the candidate. Green dot: you. Left = side A, right = side B.")));
+    ind.eixos.forEach(function(e){var tx=EN?e.en:e.pt,c1=mk("div","cg-card");c1.style.marginTop="10px";
+      c1.appendChild(mk("h3",null,tx.t));c1.appendChild(self.escala(c,e));
+      var p=self.pos(c,e.id);
+      c1.appendChild(mk("p",null,!p?T("Sem voto e sem partido com bancada para estimar.","No vote and no party caucus to estimate from."):
+        p.f==="voto"?T("Pelo voto dele(a) em ","From their vote on ")+p.n+T(" votação(ões)."," roll call(s)."):
+        p.f==="geral"?T("Estimativa: não votou neste tema; usamos o padrão geral dos ","Estimate: did not vote on this topic; we used the overall pattern of their ")+p.n+T(" votos dele(a)."," votes."):
+        T("Estimativa pela média da bancada do partido ","Estimate from the average of the party caucus ")+c.p+T(" (não é voto da pessoa)."," (not this person's vote).")));
+      if(e.votos.length&&c.v){var ul=mk("ul","cg-vl");
+        e.votos.forEach(function(v){var k=v.casa==="senado"?"s"+v.cod:"c"+v.id,cod=c.v[k];if(!cod)return;var li=mk("li");
+          li.appendChild(document.createTextNode((EN?v.en:v.pt)+" — "));
+          var sp2=mk("span",cod==="S"||cod==="N"?"ok":"nd",cod==="S"||cod==="N"?T("votou ","voted ")+VOTO[cod]+" ("+T("conta para o lado ","counts for side ")+((cod==="S")===(v.sim==="A")?"A":"B")+")":VOTO[cod]);
+          li.appendChild(sp2);ul.appendChild(li);});
+        if(ul.firstChild)c1.appendChild(ul);}
+      sp.appendChild(c1);});
+    w.appendChild(sp);
+    /* prioridades */
+    var sq=mk("section","cg-s");sq.appendChild(mk("h2",null,T("Do que tratam as propostas","What the bills are about")));
+    if(!c.t)sq.appendChild(mk("div","cg-vazio",T("Nenhuma proposta de lei (PL, PLP ou PEC) registrada desde 2019 em nome desta pessoa.","No bill (PL, PLP or PEC) on record under this person's name since 2019.")));
+    else{sq.appendChild(mk("p",null,c.t.n+T(" propostas de lei ou de emenda desde 2019, na ordem das suas prioridades. Uma proposta pode tocar mais de uma pauta."," bills or amendments since 2019, in the order of your priorities. One bill can touch more than one priority.")));
+      var pm={};ind.pautas.forEach(function(p){pm[p.id]=p;});var gr=mk("div","cg-pb");
+      s.pri.forEach(function(id,i){var n=c.t.p[id]||0,pc=Math.round(100*n/c.t.n);
+        gr.appendChild(mk("span",null,(i+1)+". "+(EN?pm[id].en:pm[id].pt)));var br=mk("div","cg-bar");var ii=mk("i");ii.style.width=pc+"%";br.appendChild(ii);gr.appendChild(br);
+        gr.appendChild(mk("span","q",n+" · "+pc+"%"));
+        var ex=c.t.x&&c.t.x[id];if(ex&&ex.length){var e2=mk("div","cg-ex");e2.appendChild(document.createTextNode(T("Ex.: ","E.g.: ")));
+          ex.forEach(function(x,j){if(j)e2.appendChild(document.createTextNode(", "));
+            e2.appendChild(link(x[0],x[1].charAt(0)==="c"?"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao="+x[1].slice(1):"https://www25.senado.leg.br/web/atividade/materias/-/materia/"+x[1].slice(1)));});
+          gr.appendChild(e2);}});
+      sq.appendChild(gr);}
+    w.appendChild(sq);
+    /* votações marcantes */
+    if(c.v){var sd=mk("section","cg-s");sd.appendChild(mk("h2",null,T("Votações marcantes","Landmark votes")));
+      sd.appendChild(mk("p",null,T("Só para informação: não entram na conta da afinidade.","For information only: they are not part of the affinity count.")));
+      var ul2=mk("ul","cg-vl");ind.destaques.forEach(function(d){[["camara","c"],["senado","s"]].forEach(function(cs){var v=d[cs[0]];if(!v)return;
+        var cod=c.v[cs[1]+(cs[0]==="senado"?v.cod:v.id)];if(!cod)return;var li=mk("li");
+        li.appendChild(document.createTextNode((EN?d.en:d.pt)+" ("+d.prop+", "+(cs[0]==="senado"?T("Senado","Senate"):T("Câmara","Chamber"))+") — "));
+        li.appendChild(mk("span",cod==="S"||cod==="N"?"ok":"nd",VOTO[cod]));ul2.appendChild(li);});});
+      if(ul2.firstChild){sd.appendChild(ul2);w.appendChild(sd);}}
+  },
+  /* régua de -1 (A) a +1 (B) com o candidato e a pessoa */
+  escala:function(c,e){var s=this.estado(),wr=mk("div");var tx=EN?e.en:e.pt;
+    var esc=mk("div","cg-esc"),p=this.pos(c,e.id),u=s.pos[e.id];
+    if(u){var iu=mk("i","u");iu.style.left=(50+u*50)+"%";iu.title=T("Você","You");esc.appendChild(iu);}
+    if(p){var ic=mk("i","c");ic.style.left=(50+p.s*50)+"%";if(p.f!=="voto")ic.style.opacity=".55";var em=mk("em",null,p.f==="voto"?T("voto","vote"):T("estimativa","estimate"));em.style.left=ic.style.left;esc.appendChild(em);esc.appendChild(ic);}
+    esc.setAttribute("role","img");esc.setAttribute("aria-label",!p?T("sem dado","no data"):T("Candidato ","Candidate ")+(p.s<-0.33?T("mais perto do lado A","closer to side A"):p.s>0.33?T("mais perto do lado B","closer to side B"):T("no meio","in the middle")));
+    wr.appendChild(esc);var l=mk("div","cg-esc-l");l.appendChild(mk("span",null,"A · "+tx.a));l.appendChild(mk("span",null,"B · "+tx.b));wr.appendChild(l);return wr;},
+
+  /* ===== Favoritos ===== */
+  telaFav:function(corpo){
+    var self=this,s=this.estado();
+    this.cab(corpo,T("Congresso 2026 · Favoritos","Congress 2026 · Favourites"),T("Seus favoritos","Your favourites"),
+      T("Quem você marcou com ★ fica aqui, neste aparelho. Daqui dá para abrir o currículo, comparar e montar a sua cola para a urna.",
+        "Whoever you starred ★ stays here, on this device. From here you can open their record, compare them and build your ballot memo."));
+    var w=mk("main","wrap");w.style.paddingBottom="40px";corpo.appendChild(w);
+    if(!s.fav.length){var v=mk("div","cg-vazio",T("Ainda não há favoritos. Na aba Afinidade, toque ★ ao lado de quem quiser acompanhar.","No favourites yet. In the Affinity tab, tap ★ next to whoever you want to follow."));
+      var b=mk("button","cg-btn",T("Ir para Afinidade →","Go to Affinity →"));b.type="button";b.style.marginTop="12px";b.addEventListener("click",function(){vai("#congresso/afinidade");});
+      v.appendChild(mk("br"));v.appendChild(b);w.appendChild(v);return;}
+    this.resolve(s.fav).then(function(L){
+      /* cola: até 2 ao Senado e 1 à Câmara */
+      var sc=mk("section","cg-s");sc.appendChild(mk("h2",null,T("Sua cola para a urna","Your ballot memo")));
+      sc.appendChild(mk("p",null,T("Marque \"Na cola\" nos favoritos abaixo: até 2 para o Senado e 1 para a Câmara. É só um lembrete seu — confira sempre o número na urna.",
+        "Tick \"On memo\" in the favourites below: up to 2 for the Senate and 1 for the Chamber. It is only your reminder — always check the number at the ballot box.")));
+      var cola=mk("div","cg-cola");sc.appendChild(cola);
+      var pr=mk("button","cg-btn sec","🖨 "+T("Imprimir","Print"));pr.type="button";pr.style.marginTop="10px";pr.addEventListener("click",function(){window.print();});sc.appendChild(pr);
+      function pintaCola(){cola.textContent="";cola.appendChild(mk("h3",null,T("Eleição 2026 · Congresso","2026 election · Congress")));
+        [["S",2],["F",1]].forEach(function(k){var ids=s.cola[k[0]]||[];
+          for(var i=0;i<k[1];i++){var c=null,ref=ids[i];if(ref){var pp=ref.split("/");c=self.acha(pp[0],pp[1]);}
+            var lin=mk("div","lin");lin.appendChild(mk("span",null,CARGO_L[k[0]]+(k[1]>1?" "+(i+1):"")+(c?": "+c.n+" ("+c.p+")":"")));lin.appendChild(mk("b",null,c?c.num:"—"));cola.appendChild(lin);}});}
+      pintaCola();w.appendChild(sc);
+      ["S","F"].forEach(function(k){var Lk=L.filter(function(c){return c.cg===k;});if(!Lk.length)return;
+        var sx=mk("section","cg-s");sx.appendChild(mk("h2",null,CARGO[k]+" ("+Lk.length+")"));var lst=mk("div","cg-lista");
+        Lk.forEach(function(c){var el=self.cartao(c,self.geral(c));
+          var lb=mk("label");lb.style.cssText="display:flex;gap:6px;align-items:center;font-size:12.5px;white-space:nowrap";lb.addEventListener("click",function(e){e.stopPropagation();});
+          var ch=mk("input");ch.type="checkbox";var ref=c.uf+"/"+c.id;ch.checked=(s.cola[k]||[]).indexOf(ref)>=0;
+          ch.addEventListener("change",function(){var arr=s.cola[k]||[];
+            if(ch.checked){var max=k==="S"?2:1;if(arr.length>=max){if(max===1){arr=[];[].forEach.call(lst.querySelectorAll("input[type=checkbox]"),function(x){if(x!==ch)x.checked=false;});}
+                else{ch.checked=false;aviso(T("Para o Senado são 2 nomes. Desmarque um antes.","The Senate takes 2 names. Untick one first."));return;}}arr.push(ref);}
+            else arr=arr.filter(function(x){return x!==ref;});
+            s.cola[k]=arr;self.salva();pintaCola();});
+          lb.appendChild(ch);lb.appendChild(document.createTextNode(T("Na cola","On memo")));el.insertBefore(lb,el.lastChild);lst.appendChild(el);});
+        sx.appendChild(lst);w.appendChild(sx);});
+    });
+  },
+
+  /* ===== Comparar ===== */
+  telaCmp:function(corpo){
+    var self=this,s=this.estado(),ind=this.ind;
+    this.cab(corpo,T("Congresso 2026 · Comparar","Congress 2026 · Compare"),T("Lado a lado","Side by side"),
+      T("Até três candidaturas, de qualquer estado. Toque ⇄ na lista ou na ficha para pôr alguém aqui.","Up to three candidacies, from any state. Tap ⇄ in the list or on a record to add someone here."));
+    var w=mk("main","wrap");w.style.paddingBottom="40px";corpo.appendChild(w);
+    this.resolve(s.cmp).then(function(L){
+      var ch=mk("div","cg-chips");L.forEach(function(c){var sp=mk("span",null,c.n);var x=mk("button",null,"×");x.type="button";x.setAttribute("aria-label",T("Tirar ","Remove ")+c.n);
+        x.addEventListener("click",function(){self.alternaCmp(c);self.abre();});sp.appendChild(x);ch.appendChild(sp);});
+      if(s.fav.length&&L.length<3){var sel=mk("select");sel.setAttribute("aria-label",T("Adicionar dos favoritos","Add from favourites"));sel.appendChild(mk("option",null,T("+ Adicionar dos favoritos","+ Add from favourites"))).value="";
+        self.resolve(s.fav).then(function(F){F.forEach(function(c){if(self.ehCmp(c))return;var o=mk("option",null,c.n+" ("+c.p+", "+CARGO[c.cg]+")");o.value=c.uf+"/"+c.id;sel.appendChild(o);});});
+        sel.addEventListener("change",function(){if(!sel.value)return;var pp=sel.value.split("/");var c=self.acha(pp[0],pp[1]);if(c){self.alternaCmp(c);self.abre();}});ch.appendChild(sel);}
+      w.appendChild(ch);
+      if(!L.length){w.appendChild(mk("div","cg-vazio",T("Nada para comparar ainda. Toque ⇄ em algum candidato na aba Afinidade ou nos Favoritos.","Nothing to compare yet. Tap ⇄ on a candidate in the Affinity tab or in Favourites.")));return;}
+      var A=L.map(function(c){return self.geral(c);});
+      var box=mk("div","cg-cmp");var tb=mk("table");var th=mk("thead");var tr=mk("tr");tr.appendChild(mk("th",null,""));
+      L.forEach(function(c){var h=mk("th");h.scope="col";var bt=mk("button","cg-lim",c.n);bt.type="button";bt.style.fontWeight="600";bt.addEventListener("click",function(){vai("#congresso/ficha/"+c.uf+"/"+c.id);});
+        h.appendChild(self.avatar(c));h.appendChild(mk("br"));h.appendChild(bt);tr.appendChild(h);});th.appendChild(tr);tb.appendChild(th);
+      var tbd=mk("tbody");
+      function linha(rot,fn){var r=mk("tr");var h=mk("th",null,rot);h.scope="row";r.appendChild(h);L.forEach(function(c,i){var td=mk("td");var v=fn(c,A[i]);if(v instanceof Node)td.appendChild(v);else td.textContent=v==null?"—":v;r.appendChild(td);});tbd.appendChild(r);}
+      linha(T("Cargo","Office"),function(c){return CARGO_L[c.cg]+" · "+c.uf;});
+      linha(T("Partido e número","Party and number"),function(c){return c.p+" · "+c.num;});
+      linha(T("Idade","Age"),function(c){return c.idade!=null?c.idade+T(" anos"," yrs"):null;});
+      linha(T("Escolaridade","Education"),function(c){return c.esc;});
+      linha(T("Ocupação","Occupation"),function(c){return c.ocup;});
+      linha(T("Patrimônio","Assets"),function(c){return reais(c.bens);});
+      linha(T("Congresso","Congress"),function(c){var m=[];if(c.dep)m.push(T("Câmara desde ","Chamber since ")+(c.dep_desde||2019));if(c.sen)m.push(T("Senado desde ","Senate since ")+(c.sen_desde||2019));return m.length?m.join(" · "):T("sem mandato","no seat");});
+      linha(T("Afinidade geral","Overall affinity"),function(c,a){return a.g!=null?a.g+"%":null;});
+      linha(T("Posicionamento","Position"),function(c,a){return a.pos?a.pos.pct+"%":null;});
+      linha(T("Prioridades","Priorities"),function(c,a){return a.pri?a.pri.pct+"%":null;});
+      linha(T("Propostas desde 2019","Bills since 2019"),function(c){return c.t?String(c.t.n):"0";});
+      ind.eixos.forEach(function(e){linha((EN?e.en:e.pt).t,function(c){return self.escala(c,e);});});
+      var pm={};ind.pautas.forEach(function(p){pm[p.id]=p;});
+      linha(T("Pautas mais frequentes","Most frequent priorities"),function(c){if(!c.t)return null;
+        return Object.keys(c.t.p).sort(function(a,b){return c.t.p[b]-c.t.p[a];}).slice(0,3).map(function(k){return (EN?pm[k].en:pm[k].pt)+" ("+Math.round(100*c.t.p[k]/c.t.n)+"%)";}).join("; ");});
+      tb.appendChild(tbd);box.appendChild(tb);w.appendChild(box);
+    });
+  },
+
+  /* ===== Método ===== */
+  telaMet:function(corpo){
+    var ind=this.ind;
+    this.cab(corpo,T("Congresso 2026 · Método","Congress 2026 · Method"),T("Como cada número é feito","How each number is made"),
+      T("Tudo o que aparece nesta parte do site sai de dados públicos e de regras escritas aqui. Se uma regra estiver errada, dá para apontar exatamente onde.",
+        "Everything in this part of the site comes from public data and from rules written down here. If a rule is wrong, you can point to exactly where."));
+    var w=mk("main","wrap cg-met");w.style.paddingBottom="40px";corpo.appendChild(w);
+    function sec(t,paras){var s=mk("section","cg-s");s.appendChild(mk("h2",null,t));(paras||[]).forEach(function(p){s.appendChild(mk("p",null,p));});w.appendChild(s);return s;}
+    sec(T("1. De onde vêm os dados","1. Where the data comes from"),[
+      T("Candidaturas, idade, escolaridade, ocupação e patrimônio: arquivos de dados abertos do TSE (consulta_cand_2026 e bem_candidato_2026). Votos nominais e propostas: APIs de dados abertos da Câmara dos Deputados e do Senado Federal. Foto: a do registro no TSE.",
+        "Candidacies, age, education, occupation and assets: the electoral court's open-data files (consulta_cand_2026 and bem_candidato_2026). Roll-call votes and bills: the open-data APIs of the Chamber of Deputies and the Federal Senate. Photo: the one in the electoral court record."),
+      T("O site busca tudo de novo uma vez por dia. Dados de ","The site fetches everything again once a day. Data from ")+dia(ind.atualizado_em)+".",
+      T("Candidato e parlamentar são ligados pelo nome civil completo e o estado (a Câmara não publica o CPF). Se não bater, tenta o nome civil em outro estado (quem mudou de estado para concorrer) e o nome de urna — sempre só quando há uma única pessoa com aquele nome. Na dúvida, a pessoa fica sem histórico: melhor sem dado do que com o dado de outra pessoa.",
+        "Candidate and legislator are linked by full legal name and state (the Chamber does not publish the CPF tax number). If that fails, it tries the legal name in another state (people who moved to run) and the ballot name — always only when a single person has that name. When in doubt, the person is left without a record: better no data than someone else's data.")]);
+    var s2=sec(T("2. Prioridades: do que tratam as propostas","2. Priorities: what the bills are about"),[
+      T("Contamos as propostas de lei e de emenda à Constituição (PL, PLP e PEC) apresentadas desde 2019 por cada parlamentar, como autor ou coautor. Cada proposta entra em uma ou mais pautas:",
+        "We count the bills and constitutional amendments (PL, PLP and PEC) filed since 2019 by each legislator, as author or co-author. Each bill goes into one or more priorities:")]);
+    var tw=mk("div","tw"),tb=mk("table"),hr=mk("tr");[T("Pauta","Priority"),T("Câmara: tema oficial da própria Câmara","Chamber: the Chamber's own official topic"),T("Palavras procuradas no resumo (Senado; e Câmara quando indicado)","Words searched in the summary (Senate; and Chamber where shown)")].forEach(function(t){hr.appendChild(mk("th",null,t));});tb.appendChild(hr);
+    ind.pautas.forEach(function(p){var r=mk("tr");r.appendChild(mk("td",null,EN?p.en:p.pt));
+      r.appendChild(mk("td",null,(p.temas_camara||[]).length?p.temas_camara.join("; "):T("sem tema oficial: usa as palavras ao lado","no official topic: uses the words alongside")));
+      r.appendChild(mk("td",null,(p.palavras_camara?T("Câmara: ","Chamber: ")+p.palavras_camara.replace(/\\b/g,"").split("|").join(", ")+" · ":"")+T("Senado: ","Senate: ")+p.palavras.replace(/\\b/g,"").split("|").join(", ")));tb.appendChild(r);});
+    tw.appendChild(tb);s2.appendChild(tw);
+    s2.appendChild(mk("p",null,T("A nota de prioridades de um candidato: cada proposta vale o peso da pauta em que você a colocou — a 1ª vale 1,0, a 2ª 0,9 … a 10ª 0,1 — e somamos tudo dividido pelo total de propostas dele. 100% seria ter todas as propostas na sua pauta nº 1. Propostas sobre outros assuntos (homenagens, datas, obras locais) não somam nada.",
+      "A candidate's priorities score: each bill is worth the weight of the priority where you placed it — 1st is worth 1.0, 2nd 0.9 … 10th 0.1 — and we add everything up divided by their total number of bills. 100% would mean all their bills fall under your no. 1 priority. Bills on other subjects (tributes, commemorative dates, local works) add nothing.")));
+    s2.appendChild(mk("p",null,T("Mede foco, não qualidade nem posição: quem propõe muito sobre saúde pode propor coisas que você aprovaria ou não. Precisa de pelo menos 3 propostas para virar nota.",
+      "It measures focus, not quality or stance: someone who files many health bills may propose things you would or would not support. At least 3 bills are needed for a score.")));
+    var s3=sec(T("3. Posicionamento: como o voto vira lado A ou B","3. Position: how a vote becomes side A or B"),[
+      T("Cada tema usa votações nominais reais. Para cada uma está escrito para qual lado conta o voto Sim; o Não conta para o outro lado. Abstenção, obstrução e ausência não contam. A posição do candidato no tema é a média: −1 = sempre lado A, +1 = sempre lado B.",
+        "Each topic uses real roll-call votes. For each one we state which side a Yes vote counts for; a No counts for the other side. Abstention, obstruction and absence do not count. The candidate's position on the topic is the average: −1 = always side A, +1 = always side B."),
+      T("Quando a pessoa não votou em nenhuma votação daquele tema, usamos uma estimativa, sempre marcada na tela: (1) o padrão geral dos votos dela em todos os temas, se tiver pelo menos 5 votos; senão (2) a média da bancada do partido atual dela nesses votos. A estimativa pelo partido não é voto da pessoa.",
+        "When the person did not vote on any roll call for that topic, we use an estimate, always flagged on screen: (1) the overall pattern of their votes across all topics, if they have at least 5 votes; otherwise (2) the average of their current party's caucus on those votes. The party estimate is not the person's vote."),
+      T("A nota de posicionamento: em cada tema em que você escolheu um lado, a semelhança vai de 100% (mesmo lado, sempre) a 0% (lado oposto, sempre); fazemos a média dos temas. Temas em Neutro / Não sei ficam de fora.",
+        "The position score: on each topic where you picked a side, similarity runs from 100% (same side, always) to 0% (opposite side, always); we average the topics. Topics on Neutral / Not sure are left out.")]);
+    ind.eixos.forEach(function(e){var tx=EN?e.en:e.pt;var d=mk("div","cg-card");d.style.marginTop="10px";d.appendChild(mk("h3",null,tx.t));
+      d.appendChild(mk("p",null,"A · "+tx.a));d.appendChild(mk("p",null,"B · "+tx.b));
+      if(!e.votos.length)d.appendChild(mk("p",null,T("Não há, desde 2019, votação nominal em plenário que separe claramente os dois lados deste tema. Aqui todo mundo aparece por estimativa.","Since 2019 there has been no floor roll call that clearly separates the two sides of this topic. Here everyone appears as an estimate.")));
+      else{var ul=mk("ul");e.votos.forEach(function(v){var li=mk("li");
+        li.appendChild(document.createTextNode((EN?v.en:v.pt)+" — "+v.prop+", "+(v.casa==="senado"?T("Senado","Senate"):T("Câmara","Chamber"))+", "+dia(v.data)+": "+v.placar[0]+" "+T("sim","yes")+" × "+v.placar[1]+" "+T("não","no")+". "+T("Sim conta para o lado ","Yes counts for side ")+v.sim+". "));
+        var u=v.casa==="senado"?(v.materia?"https://www25.senado.leg.br/web/atividade/materias/-/materia/"+v.materia:null):(v.prop_id?"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao="+v.prop_id:null);
+        if(u)li.appendChild(link(T("ver ↗","see ↗"),u));ul.appendChild(li);});d.appendChild(ul);}
+      s3.appendChild(d);});
+    sec(T("4. Afinidade geral","4. Overall affinity"),[
+      T("É a média simples da nota de posicionamento e da nota de prioridades, quando as duas existem; senão, a que existir. Sem nenhuma das duas, o candidato aparece sem percentual e vai para o fim da lista.",
+        "It is the simple average of the position score and the priorities score when both exist; otherwise, whichever exists. With neither, the candidate shows no percentage and goes to the end of the list.")]);
+    sec(T("5. Limites — leia antes de confiar no número","5. Limits — read before trusting the number"),[
+      T("Poucas votações não resumem um mandato. Muitas decisões importantes são simbólicas (sem registro de quem votou como) ou acontecem em comissões.","A few roll calls do not sum up a term in office. Many important decisions are symbolic (no record of who voted how) or happen in committees."),
+      T("Voto acompanha muito a orientação do partido. Mudanças de partido e de posição ao longo do tempo aparecem misturadas na média.","Votes follow party instructions a lot. Party switches and changes of position over time show up blended in the average."),
+      T("Classificar por tema e por palavra erra: uma proposta pode cair numa pauta por uma palavra solta no resumo.","Classifying by topic and keyword makes mistakes: a bill can land in a priority because of a stray word in its summary."),
+      T("Quem nunca teve mandato no Congresso não tem prioridades medidas e só tem posicionamento estimado pelo partido. Isso não é nem a favor nem contra a pessoa.","Those who never sat in Congress have no measured priorities and only a party-based position estimate. That is neither for nor against them."),
+      T("O percentual não é nota de mandato nem recomendação de voto. Outras votações ou outras pautas dariam outro resultado.","The percentage is not a grade of their term nor a voting recommendation. Other roll calls or other priorities would give a different result.")]);
+    var s6=sec(T("6. Votações marcantes (fora da conta)","6. Landmark votes (not counted)"),[T("Aparecem na ficha de cada candidato só para informação:","They appear on each candidate's record for information only:")]);
+    var ul=mk("ul");ind.destaques.forEach(function(d){ul.appendChild(mk("li",null,(EN?d.en:d.pt)+" — "+d.prop));});s6.appendChild(ul);
   }
 };
+
+/* aviso curto (usa o do site se houver) */
+function aviso(t){var e=$("cg-aviso");if(!e){e=mk("div","cg-aviso");e.id="cg-aviso";e.setAttribute("role","status");document.body.appendChild(e);}
+  e.textContent=t;e.classList.add("on");clearTimeout(aviso.t);aviso.t=setTimeout(function(){e.classList.remove("on");},3600);}
 
 /* ---------------- liga tudo ---------------- */
 function aplica(){

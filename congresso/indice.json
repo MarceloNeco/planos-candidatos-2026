@@ -1,29 +1,670 @@
 {
- "atualizado_em": "2026-10-02T18:02:30Z",
- "conferido_em": "2026-10-02T18:03:04Z",
- "impressao": "6c18e52e6c2e4995f29d8fd0d0d8a8707f42f81ac504596348f600f6af406a63",
+ "atualizado_em": "2026-10-02T19:12:11Z",
+ "conferido_em": "2026-10-02T19:12:11Z",
+ "impressao": "90a3bbb6f4364649709ddc40d20fa157efb2f9cc0c153582883f41b67f9168f7",
  "fontes": {
   "camara": "https://dadosabertos.camara.leg.br/api/v2",
   "senado": "https://legis.senado.leg.br/dadosabertos",
-  "tse": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2026.zip"
+  "tse": "https://cdn.tse.jus.br/estatistica/sead/odsele"
  },
  "pautas": [
   {
-   "id": "arcabouco",
-   "tema": "economia",
+   "id": "emprego",
+   "pt": "Emprego e renda",
+   "en": "Jobs and income",
+   "temas_camara": [
+    "Trabalho e Emprego"
+   ],
+   "palavras": "emprego|trabalhador|trabalhista|salári|renda|CLT|desemprego|jornada de trabalho|aprendiz|microempreendedor|empreendedor"
+  },
+  {
+   "id": "custo_vida",
+   "pt": "Custo de vida e inflação",
+   "en": "Cost of living and inflation",
+   "temas_camara": [
+    "Economia",
+    "Direito e Defesa do Consumidor"
+   ],
+   "palavras": "inflação|preço|tarifa|consumidor|custo de vida|combustíve|energia elétrica|cesta básica|juros|endividamento|superendividamento"
+  },
+  {
+   "id": "saude",
+   "pt": "Saúde pública",
+   "en": "Public health",
+   "temas_camara": [
+    "Saúde"
+   ],
+   "palavras": "saúde|SUS\\b|hospital|médic|medicamento|doença|vacina|enfermag|câncer|sanitári"
+  },
+  {
+   "id": "educacao",
+   "pt": "Educação",
+   "en": "Education",
+   "temas_camara": [
+    "Educação"
+   ],
+   "palavras": "educação|ensino|escola|professor|universidade|estudante|creche|alfabetiza|Enem\\b|Fies\\b"
+  },
+  {
+   "id": "seguranca",
+   "pt": "Segurança pública",
+   "en": "Public safety",
+   "temas_camara": [
+    "Defesa e Segurança",
+    "Direito Penal e Processual Penal"
+   ],
+   "palavras": "segurança pública|polícia|policia|crime|criminal|Código Penal|violência|arma de fogo|armas de fogo|presídio|prisão|tráfico|facção|facções"
+  },
+  {
+   "id": "corrupcao",
+   "pt": "Combate à corrupção",
+   "en": "Fighting corruption",
+   "temas_camara": [],
+   "palavras": "corrupç|improbidade|transparência|lavagem de dinheiro|desvio de recursos|propina|nepotismo|ficha limpa|prestação de contas|licitaç|tribunal de contas|controle externo"
+  },
+  {
+   "id": "direitos",
+   "pt": "Direitos civis, inclusão e diversidade",
+   "en": "Civil rights, inclusion and diversity",
+   "temas_camara": [
+    "Direitos Humanos e Minorias"
+   ],
+   "palavras": "direitos humanos|deficiência|pessoa idosa|idosos|mulher|igualdade|racial|racismo|indígena|quilombola|LGBT|orientação sexual|inclusão|discriminação|acessibilidade"
+  },
+  {
+   "id": "liberdade",
+   "pt": "Liberdade de expressão",
+   "en": "Freedom of expression",
+   "temas_camara": [],
+   "palavras": "liberdade de expressão|censura|redes sociais|plataformas digitais|desinformação|notícias falsas|fake news|imprensa|jornalis|liberdade religiosa|liberdade de culto"
+  },
+  {
+   "id": "assistencia",
+   "pt": "Assistência social e combate à fome",
+   "en": "Social assistance and fighting hunger",
+   "temas_camara": [
+    "Previdência e Assistência Social"
+   ],
+   "palavras_camara": "fome|segurança alimentar|insegurança alimentar|Bolsa Família|cesta básica",
+   "palavras": "assistência social|fome|segurança alimentar|Bolsa Família|benefício de prestação continuada|BPC\\b|pobreza|vulnerabilidade social|cesta básica|população em situação de rua"
+  },
+  {
+   "id": "tecnologia",
+   "pt": "Tecnologia, inovação e industrialização",
+   "en": "Technology, innovation and industry",
+   "temas_camara": [
+    "Ciência, Tecnologia e Inovação",
+    "Indústria, Comércio e Serviços"
+   ],
+   "palavras": "tecnologia|inovação|indústria|industrial|ciência|pesquisa científica|startup|inteligência artificial|semicondutor|patente|transformação digital"
+  }
+ ],
+ "eixos": [
+  {
+   "id": "saude",
    "pt": {
-    "t": "Arcabouço fiscal",
-    "q": "Trocar o teto de gastos por um novo regime fiscal, em que a despesa federal só pode crescer uma parte do aumento da receita, dentro de um piso e de um teto?"
+    "t": "Saúde",
+    "a": "Gestão 100% pública e direta do SUS",
+    "b": "Ampliar parcerias e concessões com a iniciativa privada na saúde"
    },
    "en": {
-    "t": "Fiscal framework",
-    "q": "Replace the spending cap with a new fiscal regime in which federal spending may only grow by part of the revenue increase, within a floor and a ceiling?"
+    "t": "Health",
+    "a": "Fully public, directly run SUS (public health system)",
+    "b": "More partnerships and concessions with the private sector in health"
    },
+   "votos": []
+  },
+  {
+   "id": "educacao",
+   "pt": {
+    "t": "Educação",
+    "a": "Ensino 100% gerido pelo Estado e universidade pública gratuita",
+    "b": "Estimular vouchers/cupons na rede privada e parcerias em creches e escolas"
+   },
+   "en": {
+    "t": "Education",
+    "a": "Schooling fully run by the State and free public universities",
+    "b": "Encourage vouchers for private schools and partnerships in nurseries and schools"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "534328-167",
+     "sim": "B",
+     "prop": "PL 3179/2012",
+     "pt": "Ensino domiciliar (homeschooling)",
+     "en": "Home schooling",
+     "data": "2022-05-18",
+     "prop_id": 534328,
+     "placar": [
+      264,
+      144
+     ]
+    }
+   ]
+  },
+  {
+   "id": "expressao",
+   "pt": {
+    "t": "Liberdade de expressão e redes",
+    "a": "Regulação de redes sociais para combater fake news e desinformação",
+    "b": "Liberdade total de expressão e mínima intervenção do Estado na internet"
+   },
+   "en": {
+    "t": "Free speech and social media",
+    "a": "Regulate social media to fight fake news and disinformation",
+    "b": "Full freedom of expression and minimal State intervention online"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2310837-8",
+     "sim": "A",
+     "prop": "PL 2630/2020",
+     "pt": "Urgência do PL das Fake News (2023)",
+     "en": "Fast-track of the Fake News bill (2023)",
+     "data": "2023-04-25",
+     "prop_id": 2256735,
+     "placar": [
+      238,
+      192
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6147,
+     "data": "2020-06-30",
+     "sim": "A",
+     "prop": "PL 2630/2020",
+     "pt": "PL das Fake News no Senado (2020)",
+     "en": "Fake News bill in the Senate (2020)",
+     "materia": 141944,
+     "placar": [
+      44,
+      32
+     ]
+    }
+   ]
+  },
+  {
+   "id": "economia",
+   "pt": {
+    "t": "Economia (papel do Estado)",
+    "a": "Estado forte e controle sobre setores estratégicos e estatais",
+    "b": "Privatizações, desregulamentação e livre mercado"
+   },
+   "en": {
+    "t": "Economy (role of the State)",
+    "a": "Strong State and control over strategic sectors and state companies",
+    "b": "Privatisation, deregulation and free markets"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2270789-73",
+     "sim": "B",
+     "prop": "MPV 1031/2021",
+     "pt": "Privatização da Eletrobras",
+     "en": "Privatisation of Eletrobras",
+     "data": "2021-05-19",
+     "prop_id": 2270789,
+     "placar": [
+      313,
+      166
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6377,
+     "data": "2021-06-16",
+     "sim": "B",
+     "prop": "MPV 1031/2021",
+     "pt": "Privatização da Eletrobras (Senado)",
+     "en": "Privatisation of Eletrobras (Senate)",
+     "materia": 146740,
+     "placar": [
+      42,
+      37
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2270894-103",
+     "sim": "B",
+     "prop": "PL 591/2021",
+     "pt": "Privatização dos Correios",
+     "en": "Privatisation of the Post Office",
+     "data": "2021-08-05",
+     "prop_id": 2270894,
+     "placar": [
+      286,
+      173
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2265124-70",
+     "sim": "B",
+     "prop": "PLP 19/2019",
+     "pt": "Autonomia do Banco Central",
+     "en": "Central Bank autonomy",
+     "data": "2021-02-10",
+     "prop_id": 2265124,
+     "placar": [
+      339,
+      114
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6248,
+     "data": "2020-11-03",
+     "sim": "B",
+     "prop": "PLP 19/2019",
+     "pt": "Autonomia do Banco Central (Senado)",
+     "en": "Central Bank autonomy (Senate)",
+     "materia": 135147,
+     "placar": [
+      56,
+      12
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2207613-167",
+     "sim": "B",
+     "prop": "PL 4162/2019",
+     "pt": "Marco do saneamento (abre o setor a empresas privadas)",
+     "en": "Sanitation framework (opens the sector to private firms)",
+     "data": "2019-12-11",
+     "prop_id": 2207613,
+     "placar": [
+      276,
+      124
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6144,
+     "data": "2020-06-24",
+     "sim": "B",
+     "prop": "PL 4162/2019",
+     "pt": "Marco do saneamento (Senado)",
+     "en": "Sanitation framework (Senate)",
+     "materia": 140534,
+     "placar": [
+      65,
+      13
+     ]
+    }
+   ]
+  },
+  {
+   "id": "industria",
+   "pt": {
+    "t": "Tecnologia e indústria",
+    "a": "Subsidiar e proteger a indústria e tecnologia nacional",
+    "b": "Abertura comercial e redução de impostos sobre importados"
+   },
+   "en": {
+    "t": "Technology and industry",
+    "a": "Subsidise and protect national industry and technology",
+    "b": "Trade opening and lower taxes on imports"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2382675-97",
+     "sim": "A",
+     "prop": "PL 4133/2023",
+     "pt": "Diretrizes da política industrial nacional",
+     "en": "Guidelines for a national industrial policy",
+     "data": "2026-06-17",
+     "prop_id": 2382675,
+     "placar": [
+      308,
+      129
+     ]
+    }
+   ]
+  },
+  {
+   "id": "seguranca",
+   "pt": {
+    "t": "Segurança pública",
+    "a": "Prevenção social, inteligência e garantias de direitos",
+    "b": "Penas mais duras, combate ostensivo e acesso a armas"
+   },
+   "en": {
+    "t": "Public safety",
+    "a": "Social prevention, intelligence and guaranteed rights",
+    "b": "Harsher sentences, visible policing and access to guns"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2209381-100",
+     "sim": "B",
+     "prop": "PL 3723/2019",
+     "pt": "Ampliar posse e porte de armas (2019)",
+     "en": "Wider gun ownership and carry (2019)",
+     "data": "2019-11-05",
+     "prop_id": 2209381,
+     "placar": [
+      283,
+      140
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "596844-116",
+     "sim": "B",
+     "prop": "PL 6579/2013",
+     "pt": "Fim da saída temporária de presos (2022)",
+     "en": "End of temporary prison leave (2022)",
+     "data": "2022-08-03",
+     "prop_id": 596844,
+     "placar": [
+      311,
+      98
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6818,
+     "data": "2024-02-20",
+     "sim": "B",
+     "prop": "PL 2253/2022",
+     "pt": "Fim da saída temporária de presos (Senado, 2024)",
+     "en": "End of temporary prison leave (Senate, 2024)",
+     "materia": 154451,
+     "placar": [
+      62,
+      2
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2579832-62",
+     "sim": "B",
+     "prop": "PL 5582/2025",
+     "pt": "PL Antifacção: penas maiores para facções",
+     "en": "Anti-gang bill: longer sentences for criminal factions",
+     "data": "2025-11-18",
+     "prop_id": 2579832,
+     "placar": [
+      370,
+      110
+     ]
+    }
+   ]
+  },
+  {
+   "id": "impostos",
+   "pt": {
+    "t": "Impostos e finanças",
+    "a": "Cobrar mais impostos dos mais ricos e grandes patrimônios",
+    "b": "Cortar impostos gerais para empresas e reduzir gastos do governo"
+   },
+   "en": {
+    "t": "Taxes and public finances",
+    "a": "Tax the richest and large fortunes more",
+    "b": "Cut general taxes on companies and reduce government spending"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2383287-43",
+     "sim": "A",
+     "prop": "PL 4173/2023",
+     "pt": "Taxar fundos exclusivos e investimentos no exterior",
+     "en": "Tax exclusive funds and offshore investments",
+     "data": "2023-10-25",
+     "prop_id": 2383287,
+     "placar": [
+      323,
+      119
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2288389-78",
+     "sim": "A",
+     "prop": "PL 2337/2021",
+     "pt": "Imposto de renda sobre lucros e dividendos (2021)",
+     "en": "Income tax on profits and dividends (2021)",
+     "data": "2021-09-01",
+     "prop_id": 2288389,
+     "placar": [
+      398,
+      77
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2515648-44",
+     "sim": "B",
+     "prop": "PDL 214/2025",
+     "pt": "Derrubar o aumento do IOF (2025)",
+     "en": "Overturn the IOF increase (2025)",
+     "data": "2025-06-25",
+     "prop_id": 2515648,
+     "placar": [
+      383,
+      98
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2192459-636",
+     "sim": "B",
+     "prop": "PEC 6/2019",
+     "pt": "Reforma da Previdência (corte de gastos, 2019)",
+     "en": "Pension reform (spending cut, 2019)",
+     "data": "2019-07-10",
+     "prop_id": 2192459,
+     "placar": [
+      379,
+      131
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6046,
+     "data": "2019-10-22",
+     "sim": "B",
+     "prop": "PEC 6/2019",
+     "pt": "Reforma da Previdência (Senado, 2019)",
+     "en": "Pension reform (Senate, 2019)",
+     "materia": 137999,
+     "placar": [
+      60,
+      19
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ambiente",
+   "pt": {
+    "t": "Meio ambiente",
+    "a": "Fiscalização rígida e limites ao setor produtivo",
+    "b": "Prioridade ao agronegócio e obras de infraestrutura"
+   },
+   "en": {
+    "t": "Environment",
+    "a": "Strict oversight and limits on producers",
+    "b": "Priority to agribusiness and infrastructure works"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "257161-337",
+     "sim": "B",
+     "prop": "PL 2159/2021",
+     "pt": "Licenciamento ambiental mais flexível (Câmara, 2021)",
+     "en": "Looser environmental licensing (Chamber, 2021)",
+     "data": "2021-05-12",
+     "prop_id": 257161,
+     "placar": [
+      300,
+      122
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6935,
+     "data": "2025-05-21",
+     "sim": "B",
+     "prop": "PL 2159/2021",
+     "pt": "Licenciamento ambiental mais flexível (Senado, 2025)",
+     "en": "Looser environmental licensing (Senate, 2025)",
+     "materia": 148785,
+     "placar": [
+      54,
+      13
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "257161-454",
+     "sim": "B",
+     "prop": "PL 2159/2021",
+     "pt": "Licenciamento ambiental: texto final (Câmara, 2025)",
+     "en": "Environmental licensing: final text (Chamber, 2025)",
+     "data": "2025-07-16",
+     "prop_id": 257161,
+     "placar": [
+      267,
+      116
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2252589-59",
+     "sim": "B",
+     "prop": "PL 2633/2020",
+     "pt": "Regularização de terras da União ocupadas",
+     "en": "Titling of occupied federal land",
+     "data": "2021-08-03",
+     "prop_id": 2252589,
+     "placar": [
+      296,
+      136
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "46249-297",
+     "sim": "B",
+     "prop": "PL 6299/2002",
+     "pt": "Nova lei dos agrotóxicos (2022)",
+     "en": "New pesticides law (2022)",
+     "data": "2022-02-09",
+     "prop_id": 46249,
+     "placar": [
+      301,
+      150
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "345311-270",
+     "sim": "B",
+     "prop": "PL 490/2007",
+     "pt": "Marco temporal das terras indígenas",
+     "en": "Indigenous land time-frame thesis",
+     "data": "2023-05-30",
+     "prop_id": 345311,
+     "placar": [
+      283,
+      155
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6756,
+     "data": "2023-09-27",
+     "sim": "B",
+     "prop": "PL 2903/2023",
+     "pt": "Marco temporal das terras indígenas (Senado)",
+     "en": "Indigenous land time-frame thesis (Senate)",
+     "materia": 157888,
+     "placar": [
+      43,
+      21
+     ]
+    }
+   ]
+  },
+  {
+   "id": "costumes",
+   "pt": {
+    "t": "Costumes e diversidade",
+    "a": "Defesa de pautas progressistas, inclusão e direitos de minorias",
+    "b": "Preservação dos valores tradicionais e da família"
+   },
+   "en": {
+    "t": "Social values and diversity",
+    "a": "Progressive agenda, inclusion and minority rights",
+    "b": "Preserve traditional and family values"
+   },
+   "votos": [
+    {
+     "casa": "camara",
+     "id": "2299903-53",
+     "sim": "A",
+     "prop": "PL 3268/2021",
+     "pt": "Feriado nacional da Consciência Negra",
+     "en": "National Black Consciousness Day holiday",
+     "data": "2023-11-29",
+     "prop_id": 2299903,
+     "placar": [
+      286,
+      121
+     ]
+    },
+    {
+     "casa": "camara",
+     "id": "2351179-51",
+     "sim": "A",
+     "prop": "PL 1085/2023",
+     "pt": "Igualdade salarial entre mulheres e homens",
+     "en": "Equal pay for women and men",
+     "data": "2023-05-04",
+     "prop_id": 2351179,
+     "placar": [
+      325,
+      36
+     ]
+    },
+    {
+     "casa": "senado",
+     "cod": 6824,
+     "data": "2024-04-16",
+     "sim": "B",
+     "prop": "PEC 45/2023",
+     "pt": "Crime ter droga em qualquer quantidade (PEC das drogas)",
+     "en": "Possessing any amount of drugs is a crime (drugs amendment)",
+     "materia": 160011,
+     "placar": [
+      53,
+      9
+     ]
+    }
+   ]
+  }
+ ],
+ "destaques": [
+  {
+   "id": "arcabouco",
+   "pt": "Arcabouço fiscal (2023)",
+   "en": "Fiscal framework (2023)",
    "prop": "PLP 93/2023",
    "camara": {
     "id": "2357053-47",
+    "casa": "camara",
     "data": "2023-05-23",
-    "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 93, de 2023, adotado pelo relator da Comissão de Finanças e Tributação, ressalvados os destaques. Sim: 372; não: 108; abstenção: 1; total: 481.",
     "prop_id": 2357053,
     "placar": [
      372,
@@ -33,8 +674,8 @@
    "senado": {
     "cod": 6714,
     "data": "2023-06-21",
+    "casa": "senado",
     "materia": 157826,
-    "descricao": "Votação nominal do Projeto de Lei Complementar nº 39, de 2023,e das emendas, nos termos do parecer, ressalvados os destaques.",
     "placar": [
      57,
      17
@@ -42,54 +683,14 @@
    }
   },
   {
-   "id": "marco_temporal",
-   "tema": "ambiente",
-   "pt": {
-    "t": "Marco temporal",
-    "q": "Definir em lei que povos indígenas só têm direito às terras que ocupavam em 5 de outubro de 1988, data da Constituição?"
-   },
-   "en": {
-    "t": "Time-frame thesis",
-    "q": "Set in law that Indigenous peoples are only entitled to the lands they occupied on 5 October 1988, the date of the Constitution?"
-   },
-   "prop": "PL 490/2007 · PL 2903/2023",
-   "camara": {
-    "id": "345311-270",
-    "data": "2023-05-30",
-    "descricao": "Aprovada a Subemenda Substitutiva Global ao Projeto de Lei nº 490, de 2007, adotada pelo relator da Comissão de Constituição e Justiça e de Cidadania, ressalvados os destaques. Sim: 283; não: 155; abstenção: 1; total: 439.",
-    "prop_id": 345311,
-    "placar": [
-     283,
-     155
-    ]
-   },
-   "senado": {
-    "cod": 6756,
-    "data": "2023-09-27",
-    "materia": 157888,
-    "descricao": "Votação nominal do Projeto de Lei nº 2.903 de 2023, nos termos dos Pareceres, ressalvados os destaques.",
-    "placar": [
-     43,
-     21
-    ]
-   }
-  },
-  {
    "id": "reforma_tributaria",
-   "tema": "economia",
-   "pt": {
-    "t": "Reforma tributária",
-    "q": "Substituir cinco tributos sobre o consumo (PIS, Cofins, IPI, ICMS e ISS) por um imposto sobre valor agregado, dividido entre a CBS federal e o IBS de estados e municípios?"
-   },
-   "en": {
-    "t": "Tax reform",
-    "q": "Replace five consumption taxes (PIS, Cofins, IPI, ICMS and ISS) with a value-added tax split between the federal CBS and the state and municipal IBS?"
-   },
+   "pt": "Reforma tributária (2023)",
+   "en": "Tax reform (2023)",
    "prop": "PEC 45/2019",
    "camara": {
     "id": "2196833-326",
+    "casa": "camara",
     "data": "2023-07-06",
-    "descricao": "Aprovado, em primeiro turno, o Substitutivo adotado pelo relator da Comissão Especial à Proposta de Emenda Constitucional nº 45, de 2019, ressalvados os destaques. Sim: 382; não: 118; abstenção: 3; total: 503.",
     "prop_id": 2196833,
     "placar": [
      382,
@@ -99,8 +700,8 @@
    "senado": {
     "cod": 6773,
     "data": "2023-11-08",
+    "casa": "senado",
     "materia": 158930,
-    "descricao": "Votação nominal da Emenda nº 803 (Substitutivo) e das Emendas e Subemendas de Plenário, em primeiro turno, nos termos dos pareceres, ressalvados os destaques.",
     "placar": [
      53,
      24
@@ -109,21 +710,14 @@
   },
   {
    "id": "stf_monocratica",
-   "tema": "instituicoes",
-   "pt": {
-    "t": "Decisões individuais no STF",
-    "q": "Proibir que um único ministro do STF suspenda, sozinho, a validade de leis aprovadas pelo Congresso?"
-   },
-   "en": {
-    "t": "Single-justice rulings",
-    "q": "Forbid a single Supreme Court justice from suspending, alone, laws passed by Congress?"
-   },
+   "pt": "Limitar decisões individuais no STF",
+   "en": "Limit single-justice Supreme Court rulings",
    "prop": "PEC 8/2021",
    "senado": {
     "cod": 6781,
     "data": "2023-11-22",
+    "casa": "senado",
     "materia": 148030,
-    "descricao": "Votação nominal da PEC nº 8/2021, Emendas e Subemenda, nos termos dos Pareceres (1º Turno).",
     "placar": [
      52,
      18
@@ -131,44 +725,14 @@
    }
   },
   {
-   "id": "drogas",
-   "tema": "seguranca",
-   "pt": {
-    "t": "Porte de drogas",
-    "q": "Pôr na Constituição que é crime ter ou portar droga ilícita, em qualquer quantidade?"
-   },
-   "en": {
-    "t": "Drug possession",
-    "q": "Write into the Constitution that having or carrying any amount of an illegal drug is a crime?"
-   },
-   "prop": "PEC 45/2023",
-   "senado": {
-    "cod": 6824,
-    "data": "2024-04-16",
-    "materia": 160011,
-    "descricao": "Votação nominal da Proposta de Emenda à Constituição nº 45, de 2023, nos termos do parecer (1º Turno).",
-    "placar": [
-     53,
-     9
-    ]
-   }
-  },
-  {
    "id": "mais_deputados",
-   "tema": "instituicoes",
-   "pt": {
-    "t": "Mais deputados",
-    "q": "Aumentar o número de deputados federais de 513 para 531, a partir de 2027?"
-   },
-   "en": {
-    "t": "More deputies",
-    "q": "Increase the number of federal deputies from 513 to 531, starting in 2027?"
-   },
+   "pt": "Aumentar para 531 deputados",
+   "en": "Increase to 531 deputies",
    "prop": "PLP 177/2023",
    "camara": {
     "id": "2383019-54",
+    "casa": "camara",
     "data": "2025-05-06",
-    "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 177, de 2023, adotado pelo relator da Comissão de Finanças e Tributação. Sim: 270; Não: 207; Abstenção: 1; Total: 478.",
     "prop_id": 2383019,
     "placar": [
      270,
@@ -178,8 +742,8 @@
    "senado": {
     "cod": 6951,
     "data": "2025-06-25",
+    "casa": "senado",
     "materia": 168472,
-    "descricao": "Votação nominal do Projeto de Lei Complementar nº 177, de 2023, nos termos do parecer, ressalvado o destaque",
     "placar": [
      41,
      33
@@ -187,77 +751,14 @@
    }
   },
   {
-   "id": "iof",
-   "tema": "economia",
-   "pt": {
-    "t": "Aumento do IOF",
-    "q": "Derrubar o decreto do governo que aumentou o IOF (imposto sobre operações financeiras) em maio de 2025?"
-   },
-   "en": {
-    "t": "IOF increase",
-    "q": "Overturn the government decree that raised the IOF (financial transactions tax) in May 2025?"
-   },
-   "prop": "PDL 214/2025",
-   "camara": {
-    "id": "2515648-44",
-    "data": "2025-06-25",
-    "descricao": "Aprovado o Substitutivo ao Projeto de Decreto Legislativo nº 214, de 2025, adotado pelo relator da Comissão de Constituição e Justiça e de Cidadania. Sim: 383; Não: 98; Total: 481.",
-    "prop_id": 2515648,
-    "placar": [
-     383,
-     98
-    ]
-   }
-  },
-  {
-   "id": "licenciamento",
-   "tema": "ambiente",
-   "pt": {
-    "t": "Licenciamento ambiental",
-    "q": "Aprovar a nova lei geral do licenciamento ambiental, que cria a licença por adesão e compromisso (declarada pelo próprio empreendedor) e dispensa de licença algumas atividades?"
-   },
-   "en": {
-    "t": "Environmental licensing",
-    "q": "Pass the new general environmental licensing law, which creates the licence by adhesion and commitment (declared by the developer) and exempts some activities from licensing?"
-   },
-   "prop": "PL 2159/2021",
-   "camara": {
-    "id": "257161-454",
-    "data": "2025-07-16",
-    "descricao": "Aprovadas.\r\n Sim: 267; Não: 116; Total: 383.",
-    "prop_id": 257161,
-    "placar": [
-     267,
-     116
-    ]
-   },
-   "senado": {
-    "cod": 6935,
-    "data": "2025-05-21",
-    "materia": 148785,
-    "descricao": "Votação nominal do Projeto de Lei nº 2.159, de 2021, nos termos do parecer de Plenário.",
-    "placar": [
-     54,
-     13
-    ]
-   }
-  },
-  {
    "id": "blindagem",
-   "tema": "instituicoes",
-   "pt": {
-    "t": "PEC da Blindagem",
-    "q": "Exigir autorização prévia da Câmara ou do Senado para que deputados e senadores sejam processados criminalmente?"
-   },
-   "en": {
-    "t": "Shield amendment",
-    "q": "Require prior authorisation from the Chamber or the Senate before deputies and senators can be criminally prosecuted?"
-   },
+   "pt": "PEC da Blindagem (2025)",
+   "en": "Shield amendment (2025)",
    "prop": "PEC 3/2021",
    "camara": {
     "id": "2270800-135",
+    "casa": "camara",
     "data": "2025-09-16",
-    "descricao": "Aprovado, em primeiro turno, o Substitutivo Reformulado à Proposta de Emenda à Constituição nº 3, de 2021, adotado pelo Relator da Comissão Especial. Sim: 353; Não: 134; Abstenção: 1; Total: 488.",
     "prop_id": 2270800,
     "placar": [
      353,
@@ -267,20 +768,13 @@
   },
   {
    "id": "dosimetria",
-   "tema": "seguranca",
-   "pt": {
-    "t": "PL da Dosimetria",
-    "q": "Reduzir as penas de quem foi condenado por crimes contra o Estado Democrático de Direito, como nos atos de 8 de janeiro de 2023?"
-   },
-   "en": {
-    "t": "Sentencing bill",
-    "q": "Reduce the sentences of those convicted of crimes against the democratic rule of law, such as in the 8 January 2023 riots?"
-   },
+   "pt": "PL da Dosimetria (penas do 8 de janeiro)",
+   "en": "Sentencing bill (8 January sentences)",
    "prop": "PL 2162/2023",
    "camara": {
     "id": "2358548-89",
+    "casa": "camara",
     "data": "2025-12-09",
-    "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 2.162, de 2023, adotado pelo relator da Comissão Especial, ressalvados os destaques. Sim: 291; Não: 148; Abstenção: 1; Total: 440.",
     "prop_id": 2358548,
     "placar": [
      291,
@@ -290,8 +784,8 @@
    "senado": {
     "cod": 7041,
     "data": "2025-12-17",
+    "casa": "senado",
     "materia": 172003,
-    "descricao": "Votação nominal do Projeto de Lei nº 2.162, de 2023, nos termos do parecer.",
     "placar": [
      48,
      25
@@ -300,20 +794,13 @@
   },
   {
    "id": "jornada",
-   "tema": "trabalho",
-   "pt": {
-    "t": "Jornada de trabalho",
-    "q": "Reduzir na Constituição a jornada máxima de trabalho por semana, hoje de 44 horas?"
-   },
-   "en": {
-    "t": "Working hours",
-    "q": "Reduce in the Constitution the maximum weekly working hours, currently 44?"
-   },
+   "pt": "Reduzir a jornada máxima de trabalho (2026)",
+   "en": "Reduce maximum working hours (2026)",
    "prop": "PEC 221/2019",
    "camara": {
     "id": "2233802-424",
+    "casa": "camara",
     "data": "2026-05-27",
-    "descricao": "Aprovada, em primeiro turno, a Proposta de Emenda à Constituição nº 221, de 2019. Sim: 472; Não: 22; Total: 494.",
     "prop_id": 2233802,
     "placar": [
      472,
@@ -322,141 +809,489 @@
    }
   }
  ],
+ "partidos": {
+  "PP": {
+   "e": {
+    "educacao": 0.71,
+    "expressao": 0.09,
+    "economia": 0.91,
+    "industria": -0.54,
+    "seguranca": 0.94,
+    "impostos": 0.2,
+    "ambiente": 0.88,
+    "costumes": -0.6
+   },
+   "g": 0.5,
+   "n": 824
+  },
+  "MDB": {
+   "e": {
+    "educacao": 0.21,
+    "expressao": -0.29,
+    "economia": 0.73,
+    "industria": -0.68,
+    "seguranca": 0.92,
+    "impostos": 0.3,
+    "ambiente": 0.72,
+    "costumes": -0.57
+   },
+   "g": 0.4,
+   "n": 730
+  },
+  "PT": {
+   "e": {
+    "educacao": -0.96,
+    "expressao": -1.0,
+    "economia": -1.0,
+    "industria": -0.93,
+    "seguranca": -0.95,
+    "impostos": -0.99,
+    "ambiente": -0.99,
+    "costumes": -0.97
+   },
+   "g": -0.98,
+   "n": 1198
+  },
+  "PL": {
+   "e": {
+    "educacao": 0.92,
+    "expressao": 0.84,
+    "economia": 0.76,
+    "industria": 0.93,
+    "seguranca": 0.97,
+    "impostos": 0.61,
+    "ambiente": 0.95,
+    "costumes": 0.25
+   },
+   "g": 0.76,
+   "n": 1251
+  },
+  "NOVO": {
+   "e": {
+    "educacao": 1.0,
+    "expressao": 1.0,
+    "economia": 0.5,
+    "industria": 1.0,
+    "seguranca": 1.0,
+    "impostos": 1.0,
+    "ambiente": 1.0,
+    "costumes": 1.0
+   },
+   "g": 0.88,
+   "n": 133
+  },
+  "PSB": {
+   "e": {
+    "educacao": -1.0,
+    "expressao": -0.88,
+    "economia": -0.45,
+    "industria": -1.0,
+    "seguranca": -0.3,
+    "impostos": -0.45,
+    "ambiente": -0.57,
+    "costumes": -0.71
+   },
+   "g": -0.53,
+   "n": 460
+  },
+  "PCDOB": {
+   "e": {
+    "educacao": -1.0,
+    "expressao": -1.0,
+    "economia": -1.0,
+    "industria": -1.0,
+    "seguranca": -0.79,
+    "impostos": -1.0,
+    "ambiente": -1.0,
+    "costumes": -1.0
+   },
+   "g": -0.97,
+   "n": 151
+  },
+  "UNIAO": {
+   "e": {
+    "educacao": 0.61,
+    "expressao": 0.19,
+    "industria": -0.51,
+    "seguranca": 0.98,
+    "impostos": 0.38,
+    "ambiente": 0.89,
+    "costumes": -0.59
+   },
+   "g": 0.39,
+   "n": 524
+  },
+  "PSDB": {
+   "e": {
+    "educacao": 0.53,
+    "expressao": 0.0,
+    "economia": 0.56,
+    "industria": -0.73,
+    "seguranca": 0.59,
+    "impostos": 0.29,
+    "ambiente": 0.69,
+    "costumes": -0.5
+   },
+   "g": 0.42,
+   "n": 458
+  },
+  "PSD": {
+   "e": {
+    "educacao": 0.56,
+    "expressao": -0.16,
+    "economia": 0.58,
+    "industria": -0.73,
+    "seguranca": 0.9,
+    "impostos": 0.08,
+    "ambiente": 0.67,
+    "costumes": -0.52
+   },
+   "g": 0.35,
+   "n": 767
+  },
+  "AVANTE": {
+   "e": {
+    "educacao": 0.33,
+    "expressao": -0.33,
+    "economia": 0.36,
+    "industria": -1.0,
+    "seguranca": 0.41,
+    "impostos": -0.08,
+    "ambiente": 0.39,
+    "costumes": -0.82
+   },
+   "g": 0.1,
+   "n": 129
+  },
+  "PDT": {
+   "e": {
+    "educacao": -1.0,
+    "expressao": -0.88,
+    "economia": -0.56,
+    "industria": -1.0,
+    "seguranca": -0.08,
+    "impostos": -0.41,
+    "ambiente": -0.67,
+    "costumes": -0.93
+   },
+   "g": -0.55,
+   "n": 418
+  },
+  "PODE": {
+   "e": {
+    "educacao": 0.75,
+    "expressao": 0.8,
+    "economia": 0.38,
+    "industria": -0.62,
+    "seguranca": 0.89,
+    "impostos": 0.36,
+    "ambiente": 0.5,
+    "costumes": -0.33
+   },
+   "g": 0.35,
+   "n": 293
+  },
+  "REPUBLICANOS": {
+   "e": {
+    "educacao": 1.0,
+    "expressao": -0.57,
+    "economia": 0.97,
+    "industria": -0.74,
+    "seguranca": 0.85,
+    "impostos": -0.12,
+    "ambiente": 0.95,
+    "costumes": -0.57
+   },
+   "g": 0.43,
+   "n": 668
+  },
+  "SOLIDARIEDADE": {
+   "e": {
+    "educacao": 0.5,
+    "expressao": 0.2,
+    "economia": 0.74,
+    "industria": -0.33,
+    "seguranca": 0.8,
+    "impostos": -0.03,
+    "ambiente": 0.82,
+    "costumes": -1.0
+   },
+   "g": 0.46,
+   "n": 156
+  },
+  "PV": {
+   "e": {
+    "educacao": -1.0,
+    "expressao": -1.0,
+    "economia": 0.14,
+    "industria": -1.0,
+    "seguranca": -0.33,
+    "impostos": -0.53,
+    "ambiente": -0.9,
+    "costumes": -1.0
+   },
+   "g": -0.6,
+   "n": 86
+  },
+  "PSC": {
+   "e": {
+    "educacao": 0.78,
+    "expressao": 0.5,
+    "economia": 0.74,
+    "seguranca": 0.86,
+    "impostos": 0.0,
+    "ambiente": 0.94
+   },
+   "g": 0.66,
+   "n": 119
+  },
+  "CIDADANIA": {
+   "e": {
+    "educacao": 0.5,
+    "expressao": 0.33,
+    "economia": 0.73,
+    "seguranca": 0.89,
+    "impostos": 0.76,
+    "ambiente": 0.44,
+    "costumes": -0.2
+   },
+   "g": 0.61,
+   "n": 122
+  },
+  "PATRIOTA": {
+   "e": {
+    "educacao": 1.0,
+    "expressao": 0.33,
+    "economia": 1.0,
+    "seguranca": 0.33,
+    "impostos": -0.14,
+    "ambiente": 0.67,
+    "costumes": -0.71
+   },
+   "g": 0.46,
+   "n": 74
+  },
+  "REDE": {
+   "e": {
+    "expressao": -1.0,
+    "economia": -0.6,
+    "industria": -1.0,
+    "seguranca": -0.6,
+    "impostos": -0.71,
+    "ambiente": -1.0
+   },
+   "g": -0.78,
+   "n": 37
+  },
+  "PROS": {
+   "e": {
+    "educacao": 1.0,
+    "expressao": 0.33,
+    "economia": 0.55,
+    "seguranca": 0.57,
+    "impostos": -0.3,
+    "ambiente": 0.56
+   },
+   "g": 0.39,
+   "n": 115
+  },
+  "PTB": {
+   "e": {
+    "economia": 0.8,
+    "seguranca": 1.0,
+    "impostos": 0.14,
+    "ambiente": 0.6
+   },
+   "g": 0.64,
+   "n": 100
+  },
+  "PSOL": {
+   "e": {
+    "educacao": -1.0,
+    "expressao": -1.0,
+    "economia": -1.0,
+    "industria": -1.0,
+    "seguranca": -1.0,
+    "impostos": -1.0,
+    "ambiente": -1.0,
+    "costumes": -1.0
+   },
+   "g": -1.0,
+   "n": 202
+  },
+  "DEM": {
+   "e": {
+    "expressao": -1.0,
+    "economia": 0.85,
+    "seguranca": 1.0,
+    "impostos": 0.34,
+    "ambiente": 0.94
+   },
+   "g": 0.73,
+   "n": 256
+  },
+  "PSL": {
+   "e": {
+    "economia": 0.96,
+    "seguranca": 1.0,
+    "impostos": 0.41,
+    "ambiente": 0.97
+   },
+   "g": 0.85,
+   "n": 487
+  },
+  "PRD": {
+   "e": {
+    "seguranca": 1.0,
+    "impostos": 1.0,
+    "ambiente": 0.33
+   },
+   "g": 0.71,
+   "n": 14
+  },
+  "PRB": {
+   "e": {
+    "impostos": 0.87
+   },
+   "g": 0.87,
+   "n": 31
+  }
+ },
  "ufs": {
   "AC": {
    "S": 8,
    "F": 102,
-   "mandato": 9
+   "mandato": 16
   },
   "AL": {
    "S": 7,
    "F": 110,
-   "mandato": 9
+   "mandato": 11
   },
   "AM": {
    "S": 9,
    "F": 139,
-   "mandato": 12
+   "mandato": 13
   },
   "AP": {
    "S": 9,
    "F": 91,
-   "mandato": 12
+   "mandato": 17
   },
   "BA": {
    "S": 10,
    "F": 530,
-   "mandato": 40
+   "mandato": 44
   },
   "CE": {
    "S": 8,
    "F": 295,
-   "mandato": 26
+   "mandato": 31
   },
   "DF": {
    "S": 13,
    "F": 172,
-   "mandato": 11
+   "mandato": 13
   },
   "ES": {
    "S": 11,
    "F": 137,
-   "mandato": 10
+   "mandato": 13
   },
   "GO": {
    "S": 11,
    "F": 265,
-   "mandato": 19
+   "mandato": 24
   },
   "MA": {
    "S": 11,
    "F": 282,
-   "mandato": 23
+   "mandato": 27
   },
   "MG": {
    "S": 18,
    "F": 756,
-   "mandato": 53
+   "mandato": 61
   },
   "MS": {
    "S": 10,
    "F": 124,
-   "mandato": 9
+   "mandato": 11
   },
   "MT": {
    "S": 10,
    "F": 138,
-   "mandato": 10
+   "mandato": 15
   },
   "PA": {
    "S": 13,
    "F": 268,
-   "mandato": 18
+   "mandato": 22
   },
   "PB": {
    "S": 10,
    "F": 190,
-   "mandato": 13
+   "mandato": 18
   },
   "PE": {
    "S": 12,
    "F": 392,
-   "mandato": 22
+   "mandato": 27
   },
   "PI": {
    "S": 20,
    "F": 161,
-   "mandato": 12
+   "mandato": 14
   },
   "PR": {
    "S": 9,
    "F": 428,
-   "mandato": 32
+   "mandato": 39
   },
   "RJ": {
    "S": 17,
    "F": 793,
-   "mandato": 50
+   "mandato": 66
   },
   "RN": {
    "S": 14,
    "F": 111,
-   "mandato": 10
+   "mandato": 11
   },
   "RO": {
    "S": 10,
    "F": 134,
-   "mandato": 8
+   "mandato": 13
   },
   "RR": {
    "S": 13,
    "F": 108,
-   "mandato": 10
+   "mandato": 15
   },
   "RS": {
    "S": 13,
    "F": 459,
-   "mandato": 32
+   "mandato": 35
   },
   "SC": {
    "S": 13,
    "F": 231,
-   "mandato": 17
+   "mandato": 20
   },
   "SE": {
    "S": 11,
    "F": 141,
-   "mandato": 11
+   "mandato": 14
   },
   "SP": {
    "S": 15,
    "F": 1132,
-   "mandato": 68
+   "mandato": 82
   },
   "TO": {
    "S": 13,
    "F": 98,
-   "mandato": 8
+   "mandato": 10
   }
  }
 }
