@@ -1,0 +1,462 @@
+{
+ "atualizado_em": "2026-10-02T18:02:30Z",
+ "conferido_em": "2026-10-02T18:03:04Z",
+ "impressao": "6c18e52e6c2e4995f29d8fd0d0d8a8707f42f81ac504596348f600f6af406a63",
+ "fontes": {
+  "camara": "https://dadosabertos.camara.leg.br/api/v2",
+  "senado": "https://legis.senado.leg.br/dadosabertos",
+  "tse": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2026.zip"
+ },
+ "pautas": [
+  {
+   "id": "arcabouco",
+   "tema": "economia",
+   "pt": {
+    "t": "Arcabouço fiscal",
+    "q": "Trocar o teto de gastos por um novo regime fiscal, em que a despesa federal só pode crescer uma parte do aumento da receita, dentro de um piso e de um teto?"
+   },
+   "en": {
+    "t": "Fiscal framework",
+    "q": "Replace the spending cap with a new fiscal regime in which federal spending may only grow by part of the revenue increase, within a floor and a ceiling?"
+   },
+   "prop": "PLP 93/2023",
+   "camara": {
+    "id": "2357053-47",
+    "data": "2023-05-23",
+    "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 93, de 2023, adotado pelo relator da Comissão de Finanças e Tributação, ressalvados os destaques. Sim: 372; não: 108; abstenção: 1; total: 481.",
+    "prop_id": 2357053,
+    "placar": [
+     372,
+     108
+    ]
+   },
+   "senado": {
+    "cod": 6714,
+    "data": "2023-06-21",
+    "materia": 157826,
+    "descricao": "Votação nominal do Projeto de Lei Complementar nº 39, de 2023,e das emendas, nos termos do parecer, ressalvados os destaques.",
+    "placar": [
+     57,
+     17
+    ]
+   }
+  },
+  {
+   "id": "marco_temporal",
+   "tema": "ambiente",
+   "pt": {
+    "t": "Marco temporal",
+    "q": "Definir em lei que povos indígenas só têm direito às terras que ocupavam em 5 de outubro de 1988, data da Constituição?"
+   },
+   "en": {
+    "t": "Time-frame thesis",
+    "q": "Set in law that Indigenous peoples are only entitled to the lands they occupied on 5 October 1988, the date of the Constitution?"
+   },
+   "prop": "PL 490/2007 · PL 2903/2023",
+   "camara": {
+    "id": "345311-270",
+    "data": "2023-05-30",
+    "descricao": "Aprovada a Subemenda Substitutiva Global ao Projeto de Lei nº 490, de 2007, adotada pelo relator da Comissão de Constituição e Justiça e de Cidadania, ressalvados os destaques. Sim: 283; não: 155; abstenção: 1; total: 439.",
+    "prop_id": 345311,
+    "placar": [
+     283,
+     155
+    ]
+   },
+   "senado": {
+    "cod": 6756,
+    "data": "2023-09-27",
+    "materia": 157888,
+    "descricao": "Votação nominal do Projeto de Lei nº 2.903 de 2023, nos termos dos Pareceres, ressalvados os destaques.",
+    "placar": [
+     43,
+     21
+    ]
+   }
+  },
+  {
+   "id": "reforma_tributaria",
+   "tema": "economia",
+   "pt": {
+    "t": "Reforma tributária",
+    "q": "Substituir cinco tributos sobre o consumo (PIS, Cofins, IPI, ICMS e ISS) por um imposto sobre valor agregado, dividido entre a CBS federal e o IBS de estados e municípios?"
+   },
+   "en": {
+    "t": "Tax reform",
+    "q": "Replace five consumption taxes (PIS, Cofins, IPI, ICMS and ISS) with a value-added tax split between the federal CBS and the state and municipal IBS?"
+   },
+   "prop": "PEC 45/2019",
+   "camara": {
+    "id": "2196833-326",
+    "data": "2023-07-06",
+    "descricao": "Aprovado, em primeiro turno, o Substitutivo adotado pelo relator da Comissão Especial à Proposta de Emenda Constitucional nº 45, de 2019, ressalvados os destaques. Sim: 382; não: 118; abstenção: 3; total: 503.",
+    "prop_id": 2196833,
+    "placar": [
+     382,
+     118
+    ]
+   },
+   "senado": {
+    "cod": 6773,
+    "data": "2023-11-08",
+    "materia": 158930,
+    "descricao": "Votação nominal da Emenda nº 803 (Substitutivo) e das Emendas e Subemendas de Plenário, em primeiro turno, nos termos dos pareceres, ressalvados os destaques.",
+    "placar": [
+     53,
+     24
+    ]
+   }
+  },
+  {
+   "id": "stf_monocratica",
+   "tema": "instituicoes",
+   "pt": {
+    "t": "Decisões individuais no STF",
+    "q": "Proibir que um único ministro do STF suspenda, sozinho, a validade de leis aprovadas pelo Congresso?"
+   },
+   "en": {
+    "t": "Single-justice rulings",
+    "q": "Forbid a single Supreme Court justice from suspending, alone, laws passed by Congress?"
+   },
+   "prop": "PEC 8/2021",
+   "senado": {
+    "cod": 6781,
+    "data": "2023-11-22",
+    "materia": 148030,
+    "descricao": "Votação nominal da PEC nº 8/2021, Emendas e Subemenda, nos termos dos Pareceres (1º Turno).",
+    "placar": [
+     52,
+     18
+    ]
+   }
+  },
+  {
+   "id": "drogas",
+   "tema": "seguranca",
+   "pt": {
+    "t": "Porte de drogas",
+    "q": "Pôr na Constituição que é crime ter ou portar droga ilícita, em qualquer quantidade?"
+   },
+   "en": {
+    "t": "Drug possession",
+    "q": "Write into the Constitution that having or carrying any amount of an illegal drug is a crime?"
+   },
+   "prop": "PEC 45/2023",
+   "senado": {
+    "cod": 6824,
+    "data": "2024-04-16",
+    "materia": 160011,
+    "descricao": "Votação nominal da Proposta de Emenda à Constituição nº 45, de 2023, nos termos do parecer (1º Turno).",
+    "placar": [
+     53,
+     9
+    ]
+   }
+  },
+  {
+   "id": "mais_deputados",
+   "tema": "instituicoes",
+   "pt": {
+    "t": "Mais deputados",
+    "q": "Aumentar o número de deputados federais de 513 para 531, a partir de 2027?"
+   },
+   "en": {
+    "t": "More deputies",
+    "q": "Increase the number of federal deputies from 513 to 531, starting in 2027?"
+   },
+   "prop": "PLP 177/2023",
+   "camara": {
+    "id": "2383019-54",
+    "data": "2025-05-06",
+    "descricao": "Aprovado o Substitutivo ao Projeto de Lei Complementar nº 177, de 2023, adotado pelo relator da Comissão de Finanças e Tributação. Sim: 270; Não: 207; Abstenção: 1; Total: 478.",
+    "prop_id": 2383019,
+    "placar": [
+     270,
+     207
+    ]
+   },
+   "senado": {
+    "cod": 6951,
+    "data": "2025-06-25",
+    "materia": 168472,
+    "descricao": "Votação nominal do Projeto de Lei Complementar nº 177, de 2023, nos termos do parecer, ressalvado o destaque",
+    "placar": [
+     41,
+     33
+    ]
+   }
+  },
+  {
+   "id": "iof",
+   "tema": "economia",
+   "pt": {
+    "t": "Aumento do IOF",
+    "q": "Derrubar o decreto do governo que aumentou o IOF (imposto sobre operações financeiras) em maio de 2025?"
+   },
+   "en": {
+    "t": "IOF increase",
+    "q": "Overturn the government decree that raised the IOF (financial transactions tax) in May 2025?"
+   },
+   "prop": "PDL 214/2025",
+   "camara": {
+    "id": "2515648-44",
+    "data": "2025-06-25",
+    "descricao": "Aprovado o Substitutivo ao Projeto de Decreto Legislativo nº 214, de 2025, adotado pelo relator da Comissão de Constituição e Justiça e de Cidadania. Sim: 383; Não: 98; Total: 481.",
+    "prop_id": 2515648,
+    "placar": [
+     383,
+     98
+    ]
+   }
+  },
+  {
+   "id": "licenciamento",
+   "tema": "ambiente",
+   "pt": {
+    "t": "Licenciamento ambiental",
+    "q": "Aprovar a nova lei geral do licenciamento ambiental, que cria a licença por adesão e compromisso (declarada pelo próprio empreendedor) e dispensa de licença algumas atividades?"
+   },
+   "en": {
+    "t": "Environmental licensing",
+    "q": "Pass the new general environmental licensing law, which creates the licence by adhesion and commitment (declared by the developer) and exempts some activities from licensing?"
+   },
+   "prop": "PL 2159/2021",
+   "camara": {
+    "id": "257161-454",
+    "data": "2025-07-16",
+    "descricao": "Aprovadas.\r\n Sim: 267; Não: 116; Total: 383.",
+    "prop_id": 257161,
+    "placar": [
+     267,
+     116
+    ]
+   },
+   "senado": {
+    "cod": 6935,
+    "data": "2025-05-21",
+    "materia": 148785,
+    "descricao": "Votação nominal do Projeto de Lei nº 2.159, de 2021, nos termos do parecer de Plenário.",
+    "placar": [
+     54,
+     13
+    ]
+   }
+  },
+  {
+   "id": "blindagem",
+   "tema": "instituicoes",
+   "pt": {
+    "t": "PEC da Blindagem",
+    "q": "Exigir autorização prévia da Câmara ou do Senado para que deputados e senadores sejam processados criminalmente?"
+   },
+   "en": {
+    "t": "Shield amendment",
+    "q": "Require prior authorisation from the Chamber or the Senate before deputies and senators can be criminally prosecuted?"
+   },
+   "prop": "PEC 3/2021",
+   "camara": {
+    "id": "2270800-135",
+    "data": "2025-09-16",
+    "descricao": "Aprovado, em primeiro turno, o Substitutivo Reformulado à Proposta de Emenda à Constituição nº 3, de 2021, adotado pelo Relator da Comissão Especial. Sim: 353; Não: 134; Abstenção: 1; Total: 488.",
+    "prop_id": 2270800,
+    "placar": [
+     353,
+     134
+    ]
+   }
+  },
+  {
+   "id": "dosimetria",
+   "tema": "seguranca",
+   "pt": {
+    "t": "PL da Dosimetria",
+    "q": "Reduzir as penas de quem foi condenado por crimes contra o Estado Democrático de Direito, como nos atos de 8 de janeiro de 2023?"
+   },
+   "en": {
+    "t": "Sentencing bill",
+    "q": "Reduce the sentences of those convicted of crimes against the democratic rule of law, such as in the 8 January 2023 riots?"
+   },
+   "prop": "PL 2162/2023",
+   "camara": {
+    "id": "2358548-89",
+    "data": "2025-12-09",
+    "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 2.162, de 2023, adotado pelo relator da Comissão Especial, ressalvados os destaques. Sim: 291; Não: 148; Abstenção: 1; Total: 440.",
+    "prop_id": 2358548,
+    "placar": [
+     291,
+     148
+    ]
+   },
+   "senado": {
+    "cod": 7041,
+    "data": "2025-12-17",
+    "materia": 172003,
+    "descricao": "Votação nominal do Projeto de Lei nº 2.162, de 2023, nos termos do parecer.",
+    "placar": [
+     48,
+     25
+    ]
+   }
+  },
+  {
+   "id": "jornada",
+   "tema": "trabalho",
+   "pt": {
+    "t": "Jornada de trabalho",
+    "q": "Reduzir na Constituição a jornada máxima de trabalho por semana, hoje de 44 horas?"
+   },
+   "en": {
+    "t": "Working hours",
+    "q": "Reduce in the Constitution the maximum weekly working hours, currently 44?"
+   },
+   "prop": "PEC 221/2019",
+   "camara": {
+    "id": "2233802-424",
+    "data": "2026-05-27",
+    "descricao": "Aprovada, em primeiro turno, a Proposta de Emenda à Constituição nº 221, de 2019. Sim: 472; Não: 22; Total: 494.",
+    "prop_id": 2233802,
+    "placar": [
+     472,
+     22
+    ]
+   }
+  }
+ ],
+ "ufs": {
+  "AC": {
+   "S": 8,
+   "F": 102,
+   "mandato": 9
+  },
+  "AL": {
+   "S": 7,
+   "F": 110,
+   "mandato": 9
+  },
+  "AM": {
+   "S": 9,
+   "F": 139,
+   "mandato": 12
+  },
+  "AP": {
+   "S": 9,
+   "F": 91,
+   "mandato": 12
+  },
+  "BA": {
+   "S": 10,
+   "F": 530,
+   "mandato": 40
+  },
+  "CE": {
+   "S": 8,
+   "F": 295,
+   "mandato": 26
+  },
+  "DF": {
+   "S": 13,
+   "F": 172,
+   "mandato": 11
+  },
+  "ES": {
+   "S": 11,
+   "F": 137,
+   "mandato": 10
+  },
+  "GO": {
+   "S": 11,
+   "F": 265,
+   "mandato": 19
+  },
+  "MA": {
+   "S": 11,
+   "F": 282,
+   "mandato": 23
+  },
+  "MG": {
+   "S": 18,
+   "F": 756,
+   "mandato": 53
+  },
+  "MS": {
+   "S": 10,
+   "F": 124,
+   "mandato": 9
+  },
+  "MT": {
+   "S": 10,
+   "F": 138,
+   "mandato": 10
+  },
+  "PA": {
+   "S": 13,
+   "F": 268,
+   "mandato": 18
+  },
+  "PB": {
+   "S": 10,
+   "F": 190,
+   "mandato": 13
+  },
+  "PE": {
+   "S": 12,
+   "F": 392,
+   "mandato": 22
+  },
+  "PI": {
+   "S": 20,
+   "F": 161,
+   "mandato": 12
+  },
+  "PR": {
+   "S": 9,
+   "F": 428,
+   "mandato": 32
+  },
+  "RJ": {
+   "S": 17,
+   "F": 793,
+   "mandato": 50
+  },
+  "RN": {
+   "S": 14,
+   "F": 111,
+   "mandato": 10
+  },
+  "RO": {
+   "S": 10,
+   "F": 134,
+   "mandato": 8
+  },
+  "RR": {
+   "S": 13,
+   "F": 108,
+   "mandato": 10
+  },
+  "RS": {
+   "S": 13,
+   "F": 459,
+   "mandato": 32
+  },
+  "SC": {
+   "S": 13,
+   "F": 231,
+   "mandato": 17
+  },
+  "SE": {
+   "S": 11,
+   "F": 141,
+   "mandato": 11
+  },
+  "SP": {
+   "S": 15,
+   "F": 1132,
+   "mandato": 68
+  },
+  "TO": {
+   "S": 13,
+   "F": 98,
+   "mandato": 8
+  }
+ }
+}
