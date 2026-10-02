@@ -3053,7 +3053,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "f-copiar":"Copy quotation",
 "f-copiar-tip":"Copies the passage with the name, the page and the link to this screen",
 "f-copiado":"Quotation copied, with the page and the link."}</script>
-<script id="dados" type="application/json">{"versao":"1.8",
+<script id="dados" type="application/json">{"versao":"1.9",
 "macrotemas_previstos":20,
 "macrotemas":[{"cod":"AGRO",
 "nome":"AGRICULTURA: Agronegócio e competitividade",
@@ -22977,7 +22977,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "rui":"29 PCO Rui Costa Pimenta 2026BR280002552487_01.pdf",
 "cur":"70 AVANTE Augusto Cury 2026BR280002551547_01.pdf"},
 "criado_em":"2026-09-05",
-"atualizado_em":"2026-09-26",
+"atualizado_em":"2026-10-02",
 "recortes":[{"id":"fiscal",
 "nome":"Contas públicas primeiro",
 "desc":"Quem acha que nada funciona enquanto o Estado gastar mais do que arrecada.",
@@ -23256,7 +23256,8 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Fotos: TSE — DivulgaCandContas, imagem do registro de candidatura de 2026. Publicadas como o TSE publica, sem recorte nem tratamento.",
 "experiencia_privada_nota":"Critério desta lista: organizações privadas — empresas, institutos, fundações e movimentos — que a pessoa fundou, dirigiu ou das quais é sócia, fora de cargo eletivo ou de governo. Partidos políticos não entram aqui, porque têm bloco próprio nas filiações; sindicatos e centrais sindicais entram, porque são organizações formais fora do Estado. A lista registra o que a pessoa é ou foi na organização, não o que a organização fez: processo judicial fica na seção de processos, com o desfecho. Onde a única fonte disponível é um agregador de dados de CNPJ, isso está dito na fonte da linha — são dados públicos da Receita Federal republicados por terceiros, e este site não conferiu registro a registro no sistema oficial. A lista não é exaustiva e candidaturas com menos cobertura de imprensa deixam menos rastro documentado: ausência de linha aqui significa que nada foi localizado nas fontes consultadas, não que nada exista.",
-"versoes":[{"v":"1.8","atual":true,"itens":["AssistONE: assistente no canto de baixo à direita que diz em que tela você está, explica os avisos recolhidos (\"Como ler\", \"Ressalvas\") em palavras simples, lê a tela em voz alta, procura telas, temas, candidatos e siglas, muda ajustes rápidos e faz um tour de um minuto; liga e desliga em Configurações", "Menu ☰ no celular com as oito páginas e uma linha dizendo o que há em cada uma, ações rápidas (procurar, compartilhar, ouvir, ajustes), tema, idioma e ajuda; o botão Voltar do celular fecha o menu em vez de sair do site", "Compartilhar no cabeçalho: link desta tela pelo WhatsApp, Telegram, e-mail ou copiando; no celular abre o compartilhamento do aparelho", "\"Copiar citação\" em cada cartão dos macrotemas: o trecho vai com o nome, a página e o link", "Acessibilidade em Configurações: texto maior (A+ e A++) e reduzir animações", "Textos de interface reescritos em português mais direto: capa, avisos, cabeçalhos das abas, rodapé e notas das Configurações; o quadro \"feita para tela larga\" só aparece em tela estreita"]},
+"versoes":[{"v":"1.9","atual":true,"itens":["AssistONE com o personagem padrão da SolverONE (ajuda-botao.png) no lugar da interrogação: botão redondo de 58 px no canto de baixo à direita, fundo escuro nos dois temas, anel dourado e balanço leve que para com o balão aberto e com \"Reduzir animações\""]},
+{"v":"1.8","itens":["AssistONE: assistente no canto de baixo à direita que diz em que tela você está, explica os avisos recolhidos (\"Como ler\", \"Ressalvas\") em palavras simples, lê a tela em voz alta, procura telas, temas, candidatos e siglas, muda ajustes rápidos e faz um tour de um minuto; liga e desliga em Configurações", "Menu ☰ no celular com as oito páginas e uma linha dizendo o que há em cada uma, ações rápidas (procurar, compartilhar, ouvir, ajustes), tema, idioma e ajuda; o botão Voltar do celular fecha o menu em vez de sair do site", "Compartilhar no cabeçalho: link desta tela pelo WhatsApp, Telegram, e-mail ou copiando; no celular abre o compartilhamento do aparelho", "\"Copiar citação\" em cada cartão dos macrotemas: o trecho vai com o nome, a página e o link", "Acessibilidade em Configurações: texto maior (A+ e A++) e reduzir animações", "Textos de interface reescritos em português mais direto: capa, avisos, cabeçalhos das abas, rodapé e notas das Configurações; o quadro \"feita para tela larga\" só aparece em tela estreita"]},
 {"v":"1.7",
 "itens":["Leitura em voz alta: botão ▶ ao lado de cada título, com voz do aparelho ou voz natural (Gemini, OpenAI, ElevenLabs) e preferências em Configurações",
 "Comparadores no topo da aba Infográficos, com índice clicável de todos os gráficos",
@@ -44835,17 +44836,19 @@ html.ao-on body{padding-bottom:84px}
 article.f .loc{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
 
 /* ---- AssistONE: personagem ---- */
-.ao-btn{position:fixed;right:18px;bottom:18px;z-index:66;width:58px;height:58px;padding:0;border:0;border-radius:50%;
-  background:none;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.3,1),width .25s,height .25s;
-  filter:drop-shadow(0 6px 14px rgba(0,0,0,.28));animation:ao-flutua 3.6s ease-in-out infinite}
-.ao-btn svg{width:100%;height:100%;display:block}
-.ao-btn:hover{transform:scale(1.06)}
+/* padrão SolverONE (diretriz AssistONE, 02/Out/2026): arte ajuda-botao.png, 58 px, fundo sempre escuro, anel dourado, balanço 3.2 s */
+.ao-btn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:66;width:58px;height:58px;padding:0;
+  border-radius:50%;cursor:pointer;border:1px solid rgba(201,162,74,.55);
+  background:radial-gradient(circle at 50% 38%,#232838,#11141c 72%);
+  box-shadow:0 6px 18px rgba(0,0,0,.28),0 0 0 3px rgba(201,162,74,.16);
+  animation:ao-flutua 3.2s ease-in-out infinite;transition:width .25s,height .25s}
+.ao-btn img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;pointer-events:none}
 .ao-btn[aria-expanded="true"]{width:96px;height:96px;animation:none}
 .ao-btn:focus-visible{outline:3px solid #E8B84A;outline-offset:3px}
-@keyframes ao-flutua{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes ao-flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @media (prefers-reduced-motion:reduce){.ao-btn{animation:none;transition:none}}
 html.pg-calmo .ao-btn{animation:none;transition:none}
-@media (max-width:760px){.ao-btn{right:14px;bottom:16px;width:54px;height:54px}.ao-btn[aria-expanded="true"]{width:80px;height:80px}}
+@media (max-width:760px){.ao-btn[aria-expanded="true"]{width:80px;height:80px}}
 /* o balão-dica pequeno (uma vez por tela) */
 .ao-dica{position:fixed;right:84px;bottom:26px;z-index:66;max-width:min(300px,calc(100vw - 110px));background:var(--surface);
   color:var(--ink);border:1px solid var(--line-2);border-radius:12px 12px 2px 12px;box-shadow:0 10px 30px rgba(0,0,0,.2);
@@ -45200,8 +45203,9 @@ var AO={
     var p=prefs();
     this.ligado=(p.assist!==false);
     if(!this.btn){
-      var b=mk("button","ao-btn");b.id="ao-btn";b.type="button";b.innerHTML=SVG_AO;
-      b.setAttribute("aria-label","AssistONE — "+T("ajuda desta tela","help for this screen"));b.setAttribute("aria-expanded","false");b.setAttribute("aria-controls","ao-box");
+      var b=mk("button","ao-btn");b.id="ao-btn";b.type="button";
+      var im=document.createElement("img");im.src="ajuda-botao.png";im.alt="";im.width=512;im.height=512;im.decoding="async";b.appendChild(im);
+      b.setAttribute("aria-label","AssistONE — "+T("ajuda e assistente","help and assistant"));b.setAttribute("aria-haspopup","dialog");b.setAttribute("aria-expanded","false");b.setAttribute("aria-controls","ao-box");
       b.addEventListener("click",function(e){e.stopPropagation();AO.alterna();});
       document.body.appendChild(b);this.btn=b;
       var x=mk("div","ao-box");x.id="ao-box";x.hidden=true;x.setAttribute("role","dialog");x.setAttribute("aria-label","AssistONE");
