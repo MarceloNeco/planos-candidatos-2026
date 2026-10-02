@@ -13,6 +13,10 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
+| `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
+| `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
+| `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta | **nunca à mão**: é gerada pelo script |
+| `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava a pasta `congresso/`; também pelo botão "Run workflow" na aba Actions | — |
 
 ## Dentro do `index.html` (de cima para baixo)
 
@@ -31,6 +35,21 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
    `window.VozPainel` (seção nas Configurações). Chave `planos2026:voz`.
 6. **Blocos de apoio** (`<style>` + `<script>` "v1.8"): AssistONE, menu ☰ do celular,
    compartilhar (`window.PGShare`), acessibilidade (`window.CfgAcess`, `window.CfgAssist`).
+7. **Escolha e Congresso** (`<style>` + `<script>` "v2.0", no fim): a tela de escolha (`#hub`), o botão
+   "Presidência ▾ / Congresso ▾" ao lado do nome do site e o módulo Congresso (objeto `Cg`), com abas
+   próprias no topo (`#cg-menu`): `#congresso` (início), `#congresso/afinidade`, `/favoritos`, `/comparar`,
+   `/metodo` e a ficha `#congresso/ficha/<UF>/<id do TSE>`.
+   As duas telas são `.view` vazias no HTML (`v-hub`, `v-congresso`) e entram no roteador pela lista
+   `MODOS_V`; no ☰, na busca e no AssistONE entram pelas chaves `hub` e `congresso…` do `TELAS`
+   (o ☰ mostra só as páginas da parte em que a pessoa está).
+   Endereço sem `#`: a primeira visita abre a escolha; depois, a última parte usada (`planos2026:modo`).
+   Prioridades, posições, favoritos, comparação e cola ficam em `planos2026:congresso`. Textos em `T(pt, en)`.
+   Contas: `Cg.pos` (posição num eixo: voto próprio → padrão geral → bancada do partido), `Cg.afPos`,
+   `Cg.afPri`, `Cg.geral`; arrastar e soltar em `ordenavel()`.
+   "Conferir nas fontes oficiais" (`Cg.fontes`): o navegador lê de novo, direto nas APIs da Câmara e do
+   Senado, os votos de todas as votações usadas e recalcula (`Cg.recalc`, mesma regra do script) só nesta
+   visita; do TSE lê a data de publicação das candidaturas. Leitura em voz alta dos títulos do Congresso:
+   entradas `#v-congresso …` no `ALVOS` do bloco de voz.
 
 ## Como a tradução funciona
 
@@ -48,7 +67,9 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 
 - Nenhuma preferência sai do navegador; nada é enviado a servidor. Chaves do localStorage
   começam com `planos2026:` porque o domínio é dividido com os outros apps da SolverONE.
-- Nada de ranking, nota geral ou recomendação de voto em lugar nenhum.
+- Nada de ranking, nota geral ou recomendação de voto. **Única exceção, decidida pelo dono em
+  02/Out/2026:** a aba Congresso mostra o % de votos iguais aos da pessoa (só concordância de voto
+  nas perguntas escolhidas) e pode ordenar por ele. A própria aba explica que não é nota nem recomendação.
 - Todo texto novo nasce em PT **e** EN.
 - Ao publicar: subir `versao` e `atualizado_em` no bloco `dados` **dos dois arquivos** e
   acrescentar a entrada em `versoes` (PT no `index.html`, EN no `index-en.html`); depois rodar
@@ -64,3 +85,5 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | seções das Configurações | `pintaPainelOC` (script principal); cartões do AssistONE e Acessibilidade em `CfgAssist`/`CfgAcess` |
 | cores, tema | `:root` no `<style>` principal |
 | citações, candidatos | bloco `dados` (nos dois arquivos) |
+| tela de escolha, módulo Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg.tela…`, `Seletor`) |
+| pautas, eixos e votações usadas na afinidade | `congresso-pautas.json` e depois `python3 congresso-sync.py` |
