@@ -46,6 +46,10 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
    Prioridades, posições, favoritos, comparação e cola ficam em `planos2026:congresso`. Textos em `T(pt, en)`.
    Contas: `Cg.pos` (posição num eixo: voto próprio → padrão geral → bancada do partido), `Cg.afPos`,
    `Cg.afPri`, `Cg.geral`; arrastar e soltar em `ordenavel()`.
+   "Conferir nas fontes oficiais" (`Cg.fontes`): o navegador lê de novo, direto nas APIs da Câmara e do
+   Senado, os votos de todas as votações usadas e recalcula (`Cg.recalc`, mesma regra do script) só nesta
+   visita; do TSE lê a data de publicação das candidaturas. Leitura em voz alta dos títulos do Congresso:
+   entradas `#v-congresso …` no `ALVOS` do bloco de voz.
 
 ## Como a tradução funciona
 
