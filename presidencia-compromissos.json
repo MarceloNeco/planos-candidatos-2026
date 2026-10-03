@@ -1,0 +1,27 @@
+{
+"_leia": "Acompanhamento do presidente eleito (aba Mandato da Presidência). COMPROMISSOS = as citações do plano de governo do eleito com tipo 'proposta' e especificidade 4 ou 5 (bloco 'dados' do index.html): não se cria compromisso aqui, só se anota o andamento. TEMAS = para cada macrotema do site, os temas oficiais da Câmara usados para listar os atos do governo (projetos e medidas provisórias enviados pelo Executivo) no mesmo assunto; isso é gerado sozinho por congresso-sync.py em presidencia/mandato.json. STATUS = anotação editorial, uma por compromisso (chave = id da citação, ex.: 'lul-SAU-3'): s = andamento | cumprido | parcial | nao_cumprido; nota_pt/nota_en = uma frase com o fato; links = fontes oficiais (lei, MP, decreto, DOU); data = AAAA-MM-DD do fato. Compromisso sem anotação aparece como 'sem ato identificado'. Nunca anotar opinião: só ato oficial verificável.",
+"posse": "2027-01-05",
+"temas": {
+ "AGRO": ["Agricultura, Pecuária, Pesca e Extrativismo"],
+ "ALI": ["Agricultura, Pecuária, Pesca e Extrativismo", "Previdência e Assistência Social"],
+ "ECO": ["Economia", "Finanças Públicas e Orçamento"],
+ "EMP": ["Trabalho e Emprego"],
+ "INF": ["Economia", "Finanças Públicas e Orçamento"],
+ "TRI": ["Finanças Públicas e Orçamento", "Economia"],
+ "EDU": ["Educação"],
+ "ENE": ["Energia, Recursos Hídricos e Minerais"],
+ "IND": ["Direitos Humanos e Minorias", "Estrutura Fundiária"],
+ "AGRA": ["Estrutura Fundiária"],
+ "EXT": ["Relações Internacionais e Comércio Exterior"],
+ "COR": ["Administração Pública", "Direito Penal e Processual Penal"],
+ "TEC": ["Ciência, Tecnologia e Inovação", "Indústria, Comércio e Serviços"],
+ "INFRA": ["Viação, Transporte e Mobilidade", "Cidades e Desenvolvimento Urbano"],
+ "AMB": ["Meio Ambiente e Desenvolvimento Sustentável"],
+ "MIN": ["Energia, Recursos Hídricos e Minerais"],
+ "JUD": ["Direito e Justiça", "Direito Constitucional"],
+ "PRIV": ["Administração Pública", "Economia"],
+ "SAU": ["Saúde"],
+ "SEG": ["Defesa e Segurança", "Direito Penal e Processual Penal"]
+},
+"status": {}
+}

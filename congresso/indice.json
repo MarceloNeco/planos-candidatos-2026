@@ -1,7 +1,7 @@
 {
- "atualizado_em": "2026-10-03T14:26:26Z",
- "conferido_em": "2026-10-03T14:26:26Z",
- "impressao": "71e3fa10b9597381b223c35f4b377c9d90cf6ab6eaf36c17efbe0fcc2a6729d9",
+ "atualizado_em": "2026-10-03T16:39:49Z",
+ "conferido_em": "2026-10-03T16:39:49Z",
+ "impressao": "cb23b9a91ffe10f944bf2953be2af91dc8bf7e14e6dc16b3d0bac56101d348cb",
  "fontes": {
   "camara": "https://dadosabertos.camara.leg.br/api/v2",
   "senado": "https://legis.senado.leg.br/dadosabertos",
@@ -1161,7 +1161,7 @@
   "AC": {
    "S": 8,
    "F": 102,
-   "mandato": 16
+   "mandato": 17
   },
   "AL": {
    "S": 7,
@@ -1181,12 +1181,12 @@
   "BA": {
    "S": 10,
    "F": 530,
-   "mandato": 44
+   "mandato": 45
   },
   "CE": {
    "S": 8,
    "F": 295,
-   "mandato": 31
+   "mandato": 32
   },
   "DF": {
    "S": 13,
@@ -1206,12 +1206,12 @@
   "MA": {
    "S": 11,
    "F": 282,
-   "mandato": 27
+   "mandato": 32
   },
   "MG": {
    "S": 18,
    "F": 756,
-   "mandato": 61
+   "mandato": 65
   },
   "MS": {
    "S": 10,
@@ -1221,7 +1221,7 @@
   "MT": {
    "S": 10,
    "F": 138,
-   "mandato": 15
+   "mandato": 16
   },
   "PA": {
    "S": 13,
@@ -1236,7 +1236,7 @@
   "PE": {
    "S": 12,
    "F": 392,
-   "mandato": 27
+   "mandato": 28
   },
   "PI": {
    "S": 20,
@@ -1246,7 +1246,7 @@
   "PR": {
    "S": 9,
    "F": 428,
-   "mandato": 39
+   "mandato": 41
   },
   "RJ": {
    "S": 17,
@@ -1276,22 +1276,27 @@
   "SC": {
    "S": 13,
    "F": 231,
-   "mandato": 20
+   "mandato": 21
   },
   "SE": {
    "S": 11,
    "F": 141,
-   "mandato": 14
+   "mandato": 15
   },
   "SP": {
    "S": 15,
    "F": 1132,
-   "mandato": 82
+   "mandato": 84
   },
   "TO": {
    "S": 13,
    "F": 98,
    "mandato": 10
   }
+ },
+ "legislatura": {
+  "n": 57,
+  "inicio": "2023-02-01",
+  "proxima": "2027-02-01"
  }
 }

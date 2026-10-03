@@ -1675,6 +1675,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 </div>
 
 <!-- ============ v2.0: ESCOLHA (hub) e CONGRESSO — conteúdo montado pelo bloco "v2.0" no fim ============ -->
+<div class="view" id="v-mandato"></div>
 <div class="view" id="v-hub"></div>
 <div class="view" id="v-congresso"></div>
 
@@ -1707,7 +1708,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <p class="cfg-n">As escolhas ficam só neste navegador e não são enviadas a lugar nenhum. A única exceção é o idioma, que vai no endereço da página.</p>
 </dialog>
 
-<script id="traden" type="application/json">{" vezes o menor. Num eixo único, o painel menor viraria uma linha reta colada no zero e a variação dele deixaria de aparecer, que é o que interessa. A comparação deve ser feita olhando os números, não a altura.":" times the smaller one. On a single axis, the smaller panel would become a straight line stuck to zero and its variation would stop being visible, which is what matters. The comparison must be made by looking at the numbers, not at the height.",
+<script id="traden" type="application/json">{"Mandato":"In office"," vezes o menor. Num eixo único, o painel menor viraria uma linha reta colada no zero e a variação dele deixaria de aparecer, que é o que interessa. A comparação deve ser feita olhando os números, não a altura.":" times the smaller one. On a single axis, the smaller panel would become a straight line stuck to zero and its variation would stop being visible, which is what matters. The comparison must be made by looking at the numbers, not at the height.",
 " · ajustes feitos neste navegador: ":" · adjustments made in this browser: ",
 "'famílias assentadas' e 'títulos entregues' medem etapas distintas e não sequenciais do processo de reforma agrária — a criação/incorporação de famílias a um projeto de assentamento, de um lado, e a entrega do documento de propriedade a famílias já assentadas (muitas vezes anos depois do assentamento), de outro. Os dois números não são somáveis nem diretamente comparáveis ano a ano.":"'famílias assentadas' (settled families) and 'títulos entregues' (titles delivered) measure distinct and non-sequential stages of the agrarian reform process — the creation of, or the incorporation of families into, a land settlement project, on one side, and the delivery of the property document to families already settled (often years after the settlement), on the other. The two numbers are neither additive nor directly comparable year by year.",
 "(página e capítulo), a":"(page and chapter), the",
@@ -3057,7 +3058,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "f-copiar":"Copy quotation",
 "f-copiar-tip":"Copies the passage with the name, the page and the link to this screen",
 "f-copiado":"Quotation copied, with the page and the link."}</script>
-<script id="dados" type="application/json">{"versao":"2.0",
+<script id="dados" type="application/json">{"versao":"2.1",
 "macrotemas_previstos":20,
 "macrotemas":[{"cod":"AGRO",
 "nome":"AGRICULTURA: Agronegócio e competitividade",
@@ -23260,7 +23261,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Fotos: TSE — DivulgaCandContas, imagem do registro de candidatura de 2026. Publicadas como o TSE publica, sem recorte nem tratamento.",
 "experiencia_privada_nota":"Critério desta lista: organizações privadas — empresas, institutos, fundações e movimentos — que a pessoa fundou, dirigiu ou das quais é sócia, fora de cargo eletivo ou de governo. Partidos políticos não entram aqui, porque têm bloco próprio nas filiações; sindicatos e centrais sindicais entram, porque são organizações formais fora do Estado. A lista registra o que a pessoa é ou foi na organização, não o que a organização fez: processo judicial fica na seção de processos, com o desfecho. Onde a única fonte disponível é um agregador de dados de CNPJ, isso está dito na fonte da linha — são dados públicos da Receita Federal republicados por terceiros, e este site não conferiu registro a registro no sistema oficial. A lista não é exaustiva e candidaturas com menos cobertura de imprensa deixam menos rastro documentado: ausência de linha aqui significa que nada foi localizado nas fontes consultadas, não que nada exista.",
-"versoes":[{"v":"2.0","atual":true,"itens":["Nova tela de entrada: escolha entre Presidência (os oito planos, como antes) e Congresso; o botão com o nome da parte, no topo, troca entre elas a qualquer momento, e o site lembra a última parte usada", "Nova parte Congresso, com abas próprias: Início (o que fazem deputados e senadores e por que o voto pesa), Afinidade, Favoritos, Comparar e Método, mais a ficha de cada candidato a senador e deputado federal do seu estado (currículo, patrimônio, votos e propostas)", "Afinidade: arraste 10 pautas na ordem de prioridade e escolha um lado (ou Neutro / Não sei) em 9 temas; a lista de candidatos muda na hora, com base em votos nominais reais da Câmara e do Senado desde 2019 e nas propostas de cada um, e mostra quando um número é estimativa", "Favoritos com a sua cola para a urna (2 senadores e 1 deputado federal), comparação de até 3 candidaturas lado a lado e botão Atualizar com a data dos dados oficiais, conferidos todo dia","Congresso: botões 🔊 para ouvir cada parte, abas Pautas · Posições · Lista no celular, setas A→Z / Z→A e maior/menor nas listas, filtro do que mostrar na comparação, foto oficial da Câmara, do Senado ou do TSE, e botão \"Conferir nas fontes oficiais\" que confere ao vivo os votos na Câmara e no Senado e a data das candidaturas no TSE, com data e hora da última sincronização e do último dado novo"]},{"v":"1.9","itens":["AssistONE com o personagem padrão da SolverONE (ajuda-botao.png) no lugar da interrogação: botão redondo de 58 px no canto de baixo à direita, fundo escuro nos dois temas, anel dourado e balanço leve que para com o balão aberto e com \"Reduzir animações\""]},
+"versoes":[{"v":"2.1","atual":true,"itens":["Nova aba Mandato na Presidência (promessas × entregas): os compromissos específicos do plano do presidente eleito (propostas com especificidade 4 ou 5), com a situação de cada um anotada só a partir de ato oficial, e os projetos e medidas provisórias do Executivo no mesmo tema desde a posse; até o resultado, dá para ver como ficaria para cada candidatura", "Nova aba Mandato no Congresso: eleitos do seu estado, votações novas dos seus favoritos desde a última visita (com aviso 🔔 no menu), presença nas votações, quanto votou com o próprio partido e com o Governo, propostas na legislatura e o antes × depois de cada tema", "Tudo troca sozinho com o calendário: resultado do TSE, posse do presidente em 05/Jan/2027 e nova legislatura em 01/Fev/2027"]},{"v":"2.0","itens":["Nova tela de entrada: escolha entre Presidência (os oito planos, como antes) e Congresso; o botão com o nome da parte, no topo, troca entre elas a qualquer momento, e o site lembra a última parte usada", "Nova parte Congresso, com abas próprias: Início (o que fazem deputados e senadores e por que o voto pesa), Afinidade, Favoritos, Comparar e Método, mais a ficha de cada candidato a senador e deputado federal do seu estado (currículo, patrimônio, votos e propostas)", "Afinidade: arraste 10 pautas na ordem de prioridade e escolha um lado (ou Neutro / Não sei) em 9 temas; a lista de candidatos muda na hora, com base em votos nominais reais da Câmara e do Senado desde 2019 e nas propostas de cada um, e mostra quando um número é estimativa", "Favoritos com a sua cola para a urna (2 senadores e 1 deputado federal), comparação de até 3 candidaturas lado a lado e botão Atualizar com a data dos dados oficiais, conferidos todo dia","Congresso: botões 🔊 para ouvir cada parte, abas Pautas · Posições · Lista no celular, setas A→Z / Z→A e maior/menor nas listas, filtro do que mostrar na comparação, foto oficial da Câmara, do Senado ou do TSE, e botão \"Conferir nas fontes oficiais\" que confere ao vivo os votos na Câmara e no Senado e a data das candidaturas no TSE, com data e hora da última sincronização e do último dado novo"]},{"v":"1.9","itens":["AssistONE com o personagem padrão da SolverONE (ajuda-botao.png) no lugar da interrogação: botão redondo de 58 px no canto de baixo à direita, fundo escuro nos dois temas, anel dourado e balanço leve que para com o balão aberto e com \"Reduzir animações\""]},
 {"v":"1.8","itens":["AssistONE: assistente no canto de baixo à direita que diz em que tela você está, explica os avisos recolhidos (\"Como ler\", \"Ressalvas\") em palavras simples, lê a tela em voz alta, procura telas, temas, candidatos e siglas, muda ajustes rápidos e faz um tour de um minuto; liga e desliga em Configurações", "Menu ☰ no celular com as oito páginas e uma linha dizendo o que há em cada uma, ações rápidas (procurar, compartilhar, ouvir, ajustes), tema, idioma e ajuda; o botão Voltar do celular fecha o menu em vez de sair do site", "Compartilhar no cabeçalho: link desta tela pelo WhatsApp, Telegram, e-mail ou copiando; no celular abre o compartilhamento do aparelho", "\"Copiar citação\" em cada cartão dos macrotemas: o trecho vai com o nome, a página e o link", "Acessibilidade em Configurações: texto maior (A+ e A++) e reduzir animações", "Textos de interface reescritos em português mais direto: capa, avisos, cabeçalhos das abas, rodapé e notas das Configurações; o quadro \"feita para tela larga\" só aparece em tela estreita"]},
 {"v":"1.7",
 "itens":["Leitura em voz alta: botão ▶ ao lado de cada título, com voz do aparelho ou voz natural (Gemini, OpenAI, ElevenLabs) e preferências em Configurações",
@@ -36864,7 +36865,7 @@ function multi(hostId,opts,rotulo,onChange){
    (Infográficos), depois o que os documentos dizem (Macrotemas, Índice) e por
    fim a procedência (Documentos, Método, Glossário) */
 var VIEWS=[["inicio","Início"],["historico","Currículo"],["infograficos","Infográficos"],
-           ["macrotemas","Macrotemas"],["score","Índice sob medida"],
+           ["macrotemas","Macrotemas"],["score","Índice sob medida"],["mandato","Mandato"],
            ["documentos","Documentos"],["metodo","Método"],["glossario","Glossário"]];
 /* telas fora do menu de cima (v2.0): a escolha inicial e o Congresso, montadas no bloco "v2.0" */
 var MODOS_V=["hub","congresso"];
@@ -44281,7 +44282,8 @@ var ALVOS=[
   ["#v-congresso .cg-fh h1", function(h){return h.closest("main");}, "dentro"],
   ["#v-congresso .cg-s > h2", function(h){return h.closest("section");}, "dentro"],
   ["#v-congresso .cg-box > h2", function(h){return h.closest(".cg-box");}, "dentro"],
-  ["#v-congresso .cg-card > h3", function(h){return h.closest(".cg-card");}, "dentro"]
+  ["#v-congresso .cg-card > h3", function(h){return h.closest(".cg-card");}, "dentro"],
+  ["#v-mandato .cg-s > h2", function(h){return h.closest("section");}, "dentro"]
 ];
 var FORA="nav,.tts-bar,#cfg,#tts-dlg,thead,.cg-c,.ig-sum,.idx-dd,.sob-dd,.mr-dd,.cm-por,.ig-sum-d,.ig-sum-cat,.sob-d>summary,.idi,.tts-cfg,article.f details";
 function marcaTitulos(){
@@ -44987,6 +44989,12 @@ var TELAS={
     sin:"favoritos estrela cola cedula urna numero"},
   "congresso/comparar":{ic:"⇄",t:T("Congresso · comparar","Congress · compare"),d:T("Até três candidaturas lado a lado.","Up to three candidacies side by side."),
     sin:"comparar lado a lado comparacao"},
+  "congresso/mandato":{ic:"🔔",t:T("Congresso · mandato","Congress · in office"),d:T("Eleitos do seu estado, novidades das votações dos favoritos, presença, fidelidade e antes × depois.",
+    "Elected in your state, news on your favourites' votes, attendance, loyalty and before × after."),
+    sin:"mandato acompanhar eleitos presenca faltas partido governo novidades avisos coerencia"},
+  mandato:{ic:"📋",t:T("Mandato: promessas × entregas","Term: promises × delivery"),d:T("Os compromissos específicos do plano do presidente eleito e o que o governo fez depois da posse.",
+    "The president-elect's specific plan commitments and what the government did after taking office."),
+    sin:"mandato promessas entregas compromissos cumpridas presidente eleito governo atos"},
   "congresso/metodo":{ic:"🔬",t:T("Congresso · método","Congress · method"),d:T("De onde vêm os dados e como cada pauta e posição é ligada a cada candidato.",
     "Where the data comes from and how each priority and position is linked to each candidate."),
     sin:"metodo calculo fontes votacoes como funciona limites"},
@@ -45635,7 +45643,10 @@ html[data-modo="hub"] #menu,html[data-modo="congresso"] #menu{display:none}
 .modo-pop b{display:block;font-size:15px}
 .modo-pop small{display:block;color:var(--muted);font-size:12.5px;line-height:1.4}
 .modo-pop hr{border:0;border-top:1px solid var(--line);margin:4px 6px}
-@media (max-width:760px){.modo{display:none}}   /* no celular a troca mora no ☰ e no nome da página */
+@media (max-width:760px){.modo{display:none}}
+/* com a aba Mandato o menu tem 9 itens: menos folga entre eles e o nome do site numa linha só */
+@media (min-width:761px){.nav-in .menu button{padding:7px 6px}.nav-in .brand{white-space:nowrap}}
+@media (max-width:1500px){.modo-b .mt{display:none}}   /* só o ícone e a seta: o nome fica no aria-label e na dica */   /* no celular a troca mora no ☰ e no nome da página */
 
 section.hub{padding-block:56px 40px}
 .hub{text-align:center}
@@ -45831,6 +45842,7 @@ section.cg-res{padding-block:0}
 .cg-chips span{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);border-radius:999px;padding:4px 6px 4px 12px;font-size:13.5px}
 .cg-chips button{border:0;background:none;cursor:pointer;font-size:15px;color:var(--ink-2);width:26px;height:26px;border-radius:50%}
 /* cola */
+.cg-nov h3{font-size:16px;line-height:1.35}
 .cg-cola{border:2px solid var(--ink);border-radius:12px;padding:16px;background:var(--surface);max-width:520px}
 .cg-cola h3{font-size:18px}
 .cg-cola .lin{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:8px 0;font-size:15px}
@@ -45903,7 +45915,7 @@ function vai(h){if(location.hash!==h)location.hash=h;else scrollTo(0,0);}
 
 /* botão "Presidência ▾" no topo (computador) e as abas do Congresso; no celular, tudo no ☰ */
 var ABAS=[["",T("Início","Home")],["afinidade",T("Afinidade","Affinity")],["favoritos",T("Favoritos","Favourites")],
-          ["comparar",T("Comparar","Compare")],["metodo",T("Método","Method")]];
+          ["comparar",T("Comparar","Compare")],["mandato",T("Mandato","In office")],["metodo",T("Método","Method")]];
 var Seletor={b:null,pop:null,menu:null,
   monta:function(){
     var brand=document.querySelector(".nav-in .brand");if(!brand||$("modo-b"))return;
@@ -45925,11 +45937,13 @@ var Seletor={b:null,pop:null,menu:null,
     this.pinta();
   },
   pinta:function(){if(!this.b)return;var m=MODOS[modoAtual()];
-    this.b.innerHTML="";this.b.appendChild(document.createTextNode(m.ic+" "+m.t));
+    this.b.innerHTML="";this.b.appendChild(mk("span",null,m.ic));this.b.appendChild(mk("span","mt",m.t));
+    this.b.setAttribute("aria-label",m.t+" — "+T("trocar de parte","switch part"));
     var s=mk("span");s.innerHTML=SETA;this.b.appendChild(s);
     if(this.menu){var sub=partesHash()[1]||"";if(sub==="ficha")sub="afinidade";
       [].forEach.call(this.menu.children,function(x){if(x.dataset.s===sub)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current");
-        if(x.dataset.s==="favoritos"){var n=Cg.estado().fav.length;x.textContent=T("Favoritos","Favourites")+(n?" ("+n+")":"");}});}},
+        if(x.dataset.s==="favoritos"){var n=Cg.estado().fav.length;x.textContent=T("Favoritos","Favourites")+(n?" ("+n+")":"");}
+        if(x.dataset.s==="mandato"){var k=Cg.novidades().length;x.textContent=T("Mandato","In office")+(k?" 🔔"+k:"");}});}},
   alterna:function(){if(this.pop.hidden)this.abre();else this.fecha();},
   abre:function(){var p=this.pop,at=modoAtual();p.textContent="";
     ["hub","presidencia","congresso"].forEach(function(k,i){
@@ -46065,12 +46079,15 @@ var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
     var v=$("v-congresso");if(!v)return;var self=this,p=partesHash(),sub=p[1]||"inicio";
     if(!v.dataset.ok){v.dataset.ok="1";this.casca(v);}
     var corpo=$("cg-corpo");corpo.textContent="";
+    /* contador de novidades do mandato no menu (precisa das votações recentes e dos favoritos) */
+    this.garanteInd(false).then(function(){return self.garanteRec(false);}).then(function(){return self.resolve(self.estado().fav);}).then(function(){Seletor.pinta();},function(){});
     var ufSel=$("cg-uf-top");if(ufSel)ufSel.value=this.estado().uf;
     this.garanteInd(false).then(function(){self.pintaData();
       if(sub==="afinidade")self.telaAf(corpo);
       else if(sub==="favoritos")self.telaFav(corpo);
       else if(sub==="comparar")self.telaCmp(corpo);
       else if(sub==="metodo")self.telaMet(corpo);
+      else if(sub==="mandato")self.telaMandato(corpo);
       else if(sub==="ficha")self.telaFicha(corpo,p[2],p[3]);
       else self.telaInicio(corpo);
     },function(){corpo.appendChild(mk("div","wrap cg-vazio",self.falha()));});
@@ -46180,11 +46197,12 @@ var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
     var c1=mk("div","cg-card dest");c1.appendChild(mk("h3",null,T("Discurso se confere no voto","Speeches are checked against votes")));
     c1.appendChild(mk("p",null,T("Muita gente decide o voto para o Congresso na última hora, pelo santinho ou pela indicação de alguém. Só que todo voto de deputado e senador no plenário fica registrado. Olhar esse registro é o jeito mais direto de saber se o que a pessoa diz bate com o que ela faz.",
       "Many people decide their vote for Congress at the last minute, from a flyer or a friend's tip. But every floor vote by a deputy or senator is on record. Looking at that record is the most direct way to know whether what someone says matches what they do.")));
-    var c2=mk("div","cg-card");c2.appendChild(mk("h3",null,T("Como usar, em 4 passos","How to use it, in 4 steps")));
+    var c2=mk("div","cg-card");c2.appendChild(mk("h3",null,T("Como usar, em 5 passos","How to use it, in 5 steps")));
     var ol=mk("ol");[T("Escolha o seu estado (lá em cima).","Choose your state (at the top)."),
       T("Na aba Afinidade, arraste suas pautas na ordem que importa para você e diga o que pensa em 9 temas.","In the Affinity tab, drag your priorities into the order that matters to you and say what you think on 9 topics."),
       T("Toque ★ em quem quiser acompanhar e ⇄ para comparar lado a lado.","Tap ★ on whoever you want to follow and ⇄ to compare side by side."),
-      T("Em Favoritos, monte a sua cola com os números para levar à urna.","In Favourites, build your memo with the numbers to take to the polls.")].forEach(function(t){ol.appendChild(mk("li",null,t));});
+      T("Em Favoritos, monte a sua cola com os números para levar à urna.","In Favourites, build your memo with the numbers to take to the polls."),
+      T("Depois da eleição, na aba Mandato, acompanhe os eleitos e os seus favoritos: votações novas, presença e se mudaram de lado.","After the election, in the In office tab, follow the winners and your favourites: new roll calls, attendance and whether they switched sides.")].forEach(function(t){ol.appendChild(mk("li",null,t));});
     c2.appendChild(ol);
     var c3=mk("div","cg-card alerta");c3.appendChild(mk("h3",null,T("O que isto é — e o que não é","What this is — and what it is not")));
     var ul=mk("ul");[T("É uma lupa sobre dados oficiais do TSE, da Câmara e do Senado, com link para cada fonte.","It is a magnifying glass on official data from the electoral court, the Chamber and the Senate, with a link to each source."),
@@ -46411,6 +46429,11 @@ var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
           gr.appendChild(e2);}});
       sq.appendChild(gr);}
     w.appendChild(sq);
+    /* mandato em curso */
+    var smd=mk("section","cg-s");smd.appendChild(mk("h2",null,T("No mandato em curso","In the current term")));
+    smd.appendChild(this.blocoMandato(c));var coe=this.blocoCoerencia(c);
+    if(coe){smd.appendChild(mk("h3",null,T("Antes × depois, tema a tema","Before × after, topic by topic")));smd.appendChild(coe);}
+    w.appendChild(smd);
     /* votações marcantes */
     if(c.v){var sd=mk("section","cg-s");sd.appendChild(mk("h2",null,T("Votações marcantes","Landmark votes")));
       sd.appendChild(mk("p",null,T("Só para informação: não entram na conta da afinidade.","For information only: they are not part of the affinity count.")));
@@ -46539,6 +46562,113 @@ var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
     });
   },
 
+  /* ===== Mandato: acompanhar depois da urna =====
+     Legislatura em curso vem do indice.json (o script troca sozinho em 01/Fev/2027);
+     as últimas votações vêm de recentes.json. Nada disso precisa de servidor. */
+  garanteRec:function(novo){var self=this;if(this.rec&&!novo)return Promise.resolve(this.rec);
+    return this.pega("recentes.json",novo).then(function(r){self.rec=r;return r;},function(){self.rec={votacoes:[]};return self.rec;});},
+  /* votações novas (depois da última visita à aba Mandato) em que algum favorito votou */
+  novidades:function(){var s=this.estado(),r=this.rec;if(!r||!s.fav.length)return [];
+    var ids=this.idsFav();if(!ids.length)return [];
+    return r.votacoes.filter(function(v){return (!s.vistoMandato||v.data>s.vistoMandato)&&ids.some(function(x){return v.v[x.k];});});},
+  /* chaves dos favoritos nos arquivos de votação: d<id da Câmara> / s<código do Senado> */
+  idsFav:function(){var self=this,out=[];this.estado().fav.forEach(function(f){var c=self.acha(f.u,f.i);if(!c)return;
+      if(c.dep)out.push({k:"d"+c.dep,c:c});if(c.sen)out.push({k:"s"+c.sen,c:c});});return out;},
+  lado:function(x){return x==null?"—":x<=-0.34?T("lado A","side A"):x>=0.34?T("lado B","side B"):T("dividido","split");},
+  pct:function(a,b){return b?Math.round(100*a/b)+"%":"—";},
+  /* bloco com os números do mandato em curso de um candidato (Câmara e/ou Senado) */
+  blocoMandato:function(c){var self=this,ind=this.ind,w=mk("div");
+    var L=ind.legislatura||{};
+    if(!c.m){w.appendChild(mk("p",null,(c.r&&/^ELEITO/.test(c.r)&&L.proxima&&new Date()<new Date(L.proxima))?
+        T("Eleito(a) em 2026: os números do mandato começam com a posse, em ","Elected in 2026: term figures start with the swearing-in on ")+dia(L.proxima)+".":
+        T("Sem votos no plenário na legislatura em curso.","No floor votes in the current legislature.")));return w;}
+    ["c","s"].forEach(function(k){var m=c.m[k];if(!m)return;var g=mk("div","cg-cards");g.style.marginTop="8px";
+      [[T("Presença nas votações","Attendance at roll calls"),self.pct(m.vt,m.tot),m.vt+T(" de "," of ")+m.tot+T(" votações nominais em plenário (",
+          " floor roll calls (")+(k==="c"?T("Câmara","Chamber"):T("Senado","Senate"))+T(", de ",", from ")+dia(m.de)+T(" a "," to ")+dia(m.ate)+")"],
+       [T("Votou com o próprio partido","Voted with own party"),self.pct(m.pp[0],m.pp[1]),m.pp[1]+T(" votações comparadas (maioria do partido)"," roll calls compared (party majority)")],
+       [T("Votou com o Governo","Voted with the Government"),m.gv?self.pct(m.gv[0],m.gv[1]):"—",m.gv?m.gv[1]+T(" votações com orientação do Governo"," roll calls with Government guidance"):T("o Senado não publica a orientação do Governo","the Senate does not publish Government guidance")]]
+        .forEach(function(x){var d=mk("div","cg-card");d.appendChild(mk("small",null,x[0]));d.appendChild(mk("div","cg-num",x[1]));d.appendChild(mk("p",null,x[2]));g.appendChild(d);});
+      w.appendChild(g);});
+    if(c.t&&c.t.nl){var pm={};ind.pautas.forEach(function(p){pm[p.id]=p;});
+      var top=Object.keys(c.t.pl||{}).sort(function(a,b){return c.t.pl[b]-c.t.pl[a];}).slice(0,3).map(function(k){return (EN?pm[k].en:pm[k].pt)+" ("+c.t.pl[k]+")";});
+      w.appendChild(mk("p",null,c.t.nl+T(" propostas nesta legislatura"," bills in this legislature")+(top.length?" · "+T("mais sobre: ","mostly on: ")+top.join(", "):"")));}
+    return w;},
+  /* coerência: lado em cada tema antes e depois do início da legislatura em curso */
+  blocoCoerencia:function(c){var self=this,ind=this.ind,L=ind.legislatura||{};
+    if(!c.ea||!c.ed)return null;var tb=mk("table"),hr=mk("tr");
+    [T("Tema","Topic"),T("Antes de ","Before ")+dia(L.inicio),T("Desde ","Since ")+dia(L.inicio),""].forEach(function(t){hr.appendChild(mk("th",null,t));});tb.appendChild(hr);
+    var mud=0;ind.eixos.forEach(function(e){var a=c.ea[e.id],d=c.ed[e.id];if(!a&&!d)return;var r=mk("tr");
+      r.appendChild(mk("td",null,(EN?e.en:e.pt).t));r.appendChild(mk("td",null,a?self.lado(a[0])+" ("+a[1]+")":"—"));r.appendChild(mk("td",null,d?self.lado(d[0])+" ("+d[1]+")":"—"));
+      var troca=a&&d&&Math.abs(a[0])>=0.34&&Math.abs(d[0])>=0.34&&(a[0]>0)!==(d[0]>0);if(troca)mud++;
+      r.appendChild(mk("td",troca?"cg-v cg-dif":"cg-v cg-nd",troca?T("mudou de lado","switched sides"):(a&&d?T("manteve","kept"):"")));tb.appendChild(r);});
+    var w=mk("div","cg-met");var tw=mk("div","tw");tw.appendChild(tb);w.appendChild(tw);
+    w.appendChild(mk("p",null,mud?T("Mudou de lado em ","Switched sides on ")+mud+T(" tema(s). Entre parênteses, quantos votos sustentam cada lado."," topic(s). In brackets, how many votes support each side."):
+      T("Não mudou de lado em nenhum tema com voto antes e depois. Entre parênteses, quantos votos sustentam cada lado.","Did not switch sides on any topic with votes before and after. In brackets, how many votes support each side.")));
+    return w;},
+  telaMandato:function(corpo){
+    var self=this,s=this.estado(),ind=this.ind,L=ind.legislatura||{};
+    this.cab(corpo,T("Congresso · acompanhamento do mandato","Congress · following the term"),T("Depois da urna, acompanhe","After the ballot, keep watching"),
+      T("Votar é o começo. Aqui você acompanha quem foi eleito e quem você marcou com ★: presença nas votações, fidelidade ao partido e ao governo, o que propõe e se mudou de lado.",
+        "Voting is the start. Here you follow who was elected and whoever you starred ★: attendance at votes, loyalty to party and government, what they propose and whether they switched sides."));
+    var w=mk("main","wrap");w.style.paddingBottom="40px";corpo.appendChild(w);
+    var info=mk("div","cg-card dest");
+    info.appendChild(mk("p",null,T("Legislatura em curso: ","Current legislature: ")+(L.n||"—")+T("ª, desde ","th, since ")+dia(L.inicio)+". "+
+      T("Em ","On ")+dia(L.proxima)+T(" começa a próxima, com os eleitos de 2026 — este painel passa para ela sozinho, sem você fazer nada."," the next one begins, with those elected in 2026 — this panel switches to it on its own, with nothing for you to do.")));
+    w.appendChild(info);
+    Promise.all([this.garanteRec(false),this.resolve(s.fav),s.uf?this.garanteUF(s.uf).catch(function(){return null;}):Promise.resolve(null)]).then(function(r){
+      var F=r[1];
+      /* 1. novidades */
+      var s1=mk("section","cg-s");s1.appendChild(mk("h2",null,T("Novidades desde a sua última visita","News since your last visit")));
+      var nov=self.novidades(),idsF=self.idsFav();
+      if(!s.fav.length)s1.appendChild(mk("div","cg-vazio",T("Marque candidatos com ★ (aba Afinidade) para ver aqui como eles votam nas votações novas.","Star ★ candidates (Affinity tab) to see here how they vote on new roll calls.")));
+      else if(!nov.length)s1.appendChild(mk("div","cg-vazio",T("Nenhuma votação nova dos seus favoritos","No new roll call by your favourites")+(s.vistoMandato?T(" desde "," since ")+dia(s.vistoMandato):"")+"."));
+      else{var maisN=mk("button","cg-mais","");maisN.type="button";
+        nov.forEach(function(v,iN){var d=mk("div","cg-card cg-nov");d.style.marginTop="8px";if(iN>=5)d.hidden=true;
+          d.appendChild(mk("small",null,dia(v.data)+" · "+(v.casa==="s"?T("Senado","Senate"):T("Câmara","Chamber"))+" · "+v.placar[0]+" "+T("sim","yes")+" × "+v.placar[1]+" "+T("não","no")+(v.gov?" · "+T("Governo orientou ","Government guidance: ")+VOTO[v.gov]:"")));
+          var h=mk("h3",null,(v.prop?v.prop+" — ":"")+(v.em||v.desc).slice(0,160));d.appendChild(h);
+          var ul=mk("ul","cg-vl");idsF.forEach(function(x){var cod=v.v[x.k];if(!cod)return;var li=mk("li");li.appendChild(document.createTextNode(x.c.n+" ("+x.c.p+"): "));
+            li.appendChild(mk("span","ok",VOTO[cod]+(v.gov&&(cod==="S"||cod==="N")?(cod===v.gov?T(" · com o Governo"," · with the Government"):T(" · contra o Governo"," · against the Government")):"")));ul.appendChild(li);});
+          d.appendChild(ul);
+          var u=v.casa==="s"?(v.mat?"https://www25.senado.leg.br/web/atividade/materias/-/materia/"+v.mat:null):(v.pid?"https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao="+v.pid:null);
+          if(u){var p=mk("p");p.appendChild(link(T("ver a proposta ↗","see the bill ↗"),u));d.appendChild(p);}
+          s1.appendChild(d);});
+        /* só as 5 mais recentes de início; o resto num toque */
+        if(nov.length>5){maisN.textContent=T("Mostrar todas ","Show all ")+"("+nov.length+")";maisN.addEventListener("click",function(){[].forEach.call(s1.querySelectorAll(".cg-nov[hidden]"),function(x){x.hidden=false;});maisN.remove();});s1.appendChild(maisN);}
+        var bv=mk("button","cg-btn sec",T("Marcar como visto","Mark as seen"));bv.type="button";bv.style.marginTop="10px";
+        bv.addEventListener("click",function(){s.vistoMandato=nov[0].data;self.salva();Seletor.pinta();self.abre();});s1.appendChild(bv);}
+      w.appendChild(s1);
+      /* 2. eleitos do estado */
+      var s2=mk("section","cg-s");s2.appendChild(mk("h2",null,T("Eleitos do seu estado","Elected in your state")));
+      if(!s.uf)s2.appendChild(mk("div","cg-vazio",T("Escolha o estado lá em cima.","Choose the state at the top.")));
+      else{var E=(self.uf[s.uf]?self.uf[s.uf].c:[]).filter(function(c){return c.r&&/^ELEITO/.test(c.r);});
+        if(!E.length)s2.appendChild(mk("div","cg-vazio",T("O TSE ainda não publicou o resultado de ","The electoral court has not yet published the result for ")+UFN[s.uf]+
+          T(". Assim que publicar, os eleitos aparecem aqui sozinhos (o site confere todo dia).",". As soon as it does, the winners show up here on their own (the site checks every day).")));
+        else["S","F"].forEach(function(k){var Ek=E.filter(function(c){return c.cg===k;});if(!Ek.length)return;s2.appendChild(mk("h3",null,CARGO[k]+" ("+Ek.length+")"));
+          var l=mk("div","cg-lista");Ek.sort(function(a,b){return a.n.localeCompare(b.n,"pt");}).forEach(function(c){l.appendChild(self.cartao(c,self.geral(c)));});s2.appendChild(l);});}
+      w.appendChild(s2);
+      /* 3. favoritos no mandato */
+      var s3=mk("section","cg-s");s3.appendChild(mk("h2",null,T("Seus favoritos no mandato","Your favourites in office")));
+      if(!F.length)s3.appendChild(mk("div","cg-vazio",T("Nenhum favorito ainda.","No favourites yet.")));
+      F.forEach(function(c){var d=mk("div","cg-card");d.style.marginTop="10px";var h=mk("h3");var bt=mk("button","cg-lim",c.n);bt.type="button";bt.style.fontSize="17px";bt.style.fontWeight="600";
+        bt.addEventListener("click",function(){vai("#congresso/ficha/"+c.uf+"/"+c.id);});h.appendChild(bt);d.appendChild(h);
+        d.appendChild(mk("p",null,CARGO_L[c.cg]+" · "+c.p+" · "+c.uf+(c.r?" · "+c.r:"")));
+        d.appendChild(self.blocoMandato(c));var co=self.blocoCoerencia(c);if(co){d.appendChild(mk("p",null,T("Antes × depois, tema a tema:","Before × after, topic by topic:")));d.appendChild(co);}
+        s3.appendChild(d);});
+      w.appendChild(s3);
+      var s4=mk("section","cg-s");s4.appendChild(mk("h2",null,T("Como estes números são feitos","How these numbers are made")));
+      [T("Presença: votos registrados ÷ votações nominais do plenário no período em que a pessoa estava votando (de seu primeiro ao último voto na legislatura). Licença e suplência não contam como falta.",
+         "Attendance: recorded votes ÷ floor roll calls in the period the person was voting (from their first to last vote in the legislature). Leave and substitute periods do not count as absence."),
+       T("Com o partido: quantas vezes o voto Sim/Não foi igual ao da maioria da bancada naquela votação. Com o Governo: igual à orientação do líder do Governo, que a Câmara publica (o Senado não).",
+         "With the party: how often the Yes/No vote matched the caucus majority on that roll call. With the Government: matched the Government leader's guidance, which the Chamber publishes (the Senate does not)."),
+       T("Antes × depois: o lado em cada tema (mesmas votações da aba Método) antes e depois do início da legislatura em curso. Só aparece quando há voto nos dois períodos. A partir de fev/2027, as votações novas que entrarem no método passam a contar no \"depois\".",
+         "Before × after: the side on each topic (same roll calls as the Method tab) before and after the start of the current legislature. Only shown when there are votes in both periods. From Feb/2027, new roll calls added to the method count as \"after\"."),
+       T("Deputados e senadores não registram plano de governo no TSE; por isso aqui o acompanhamento é pelo que fazem, não por promessa escrita. Os compromissos do presidente eleito ficam na aba Mandato da Presidência.",
+         "Deputies and senators do not file a government plan with the electoral court; so here tracking is by what they do, not by written promises. The president-elect's commitments are in the Presidency's Mandate tab.")]
+        .forEach(function(t){s4.appendChild(mk("p",null,t));});
+      w.appendChild(s4);
+    });
+  },
+
   /* ===== Método ===== */
   telaMet:function(corpo){
     var ind=this.ind;
@@ -46599,6 +46729,93 @@ var Cg={ind:null,uf:{},st:null,mostra:40,busca:"",carregando:null,tReq:0,
   }
 };
 
+/* ---------------- Presidência · Mandato: promessas × entregas ----------------
+   Compromissos = citações do plano do eleito com tipo "proposta" e especificidade 4 ou 5
+   (bloco "dados"). Status = anotação editorial em presidencia-compromissos.json.
+   Atos do governo = projetos e MPs do Executivo desde a posse (presidencia/mandato.json,
+   gerado todo dia por congresso-sync.py). Antes da posse, tudo fica "aguardando posse". */
+var PM={dados:null,mand:null,comp:null,sel:"",filtro:"",macro:"",
+  ST:{andamento:["⏳",T("Em andamento","In progress")],cumprido:["✅",T("Cumprido","Delivered")],parcial:["◐",T("Cumprido em parte","Partly delivered")],
+      nao_cumprido:["✖",T("Não cumprido","Not delivered")],sem_ato:["·",T("Sem ato identificado","No act identified")],aguardando:["🕒",T("Aguardando posse","Awaiting inauguration")]},
+  carrega:function(){var self=this;if(this.dados)return Promise.resolve();
+    try{this.dados=JSON.parse(document.getElementById("dados").textContent);}catch(e){this.dados={fichas:[],candidatos:[],macrotemas:[]};}
+    var pj=function(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;});};
+    return Promise.all([pj("presidencia/mandato.json"),pj("presidencia-compromissos.json")]).then(function(r){self.mand=r[0]||{};self.comp=r[1]||{temas:{},status:{}};});},
+  status:function(f){var posse=this.mand.posse||"2027-01-05";var a=(this.comp.status||{})[f.id];
+    if(a&&a.s)return a;return {s:new Date()<new Date(posse+"T00:00:00")?"aguardando":"sem_ato"};},
+  pinta:function(){
+    var v=$("v-mandato");if(!v)return;var self=this;
+    this.carrega().then(function(){self.desenha(v);});},
+  desenha:function(v){
+    var self=this,d=this.dados,m=this.mand||{},posse=m.posse||"2027-01-05";v.textContent="";
+    var nome={};d.candidatos.forEach(function(c){nome[c.pre]=c.nome+" ("+c.partido+")";});
+    var h=mk("header","wrap");h.style.paddingBlock="30px 8px";
+    h.appendChild(mk("div","eyebrow",T("Presidência · acompanhamento do mandato 2027–2030","Presidency · following the 2027–2030 term")));
+    h.appendChild(mk("h1","h-lead",T("Promessas × entregas","Promises × delivery")));
+    h.appendChild(mk("p","lede",T("O que o plano registrado no TSE prometia de forma específica — com instrumento, valor, prazo ou meta — e o que o governo fez depois da posse, com o ato oficial.",
+      "What the plan filed with the electoral court promised specifically — with an instrument, amount, deadline or target — and what the government did after taking office, with the official act.")));
+    v.appendChild(h);
+    var w=mk("main","wrap");w.style.paddingBottom="40px";v.appendChild(w);
+    /* situação da eleição */
+    var sit=mk("div","cg-card dest");
+    sit.appendChild(mk("p",null,m.eleito?T("Eleito(a), segundo o TSE: ","Elected, according to the electoral court: ")+nome[m.eleito]+". "+T("Posse em ","Inauguration on ")+dia(posse)+".":
+      (m.segundo_turno&&m.segundo_turno.length?T("Segundo turno em 25/Out/2026 entre ","Run-off on Oct/25/2026 between ")+m.segundo_turno.map(function(k){return nome[k];}).join(T(" e "," and "))+". ":
+        T("Apuração do 1º turno em 4/Out/2026. ","First-round count on Oct/04/2026. "))+
+      T("Quando o TSE declarar o eleito, esta aba passa a acompanhá-lo sozinha (o site confere todo dia). Até lá, veja como ficaria para cada candidatura.",
+        "When the electoral court declares the winner, this tab starts following them on its own (the site checks every day). Until then, see how it would look for each candidacy.")));
+    w.appendChild(sit);
+    if(!this.sel)this.sel=m.eleito||(m.segundo_turno&&m.segundo_turno[0])||d.candidatos[0].pre;
+    var f=mk("div","cg-f");f.style.marginTop="14px";
+    var sc=mk("select");sc.setAttribute("aria-label",T("Candidatura","Candidacy"));
+    d.candidatos.forEach(function(c){var o=mk("option",null,c.nome+" ("+c.partido+")"+(c.pre===m.eleito?" — "+T("eleito(a)","elected"):""));o.value=c.pre;sc.appendChild(o);});
+    sc.value=this.sel;sc.addEventListener("change",function(){self.sel=sc.value;self.macro="";self.desenha(v);});f.appendChild(sc);
+    var sf=mk("select");sf.setAttribute("aria-label",T("Situação","Status"));sf.appendChild(mk("option",null,T("Todas as situações","All statuses"))).value="";
+    Object.keys(this.ST).forEach(function(k){var o=mk("option",null,self.ST[k][0]+" "+self.ST[k][1]);o.value=k;sf.appendChild(o);});
+    sf.value=this.filtro;sf.addEventListener("change",function(){self.filtro=sf.value;self.desenha(v);});f.appendChild(sf);
+    var mm={};d.macrotemas.forEach(function(x){mm[x.cod]=x;});
+    var C=d.fichas.filter(function(x){return x.cand===self.sel&&x.tipo==="proposta"&&(x.nivel||0)>=4;});
+    var sm=mk("select");sm.setAttribute("aria-label",T("Tema","Topic"));sm.appendChild(mk("option",null,T("Todos os temas","All topics"))).value="";
+    Object.keys(C.reduce(function(a,x){a[x.macro]=1;return a;},{})).sort(function(a,b){return (mm[a]||{nome:a}).nome.localeCompare((mm[b]||{nome:b}).nome,"pt");})
+      .forEach(function(k){var o=mk("option",null,(mm[k]||{nome:k}).nome);o.value=k;sm.appendChild(o);});
+    sm.value=this.macro;sm.addEventListener("change",function(){self.macro=sm.value;self.desenha(v);});f.appendChild(sm);
+    w.appendChild(f);
+    /* placar */
+    var cont={};C.forEach(function(x){var st=self.status(x).s;cont[st]=(cont[st]||0)+1;});
+    var pl=mk("div","cg-cards");pl.style.marginTop="12px";
+    Object.keys(this.ST).forEach(function(k){if(!cont[k])return;var c=mk("div","cg-card");c.appendChild(mk("small",null,self.ST[k][0]+" "+self.ST[k][1]));c.appendChild(mk("div","cg-num",String(cont[k])));pl.appendChild(c);});
+    w.appendChild(pl);
+    w.appendChild(mk("p",null,C.length+T(" compromissos específicos no plano de "," specific commitments in the plan of ")+nome[this.sel]+
+      T(" (propostas com especificidade 4 ou 5, de 5). Os trechos ficam no original em português: cada um pode ser conferido na página do PDF."," (proposals with specificity 4 or 5, out of 5). Passages stay in the original Portuguese: each can be checked on the PDF page.")));
+    /* compromissos por tema, com os atos do governo no mesmo tema */
+    var atos=m.atos||[],temas=this.comp.temas||{},grupos={};
+    C.forEach(function(x){if(self.macro&&x.macro!==self.macro)return;if(self.filtro&&self.status(x).s!==self.filtro)return;(grupos[x.macro]=grupos[x.macro]||[]).push(x);});
+    Object.keys(grupos).sort(function(a,b){return (mm[a]||{nome:a}).nome.localeCompare((mm[b]||{nome:b}).nome,"pt");}).forEach(function(k){
+      var sec=mk("section","cg-s");sec.appendChild(mk("h2",null,(mm[k]||{nome:k}).nome));
+      grupos[k].forEach(function(x){var st=self.status(x),c=mk("div","cg-card");c.style.marginTop="8px";
+        var tag=mk("span","cg-tg "+(st.s==="cumprido"?"v":st.s==="nao_cumprido"?"e":""),self.ST[st.s][0]+" "+self.ST[st.s][1]);c.appendChild(tag);
+        var q=mk("p");q.style.fontStyle="italic";q.textContent="“"+x.quote+"”";c.appendChild(q);
+        c.appendChild(mk("p",null,x.page+" · "+T("especificidade ","specificity ")+x.nivel+"/5"));
+        if(st.nota_pt||st.nota_en)c.appendChild(mk("p",null,EN?(st.nota_en||st.nota_pt):(st.nota_pt||st.nota_en)));
+        if(st.links&&st.links.length){var pl2=mk("p");st.links.forEach(function(u,i){if(i)pl2.appendChild(document.createTextNode(" · "));pl2.appendChild(link(T("fonte ","source ")+(i+1)+" ↗",u));});c.appendChild(pl2);}
+        sec.appendChild(c);});
+      var tk=temas[k]||[],rel=atos.filter(function(a){return a.temas.some(function(t){return tk.indexOf(t)>=0;});});
+      var ad=mk("details");ad.style.marginTop="8px";ad.appendChild(mk("summary",null,T("Atos do governo neste tema desde a posse (","Government acts on this topic since inauguration (")+rel.length+")"));
+      if(!rel.length)ad.appendChild(mk("p",null,new Date()<new Date(posse+"T00:00:00")?T("O mandato começa em ","The term begins on ")+dia(posse)+".":T("Nenhum projeto ou medida provisória do Executivo neste tema até agora.","No bill or provisional measure from the Executive on this topic so far.")));
+      else{var ul=mk("ul");rel.slice(0,12).forEach(function(a){var li=mk("li");li.appendChild(link(a.tipo+" "+a.num+"/"+a.ano+" ↗","https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao="+a.id));
+          li.appendChild(document.createTextNode(" · "+dia(a.data)+" — "+a.em));ul.appendChild(li);});ad.appendChild(ul);}
+      sec.appendChild(ad);w.appendChild(sec);});
+    var me=mk("section","cg-s");me.appendChild(mk("h2",null,T("Como funciona","How it works")));
+    [T("A lista de compromissos não é escolha nova: são as citações do plano que este site já classificava como proposta com especificidade 4 ou 5 (ver aba Método). Diretrizes genéricas ficam de fora porque não dá para dizer se foram cumpridas.",
+       "The list of commitments is not a new choice: they are the plan quotations this site already classified as proposals with specificity 4 or 5 (see the Method tab). Generic guidelines are left out because there is no way to tell whether they were delivered."),
+     T("A situação de cada compromisso só muda com ato oficial verificável (lei, medida provisória, decreto, publicação no Diário Oficial), com o link da fonte. Sem ato, fica \"sem ato identificado\".",
+       "A commitment's status only changes with a verifiable official act (law, provisional measure, decree, Official Gazette publication), with the source link. Without an act, it stays \"no act identified\"."),
+     T("\"Atos do governo neste tema\" lista os projetos e medidas provisórias que o Executivo mandou ao Congresso desde a posse, pelo tema oficial da Câmara. É uma pista para conferir, não a prova de que o compromisso foi cumprido. Decretos e portarias não passam pela Câmara e não aparecem aqui.",
+       "\"Government acts on this topic\" lists the bills and provisional measures the Executive sent to Congress since inauguration, by the Chamber's official topic. It is a lead to check, not proof that the commitment was delivered. Decrees and ordinances do not go through the Chamber and do not appear here.")]
+      .forEach(function(t){me.appendChild(mk("p",null,t));});
+    w.appendChild(me);
+  }
+};
+
 /* aviso curto (usa o do site se houver) */
 function aviso(t){var e=$("cg-aviso");if(!e){e=mk("div","cg-aviso");e.id="cg-aviso";e.setAttribute("role","status");document.body.appendChild(e);}
   e.textContent=t;e.classList.add("on");clearTimeout(aviso.t);aviso.t=setTimeout(function(){e.classList.remove("on");},3600);}
@@ -46611,6 +46828,7 @@ function aplica(){
   Seletor.pinta();Seletor.fecha();
   if(m==="hub")pintaHub();
   if(m==="congresso")Cg.abre();
+  if(m==="presidencia"&&partesHash()[0]==="mandato")PM.pinta();
 }
 function inicia(){
   Seletor.monta();
