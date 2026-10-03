@@ -1,5 +1,7 @@
 # Atualiza os dados da aba Congresso (pasta congresso/) a partir das fontes
 # oficiais: API da Câmara, API do Senado e arquivo de candidaturas do TSE.
+# Também acompanha o mandato (legislatura em curso, troca sozinha em fev/2027) e
+# grava presidencia/mandato.json (resultado do TSE e atos do Executivo após a posse).
 # Roda sozinho todo dia e também pelo botão "Run workflow" na aba Actions.
 name: Congresso - atualizar dados
 
@@ -25,12 +27,12 @@ jobs:
         run: |
           # todo dia muda ao menos o "conferido_em" do indice.json (a página mostra
           # essa data); os arquivos por estado só mudam quando algum dado muda
-          if git diff --quiet -- congresso/; then
+          if git diff --quiet -- congresso/ presidencia/ && [ -z "$(git status --porcelain -- presidencia/)" ]; then
             echo "Nada a gravar."
             exit 0
           fi
           git config user.name "congresso-sync"
           git config user.email "actions@users.noreply.github.com"
-          git add congresso/
+          git add congresso/ presidencia/
           git commit -m "Congresso: dados oficiais de $(date -u +%Y-%m-%d)"
           git push

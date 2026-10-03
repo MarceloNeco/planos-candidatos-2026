@@ -15,7 +15,9 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
 | `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
 | `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
-| `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta | **nunca à mão**: é gerada pelo script |
+| `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta + `recentes.json` (últimas 25 votações nominais das duas Casas, com o voto de cada parlamentar ligado) | **nunca à mão**: é gerada pelo script |
+| `presidencia-compromissos.json` | acompanhamento do presidente eleito: mapa macrotema → temas oficiais da Câmara e o **status editorial** de cada compromisso (só com ato oficial e link) | **sim — anotar o andamento aqui** |
+| `presidencia/mandato.json` | resultado da Presidência no TSE (eleito, 2º turno) e atos do Executivo (PL, PLP, PEC, MPV) desde a posse em 05/01/2027 | **nunca à mão**: gerado pelo `congresso-sync.py` |
 | `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava a pasta `congresso/`; também pelo botão "Run workflow" na aba Actions | — |
 
 ## Dentro do `index.html` (de cima para baixo)
@@ -46,6 +48,13 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
    Prioridades, posições, favoritos, comparação e cola ficam em `planos2026:congresso`. Textos em `T(pt, en)`.
    Contas: `Cg.pos` (posição num eixo: voto próprio → padrão geral → bancada do partido), `Cg.afPos`,
    `Cg.afPri`, `Cg.geral`; arrastar e soltar em `ordenavel()`.
+   **Mandato** (`#congresso/mandato`, `Cg.telaMandato`): novidades desde a última visita (`recentes.json` ×
+   favoritos; contador 🔔 no menu), eleitos do estado (campo `r` do TSE), presença / partido / governo
+   (`c.m`) e antes × depois por eixo (`c.ea`, `c.ed`). A legislatura em curso vem de `indice.json`
+   (`legislatura`), calculada pela data no script (`legislatura()`): em 01/02/2027 troca sozinha para a 58ª.
+8. **Presidência · Mandato** (`#mandato`, objeto `PM`, no mesmo bloco "v2.0"): compromissos = citações do
+   plano com `tipo: proposta` e `nivel` 4–5; status de `presidencia-compromissos.json`; atos do governo de
+   `presidencia/mandato.json`. Eleito lido do TSE pelo script (`NUM_PRES`).
    "Conferir nas fontes oficiais" (`Cg.fontes`): o navegador lê de novo, direto nas APIs da Câmara e do
    Senado, os votos de todas as votações usadas e recalcula (`Cg.recalc`, mesma regra do script) só nesta
    visita; do TSE lê a data de publicação das candidaturas. Leitura em voz alta dos títulos do Congresso:
@@ -87,3 +96,5 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | citações, candidatos | bloco `dados` (nos dois arquivos) |
 | tela de escolha, módulo Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg.tela…`, `Seletor`) |
 | pautas, eixos e votações usadas na afinidade | `congresso-pautas.json` e depois `python3 congresso-sync.py` |
+| andamento de um compromisso do presidente eleito | `presidencia-compromissos.json` → `status` (o site lê direto, sem rodar script) |
+| votações novas da legislatura de 2027 no antes × depois | `congresso-pautas.json` (eixos) e depois `python3 congresso-sync.py` |

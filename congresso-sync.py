@@ -38,7 +38,33 @@ UFS = ('AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC 
 ANOS = range(2019, date.today().year + 1)        # propostas e votos desde a legislatura de 2019
 TIPOS = {'PL', 'PLP', 'PEC'}                       # só proposta de lei e de emenda à Constituição
 DIA_ELEICAO = date(2026, 10, 4)
+PRES_SAIDA = os.path.join(AQUI, 'presidencia')
+# número de urna -> código do candidato no site (o mesmo dos nomes dos PDFs dos planos)
+NUM_PRES = {'13': 'lul', '22': 'bol', '14': 'ren', '28': 'mar', '29': 'rui', '30': 'zem', '55': 'cai', '70': 'cur'}
+EXECUTIVO = {'Poder Executivo', 'Presidência da República'}
 csv.field_size_limit(10 ** 8)
+
+
+def legislatura(hoje=None):
+    """Legislatura em curso: nº e o dia em que começou. Cada uma começa em 1º de fevereiro
+    do ano seguinte à eleição (57ª: 01/02/2023; 58ª: 01/02/2027). Troca sozinha pela data."""
+    hoje = hoje or date.today()
+    n = (hoje.year - 1795) // 4
+    if hoje < date(1795 + 4 * n, 2, 1):
+        n -= 1
+    return n, date(1795 + 4 * n, 2, 1)
+
+
+def mandato_presidencial(hoje=None):
+    """Início do mandato presidencial em curso. Desde 2027 a posse é em 5 de janeiro
+    (Emenda Constitucional 111/2021); antes era em 1º de janeiro."""
+    hoje = hoje or date.today()
+    a = hoje.year - (hoje.year - 2023) % 4
+    ini = date(a, 1, 5) if a >= 2027 else date(a, 1, 1)
+    if hoje < ini:
+        a -= 4
+        ini = date(a, 1, 5) if a >= 2027 else date(a, 1, 1)
+    return ini
 
 
 def baixa(url, json_=True, tentativas=4, destino=None):
@@ -122,7 +148,109 @@ def chave(v):
     return ('c' + v['id']) if v.get('casa', 'camara') == 'camara' and 'id' in v else ('s%d' % v['cod'])
 
 
+def mandato(leg, ini, ligados, tmp):
+    """Mandato em curso, para cada parlamentar ligado a uma candidatura: em quantas votações
+    nominais do plenário votou desde o início da legislatura, quantas vezes votou com a maioria
+    do próprio partido e, na Câmara, com a orientação do Governo. Devolve também as últimas
+    votações (as duas Casas) com o voto de cada um, para os avisos da página."""
+    import bisect
+    hoje, desde_iso = date.today(), ini.isoformat()
+    plen, votos_v, gov = {}, {}, {}
+    for ano in range(ini.year, hoje.year + 1):
+        print('mandato: Câmara', ano, '…')
+        try:
+            arq = {}
+            for nome in ('votacoes', 'votacoesProposicoes', 'votacoesOrientacoes', 'votacoesVotos'):
+                arq[nome] = baixa('%s/%s/csv/%s-%d.csv' % (CAMARA_ARQ, nome, nome, ano), json_=False,
+                                  destino=os.path.join(tmp, nome + '.csv'))
+        except Exception as e:
+            print('  sem arquivo de %d (%s)' % (ano, e)); continue
+        ler = lambda n: csv.DictReader(open(arq[n], encoding='utf-8-sig'), delimiter=';')
+        for r in ler('votacoes'):
+            if r['siglaOrgao'] == 'PLEN' and r['data'] >= desde_iso:
+                plen['c' + r['id']] = {'casa': 'c', 'data': r['data'], 'desc': (r['descricao'] or '')[:300]}
+        for r in ler('votacoesProposicoes'):
+            k = 'c' + r['idVotacao']
+            if k in plen and 'prop' not in plen[k]:
+                plen[k].update(prop=r['proposicao_titulo'].split(' (')[0], em=(r['proposicao_ementa'] or '')[:240],
+                               pid=r['proposicao_id'])
+        for r in ler('votacoesOrientacoes'):
+            k = 'c' + r['idVotacao']
+            if k in plen and r['siglaBancada'] == 'Governo' and r['orientacao'] in ('Sim', 'Não'):
+                gov[k] = 'S' if r['orientacao'] == 'Sim' else 'N'
+        for r in ler('votacoesVotos'):
+            k = 'c' + r['idVotacao']
+            cod = VOTO_CAMARA.get(r['voto'])
+            if k in plen and cod and r['deputado_id']:
+                votos_v.setdefault(k, {})[('dep', int(r['deputado_id']))] = (cod, partido(r['deputado_siglaPartido']))
+        for f in arq.values():
+            os.remove(f)
+    for ano in range(ini.year, hoje.year + 1):
+        print('mandato: Senado', ano, '…')
+        a, b = max(ini, date(ano, 1, 1)), min(hoje, date(ano, 12, 31))
+        for v in baixa('%s/votacao?dataInicio=%s&dataFim=%s' % (SENADO, a, b)) or []:
+            if v.get('votacaoSecreta') == 'S':
+                continue
+            k = 's%d' % v['codigoSessaoVotacao']
+            plen[k] = {'casa': 's', 'data': v.get('dataSessao') or '', 'desc': (v.get('descricaoVotacao') or '')[:300],
+                       'prop': v.get('identificacao') or '', 'em': (v.get('ementa') or '')[:240], 'mat': v.get('codigoMateria')}
+            for x in v.get('votos') or []:
+                cod = VOTO_SENADO.get(x.get('siglaVotoParlamentar'))
+                if cod:
+                    votos_v.setdefault(k, {})[('sen', x['codigoParlamentar'])] = (cod, partido(x.get('siglaPartidoParlamentar')))
+    plen = {k: v for k, v in plen.items() if k in votos_v}   # só votação com voto registrado (nominal)
+    # posição da maioria de cada partido em cada votação (com pelo menos 3 votos Sim/Não, sem empate)
+    maioria = {}
+    for k, vv in votos_v.items():
+        cont = {}
+        for cod, pt in vv.values():
+            if cod in 'SN':
+                c = cont.setdefault(pt, [0, 0]); c[0 if cod == 'S' else 1] += 1
+        maioria[k] = {pt: ('S' if a > b else 'N') for pt, (a, b) in cont.items() if a != b and a + b >= 3}
+    datas = {c: sorted(v['data'] for v in plen.values() if v['casa'] == c) for c in 'cs'}
+    alvo, por_pid = set(ligados), {}
+    for k, vv in votos_v.items():
+        for pid, (cod, pt) in vv.items():
+            if pid in alvo:
+                por_pid.setdefault(pid, []).append((plen[k]['data'], k, cod, pt))
+    stats = {}
+    for pid, L in por_pid.items():
+        ds = sorted(x[0] for x in L)
+        dl = datas['c' if pid[0] == 'dep' else 's']
+        # presença: só conta o período em que a pessoa estava votando (posse, licença, suplência)
+        tot = bisect.bisect_right(dl, ds[-1]) - bisect.bisect_left(dl, ds[0])
+        pp, gv = [0, 0], [0, 0]
+        for d, k, cod, pt in L:
+            if cod in 'SN':
+                mj = maioria[k].get(pt)
+                if mj:
+                    pp[1] += 1; pp[0] += cod == mj
+                if k in gov:
+                    gv[1] += 1; gv[0] += cod == gov[k]
+        st = {'leg': leg, 'vt': len(L), 'tot': tot, 'de': ds[0], 'ate': ds[-1], 'pp': pp}
+        if gv[1]:
+            st['gv'] = gv
+        stats[pid] = st
+    rec = []
+    for k, v in sorted(plen.items(), key=lambda kv: (kv[1]['data'], kv[0]), reverse=True)[:25]:
+        vv = votos_v[k]
+        item = {'k': k, 'casa': v['casa'], 'data': v['data'], 'desc': v['desc'], 'prop': v.get('prop', ''),
+                'em': v.get('em', ''), 'placar': [sum(1 for c, _ in vv.values() if c == 'S'), sum(1 for c, _ in vv.values() if c == 'N')],
+                'v': {('d%d' if pid[0] == 'dep' else 's%d') % pid[1]: cod for pid, (cod, pt) in vv.items() if pid in alvo}}
+        if k in gov:
+            item['gov'] = gov[k]
+        if v.get('pid'):
+            item['pid'] = v['pid']
+        if v.get('mat'):
+            item['mat'] = v['mat']
+        rec.append(item)
+    return stats, rec
+
+
 def main():
+    LEG, INI = legislatura()
+    POSSE = date(2027, 1, 5)   # mandato do presidente eleito em 2026 (EC 111/2021); antes disso não há atos dele
+    print('legislatura %d desde %s' % (LEG, INI))
     met = json.load(io.open(os.path.join(AQUI, 'congresso-pautas.json'), encoding='utf-8'))
     pautas, eixos, destaques = met['pautas'], met['eixos'], met['destaques']
 
@@ -155,10 +283,15 @@ def main():
                 ps = partido_soma.setdefault(partido(sig), {}).setdefault(eixo_de[k], [0, 0])
                 ps[0] += val; ps[1] += 1
 
-    def eixos_de(vv):
-        """nota por eixo (-1 = lado A, +1 = lado B) e a nota geral, com o nº de votos"""
+    data_de = {chave(v): v.get('data', '') for v in todas}
+
+    def eixos_de(vv, filtro=None):
+        """nota por eixo (-1 = lado A, +1 = lado B) e a nota geral, com o nº de votos.
+        filtro: 'antes' / 'depois' do início da legislatura em curso"""
         por, tot = {}, [0, 0]
         for k, cod in vv.items():
+            if filtro and (data_de.get(k, '') >= INI.isoformat()) != (filtro == 'depois'):
+                continue
             if k in lado and cod in 'SN':
                 val = -1 if (cod == 'S') == (lado[k] == 'A') else 1
                 p = por.setdefault(eixo_de[k], [0, 0]); p[0] += val; p[1] += 1
@@ -184,7 +317,18 @@ def main():
             desde[('dep', i)] = 1795 + 4 * int(r['idLegislaturaInicial'])   # legislatura 57 = 2023
         except ValueError:
             pass
-    sl = baixa('%s/senador/lista/legislatura/55/57.json' % SENADO)   # 55: quem estava no meio do mandato em 2019
+    # deputados da legislatura em curso (a partir de fev/2027, os novos eleitos), mesmo sem voto ainda
+    for pag in range(1, 30):
+        r = baixa('%s/deputados?idLegislatura=%d&itens=100&pagina=%d&ordem=ASC&ordenarPor=nome' % (CAMARA, LEG, pag))
+        if not r.get('dados'):
+            break
+        for d in r['dados']:
+            info.setdefault(('dep', d['id']), (d['siglaUf'], d['nome']))
+    # 55: quem estava no meio do mandato em 2019; até a legislatura em curso (novos senadores em 2027)
+    try:
+        sl = baixa('%s/senador/lista/legislatura/55/%d.json' % (SENADO, max(57, LEG)))
+    except Exception:
+        sl = baixa('%s/senador/lista/legislatura/55/57.json' % SENADO)
     sen_ufs = {}
     for par in lista(sl['ListaParlamentarLegislatura']['Parlamentares']['Parlamentar']):
         idp = par['IdentificacaoParlamentar']
@@ -225,8 +369,12 @@ def main():
     z = zipfile.ZipFile(io.BytesIO(baixa(TSE + '/consulta_cand/consulta_cand_2026.zip', json_=False)))
     nome_csv = [n for n in z.namelist() if n.endswith('_BRASIL.csv')][0]
     linhas = csv.DictReader(io.TextIOWrapper(z.open(nome_csv), encoding='latin-1'), delimiter=';')
-    cands, vistos = [], set()
+    cands, vistos, pres_res = [], set(), {}
     for r in linhas:
+        if r['DS_CARGO'] == 'PRESIDENTE' and NUM_PRES.get(r['NR_CANDIDATO']):
+            res = (r.get('DS_SIT_TOT_TURNO') or '').strip()
+            if res and not res.startswith('#'):
+                pres_res[NUM_PRES[r['NR_CANDIDATO']]] = res
         cg, uf = CARGOS.get(r['DS_CARGO']), r['SG_UF']
         if not cg or uf not in UFS or (r['NR_CPF_CANDIDATO'], cg) in vistos:
             continue
@@ -257,9 +405,13 @@ def main():
     re_sen = {p['id']: re.compile(p['palavras'], re.I) for p in pautas}
     prio = {}   # pid -> {'n': total, 'p': {pauta: n}, 'x': {pauta: [[rótulo, link]]}}
 
-    def soma(pid, ids_pauta, rot, link):
-        d = prio.setdefault(pid, {'n': 0, 'p': {}, 'x': {}})
+    def soma(pid, ids_pauta, rot, link, nova=False):
+        d = prio.setdefault(pid, {'n': 0, 'p': {}, 'x': {}, 'nl': 0, 'pl': {}})
         d['n'] += 1
+        if nova:   # apresentada na legislatura em curso
+            d['nl'] += 1
+            for pa in ids_pauta:
+                d['pl'][pa] = d['pl'].get(pa, 0) + 1
         for pa in ids_pauta:
             d['p'][pa] = d['p'].get(pa, 0) + 1
             ex = d['x'].setdefault(pa, [])
@@ -267,6 +419,7 @@ def main():
                 ex.append([rot, link])
 
     tmp = tempfile.mkdtemp()
+    atos = []   # projetos e medidas provisórias enviados pelo Executivo desde a posse do eleito
     for ano in ANOS:
         print('propostas da Câmara', ano, '…')
         try:
@@ -278,14 +431,20 @@ def main():
                        destino=os.path.join(tmp, 't.csv'))
         except Exception as e:
             print('  sem arquivo de %d (%s)' % (ano, e)); continue
-        autores = {}
+        autores, do_exec = {}, set()
         for r in csv.DictReader(open(fa, encoding='utf-8-sig'), delimiter=';'):
             if r['idDeputadoAutor'] and int(r['idDeputadoAutor']) in deps:
                 autores.setdefault(r['idProposicao'], set()).add(int(r['idDeputadoAutor']))
+            if r['nomeAutor'] in EXECUTIVO:
+                do_exec.add(r['idProposicao'])
         temas = {}
         for r in csv.DictReader(open(ft, encoding='utf-8-sig'), delimiter=';'):
             temas.setdefault(r['uriProposicao'].rsplit('/', 1)[1], set()).add(r['tema'])
         for r in csv.DictReader(open(fp, encoding='utf-8-sig'), delimiter=';'):
+            quando = (r.get('dataApresentacao') or '')[:10]
+            if r['id'] in do_exec and r['siglaTipo'] in TIPOS | {'MPV'} and quando >= POSSE.isoformat():
+                atos.append({'id': r['id'], 'tipo': r['siglaTipo'], 'num': r['numero'], 'ano': r['ano'], 'data': quando,
+                             'em': (r['ementa'] or '')[:300], 'temas': sorted(temas.get(r['id'], set()))})
             if r['siglaTipo'] not in TIPOS or r['id'] not in autores:
                 continue
             tm, em = temas.get(r['id'], set()), r['ementa'] or ''
@@ -293,7 +452,7 @@ def main():
             rot = '%s %s/%s' % (r['siglaTipo'], r['numero'], r['ano'])
             link = 'c' + r['id']   # a página monta o endereço da Câmara
             for i in autores[r['id']]:
-                soma(('dep', i), ids, rot, link)
+                soma(('dep', i), ids, rot, link, quando >= INI.isoformat())
         for f in (fa, fp, ft):
             os.remove(f)
     for c, i in sorted(ligados):
@@ -307,7 +466,11 @@ def main():
                 continue
             em = r.get('ementa') or ''
             ids = [p['id'] for p in pautas if re_sen[p['id']].search(em)]
-            soma(('sen', i), ids, ident, 's%s' % r.get('codigoMateria'))   # a página monta o endereço do Senado
+            soma(('sen', i), ids, ident, 's%s' % r.get('codigoMateria'),   # a página monta o endereço do Senado
+                 (r.get('dataApresentacao') or '')[:10] >= INI.isoformat())
+
+    # ---------- mandato em curso ----------
+    m_stats, recentes = mandato(LEG, INI, ligados, tmp)
 
     # ---------- 4. monta cada candidatura ----------
     estados = {uf: [] for uf in UFS}
@@ -322,16 +485,21 @@ def main():
             pass
         if r['SQ_CANDIDATO'] in bens:
             c['bens'] = round(bens[r['SQ_CANDIDATO']])
-        vv, pr = {}, {'n': 0, 'p': {}, 'x': {}}
+        vv, pr = {}, {'n': 0, 'p': {}, 'x': {}, 'nl': 0, 'pl': {}}
         for pid in achou:
             c[pid[0]] = pid[1]
             if pid in desde:
                 c[pid[0] + '_desde'] = desde[pid]
+            if pid in m_stats:
+                c.setdefault('m', {})['c' if pid[0] == 'dep' else 's'] = m_stats[pid]
             vv.update(votos.get(pid, {}))
             if pid in prio:
                 pr['n'] += prio[pid]['n']
+                pr['nl'] += prio[pid]['nl']
                 for k, n in prio[pid]['p'].items():
                     pr['p'][k] = pr['p'].get(k, 0) + n
+                for k, n in prio[pid]['pl'].items():
+                    pr['pl'][k] = pr['pl'].get(k, 0) + n
                 for k, ex in prio[pid]['x'].items():
                     pr['x'].setdefault(k, []).extend(ex[:3 - len(pr['x'].get(k, []))])
         if vv:
@@ -341,7 +509,14 @@ def main():
                 c['e'] = e
             if g:
                 c['g'] = g
+            # antes x depois do início da legislatura em curso (coerência); só quando há os dois
+            ea, _ = eixos_de(vv, 'antes')
+            ed, _ = eixos_de(vv, 'depois')
+            if ea and ed:
+                c['ea'], c['ed'] = ea, ed
         if pr['n']:
+            if not pr['nl']:
+                del pr['nl'], pr['pl']
             c['t'] = pr
         res = (r.get('DS_SIT_TOT_TURNO') or '').strip()
         if res and not res.startswith('#'):
@@ -373,8 +548,19 @@ def main():
     indice = {'atualizado_em': atualizado, 'conferido_em': agora, 'impressao': impressao,
               'fontes': {'camara': CAMARA, 'senado': SENADO, 'tse': TSE},
               'pautas': pautas, 'eixos': eixos, 'destaques': destaques, 'partidos': partidos, 'ufs': resumo}
+    indice['legislatura'] = {'n': LEG, 'inicio': INI.isoformat(), 'proxima': date(1795 + 4 * (LEG + 1), 2, 1).isoformat()}
     with io.open(os.path.join(SAIDA, 'indice.json'), 'w', encoding='utf-8') as f:
         json.dump(indice, f, ensure_ascii=False, indent=1)
+    with io.open(os.path.join(SAIDA, 'recentes.json'), 'w', encoding='utf-8') as f:
+        json.dump({'legislatura': LEG, 'votacoes': recentes}, f, ensure_ascii=False, separators=(',', ':'))
+    # Presidência: resultado do TSE e atos do Executivo desde a posse do eleito
+    os.makedirs(PRES_SAIDA, exist_ok=True)
+    eleito = next((k for k, v in pres_res.items() if v == 'ELEITO'), None)
+    atos.sort(key=lambda a: (a['data'], a['id']), reverse=True)
+    with io.open(os.path.join(PRES_SAIDA, 'mandato.json'), 'w', encoding='utf-8') as f:
+        json.dump({'posse': POSSE.isoformat(), 'eleito': eleito, 'resultado': pres_res,
+                   'segundo_turno': sorted(k for k, v in pres_res.items() if '2' in v and 'TURNO' in v.upper()),
+                   'atos': atos}, f, ensure_ascii=False, indent=1)
     total = sum(len(c) for c in estados.values())
     print('pronto: %d candidaturas, %d com mandato ligado, %s' % (total, len(ligados), agora))
 
