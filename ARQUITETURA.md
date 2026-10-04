@@ -18,7 +18,7 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta + `recentes.json` (últimas 25 votações nominais das duas Casas, com o voto de cada parlamentar ligado) | **nunca à mão**: é gerada pelo script |
 | `presidencia-compromissos.json` | acompanhamento do presidente eleito: mapa macrotema → temas oficiais da Câmara e o **status editorial** de cada compromisso (só com ato oficial e link) | **sim — anotar o andamento aqui** |
 | `presidencia/mandato.json` | resultado da Presidência no TSE (eleito, 2º turno) e atos do Executivo (PL, PLP, PEC, MPV) desde a posse em 05/01/2027 | **nunca à mão**: gerado pelo `congresso-sync.py` |
-| `cola/` | dados da Colinha da eleição: um arquivo por estado (`SP.json`…) com todas as candidaturas de deputado federal, estadual/distrital, senador e governador (`[cargo, número, nome de urna, partido, id do TSE]`), `BR.json` (presidente) e `partidos.json` (sigla → número). Só dados abertos do TSE | **nunca à mão**: gerada pelo `congresso-sync.py` (`--so-cola` gera só ela, em segundos) |
+| `cola/` | dados da Colinha da eleição: um arquivo por estado (`SP.json`…) com todas as candidaturas de deputado federal, estadual/distrital, senador e governador (`[cargo, número, nome de urna, partido, id do TSE]`), `BR.json` (presidente), `partidos.json` (sigla → número) e `fotos/<UF>/<id>.jpg` (foto oficial do pacote de fotos do TSE, reduzida para até 120×160; precisa do Pillow). Só dados abertos do TSE | **nunca à mão**: gerada pelo `congresso-sync.py` (`--so-cola` gera só ela, em segundos) |
 | `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava as pastas `congresso/`, `presidencia/` e `cola/`; também pelo botão "Run workflow" na aba Actions | — |
 
 ## Dentro do `index.html` (de cima para baixo)
@@ -88,8 +88,10 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 9. **Colinha da eleição** (`<style>` + `<script>` "v2.2", no fim; objeto `window.Colinha`): `#colinha`, em
    destaque na tela de escolha, acima de Presidência e Congresso. Cargos na ordem da urna (federal, estadual,
    2 senadores, governador, presidente); busca sem acento, por número ou partido; imagem montada em `<canvas>`
-   e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão. Foto do candidato lida
-   do TSE (`divulgacandcontas`) na hora; sem foto, as iniciais. Partidos aparecem como selo (número + sigla):
+   e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão. Foto do candidato de
+   `cola/fotos/` (o site do TSE manda o cabeçalho CORS repetido e o navegador não deixa usar a foto dele na imagem);
+   sem foto, a do TSE só na tela e, sem nenhuma, as iniciais. No celular, a barra `#modo-seg` (Início · Colinha ·
+   Presidência · Congresso) fica fixa embaixo do topo e substitui o botão com o nome da página. Partidos aparecem como selo (número + sigla):
    o logotipo oficial não é dado aberto. Escolhas em `planos2026:colinha`; aviso "Novidade!" uma vez só
    (`planos2026:novidade-colinha`). O aviso "fica melhor em tela grande" só aparece na Presidência.
 

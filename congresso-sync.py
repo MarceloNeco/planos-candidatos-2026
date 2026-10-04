@@ -281,6 +281,50 @@ def gera_cola(zbytes):
     with io.open(os.path.join(pasta, 'partidos.json'), 'w', encoding='utf-8') as f:
         json.dump(dict(sorted(partidos.items())), f, ensure_ascii=False, separators=(',', ':'))
     print('colinha: %d candidaturas em %d arquivos' % (len(vistos), len(por_uf)))
+    gera_fotos(por_uf)
+
+
+FOTOS_TSE = 'https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2026/fotos/foto_cand2026_%s_div.zip'
+
+
+def gera_fotos(por_uf):
+    """Foto de cada candidatura da colinha, pequena (até 120x160, JPEG), em cola/fotos/<UF>/<id>.jpg.
+    O site do TSE não deixa o navegador usar a foto dele numa imagem (manda o cabeçalho de
+    permissão repetido), então a foto oficial é copiada do pacote de fotos do TSE para cá.
+    Só baixa o pacote de um estado quando falta alguma foto dele."""
+    try:
+        from PIL import Image
+    except ImportError:
+        print('fotos: sem o Pillow (pip install pillow), ficam as que já existem')
+        return
+    total = 0
+    for uf, L in sorted(por_uf.items()):
+        pasta = os.path.join(AQUI, 'cola', 'fotos', uf)
+        os.makedirs(pasta, exist_ok=True)
+        quer = {x[4] for x in L}
+        tem = {n[:-4] for n in os.listdir(pasta) if n.endswith('.jpg')}
+        for velho in tem - quer:   # candidatura que saiu da lista
+            os.remove(os.path.join(pasta, velho + '.jpg'))
+        falta = quer - tem
+        if not falta:
+            continue
+        try:
+            z = zipfile.ZipFile(io.BytesIO(baixa(FOTOS_TSE % uf, json_=False)))
+        except Exception as e:
+            print('fotos %s: pacote do TSE indisponível (%s)' % (uf, e))
+            continue
+        for n in z.namelist():
+            m = re.search(r'(\d+)_div\.jpe?g$', n, re.I)
+            if not m or m.group(1) not in falta:
+                continue
+            try:
+                im = Image.open(io.BytesIO(z.read(n))).convert('RGB')
+                im.thumbnail((120, 160))
+                im.save(os.path.join(pasta, m.group(1) + '.jpg'), 'JPEG', quality=70, optimize=True, progressive=True)
+                total += 1
+            except Exception:
+                pass
+    print('fotos: %d novas' % total)
 
 
 def main():
