@@ -247,7 +247,46 @@ def mandato(leg, ini, ligados, tmp):
     return stats, rec
 
 
+# cargos da colinha, na ordem em que aparecem na urna em 2026
+COLA_CARGOS = {'DEPUTADO FEDERAL': 'F', 'DEPUTADO ESTADUAL': 'E', 'DEPUTADO DISTRITAL': 'E',
+               'SENADOR': 'S', 'GOVERNADOR': 'G', 'PRESIDENTE': 'P'}
+
+
+def gera_cola(zbytes):
+    """Lista leve de TODAS as candidaturas que vão na urna (presidente, governador, senador,
+    deputado federal e estadual/distrital), um arquivo por estado (cola/SP.json) e um para a
+    Presidência (cola/BR.json). É o que a Colinha da eleição usa para buscar e montar a cola.
+    Cada item: [cargo, número, nome de urna, partido, id do TSE (para a foto), resultado]."""
+    z = zipfile.ZipFile(io.BytesIO(zbytes))
+    nome_csv = [n for n in z.namelist() if n.endswith('_BRASIL.csv')][0]
+    por_uf, partidos, vistos = {}, {}, set()
+    for r in csv.DictReader(io.TextIOWrapper(z.open(nome_csv), encoding='latin-1'), delimiter=';'):
+        cg = COLA_CARGOS.get(r['DS_CARGO'])
+        if not cg or r['SQ_CANDIDATO'] in vistos:
+            continue
+        vistos.add(r['SQ_CANDIDATO'])
+        uf = 'BR' if cg == 'P' else r['SG_UF']
+        res = (r.get('DS_SIT_TOT_TURNO') or '').strip()
+        item = [cg, r['NR_CANDIDATO'], r['NM_URNA_CANDIDATO'].strip(), r['SG_PARTIDO'], r['SQ_CANDIDATO']]
+        if res and not res.startswith('#'):
+            item.append(res)
+        por_uf.setdefault(uf, []).append(item)
+        partidos[r['SG_PARTIDO']] = r['NR_PARTIDO']
+    pasta = os.path.join(AQUI, 'cola')
+    os.makedirs(pasta, exist_ok=True)
+    for uf, L in por_uf.items():
+        L.sort(key=lambda x: ('PGSFE'.index(x[0]), norm(x[2])))
+        with io.open(os.path.join(pasta, uf + '.json'), 'w', encoding='utf-8') as f:
+            json.dump({'uf': uf, 'c': L}, f, ensure_ascii=False, separators=(',', ':'))
+    with io.open(os.path.join(pasta, 'partidos.json'), 'w', encoding='utf-8') as f:
+        json.dump(dict(sorted(partidos.items())), f, ensure_ascii=False, separators=(',', ':'))
+    print('colinha: %d candidaturas em %d arquivos' % (len(vistos), len(por_uf)))
+
+
 def main():
+    if '--so-cola' in sys.argv:   # só a colinha (rápido: um download do TSE)
+        gera_cola(baixa(TSE + '/consulta_cand/consulta_cand_2026.zip', json_=False))
+        return
     LEG, INI = legislatura()
     POSSE = date(2027, 1, 5)   # mandato do presidente eleito em 2026 (EC 111/2021); antes disso não há atos dele
     print('legislatura %d desde %s' % (LEG, INI))
@@ -366,7 +405,9 @@ def main():
 
     # ---------- candidaturas do TSE ----------
     print('candidaturas do TSE…')
-    z = zipfile.ZipFile(io.BytesIO(baixa(TSE + '/consulta_cand/consulta_cand_2026.zip', json_=False)))
+    zbytes = baixa(TSE + '/consulta_cand/consulta_cand_2026.zip', json_=False)
+    gera_cola(zbytes)
+    z = zipfile.ZipFile(io.BytesIO(zbytes))
     nome_csv = [n for n in z.namelist() if n.endswith('_BRASIL.csv')][0]
     linhas = csv.DictReader(io.TextIOWrapper(z.open(nome_csv), encoding='latin-1'), delimiter=';')
     cands, vistos, pres_res = [], set(), {}
