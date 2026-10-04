@@ -88,7 +88,7 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 9. **Colinha da eleição** (`<style>` + `<script>` "v2.2", no fim; objeto `window.Colinha`): `#colinha`, em
    destaque na tela de escolha, acima de Presidência e Congresso. Cargos na ordem da urna (federal, estadual,
    2 senadores, governador, presidente); busca sem acento, por número ou partido; imagem montada em `<canvas>`
-   e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão (`CK.impressao` monta `#ck-print`: a mesma cola nos 4 quadrantes da folha, sempre em fundo branco; na
+   e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão (`CK.impressao` monta `#ck-print`: 1 ou 4 cópias da cola, cada uma em 1/4 da folha, sempre em fundo branco; a pessoa escolhe ao tocar em Imprimir; na
    impressão só ele aparece). Foto do candidato de
    `cola/fotos/` (o site do TSE manda o cabeçalho CORS repetido e o navegador não deixa usar a foto dele na imagem);
    sem foto, a do TSE só na tela e, sem nenhuma, as iniciais. No celular, a barra `#modo-seg` (Início · Colinha ·
