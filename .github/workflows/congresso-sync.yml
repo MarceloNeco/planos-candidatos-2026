@@ -22,7 +22,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Baixar e gerar os dados
-        run: python3 congresso-sync.py
+        run: |
+          pip install --quiet pillow   # reduz as fotos da colinha
+          python3 congresso-sync.py
       - name: Gravar
         run: |
           # todo dia muda ao menos o "conferido_em" do indice.json (a página mostra
