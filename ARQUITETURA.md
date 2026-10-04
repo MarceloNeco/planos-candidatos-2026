@@ -18,7 +18,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `congresso/` | `indice.json` (método, placares, média de cada partido, datas) + um arquivo por estado (`SP.json`…) com candidatos, currículo, votos, posição por eixo e propostas por pauta + `recentes.json` (últimas 25 votações nominais das duas Casas, com o voto de cada parlamentar ligado) | **nunca à mão**: é gerada pelo script |
 | `presidencia-compromissos.json` | acompanhamento do presidente eleito: mapa macrotema → temas oficiais da Câmara e o **status editorial** de cada compromisso (só com ato oficial e link) | **sim — anotar o andamento aqui** |
 | `presidencia/mandato.json` | resultado da Presidência no TSE (eleito, 2º turno) e atos do Executivo (PL, PLP, PEC, MPV) desde a posse em 05/01/2027 | **nunca à mão**: gerado pelo `congresso-sync.py` |
-| `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava a pasta `congresso/`; também pelo botão "Run workflow" na aba Actions | — |
+| `cola/` | dados da Colinha da eleição: um arquivo por estado (`SP.json`…) com todas as candidaturas de deputado federal, estadual/distrital, senador e governador (`[cargo, número, nome de urna, partido, id do TSE]`), `BR.json` (presidente) e `partidos.json` (sigla → número). Só dados abertos do TSE | **nunca à mão**: gerada pelo `congresso-sync.py` (`--so-cola` gera só ela, em segundos) |
+| `.github/workflows/congresso-sync.yml` | roda o `congresso-sync.py` todo dia às 06h17 (Brasília) e grava as pastas `congresso/`, `presidencia/` e `cola/`; também pelo botão "Run workflow" na aba Actions | — |
 
 ## Dentro do `index.html` (de cima para baixo)
 
@@ -84,6 +85,14 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
   acrescentar a entrada em `versoes` (PT no `index.html`, EN no `index-en.html`); depois rodar
   `python3 sincroniza-en.py`.
 
+9. **Colinha da eleição** (`<style>` + `<script>` "v2.2", no fim; objeto `window.Colinha`): `#colinha`, em
+   destaque na tela de escolha, acima de Presidência e Congresso. Cargos na ordem da urna (federal, estadual,
+   2 senadores, governador, presidente); busca sem acento, por número ou partido; imagem montada em `<canvas>`
+   e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão. Foto do candidato lida
+   do TSE (`divulgacandcontas`) na hora; sem foto, as iniciais. Partidos aparecem como selo (número + sigla):
+   o logotipo oficial não é dado aberto. Escolhas em `planos2026:colinha`; aviso "Novidade!" uma vez só
+   (`planos2026:novidade-colinha`). O aviso "fica melhor em tela grande" só aparece na Presidência.
+
 ## Onde mudar o quê
 
 | Quero… | Onde |
@@ -96,5 +105,6 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | citações, candidatos | bloco `dados` (nos dois arquivos) |
 | tela de escolha, módulo Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg.tela…`, `Seletor`) |
 | pautas, eixos e votações usadas na afinidade | `congresso-pautas.json` e depois `python3 congresso-sync.py` |
+| Colinha (cargos, imagem, aviso Novidade) | bloco "v2.2" no fim do `index.html` (`CK.desenha`, `CK.desenhaImagem`, `novidade`) |
 | andamento de um compromisso do presidente eleito | `presidencia-compromissos.json` → `status` (o site lê direto, sem rodar script) |
 | votações novas da legislatura de 2027 no antes × depois | `congresso-pautas.json` (eixos) e depois `python3 congresso-sync.py` |

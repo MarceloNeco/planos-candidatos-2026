@@ -27,12 +27,12 @@ jobs:
         run: |
           # todo dia muda ao menos o "conferido_em" do indice.json (a página mostra
           # essa data); os arquivos por estado só mudam quando algum dado muda
-          if git diff --quiet -- congresso/ presidencia/ && [ -z "$(git status --porcelain -- presidencia/)" ]; then
+          if [ -z "$(git status --porcelain -- congresso/ presidencia/ cola/)" ]; then
             echo "Nada a gravar."
             exit 0
           fi
           git config user.name "congresso-sync"
           git config user.email "actions@users.noreply.github.com"
-          git add congresso/ presidencia/
+          git add congresso/ presidencia/ cola/
           git commit -m "Congresso: dados oficiais de $(date -u +%Y-%m-%d)"
           git push
