@@ -1,7 +1,7 @@
 {
- "atualizado_em": "2026-10-04T14:57:13Z",
- "conferido_em": "2026-10-04T14:57:13Z",
- "impressao": "311785c02387b411261e8ee8358c7ad3b524295f7f6bb27ef0ce5ffb3b3fe911",
+ "atualizado_em": "2026-10-05T18:40:37Z",
+ "conferido_em": "2026-10-05T18:40:37Z",
+ "impressao": "827e43f57b4c549bbf76371e3330123c47afbc2eded5bf7f7d57adff199d494e",
  "fontes": {
   "camara": "https://dadosabertos.camara.leg.br/api/v2",
   "senado": "https://legis.senado.leg.br/dadosabertos",
@@ -1206,7 +1206,7 @@
   "MA": {
    "S": 11,
    "F": 282,
-   "mandato": 32
+   "mandato": 33
   },
   "MG": {
    "S": 18,
