@@ -3,13 +3,13 @@
  "eleito": null,
  "resultado": {
   "mar": "NÃO ELEITO",
-  "bol": "2º TURNO",
-  "rui": "NÃO ELEITO",
-  "lul": "2º TURNO",
   "cur": "NÃO ELEITO",
+  "bol": "2º TURNO",
+  "cai": "NÃO ELEITO",
   "ren": "NÃO ELEITO",
+  "rui": "NÃO ELEITO",
   "zem": "NÃO ELEITO",
-  "cai": "NÃO ELEITO"
+  "lul": "2º TURNO"
  },
  "segundo_turno": [
   "bol",
