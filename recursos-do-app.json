@@ -1,0 +1,16 @@
+{
+  "formato": 1,
+  "app": "eleicoes-2026",
+  "versao": "2.2.6",
+  "atualizado": "2026-10-10",
+  "nota": {
+    "pt": "O que este app lê do Controle dos apps do RootifyONE (recursos/global.json e recursos/eleicoes-2026.json). Desligado o AssistONE, somem o botão, o balão, as dicas e os itens do ☰ que só abrem o assistente (Procurar, AssistONE, Tour rápido).",
+    "en": "What this app reads from RootifyONE's App control (recursos/global.json and recursos/eleicoes-2026.json). With AssistONE off, the button, the balloon, the tips and the ☰ items that only open the assistant (Search, AssistONE, Quick tour) disappear."
+  },
+  "recursos": [
+    "assistone"
+  ],
+  "comportamentos": [
+    "assistone.dicas"
+  ]
+}
