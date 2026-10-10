@@ -12,6 +12,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `sincroniza-en.py` | copia o código do `index.html` para o `index-en.html`, mantendo os dados em inglês | rodar depois de toda edição de código |
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
+| `recursos.js` | interruptores do RootifyONE (cópia avulsa do master do `rootify-one`; carregado no `<head>` das duas páginas com `data-app="eleicoes-2026"`): lê `solverone-dados/recursos/global.json` e `eleicoes-2026.json` | **nunca à mão**: trocar pela cópia nova do master |
+| `recursos-do-app.json` | diz ao RootifyONE o que este app obedece (hoje: `assistone` e `assistone.dicas`) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
 | `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
 | `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
@@ -101,6 +103,7 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | Quero… | Onde |
 |---|---|
 | texto de uma aba | HTML da `.view` + par no `traden` |
+| interruptores do RootifyONE (AssistONE, dicas) | `admAO()` e `SolverRecursos` no bloco de apoio; elementos marcados com `data-recurso="assistone"` somem sozinhos; listar em `recursos-do-app.json` |
 | ajuda do AssistONE por tela, atalhos, dicas | objeto `TELAS`, `AO.atalhosDe`, `AO.agendaDica` (bloco de apoio) |
 | itens do menu ☰ | `Gav.conteudo` (bloco de apoio) |
 | seções das Configurações | `pintaPainelOC` (script principal); cartões do AssistONE e Acessibilidade em `CfgAssist`/`CfgAcess` |
