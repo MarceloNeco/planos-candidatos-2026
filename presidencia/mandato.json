@@ -3,10 +3,10 @@
  "eleito": null,
  "resultado": {
   "rui": "NÃO ELEITO",
-  "ren": "NÃO ELEITO",
-  "zem": "NÃO ELEITO",
-  "lul": "2º TURNO",
   "bol": "2º TURNO",
+  "ren": "NÃO ELEITO",
+  "lul": "2º TURNO",
+  "zem": "NÃO ELEITO",
   "mar": "NÃO ELEITO",
   "cur": "NÃO ELEITO",
   "cai": "NÃO ELEITO"
