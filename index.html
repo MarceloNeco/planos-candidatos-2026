@@ -45387,7 +45387,7 @@ var AO={
     if(this.box.__ej)return;
     this.dica.hidden=true;
     this.btn.setAttribute("aria-expanded","true");
-    EJ.abre(this.box,{classe:"ej-ao",rotulo:"AssistONE",
+    EJ.abre(this.box,{classe:"ej-ao",rotulo:"AssistONE",temTexto:false,
       aoFechar:function(){if(AO.modo==="tour")AO.tourSai(true);AO.btn.setAttribute("aria-expanded","false");}});
     if(!REDUZ()&&!document.documentElement.classList.contains("pg-calmo")){this.box.classList.add("ao-entra");
       requestAnimationFrame(function(){requestAnimationFrame(function(){AO.box.classList.remove("ao-entra");});});}
@@ -47226,7 +47226,7 @@ var CK={st:null,dados:{},pts:null,
     var chips=mk("div","ck-chips");chips.setAttribute("aria-label",T("Filtrar por partido","Filter by party"));hd.appendChild(chips);
     var ct=mk("div","ck-cont");hd.appendChild(ct);inn.appendChild(hd);
     var res=mk("div","ck-res");inn.appendChild(res);
-    EJ.abre(dl,{focar:matchMedia("(pointer:fine)").matches?q:null});
+    EJ.abre(dl,{temTexto:false,focar:matchMedia("(pointer:fine)").matches?q:null});
     var filtroP="",mostra=60;
     this.pega(uf).then(function(d){
       var L=d.c.filter(function(c){return c[0]===vg.cg;});

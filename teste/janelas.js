@@ -41,13 +41,13 @@ const J = [
   { n: 'ajuda da voz (a partir das Configurações)', abrir: async p => { await p.evaluate(() => PG.abreConfig()); await p.locator('#tts-cfg button', { hasText: /Instalei uma voz|I installed a voice/ }).click(); },
     x: p => p.click('#tts-dlg .cfg-x'), volta: '#cfg' },
   { n: 'Colinha: escolher candidato', hash: '#colinha', abrir: p => p.locator('.ck-slot').last().click(), x: p => p.click('#ck-dlg .x'),
-    texto: async p => { await p.locator('#ck-dlg input[type=search]').fill('ab'); }, fora: [4, 4] },
+    texto: async p => { await p.locator('#ck-dlg input[type=search]').fill('ab'); }, semPergunta: true, fora: [4, 4] },
   { n: 'Colinha: imprimir', hash: '#colinha', abrir: p => p.locator('.ck-bar button').nth(2).click(), x: p => p.locator('.ck-nov .bt button.cancela').click() },
   { n: 'aviso NOVIDADE', hash: '#inicio', abrir: async p => { await quieto(p); await p.waitForTimeout(300); await p.evaluate(() => { localStorage.removeItem('planos2026:novidade-colinha'); }); await p.reload(); await p.locator('.ck-nov').waitFor({ state: 'visible', timeout: 9000 }); },
     x: p => p.locator('.ck-nov .bt button:not(.pri)').click(), recarrega: true },
   { n: 'gaveta ☰', so: 'mobile', abrir: p => p.click('#nav-h'), x: p => p.click('.gav-x'), fora: [378, 400] },
   { n: 'AssistONE (caixa com busca)', abrir: p => p.click('#ao-btn'), x: p => p.click('#ao-box .ao-h button'),
-    texto: async p => { await p.locator('#ao-box .ao-it', { hasText: /Procurar|Search/ }).first().click(); await p.locator('#ao-box input').first().fill('glos'); } },
+    texto: async p => { await p.locator('#ao-box .ao-it', { hasText: /Procurar|Search/ }).first().click(); await p.locator('#ao-box input').first().fill('glos'); }, semPergunta: true },
   { n: 'AssistONE (tour)', abrir: async p => { await p.click('#ao-btn'); await p.locator('#ao-box .ao-it', { hasText: /tour/i }).first().click(); await p.locator('#ao-box .ao-passo').waitFor(); }, x: p => p.click('#ao-box .ao-h button') },
   { n: 'seletor de idioma', so: 'desktop', abrir: p => p.click('#idi-b'), x: null },
   { n: 'seleção múltipla', hash: '#macrotemas', abrir: p => p.locator('#v-macrotemas .ms > button:visible').first().click(), x: null },
@@ -121,6 +121,14 @@ async function ciclo(p, j, arq, w) {
   /* com texto digitado: pergunta "Descartar?" */
   if (j.texto) {
     await reabre(); await j.texto(p);
+    if (j.semPergunta) {   /* campo de busca não é texto a perder: nenhuma das três saídas pergunta "Descartar?" */
+      for (const [como, nome] of [[() => p.mouse.click(fx, fy), 'tocar fora'], [() => p.evaluate(() => history.back()), 'Voltar'], [() => p.keyboard.press('Escape'), 'Esc']]) {
+        await como();
+        conferir(await espera(p, 0) && !(await p.locator('dialog.sj-pergunta').count()), L + nome + ' com busca digitada fecha sem perguntar "Descartar?"');
+        await quieto(p); if (nome !== 'Esc') { await reabre(); await j.texto(p); }
+      }
+      return;
+    }
     const perguntou = async (como, nome) => {
       await como();
       const ok = await espera(p, 2) && await p.locator('dialog.sj-pergunta [data-sj=continuar]').isVisible();

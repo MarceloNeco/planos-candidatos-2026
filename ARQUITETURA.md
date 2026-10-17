@@ -97,7 +97,7 @@ celular) mais toque na parte escura (só se começa e termina nela); com texto d
 
 - **`window.EJ`** (script no `<head>` do `index.html`, logo depois do `recursos.js`) é a única ponte do app com o `SolverJanela`.
   A caixa de cada janela continua sendo o elemento que já existia (agora um `<div>` com a mesma classe; a tag `<dialog>` era do
-  navegador e o `<dialog>` da janela comum é o fundo): `EJ.abre(caixa, {focar, temTexto, descarta, aoFechar})` põe a caixa dentro da
+  navegador e o `<dialog>` da janela comum é o fundo): `EJ.abre(caixa, {focar, temTexto, descarta, aoFechar})` (a busca da Colinha e a do AssistONE levam `temTexto:false`: busca não é texto a perder) põe a caixa dentro da
   janela e, ao fechar, ela volta escondida para onde morava (`descarta`: some). `EJ.fecha(caixa)`; `EJ.pop(botao, menu)` para os
   quatro menus presos a um botão (idioma, seleção múltipla, compartilhar, Presidência/Congresso: mesma janela, sem escurecer,
   posicionados pelo botão); `EJ.confirma(texto, rótulo, fn)` e `EJ.aviso(texto)` no lugar de `confirm()`/`alert()` (janela curta

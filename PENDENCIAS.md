@@ -16,10 +16,8 @@
 - **Service worker / uso sem internet**: este app não tem `sw.js` nem `versoes.json` (as versões ficam no bloco `dados` das duas
   páginas). Se um dia ganhar `sw.js`, ele precisa guardar o `janela.js` e o `cofre.js` (a passada das janelas pedia isso, mas não
   há `sw.js` para editar; criar um é decisão do dono).
-- **AssistONE abre sozinho na primeira visita**: agora, sendo janela, ele prende a tela até "Agora não". Sugestão: trocar a abertura
-  automática por só a dica no canto (que não é janela). Não foi mudado.
-- **Janelas com busca perguntam "Descartar?"**: a busca da Colinha e a do AssistONE contam como texto digitado (regra 4). Se o dono
-  achar demais, dá para dizer `temTexto:false` nessas duas.
+- **AssistONE abre sozinho na primeira visita**: agora, sendo janela, ele prende a tela até "Agora não". O dono decidiu (17/Out/2026)
+  que fica como está.
 - **Menus presos a um botão como janela**: idioma, seleção múltipla, compartilhar e Presidência/Congresso agora são janela (a página
   de trás trava e o toque fora fecha), mantendo o visual de menu. Se o dono preferir que menu continue sendo menu, é voltar atrás.
 - **Content-Security-Policy**: o `cofre.js` assume uma página sem script de terceiros; o Eleições ainda não declara CSP.
