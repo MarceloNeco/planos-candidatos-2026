@@ -2,10 +2,82 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<script src="janela.js"></script>
 <script src="cofre.js"></script>
 <script src="recursos.js" data-app="eleicoes-2026"></script>
 <script>/* interruptor "colinha" do RootifyONE (Controle dos apps): desligado, a Colinha da eleição some do site */
 window.colinhaOff=function(){return !!(window.SolverRecursos&&!SolverRecursos.ligado("colinha",true));};</script>
+<script>/* janelas do site sobre a janela comum (janela.js): a caixa de cada janela continua sendo a que já existia;
+   aqui ela só vira o conteúdo de uma SolverJanela (rolagem de trás travada, ✕/Esc/Voltar/toque fora, "Descartar?", uma por vez) */
+window.EJ=(function(){
+  var SJ=window.SolverJanela;
+  function en(){return (document.documentElement.getAttribute("lang")||"").toLowerCase().indexOf("en")===0;}
+  function T(p,e){return en()?e:p;}
+  function no(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!=null)n.textContent=txt;return n;}
+  /* caixa = o elemento que já existe; volta para onde morava (escondida) quando a janela fecha.
+     o: classe, rotulo, focar, temTexto, porCima, papel, descarta (a caixa some ao fechar), aoFechar(motivo, como) */
+  function abre(caixa,o){
+    o=o||{};
+    if(caixa.__ej)return caixa.__ej;
+    var casa=caixa.parentNode,prox=caixa.nextSibling;
+    caixa.hidden=false;caixa.classList.add("ej-caixa");
+    var J=SJ.abrir({conteudo:caixa,classe:"ej-fundo"+(o.classe?" "+o.classe:""),rotulo:o.rotulo,focar:o.focar,temTexto:o.temTexto,porCima:o.porCima,papel:o.papel,
+      aoFechar:function(motivo,como){
+        caixa.__ej=null;
+        if(o.descarta){if(caixa.parentNode)caixa.parentNode.removeChild(caixa);}
+        else{caixa.hidden=true;if(casa&&casa.isConnected)casa.insertBefore(caixa,prox&&prox.parentNode===casa?prox:null);}
+        if(o.aoFechar)o.aoFechar(motivo,como);
+      }});
+    caixa.__ej=J;
+    return J;
+  }
+  function fecha(caixa){if(caixa&&caixa.__ej)caixa.__ej.fechar("fechar");}
+  /* menu preso a um botão (idioma, seleção múltipla, compartilhar, Presidência/Congresso): mesma janela, sem escurecer a tela */
+  function pop(botao,menu,o){
+    o=o||{};
+    if(menu.__ej)return menu.__ej;
+    var r=botao.getBoundingClientRect(),L=document.documentElement.clientWidth,A=window.innerHeight,css=menu.getAttribute("style");
+    var abaixo=A-r.bottom-8,acima=r.top-8,emCima=abaixo<200&&acima>abaixo,e=[];
+    e.push("position:absolute","max-height:"+Math.max(120,Math.min(emCima?acima:abaixo,o.altura||320))+"px","overflow:auto");
+    e.push(emCima?"bottom:"+(A-r.top+5)+"px":"top:"+(r.bottom+5)+"px");
+    if(o.lado==="direita")e.push("right:"+Math.max(8,L-r.right)+"px","left:auto");
+    else e.push("left:"+Math.max(8,Math.min(r.left,L-260))+"px","right:auto");
+    menu.style.cssText=(css?css+";":"")+e.join(";");
+    botao.setAttribute("aria-expanded","true");
+    return abre(menu,{classe:"ej-livre",rotulo:o.rotulo||botao.getAttribute("aria-label")||botao.textContent,focar:o.focar,
+      aoFechar:function(m,c){
+        if(css===null)menu.removeAttribute("style");else menu.setAttribute("style",css);
+        botao.setAttribute("aria-expanded","false");
+        if(o.aoFechar)o.aoFechar(m,c);}});
+  }
+  /* no lugar do confirm()/alert(): confirmação curta por cima de qualquer janela aberta (fecha junto com ela) */
+  function curta(txt,botoes,fim){
+    var caixa=no("div","ej-caixa ej-conf"),foco=null,J=null;
+    caixa.appendChild(no("p",null,txt));
+    var bs=no("div","ej-conf-b");caixa.appendChild(bs);
+    botoes.forEach(function(b){var x=no("button","ej-b"+(b.sim?"":" ej-b2"),b.t);x.type="button";
+      x.addEventListener("click",function(){J.fechar(b.sim?"sim":"nao");});bs.appendChild(x);
+      if(!foco||!b.sim)foco=x;});
+    J=SJ.abrir({conteudo:caixa,classe:"ej-fundo",papel:"alertdialog",porCima:true,temTexto:false,rotulo:txt,focar:foco,
+      aoFechar:function(m){caixa.remove();if(fim)fim(m==="sim");}});
+    return J;
+  }
+  function confirma(txt,sim,aoConfirmar,aoCancelar){
+    return curta(txt,[{t:T("Cancelar","Cancel")},{t:sim||T("Sim","Yes"),sim:true}],function(ok){if(ok){if(aoConfirmar)aoConfirmar();}else if(aoCancelar)aoCancelar();});
+  }
+  function aviso(txt){return curta(txt,[{t:"OK",sim:true}]);}
+  /* abrir uma janela a partir de outra (ex.: a ajuda dentro das Configurações): nada empilha, então a de baixo fecha,
+     a nova abre e, quando a nova fecha, a primeira volta (voltar = função que reabre a primeira) */
+  function aPartirDe(caixa,abrirOutra,voltar){
+    if(!(caixa&&caixa.__ej)){abrirOutra(null);return;}
+    fecha(caixa);
+    quando(function(){abrirOutra(voltar);});
+  }
+  /* roda depois que o histórico acompanhou o fechar (trocar de tela logo depois de fechar uma janela) */
+  function quando(fn){if(SJ&&SJ.quandoQuieto)SJ.quandoQuieto(fn);else fn();}
+  function ocupada(){return !!(SJ&&(SJ.aberta()||SJ.esperando()));}
+  return {abre:abre,fecha:fecha,pop:pop,confirma:confirma,aviso:aviso,aPartirDe:aPartirDe,quando:quando,ocupada:ocupada};
+})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <link rel="alternate" hreflang="pt-BR" href="index.html">
@@ -109,9 +181,21 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-
   border-radius:3px;color:#A9BDBA;cursor:pointer}
 .ibtn:hover{color:#fff;border-color:#fff}
 .ibtn svg{width:15px;height:15px;display:block}
-dialog.cfg{border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);
+/* janela comum (janela.js): o fundo escuro e o centro são do <dialog> da janela; cada caixa guarda o seu visual */
+.ej-fundo[open]{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.45)}
+.ej-fundo.ej-livre[open],.ej-fundo.ej-ao[open]{display:block;background:transparent}
+.ej-fundo.ej-gaveta[open]{display:block}
+.ej-caixa{box-sizing:border-box;max-width:calc(100% - 16px);max-height:calc(100% - 16px);overflow:auto;margin:0}
+.ej-caixa[hidden]{display:none}
+.ej-livre .ej-caixa{max-width:none}
+.ej-conf{width:min(380px,calc(100% - 28px));background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:10px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.ej-conf p{margin:0;font-size:15.5px;line-height:1.5}
+.ej-conf-b{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ej-b{flex:1 1 120px;min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;cursor:pointer}
+.ej-b2{background:transparent;color:var(--ink);border-color:var(--line-2)}
+@keyframes ej-gav{from{transform:translateX(-102%)}}
+.cfg{border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);
   padding:0;max-width:560px;width:calc(100% - 28px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-dialog.cfg::backdrop{background:rgba(0,0,0,.45)}
 .cfg-h{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:16px 20px 10px;border-bottom:1px solid var(--line)}
 .cfg-h h3{font-family:var(--f-d);font-size:20px;margin:0;letter-spacing:-.01em}
@@ -495,9 +579,8 @@ summary:hover{color:var(--ink)}
   vertical-align:2px;margin-left:7px;flex:none;padding:0}
 .i:hover{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
 thead .i{vertical-align:0;margin-left:5px;width:15px;height:15px;font-size:9.5px}
-dialog.gloss{border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);
+.gloss{border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink);
   max-width:560px;width:calc(100% - 32px);padding:0;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 .gloss .gh{padding:20px 24px 0}
 .gloss .gk{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .gloss h3{font-family:var(--f-d);font-size:22px;margin:7px 0 0;letter-spacing:-.012em}
@@ -1696,22 +1779,22 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
   <p class="mono" id="ver"></p>
 </div></footer>
 <div class="tip" id="tip" role="status"></div>
-<dialog class="gloss" id="gloss"></dialog>
-<dialog class="cfg" id="doc">
+<div class="gloss" id="gloss" hidden></div>
+<div class="cfg" id="doc" hidden>
   <div class="cfg-h">
     <h3 id="doc-t"></h3>
     <button class="cfg-x" id="doc-x" type="button" aria-label="Fechar">×</button>
   </div>
   <div class="cfg-b" id="doc-corpo"></div>
-</dialog>
-<dialog class="cfg" id="cfg">
+</div>
+<div class="cfg" id="cfg" hidden>
   <div class="cfg-h">
     <h3>Configurações</h3>
     <button class="cfg-x" id="cfg-x" type="button" aria-label="Fechar">×</button>
   </div>
   <div class="cfg-b" id="cfg-corpo"></div>
   <p class="cfg-n">As escolhas ficam só neste navegador e não são enviadas a lugar nenhum. A única exceção é o idioma, que vai no endereço da página.</p>
-</dialog>
+</div>
 
 <script id="traden" type="application/json">{"Mandato":"In office"," vezes o menor. Num eixo único, o painel menor viraria uma linha reta colada no zero e a variação dele deixaria de aparecer, que é o que interessa. A comparação deve ser feita olhando os números, não a altura.":" times the smaller one. On a single axis, the smaller panel would become a straight line stuck to zero and its variation would stop being visible, which is what matters. The comparison must be made by looking at the numbers, not at the height.",
 " · ajustes feitos neste navegador: ":" · adjustments made in this browser: ",
@@ -3063,7 +3146,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "f-copiar":"Copy quotation",
 "f-copiar-tip":"Copies the passage with the name, the page and the link to this screen",
 "f-copiado":"Quotation copied, with the page and the link."}</script>
-<script id="dados" type="application/json">{"versao":"2.3.0",
+<script id="dados" type="application/json">{"versao":"2.4.0",
 "macrotemas_previstos":20,
 "macrotemas":[{"cod":"AGRO",
 "nome":"AGRICULTURA: Agronegócio e competitividade",
@@ -23266,7 +23349,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Fotos: TSE — DivulgaCandContas, imagem do registro de candidatura de 2026. Publicadas como o TSE publica, sem recorte nem tratamento.",
 "experiencia_privada_nota":"Critério desta lista: organizações privadas — empresas, institutos, fundações e movimentos — que a pessoa fundou, dirigiu ou das quais é sócia, fora de cargo eletivo ou de governo. Partidos políticos não entram aqui, porque têm bloco próprio nas filiações; sindicatos e centrais sindicais entram, porque são organizações formais fora do Estado. A lista registra o que a pessoa é ou foi na organização, não o que a organização fez: processo judicial fica na seção de processos, com o desfecho. Onde a única fonte disponível é um agregador de dados de CNPJ, isso está dito na fonte da linha — são dados públicos da Receita Federal republicados por terceiros, e este site não conferiu registro a registro no sistema oficial. A lista não é exaustiva e candidaturas com menos cobertura de imprensa deixam menos rastro documentado: ausência de linha aqui significa que nada foi localizado nas fontes consultadas, não que nada exista.",
-"versoes":[{"v":"2.3.0","atual":true,"itens":["As chaves de voz (Gemini, OpenAI e ElevenLabs) agora ficam trancadas no cofre de chaves da SolverONE, com PIN, em vez de em texto aberto no navegador. As que já estavam salvas aqui ou no Contador de Histórias passam para o cofre na primeira vez que você criar o PIN, e a chave do cofre vale para os dois apps. Tocar ▶ com uma voz da internet pede o PIN se o cofre estiver trancado; a voz do aparelho nunca pede nada","A Colinha da eleição passou a poder ser desligada pelo RootifyONE (Controle dos apps): desligada, ela some do início, da barra, dos menus e da busca"]},{"v":"2.2.6","itens":["O site passa a obedecer aos interruptores da administração da SolverONE: quando o AssistONE ou as dicas por tela são desligados para todos, eles somem daqui também"]},{"v":"2.2.5","itens":["Trilha sonora ligada por padrão: começa no primeiro toque na página (o navegador não deixa tocar antes) e quem desligar no botão 🔊 fica com ela desligada nas próximas visitas"]},{"v":"2.2.4","itens":["No celular, o botão da trilha sonora fica visível no topo, ao lado do compartilhar e dos ajustes"]},{"v":"2.2.3","itens":["Colinha impressa sempre em fundo branco, legível e gastando pouca tinta, mesmo com o tema escuro ligado: ao imprimir, escolha 1 cola (1/4 da folha) ou 4 colas na mesma folha, com linha tracejada para recortar"]},{"v":"2.2.2","itens":["Colinha impressa em uma folha só, sem o topo e o rodapé do site"]},{"v":"2.2.1","itens":["Colinha com a foto oficial de cada candidato também na imagem do WhatsApp (as fotos do TSE agora ficam no próprio site) e o endereço do site na mensagem; no celular, barra fixa no topo para trocar entre Início, Colinha, Presidência e Congresso com um toque"]},{"v":"2.2","itens":["Colinha da eleição, em destaque na tela de entrada: monte os números de presidente, governador, os 2 senadores, deputado federal e estadual (ou distrital), na ordem da urna e com a foto do TSE; busque por nome sem precisar de acento, por número ou por partido, edite quando quiser e compartilhe como imagem no WhatsApp, em texto ou impressa", "Aviso de novidade na primeira visita e o AssistONE já explica a colinha"]},{"v":"2.1","itens":["Nova aba Mandato na Presidência (promessas × entregas): os compromissos específicos do plano do presidente eleito (propostas com especificidade 4 ou 5), com a situação de cada um anotada só a partir de ato oficial, e os projetos e medidas provisórias do Executivo no mesmo tema desde a posse; até o resultado, dá para ver como ficaria para cada candidatura", "Nova aba Mandato no Congresso: eleitos do seu estado, votações novas dos seus favoritos desde a última visita (com aviso 🔔 no menu), presença nas votações, quanto votou com o próprio partido e com o Governo, propostas na legislatura e o antes × depois de cada tema", "Tudo troca sozinho com o calendário: resultado do TSE, posse do presidente em 05/Jan/2027 e nova legislatura em 01/Fev/2027"]},{"v":"2.0","itens":["Nova tela de entrada: escolha entre Presidência (os oito planos, como antes) e Congresso; o botão com o nome da parte, no topo, troca entre elas a qualquer momento, e o site lembra a última parte usada", "Nova parte Congresso, com abas próprias: Início (o que fazem deputados e senadores e por que o voto pesa), Afinidade, Favoritos, Comparar e Método, mais a ficha de cada candidato a senador e deputado federal do seu estado (currículo, patrimônio, votos e propostas)", "Afinidade: arraste 10 pautas na ordem de prioridade e escolha um lado (ou Neutro / Não sei) em 9 temas; a lista de candidatos muda na hora, com base em votos nominais reais da Câmara e do Senado desde 2019 e nas propostas de cada um, e mostra quando um número é estimativa", "Favoritos com a sua cola para a urna (2 senadores e 1 deputado federal), comparação de até 3 candidaturas lado a lado e botão Atualizar com a data dos dados oficiais, conferidos todo dia","Congresso: botões 🔊 para ouvir cada parte, abas Pautas · Posições · Lista no celular, setas A→Z / Z→A e maior/menor nas listas, filtro do que mostrar na comparação, foto oficial da Câmara, do Senado ou do TSE, e botão \"Conferir nas fontes oficiais\" que confere ao vivo os votos na Câmara e no Senado e a data das candidaturas no TSE, com data e hora da última sincronização e do último dado novo"]},{"v":"1.9","itens":["AssistONE com o personagem padrão da SolverONE (ajuda-botao.png) no lugar da interrogação: botão redondo de 58 px no canto de baixo à direita, fundo escuro nos dois temas, anel dourado e balanço leve que para com o balão aberto e com \"Reduzir animações\""]},
+"versoes":[{"v":"2.4.0","atual":true,"itens":["Todas as janelas do site (Configurações, glossário, novidades, aviso de uso, o \"i\" das dimensões, a ajuda da voz, a Colinha, o menu ☰, o AssistONE e os menus de idioma, compartilhar, seleção e Presidência/Congresso) passam a seguir a mesma regra: a página de trás não rola nem recebe toque; a janela fecha pelo ✕, pelo Esc, pelo Voltar do celular ou tocando na parte escura; e, se você digitou algo, ela pergunta antes de descartar. \"Apagar a cola?\" e o aviso da imagem baixada deixaram de usar as caixinhas do navegador","O cofre de chaves passou para a versão 1.4.0: com chave guardada, o PIN é pedido ao abrir e ao recarregar a página, e o cofre se tranca sozinho ao sair do site, ao ficar escondido por mais de 1 minuto e com 5 minutos sem uso (a voz tocando só adia o trancar). As Configurações ganharam o painel da digital do cofre"]},{"v":"2.3.0","itens":["As chaves de voz (Gemini, OpenAI e ElevenLabs) agora ficam trancadas no cofre de chaves da SolverONE, com PIN, em vez de em texto aberto no navegador. As que já estavam salvas aqui ou no Contador de Histórias passam para o cofre na primeira vez que você criar o PIN, e a chave do cofre vale para os dois apps. Tocar ▶ com uma voz da internet pede o PIN se o cofre estiver trancado; a voz do aparelho nunca pede nada","A Colinha da eleição passou a poder ser desligada pelo RootifyONE (Controle dos apps): desligada, ela some do início, da barra, dos menus e da busca"]},{"v":"2.2.6","itens":["O site passa a obedecer aos interruptores da administração da SolverONE: quando o AssistONE ou as dicas por tela são desligados para todos, eles somem daqui também"]},{"v":"2.2.5","itens":["Trilha sonora ligada por padrão: começa no primeiro toque na página (o navegador não deixa tocar antes) e quem desligar no botão 🔊 fica com ela desligada nas próximas visitas"]},{"v":"2.2.4","itens":["No celular, o botão da trilha sonora fica visível no topo, ao lado do compartilhar e dos ajustes"]},{"v":"2.2.3","itens":["Colinha impressa sempre em fundo branco, legível e gastando pouca tinta, mesmo com o tema escuro ligado: ao imprimir, escolha 1 cola (1/4 da folha) ou 4 colas na mesma folha, com linha tracejada para recortar"]},{"v":"2.2.2","itens":["Colinha impressa em uma folha só, sem o topo e o rodapé do site"]},{"v":"2.2.1","itens":["Colinha com a foto oficial de cada candidato também na imagem do WhatsApp (as fotos do TSE agora ficam no próprio site) e o endereço do site na mensagem; no celular, barra fixa no topo para trocar entre Início, Colinha, Presidência e Congresso com um toque"]},{"v":"2.2","itens":["Colinha da eleição, em destaque na tela de entrada: monte os números de presidente, governador, os 2 senadores, deputado federal e estadual (ou distrital), na ordem da urna e com a foto do TSE; busque por nome sem precisar de acento, por número ou por partido, edite quando quiser e compartilhe como imagem no WhatsApp, em texto ou impressa", "Aviso de novidade na primeira visita e o AssistONE já explica a colinha"]},{"v":"2.1","itens":["Nova aba Mandato na Presidência (promessas × entregas): os compromissos específicos do plano do presidente eleito (propostas com especificidade 4 ou 5), com a situação de cada um anotada só a partir de ato oficial, e os projetos e medidas provisórias do Executivo no mesmo tema desde a posse; até o resultado, dá para ver como ficaria para cada candidatura", "Nova aba Mandato no Congresso: eleitos do seu estado, votações novas dos seus favoritos desde a última visita (com aviso 🔔 no menu), presença nas votações, quanto votou com o próprio partido e com o Governo, propostas na legislatura e o antes × depois de cada tema", "Tudo troca sozinho com o calendário: resultado do TSE, posse do presidente em 05/Jan/2027 e nova legislatura em 01/Fev/2027"]},{"v":"2.0","itens":["Nova tela de entrada: escolha entre Presidência (os oito planos, como antes) e Congresso; o botão com o nome da parte, no topo, troca entre elas a qualquer momento, e o site lembra a última parte usada", "Nova parte Congresso, com abas próprias: Início (o que fazem deputados e senadores e por que o voto pesa), Afinidade, Favoritos, Comparar e Método, mais a ficha de cada candidato a senador e deputado federal do seu estado (currículo, patrimônio, votos e propostas)", "Afinidade: arraste 10 pautas na ordem de prioridade e escolha um lado (ou Neutro / Não sei) em 9 temas; a lista de candidatos muda na hora, com base em votos nominais reais da Câmara e do Senado desde 2019 e nas propostas de cada um, e mostra quando um número é estimativa", "Favoritos com a sua cola para a urna (2 senadores e 1 deputado federal), comparação de até 3 candidaturas lado a lado e botão Atualizar com a data dos dados oficiais, conferidos todo dia","Congresso: botões 🔊 para ouvir cada parte, abas Pautas · Posições · Lista no celular, setas A→Z / Z→A e maior/menor nas listas, filtro do que mostrar na comparação, foto oficial da Câmara, do Senado ou do TSE, e botão \"Conferir nas fontes oficiais\" que confere ao vivo os votos na Câmara e no Senado e a data das candidaturas no TSE, com data e hora da última sincronização e do último dado novo"]},{"v":"1.9","itens":["AssistONE com o personagem padrão da SolverONE (ajuda-botao.png) no lugar da interrogação: botão redondo de 58 px no canto de baixo à direita, fundo escuro nos dois temas, anel dourado e balanço leve que para com o balão aberto e com \"Reduzir animações\""]},
 {"v":"1.8","itens":["AssistONE: assistente no canto de baixo à direita que diz em que tela você está, explica os avisos recolhidos (\"Como ler\", \"Ressalvas\") em palavras simples, lê a tela em voz alta, procura telas, temas, candidatos e siglas, muda ajustes rápidos e faz um tour de um minuto; liga e desliga em Configurações", "Menu ☰ no celular com as oito páginas e uma linha dizendo o que há em cada uma, ações rápidas (procurar, compartilhar, ouvir, ajustes), tema, idioma e ajuda; o botão Voltar do celular fecha o menu em vez de sair do site", "Compartilhar no cabeçalho: link desta tela pelo WhatsApp, Telegram, e-mail ou copiando; no celular abre o compartilhamento do aparelho", "\"Copiar citação\" em cada cartão dos macrotemas: o trecho vai com o nome, a página e o link", "Acessibilidade em Configurações: texto maior (A+ e A++) e reduzir animações", "Textos de interface reescritos em português mais direto: capa, avisos, cabeçalhos das abas, rodapé e notas das Configurações; o quadro \"feita para tela larga\" só aparece em tela estreita"]},
 {"v":"1.7",
 "itens":["Leitura em voz alta: botão ▶ ao lado de cada título, com voz do aparelho ou voz natural (Gemini, OpenAI, ElevenLabs) e preferências em Configurações",
@@ -36487,21 +36570,15 @@ function montaIdioma(){
     var n=document.createElement("span");n.className="idi-n";n.textContent=o[2];
     b.appendChild(n);
     b.addEventListener("click",function(){
-      pop.hidden=true;bt.setAttribute("aria-expanded","false");
-      vaiParaIdioma(o[0]);});
+      EJ.fecha(pop);
+      EJ.quando(function(){vaiParaIdioma(o[0]);});});
     pop.appendChild(b);});
   var av=document.createElement("span");av.className="idi-n";
   av.textContent=(IDIOMA==="en")
     ? "Quotes and source documents stay in Portuguese."
     : "Citações e documentos de origem seguem em português.";
   pop.appendChild(av);
-  bt.addEventListener("click",function(e){
-    e.stopPropagation();
-    pop.hidden=!pop.hidden;
-    bt.setAttribute("aria-expanded",pop.hidden?"false":"true");});
-  document.addEventListener("click",function(){
-    if(!pop.hidden){pop.hidden=true;bt.setAttribute("aria-expanded","false");}});
-  pop.addEventListener("click",function(e){e.stopPropagation();});
+  bt.addEventListener("click",function(){EJ.pop(bt,pop,{lado:"direita",rotulo:(IDIOMA==="en"?"Language":"Idioma")});});
 }
 
 /* A cor base foi atribuída na ordem de sobrenome, que era a ordem publicada
@@ -36754,12 +36831,10 @@ function abreGloss(k){
   var h=el("div","gh");h.appendChild(el("div","gk",g.k));h.appendChild(el("h3",null,g.t));
   var b=el("div","gb");b.innerHTML=g.c.join("");
   var f=el("div","gf");var ok=el("button",null,"Entendi");ok.type="button";
-  ok.addEventListener("click",function(){dlg.close();});f.appendChild(ok);
+  ok.addEventListener("click",function(){EJ.fecha(dlg);});f.appendChild(ok);
   dlg.appendChild(h);dlg.appendChild(b);dlg.appendChild(f);
-  if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
-  ok.focus();
+  EJ.abre(dlg,{focar:ok});
 }
-dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close();});
 function info(k){
   var b=el("button","i","i");b.type="button";
   b.setAttribute("aria-label",TR("glos-oq")+(GLOS[k]?GLOS[k].t:k));
@@ -36857,11 +36932,7 @@ function multi(hostId,opts,rotulo,onChange){
   }
   bAll.addEventListener("click",function(){sel={};[].forEach.call(pop.querySelectorAll("input"),function(c){c.checked=false;});pinta();onChange();});
   bNone.addEventListener("click",function(){sel={};[].forEach.call(pop.querySelectorAll("input"),function(c){c.checked=false;});pinta();onChange();});
-  bt.addEventListener("click",function(e){e.stopPropagation();
-    document.querySelectorAll(".ms-pop").forEach(function(p){if(p!==pop)p.hidden=true;});
-    pop.hidden=!pop.hidden;});
-  pop.addEventListener("click",function(e){e.stopPropagation();});
-  document.addEventListener("click",function(){pop.hidden=true;});
+  bt.addEventListener("click",function(){EJ.pop(bt,pop);});
   pinta();
   return {vals:function(){return Object.keys(sel);},
           limpar:function(){sel={};[].forEach.call(pop.querySelectorAll("input"),function(c){c.checked=false;});pinta();}};
@@ -36943,8 +37014,7 @@ addEventListener("hashchange",rota);
 function avisoTelaPopup(estreito){
   var toque=window.matchMedia&&window.matchMedia("(pointer: coarse) and (max-width: 1024px)").matches;
   if(!(estreito||toque)||PREFS.telaCiente)return;
-  var dlg=document.createElement("dialog");dlg.className="cfg tela-dlg";dlg.id="tela-dlg";
-  dlg.setAttribute("aria-labelledby","tela-dlg-t");
+  var dlg=document.createElement("div");dlg.className="cfg tela-dlg";dlg.id="tela-dlg";
   var h=el("div","cfg-h");var t=el("h3",null,TR("tela-dlg-t"));t.id="tela-dlg-t";h.appendChild(t);dlg.appendChild(h);
   var c=el("div","cfg-b");
   c.appendChild(el("p","sb-p",TR("tela-dlg-1")));
@@ -36952,16 +37022,14 @@ function avisoTelaPopup(estreito){
   dlg.appendChild(c);
   var r=el("div","tela-dlg-r");
   var b=el("button","chip-cat on tela-ok",TR("Estou ciente"));b.type="button";
-  b.addEventListener("click",function(){PREFS.telaCiente=true;gravaPrefs();dlg.close?dlg.close():dlg.removeAttribute("open");});
+  b.addEventListener("click",function(){PREFS.telaCiente=true;gravaPrefs();EJ.fecha(dlg);});
   r.appendChild(b);dlg.appendChild(r);
-  /* fechar pelo Esc ou tocando fora não conta como ciente: volta na próxima visita */
-  dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close&&dlg.close();});
-  document.body.appendChild(dlg);
+  /* fechar pelo Esc, pelo Voltar ou tocando fora não conta como ciente: volta na próxima visita */
   /* v2.2: a escolha inicial, a colinha e o Congresso foram feitos para o celular; o aviso
      só vale para a Presidência. Se a pessoa chegou por elas, ele espera ela entrar lá. */
   var fora=function(){return /^#(hub|colinha|congresso)(\/|$)/.test(location.hash||"");};
-  var mostra=function(){if(PREFS.telaCiente||dlg.open||fora())return false;
-    try{if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");b.focus();}catch(e){}return true;};
+  var mostra=function(){if(PREFS.telaCiente||dlg.__ej||fora())return false;
+    EJ.abre(dlg,{descarta:true,focar:b});return true;};
   setTimeout(function(){if(!mostra()){var ouve=function(){if(mostra()||PREFS.telaCiente)removeEventListener("hashchange",ouve);};addEventListener("hashchange",ouve);}},400);
 }
 (function(){
@@ -37628,9 +37696,9 @@ function pintaPainelOC(){
   s4.appendChild(el("span","oc-rot","Sobre este site"));
   var l4=el("div","sb-l");
   var bN=el("button","chip-cat","O que mudou");bN.type="button";
-  bN.addEventListener("click",function(){abreDoc("novidades");});
+  bN.addEventListener("click",function(){EJ.aPartirDe(document.getElementById("cfg"),function(v){abreDoc("novidades",v);},abreConfig);});
   var bA=el("button","chip-cat","Aviso de uso e privacidade");bA.type="button";
-  bA.addEventListener("click",function(){abreDoc("aviso");});
+  bA.addEventListener("click",function(){EJ.aPartirDe(document.getElementById("cfg"),function(v){abreDoc("aviso",v);},abreConfig);});
   l4.appendChild(bN);l4.appendChild(bA);
   s4.appendChild(l4);
   s4.appendChild(el("p","oc-nota",
@@ -37642,7 +37710,7 @@ function dataBR(iso){
   return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:String(iso||"");
 }
 /* painel de leitura: histórico de versões e aviso de uso */
-function abreDoc(qual){
+function abreDoc(qual,voltar){
   var dlg=document.getElementById("doc"),tit=document.getElementById("doc-t"),
       cx=document.getElementById("doc-corpo");
   if(!dlg||!cx)return;
@@ -37674,13 +37742,12 @@ function abreDoc(qual){
   }
   traduzDOM(cx);traduzDOM(tit);
   cx.scrollTop=0;
-  if(dlg.showModal)dlg.showModal(); else dlg.setAttribute("open","");
+  EJ.abre(dlg,{aoFechar:function(){if(voltar)EJ.quando(voltar);}});
 }
 (function(){
   var dlg=document.getElementById("doc"),x=document.getElementById("doc-x");
   if(!dlg)return;
-  if(x)x.addEventListener("click",function(){dlg.close?dlg.close():dlg.removeAttribute("open");});
-  dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close&&dlg.close();});
+  if(x)x.addEventListener("click",function(){EJ.fecha(dlg);});
 })();
 function avisoOC(host,msg){
   var p=host.querySelector(".oc-erro");
@@ -38061,15 +38128,14 @@ function abreConfig(){
   var d=document.getElementById("cfg");
   if(!d)return;
   try{pintaPainelOC();}catch(e){}
-  if(d.showModal){if(!d.open)d.showModal();}else d.setAttribute("open","");
+  /* a chave colada e ainda não guardada é o único texto que se perderia: pergunta "Descartar?" */
+  EJ.abre(d,{temTexto:function(){return [].some.call(d.querySelectorAll("input[data-sj-texto]"),function(i){return i.value.trim()!=="";});}});
 }
 (function(){
   var b=document.getElementById("cfg-b"), d=document.getElementById("cfg"),
       x=document.getElementById("cfg-x");
   if(b)b.addEventListener("click",abreConfig);
-  if(x)x.addEventListener("click",function(){d.close?d.close():d.removeAttribute("open");});
-  if(d)d.addEventListener("click",function(e){
-    if(e.target===d){d.close?d.close():d.removeAttribute("open");}});
+  if(x)x.addEventListener("click",function(){EJ.fecha(d);});
 })();
 
 /* ================= SEU RECORTE (score) ================= */
@@ -42100,18 +42166,17 @@ document.getElementById("sc-igual").addEventListener("click",function(){modoIgua
   /* ---------- "i" das dimensões: um toque abre a explicação ---------- */
   function abreInfo(titulo,partes){
     var d=document.getElementById("cm-info");
-    if(!d){d=document.createElement("dialog");d.className="cfg";d.id="cm-info";
+    if(!d){d=document.createElement("div");d.className="cfg";d.id="cm-info";d.hidden=true;
       var h=el("div","cfg-h");h.appendChild(el("h3"));var x=el("button","cfg-x","×");x.type="button";
       x.setAttribute("aria-label",TR("Fechar"));h.appendChild(x);d.appendChild(h);d.appendChild(el("div","cfg-b"));
       document.body.appendChild(d);
-      x.addEventListener("click",function(){d.close?d.close():d.removeAttribute("open");});
-      d.addEventListener("click",function(e){if(e.target===d&&d.close)d.close();});}
+      x.addEventListener("click",function(){EJ.fecha(d);});}
     d.querySelector("h3").textContent=titulo;
     var c=d.querySelector(".cfg-b");c.textContent="";
     partes.forEach(function(p){
       if(typeof p==="string")c.appendChild(el("p","sb-p",p));
       else{var q=el("p","sb-p");q.appendChild(el("b",null,p[0]+" "));q.appendChild(document.createTextNode(p[1]));c.appendChild(q);}});
-    if(d.showModal){if(!d.open)d.showModal();}else d.setAttribute("open","");
+    EJ.abre(d);
   }
   function dimInfo(d){
     var b=el("button","i","i");b.type="button";
@@ -43847,7 +43912,7 @@ marca();render();pintaTudo();rota();
 }
 
 /* ---------- v1.7: aviso de tela pequena ---------- */
-dialog.tela-dlg{max-width:min(460px,calc(100vw - 32px))}
+.tela-dlg{max-width:min(460px,calc(100vw - 32px))}
 .tela-dlg-r{display:flex;justify-content:flex-end;padding:8px 20px 18px}
 .tela-ok{font-size:14px;padding:9px 18px;min-height:44px}
 
@@ -44005,6 +44070,11 @@ var MAPA_CHAVES={geminiKey:"ia:gemini",openaiKey:"ia:openai",elevenKey:"ia:eleve
 /* onde as chaves estavam antes: planos2026:voz (as do próprio app) e ch_config (cópia que o Contador de Histórias
    deixava aqui para este app; agora a do cofre vale para os dois). Saem do lugar antigo assim que o cofre abre. */
 if(window.SolverCofre)SolverCofre.registrarFontes([{chave:CHAVE,caminho:"",mapa:MAPA_CHAVES},{chave:"ch_config",caminho:"",mapa:MAPA_CHAVES}]);
+/* regras do PIN (cofre 1.4.0): com chave guardada, pede o PIN ao abrir e ao recarregar; tranca ao sair do app, ao ficar escondido
+   por mais de 1 minuto e com 5 minutos sem uso. A voz tocando só adia o trancar por falta de uso e o de sair da página. */
+function lendo(){return !!(window.VozLeitor&&(VozLeitor.estado==="tocando"||VozLeitor.estado==="carregando"));}
+if(window.SolverCofre)SolverCofre.proteger({motivo:{pt:"Para abrir o Eleições 2026 com as suas chaves de voz guardadas, digite o PIN do cofre.",en:"To open Elections 2026 with your saved voice keys, type the vault PIN."},
+  ocupado:lendo,tocando:lendo});
 function temChave(prov){return !!window.SolverCofre&&SolverCofre.tem(NOME_COFRE[prov]);}
 /* a chave de um provedor; cofre trancado → janela do PIN e segue. Sem chave: "" */
 function chaveCofre(prov,rotulo){
@@ -44576,7 +44646,9 @@ function painel(host){
   var velho=document.getElementById("tts-cfg");
   var s=mk("div","oc-sec tts-cfg");s.id="tts-cfg";
   s.appendChild(mk("span","oc-rot",T("Leitura em voz alta","Read aloud")));
-  function repinta(){var n=painel(null);s.parentNode&&s.parentNode.replaceChild(n,s);}
+  function repinta(){var n=painel(null);if(s.parentNode){s.parentNode.replaceChild(n,s);ligaDigital(n);}}
+  /* o cofre.js só desenha o painel da digital num elemento que já está na página: chamado depois de encaixar a seção */
+  function ligaDigital(sec){var e=sec.__digital;if(e&&e.isConnected&&window.SolverCofre)SolverCofre.painelDigital(e);}
 
   var l0=mk("div","oc-linha");
   l0.appendChild(chip(T("mostrar botões ▶ nos títulos","show ▶ buttons on headings"),P.icones,function(){
@@ -44598,6 +44670,7 @@ function painel(host){
     var guardada=temChave(prov);
     if(guardada)box.appendChild(nota(T("🔐 Guardado no cofre","🔐 Saved in the vault")));
     var i=entrada("password","",guardada?T("Colar outra chave para trocar","Paste another key to replace it"):ph,function(){});
+    i.setAttribute("data-sj-texto","");   /* a chave colada e ainda não guardada conta como texto digitado: a janela pergunta "Descartar?" */
     box.appendChild(campo(rotuloCampo,i));
     var aviso=nota("");box.appendChild(aviso);
     box.appendChild(botao(T("🔐 Guardar no cofre","🔐 Save in the vault"),function(){
@@ -44633,7 +44706,7 @@ function painel(host){
       box.appendChild(diag);
       var lb=mk("div","oc-linha");
       lb.appendChild(botao(T("🔄 Recarregar vozes","🔄 Reload voices"),function(){carregaVozes();setTimeout(carregaVozes,700);}));
-      lb.appendChild(botao(T("❓ Instalei uma voz e ela não aparece","❓ I installed a voice and it does not show"),ajudaVozes));
+      lb.appendChild(botao(T("❓ Instalei uma voz e ela não aparece","❓ I installed a voice and it does not show"),function(){EJ.aPartirDe(document.getElementById("cfg"),ajudaVozes,PG.abreConfig);}));
       box.appendChild(lb);
       box.appendChild(nota(T("⭐ = voz que parece natural. ✅ = no idioma certo. No computador, o Microsoft Edge traz vozes naturais em português; no Android, o caminho é instalar um mecanismo melhor (SherpaTTS, grátis) e deixar aqui em Padrão do aparelho.",
         "⭐ = natural-sounding voice. ✅ = right language. On a computer, Microsoft Edge offers natural voices; on Android, install a better engine (SherpaTTS, free) and leave this on Device default.")));
@@ -44707,6 +44780,11 @@ function painel(host){
     lc.appendChild(botao(T("🔒 Trancar o cofre agora","🔒 Lock the vault now"),function(){SolverCofre.trancar().then(repinta);}));
     s.appendChild(lc);
   }
+  /* painel da digital do cofre: o desenho é do próprio cofre.js, aqui só se reserva o lugar */
+  if(window.SolverCofre&&SolverCofre.existe()){
+    s.appendChild(mk("p","tts-sub",T("Cofre de chaves","Key vault")));
+    var dgt=mk("div","tts-cofre-digital");dgt.id="tts-cofre-digital";s.appendChild(dgt);s.__digital=dgt;
+  }
 
   var lt2=mk("div","oc-linha");
   var bt=botao(T("▶ Testar a voz","▶ Test the voice"),async function(){
@@ -44747,19 +44825,18 @@ function painel(host){
     "The ▶ next to each heading reads that section; tap again to pause, and ■ stops. Tables and charts are not read — only text. "+
     "With Gemini, OpenAI or ElevenLabs, the section's text (already public) is sent to the chosen service using the listener's own key; the key stays locked in the vault, in this browser only, and is sent nowhere else.")));
 
-  if(host){if(velho&&velho.parentNode)velho.parentNode.removeChild(velho);host.appendChild(s);}
+  if(host){if(velho&&velho.parentNode)velho.parentNode.removeChild(velho);host.appendChild(s);ligaDigital(s);}
   return s;
 }
 
 /* ---------------- ajuda: voz instalada que o site não vê ---------------- */
-function ajudaVozes(){
+function ajudaVozes(voltar){
   var d=document.getElementById("tts-dlg");
-  if(!d){d=mk("dialog","cfg");d.id="tts-dlg";
+  if(!d){d=mk("div","cfg");d.id="tts-dlg";d.hidden=true;
     d.innerHTML='<div class="cfg-h"><h3></h3><button class="cfg-x" type="button">×</button></div><div class="cfg-b"></div>';
     document.body.appendChild(d);
     d.querySelector(".cfg-x").setAttribute("aria-label",T("Fechar","Close"));
-    d.querySelector(".cfg-x").addEventListener("click",function(){d.close?d.close():d.removeAttribute("open");});
-    d.addEventListener("click",function(e){if(e.target===d)d.close&&d.close();});}
+    d.querySelector(".cfg-x").addEventListener("click",function(){EJ.fecha(d);});}
   d.querySelector("h3").textContent=T("Instalei uma voz e o site não vê","I installed a voice and the site does not see it");
   var c=d.querySelector(".cfg-b");c.textContent="";
   (EN?[
@@ -44781,7 +44858,7 @@ function ajudaVozes(){
     "6. Toque em ▶ Testar a voz. Se ainda sair a voz antiga, reinicie o celular uma vez.",
     "As vozes “Naturais” do Edge de computador não existem no Android — a Microsoft não as libera para sites no celular. No Android, o caminho é o mecanismo do sistema."
   ]).forEach(function(p){c.appendChild(mk("p","sb-p",p));});
-  if(d.showModal){if(!d.open)d.showModal();}else d.setAttribute("open","");
+  EJ.abre(d,{aoFechar:function(){if(voltar)EJ.quando(voltar);}});
 }
 
 /* ---------------- ligar tudo ---------------- */
@@ -44849,12 +44926,10 @@ html.ao-on body{padding-bottom:84px}
   .brand-ic{width:20px;height:20px}
 }
 /* ---- gaveta ☰ ---- */
-.gav-fundo{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
-.gav-fundo.on{opacity:1;pointer-events:auto}
 .gav{position:fixed;top:0;left:0;bottom:0;width:min(330px,88vw);z-index:91;background:var(--surface);color:var(--ink);
-  box-shadow:0 0 40px rgba(0,0,0,.3);transform:translateX(-102%);transition:transform .22s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 0 40px rgba(0,0,0,.3);animation:ej-gav .22s cubic-bezier(.2,.8,.3,1);
   display:flex;flex-direction:column;overflow:hidden}
-.gav.on{transform:none}
+.gav[hidden]{display:none}
 .gav-h{display:flex;align-items:center;gap:10px;padding:12px 12px 10px 16px;border-bottom:1px solid var(--line);background:var(--bar);color:#E7EFED}
 .gav-h b{font-family:var(--f-d);font-size:16px;flex:1}
 .gav-h .gav-x{width:40px;height:40px;border:0;background:none;color:#E7EFED;font-size:24px;cursor:pointer;border-radius:6px}
@@ -44991,10 +45066,9 @@ html.pg-calmo .ao-btn{animation:none;transition:none}
 .ao-chave[aria-pressed="true"] i::after{left:16px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ao-chave{background:#33290F;color:#E8C77A}}
 :root[data-theme="dark"] .ao-chave{background:#33290F;color:#E8C77A}
-/* nada do assistente por cima de janela, gaveta ou impressão */
-body:has(dialog[open]) .ao-btn,body:has(dialog[open]) .ao-box,body:has(dialog[open]) .ao-dica,
-body:has(.gav.on) .ao-btn,body:has(.gav.on) .ao-box,body:has(.gav.on) .ao-dica{display:none}
-@media print{.ao-btn,.ao-box,.ao-dica,.gav,.gav-fundo,.nav-h,.shr,.f-share{display:none!important}}
+/* nada do assistente por cima de janela, gaveta ou impressão (a janela do próprio assistente não esconde o botão) */
+body:has(dialog.sj[open]:not(.ej-ao)) .ao-btn,body:has(dialog.sj[open]:not(.ej-ao)) .ao-dica{display:none}
+@media print{.ao-btn,.ao-box,.ao-dica,.gav,.nav-h,.shr,.f-share{display:none!important}}
 </style>
 <script>
 /* =====================================================================
@@ -45072,7 +45146,7 @@ function vai(id){if(location.hash!=="#"+id)location.hash="#"+id;else scrollTo({t
 function rola(sel){var e=typeof sel==="string"?document.querySelector(sel):sel;if(!e)return false;
   if(window.ancoraEm)window.ancoraEm(e);else e.scrollIntoView({behavior:REDUZ()?"auto":"smooth",block:"start"});
   e.classList.add("ao-foco");setTimeout(function(){e.classList.remove("ao-foco");},1800);return true;}
-function depois(fn,ms){setTimeout(fn,ms||350);}
+function depois(fn,ms){setTimeout(function(){EJ.quando(fn);},ms||350);}
 
 /* ---------------- avisos (toast) sem cobrir o assistente ---------------- */
 function toast(m){try{var t=$("tip");if(t){t.textContent=m;t.classList.add("on");t.style.left="";t.style.top="";
@@ -45104,24 +45178,23 @@ var Share={
     this.popover(btn,d);
   },
   popover:function(btn,d){
-    var host=btn.parentNode, pop=host.querySelector(".shr-pop");
-    if(pop){pop.hidden=!pop.hidden;btn.setAttribute("aria-expanded",pop.hidden?"false":"true");return;}
-    pop=mk("div","shr-pop");
+    var host=btn.parentNode, pop=btn.__shr;
+    if(pop){EJ.pop(btn,pop,{lado:"direita"});return;}
+    pop=mk("div","shr-pop");pop.hidden=true;btn.__shr=pop;
     var enc=encodeURIComponent, txt=d.title+" — "+d.text;
     pop.appendChild(mk("div","shr-t",T("Compartilhar esta tela","Share this screen")));
     [["💬","WhatsApp","https://wa.me/?text="+enc(txt+"\n"+d.url)],
      ["✈️","Telegram","https://t.me/share/url?url="+enc(d.url)+"&text="+enc(txt)],
      ["✉️","E-mail","mailto:?subject="+enc(d.title)+"&body="+enc(txt+"\n\n"+d.url)]].forEach(function(o){
       var a=mk("a");a.href=o[2];a.target="_blank";a.rel="noopener noreferrer";
-      a.appendChild(mk("span","shr-ic",o[0]));a.appendChild(mk("span",null,o[1]));pop.appendChild(a);});
+      a.appendChild(mk("span","shr-ic",o[0]));a.appendChild(mk("span",null,o[1]));a.addEventListener("click",function(){EJ.fecha(pop);});pop.appendChild(a);});
     var b=mk("button");b.type="button";b.appendChild(mk("span","shr-ic","🔗"));b.appendChild(mk("span",null,T("Copiar o link","Copy the link")));
-    b.addEventListener("click",function(){Share.copia(d.url,T("Link copiado.","Link copied."));pop.hidden=true;btn.setAttribute("aria-expanded","false");});
+    b.addEventListener("click",function(){EJ.fecha(pop);Share.copia(d.url,T("Link copiado.","Link copied."));});
     pop.appendChild(b);
     if(navigator.share){var n=mk("button");n.type="button";n.appendChild(mk("span","shr-ic","📤"));n.appendChild(mk("span",null,T("Outros aplicativos…","Other apps…")));
-      n.addEventListener("click",function(){pop.hidden=true;navigator.share(d).catch(function(){});});pop.appendChild(n);}
-    host.appendChild(pop);btn.setAttribute("aria-expanded","true");
-    pop.addEventListener("click",function(e){e.stopPropagation();});
-    document.addEventListener("click",function(){pop.hidden=true;btn.setAttribute("aria-expanded","false");});
+      n.addEventListener("click",function(){EJ.fecha(pop);navigator.share(d).catch(function(){});});pop.appendChild(n);}
+    host.appendChild(pop);
+    EJ.pop(btn,pop,{lado:"direita"});
   }
 };
 window.PGShare=Share;
@@ -45167,7 +45240,7 @@ window.CfgAcess=function(host){
 };
 
 /* ================= menu ☰ (celular) ================= */
-var Gav={el:null,fundo:null,btn:null,aberta:false,
+var Gav={el:null,btn:null,aberta:false,
   monta:function(){
     var nav=document.querySelector(".nav-in"), brand=document.querySelector(".brand");
     if(!nav||!brand||$("nav-h"))return;
@@ -45180,14 +45253,11 @@ var Gav={el:null,fundo:null,btn:null,aberta:false,
     cur.addEventListener("click",function(){Gav.abre();});
     nav.insertBefore(cur,brand.nextSibling);
     this.btn=b;
-    var f=mk("div","gav-fundo");f.addEventListener("click",function(){Gav.fecha();});
-    var g=mk("nav","gav");g.id="gav";g.setAttribute("aria-label",T("Menu","Menu"));g.setAttribute("aria-hidden","true");
-    document.body.appendChild(f);document.body.appendChild(g);
-    this.el=g;this.fundo=f;
+    var g=mk("nav","gav");g.id="gav";g.setAttribute("aria-label",T("Menu","Menu"));g.hidden=true;
+    document.body.appendChild(g);
+    this.el=g;
     this.pintaAtual();
     addEventListener("hashchange",function(){Gav.pintaAtual();});
-    addEventListener("popstate",function(e){if(Gav.aberta)Gav.fecha(true);});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&Gav.aberta){Gav.fecha();}});
   },
   pintaAtual:function(){var c=$("nav-cur");if(!c)return;var v=TELAS[telaAtual()];c.textContent="";
     c.appendChild(document.createTextNode(v.t));
@@ -45235,7 +45305,7 @@ var Gav={el:null,fundo:null,btn:null,aberta:false,
     var lg=mk("div","gav-lg");
     [["pt","PT-BR"],["en","EN-US"]].forEach(function(o){var b=mk("button",null,o[1]);b.type="button";
       b.setAttribute("aria-pressed",(PG.IDIOMA===o[0])?"true":"false");
-      b.addEventListener("click",function(){PG.vaiParaIdioma(o[0]);});lg.appendChild(b);});
+      b.addEventListener("click",function(){Gav.fecha();EJ.quando(function(){PG.vaiParaIdioma(o[0]);});});lg.appendChild(b);});
     c.appendChild(lg);
     c.appendChild(mk("div","gav-g",T("Ajuda e mais","Help and more")));
     [["✨","AssistONE",T("Ajuda desta tela, tour e busca","Help for this screen, tour and search"),function(){Gav.fecha();depois(function(){AO.abre();});},"assistone"],
@@ -45253,19 +45323,13 @@ var Gav={el:null,fundo:null,btn:null,aberta:false,
   },
   abre:function(){
     if(!this.el)return;
+    if(this.aberta)return;
     this.conteudo();
-    this.aberta=true;this.el.classList.add("on");this.fundo.classList.add("on");this.el.setAttribute("aria-hidden","false");
-    this.btn.setAttribute("aria-expanded","true");
-    try{history.pushState({gav:1},"");}catch(e){}
-    var x=this.el.querySelector(".gav-x");if(x)x.focus();
+    this.aberta=true;this.btn.setAttribute("aria-expanded","true");
+    EJ.abre(this.el,{classe:"ej-gaveta",rotulo:T("Menu","Menu"),focar:this.el.querySelector(".gav-x"),
+      aoFechar:function(){Gav.aberta=false;Gav.btn.setAttribute("aria-expanded","false");}});
   },
-  fecha:function(porHistorico){
-    if(!this.aberta)return;
-    this.aberta=false;this.el.classList.remove("on");this.fundo.classList.remove("on");this.el.setAttribute("aria-hidden","true");
-    this.btn.setAttribute("aria-expanded","false");
-    if(!porHistorico&&history.state&&history.state.gav){try{history.back();}catch(e){}}
-    try{this.btn.focus({preventScroll:true});}catch(e){}
-  }
+  fecha:function(){EJ.fecha(this.el);}
 };
 
 /* ================= AssistONE ================= */
@@ -45296,16 +45360,13 @@ var AO={
       b.addEventListener("click",function(e){e.stopPropagation();AO.alterna();});
       b.setAttribute("data-recurso","assistone");
       document.body.appendChild(b);this.btn=b;
-      var x=mk("div","ao-box");x.id="ao-box";x.hidden=true;x.setAttribute("role","dialog");x.setAttribute("aria-label","AssistONE");
+      var x=mk("div","ao-box");x.id="ao-box";x.hidden=true;
       x.setAttribute("data-recurso","assistone");
-      x.addEventListener("click",function(e){e.stopPropagation();});
       document.body.appendChild(x);this.box=x;
       var d=mk("div","ao-dica");d.id="ao-dica";d.hidden=true;d.setAttribute("role","status");
       d.setAttribute("data-recurso","assistone");
       d.addEventListener("click",function(e){e.stopPropagation();});
       document.body.appendChild(d);this.dica=d;
-      document.addEventListener("click",function(){if(!AO.box.hidden)AO.fecha();});
-      document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!AO.box.hidden){AO.fecha();e.stopPropagation();}});
       addEventListener("hashchange",function(){if(!AO.box.hidden&&AO.modo!=="tour")AO.pinta("inicio");AO.agendaDica();});
       /* o ▶ do leitor precisa de um "controle": um invisível serve para os pedidos do assistente */
       var c=mk("span","tts-ctl");c.hidden=true;c.innerHTML='<button type="button" class="tts-b" tabindex="-1"></button><button type="button" class="tts-s" tabindex="-1"></button>';
@@ -45316,24 +45377,23 @@ var AO={
   aplica:function(){
     document.documentElement.classList.toggle("ao-on",this.ligado);
     this.btn.hidden=!this.ligado;
-    if(!this.ligado){this.box.hidden=true;this.dica.hidden=true;}
+    if(!this.ligado){this.fecha();this.dica.hidden=true;}
   },
   liga:function(v){if(admAO()){this.ligado=false;this.aplica();return;}var p=prefs();if(v)delete p.assist;else p.assist=false;grava();this.ligado=!!v;this.aplica();},
   alterna:function(){if(this.box.hidden)this.abre();else this.fecha();},
   abre:function(modo){
     if(admAO())return;
     if(!this.ligado){this.liga(true);}
+    if(this.box.__ej)return;
     this.dica.hidden=true;
-    this.box.hidden=false;this.btn.setAttribute("aria-expanded","true");
+    this.btn.setAttribute("aria-expanded","true");
+    EJ.abre(this.box,{classe:"ej-ao",rotulo:"AssistONE",
+      aoFechar:function(){if(AO.modo==="tour")AO.tourSai(true);AO.btn.setAttribute("aria-expanded","false");}});
     if(!REDUZ()&&!document.documentElement.classList.contains("pg-calmo")){this.box.classList.add("ao-entra");
       requestAnimationFrame(function(){requestAnimationFrame(function(){AO.box.classList.remove("ao-entra");});});}
     this.pinta(modo||(prefs().aoVisto?"inicio":"ola"));
   },
-  fecha:function(){
-    if(this.modo==="tour")this.tourSai(true);
-    this.box.hidden=true;this.btn.setAttribute("aria-expanded","false");
-    try{this.btn.focus({preventScroll:true});}catch(e){}
-  },
+  fecha:function(){EJ.fecha(this.box);},
   cabeca:function(tit){
     var h=mk("div","ao-h");var b=mk("b");b.innerHTML=T("Assist<span>ONE</span>","Assist<span>ONE</span>");
     if(tit){b.textContent="";b.appendChild(document.createTextNode(tit));}
@@ -45425,7 +45485,7 @@ var AO={
     l.appendChild(this.item("💡",T("Explicar os avisos desta tela","Explain the notices on this screen"),
       n?T("Os quadros \"Como ler\" e \"Ressalvas\", em português simples","The \"How to read\" and \"Caveats\" boxes, in plain words"):T("Esta tela não tem avisos recolhidos","This screen has no collapsed notices"),
       function(){AO.pinta("avisos");},n||null));
-    l.appendChild(this.item("🔊",T("Ler esta tela em voz alta","Read this screen aloud"),T("Começa do topo; ■ para","Starts at the top; ■ stops"),function(){AO.fecha();AO.lerTela();}));
+    l.appendChild(this.item("🔊",T("Ler esta tela em voz alta","Read this screen aloud"),T("Começa do topo; ■ para","Starts at the top; ■ stops"),function(){AO.fecha();depois(function(){AO.lerTela();},1);}));
     l.appendChild(this.item("🔍",T("Procurar algo","Search for something"),T("Telas, temas, candidatos, siglas, ajustes","Screens, topics, candidates, acronyms, settings"),function(){AO.pinta("busca");}));
     l.appendChild(this.item("🎛️",T("Ajustes rápidos","Quick settings"),T("Tema, texto maior, idioma, retratos","Theme, larger text, language, portraits"),function(){AO.pinta("ajustes");}));
     l.appendChild(this.item("📤",T("Compartilhar esta tela","Share this screen"),null,function(){AO.fecha();depois(function(){var b=$("share-b");if(b)Share.pagina(b);},100);}));
@@ -45467,7 +45527,7 @@ var AO={
       "These boxes stay collapsed so they don't get in the way, but they say <b>how to read the numbers without being misled</b>. Tap one to open it on the screen, or ask me to read it.")
       :T("Esta tela não tem avisos recolhidos. Os avisos gerais do site estão na aba <b>Método</b>.","This screen has no collapsed notices. The site's general notices are in the <b>Method</b> tab.");
     c.appendChild(p);
-    if(!ds.length){var b0=mk("button","ao-it");b0.type="button";b0.appendChild(mk("span","ao-ic","🔬"));b0.appendChild(mk("div",null,T("Abrir a aba Método","Open the Method tab")));b0.addEventListener("click",function(){AO.fecha();vai("metodo");});c.appendChild(b0);return;}
+    if(!ds.length){var b0=mk("button","ao-it");b0.type="button";b0.appendChild(mk("span","ao-ic","🔬"));b0.appendChild(mk("div",null,T("Abrir a aba Método","Open the Method tab")));b0.addEventListener("click",function(){AO.fecha();depois(function(){vai("metodo");},1);});c.appendChild(b0);return;}
     if(ds.length>1){var la=mk("div","ao-atalhos");
       var ba=mk("button",null,T("🔊 Ler todos em voz alta","🔊 Read them all aloud"));ba.type="button";
       ba.addEventListener("click",function(){ds.forEach(function(d){d.open=true;});AO.fecha();
@@ -45477,7 +45537,7 @@ var AO={
         setTimeout(function(){if(w.parentNode&&window.VozLeitor&&window.VozLeitor.escopo!==w)w.parentNode.removeChild(w);},4000);});
       la.appendChild(ba);
       var bb=mk("button",null,T("Abrir todos na tela","Open them all on the screen"));bb.type="button";
-      bb.addEventListener("click",function(){ds.forEach(function(d){d.open=true;});AO.fecha();rola(ds[0]);});
+      bb.addEventListener("click",function(){ds.forEach(function(d){d.open=true;});AO.fecha();depois(function(){rola(ds[0]);},1);});
       la.appendChild(bb);c.appendChild(la);}
     ds.forEach(function(d){
       var sm=d.querySelector("summary"), tit=sm?sm.textContent.replace(/\s+/g," ").trim():T("Aviso","Notice");
@@ -45485,8 +45545,8 @@ var AO={
       w.appendChild(mk("span","ao-at",(d.classList.contains("rs")?"⚠️ ":"ℹ️ ")+tit));
       w.appendChild(mk("p",null,AO.resumoDe(d)));
       var aa=mk("div","ao-aa");
-      var b1=mk("button",null,T("Abrir na tela","Open on the screen"));b1.type="button";b1.addEventListener("click",function(){d.open=true;AO.fecha();rola(d);});
-      var b2=mk("button",null,T("🔊 Ler para mim","🔊 Read it to me"));b2.type="button";b2.addEventListener("click",function(){d.open=true;AO.fecha();rola(d);AO.ler(d,tit);});
+      var b1=mk("button",null,T("Abrir na tela","Open on the screen"));b1.type="button";b1.addEventListener("click",function(){d.open=true;AO.fecha();depois(function(){rola(d);},1);});
+      var b2=mk("button",null,T("🔊 Ler para mim","🔊 Read it to me"));b2.type="button";b2.addEventListener("click",function(){d.open=true;AO.fecha();depois(function(){rola(d);AO.ler(d,tit);},1);});
       aa.appendChild(b1);aa.appendChild(b2);w.appendChild(aa);c.appendChild(w);});
   },
   /* ---- busca ---- */
@@ -45535,7 +45595,7 @@ var AO={
         if(o.sug.length){var s=mk("p","ao-vazio");s.appendChild(document.createTextNode(T("Você quis dizer: ","Did you mean: ")));
           o.sug.forEach(function(sg,k){var b=mk("button",null,sg);b.type="button";b.style.cssText="font:inherit;color:var(--accent);background:none;border:0;padding:0 4px;cursor:pointer;text-decoration:underline";
             b.addEventListener("click",function(){i.value=sg;pinta();});s.appendChild(b);});res.appendChild(s);}
-        var g=mk("button",null,T("Abrir o glossário","Open the glossary"));g.type="button";g.addEventListener("click",function(){AO.fecha();vai("glossario");});res.appendChild(g);
+        var g=mk("button",null,T("Abrir o glossário","Open the glossary"));g.type="button";g.addEventListener("click",function(){AO.fecha();depois(function(){vai("glossario");},1);});res.appendChild(g);
         return;}
       o.r.forEach(function(it){var b=mk("button");b.type="button";b.appendChild(mk("span","ao-tipo",it.tipo));b.appendChild(mk("span","ao-tt",it.t));
         b.addEventListener("click",function(){AO.fecha();depois(it.go,120);});res.appendChild(b);});
@@ -45604,7 +45664,7 @@ var AO={
     var self=this;
     this._dt=setTimeout(function(){
       var p=prefs(), k=telaAtual();
-      if(!p.aoVisto||!self.box.hidden||document.querySelector("dialog[open]")||Gav.aberta)return;
+      if(!p.aoVisto||!self.box.hidden||EJ.ocupada())return;
       p.aoDicas=p.aoDicas||{};if(p.aoDicas[k])return;
       var D={colinha:T("Toque numa vaga para escolher: dá para buscar por nome (sem acento), número ou partido. Na cabine não pode celular: imprima ou anote.",
         "Tap a slot to choose: you can search by name (no accents needed), number or party. No phones in the booth: print it or write it down."),
@@ -45634,7 +45694,7 @@ var AO={
     var self=this, n=0;
     (function tenta(){
       if(!self.ligado||prefs().aoVisto)return;
-      if(document.querySelector("dialog[open]")||Gav.aberta){if(n++<120)setTimeout(tenta,500);return;}
+      if(EJ.ocupada()){if(n++<120)setTimeout(tenta,500);return;}
       self.abre("ola");
     })();
   }
@@ -45658,10 +45718,10 @@ window.CfgAssist=function(host){
   card.appendChild(ch);s.appendChild(card);
   var l=el("div","oc-linha");l.style.marginTop="8px";
   var b1=el("button","chip-cat",T("Abrir o AssistONE","Open AssistONE"));b1.type="button";
-  b1.addEventListener("click",function(){var dg=document.getElementById("cfg");if(dg&&dg.close)dg.close();AO.liga(true);depois(function(){AO.abre("inicio");},150);});
+  b1.addEventListener("click",function(){EJ.fecha(document.getElementById("cfg"));AO.liga(true);depois(function(){AO.abre("inicio");},150);});
   var b2=el("button","chip-cat",T("Recomeçar o tour e as dicas","Restart the tour and tips"));b2.type="button";
   b2.addEventListener("click",function(){var p=prefs();delete p.aoVisto;delete p.aoDicas;delete p.aoTour;grava();AO.liga(true);
-    var dg=document.getElementById("cfg");if(dg&&dg.close)dg.close();depois(function(){AO.abre("ola");},150);});
+    EJ.fecha(document.getElementById("cfg"));depois(function(){AO.abre("ola");},150);});
   l.appendChild(b1);l.appendChild(b2);s.appendChild(l);
   host.appendChild(s);
 };
@@ -45678,7 +45738,7 @@ function inicia(){
   if(window.SolverRecursos)SolverRecursos.aoMudar(function(){try{
     if(admAO()&&AO.box&&!AO.box.hidden)AO.fecha();
     AO.monta();AO.agendaDica();
-    var dg=document.getElementById("cfg");if(dg&&dg.open&&PG.repintaConfig)PG.repintaConfig();
+    var dg=document.getElementById("cfg");if(dg&&dg.__ej&&PG.repintaConfig)PG.repintaConfig();
   }catch(e){}});
 }
 if(window.PG)inicia();else addEventListener("pg-pronto",inicia);
@@ -46006,10 +46066,7 @@ var Seletor={b:null,pop:null,menu:null,
     var p=mk("div","modo-pop");p.id="modo-pop";p.setAttribute("role","menu");p.hidden=true;
     w.appendChild(b);w.appendChild(p);brand.parentNode.insertBefore(w,brand.nextSibling);
     this.b=b;this.pop=p;
-    b.addEventListener("click",function(e){e.stopPropagation();Seletor.alterna();});
-    p.addEventListener("click",function(e){e.stopPropagation();});
-    document.addEventListener("click",function(){Seletor.fecha();});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!p.hidden){Seletor.fecha();b.focus();}});
+    b.addEventListener("click",function(){Seletor.abre();});
     var orig=$("menu");
     if(orig){var m=mk("span","menu");m.id="cg-menu";
       ABAS.forEach(function(a){var x=mk("button",null,a[1]);x.type="button";x.dataset.s=a[0];
@@ -46019,7 +46076,7 @@ var Seletor={b:null,pop:null,menu:null,
     if(nav&&!$("modo-seg")){var sg=mk("div","modo-seg");sg.id="modo-seg";sg.setAttribute("role","navigation");sg.setAttribute("aria-label",T("Partes do site","Site sections"));
       ["hub","colinha","presidencia","congresso"].forEach(function(k){var m=MODOS[k],x=mk("button",k==="colinha"?"ck":null);x.type="button";x.dataset.m=k;if(k==="colinha")x.setAttribute("data-recurso","colinha");
         x.appendChild(mk("span",null,m.ic));x.appendChild(document.createTextNode(m.t));
-        x.addEventListener("click",function(){Seletor.fecha();vaiModo(k);});sg.appendChild(x);});
+        x.addEventListener("click",function(){vaiModo(k);});sg.appendChild(x);});
       nav.appendChild(sg);this.seg=sg;}
     this.pinta();
   },
@@ -46033,7 +46090,6 @@ var Seletor={b:null,pop:null,menu:null,
       [].forEach.call(this.menu.children,function(x){if(x.dataset.s===sub)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current");
         if(x.dataset.s==="favoritos"){var n=Cg.estado().fav.length;x.textContent=T("Favoritos","Favourites")+(n?" ("+n+")":"");}
         if(x.dataset.s==="mandato"){var k=Cg.novidades().length;x.textContent=T("Mandato","In office")+(k?" 🔔"+k:"");}});}},
-  alterna:function(){if(this.pop.hidden)this.abre();else this.fecha();},
   abre:function(){var p=this.pop,at=modoAtual();p.textContent="";
     ["hub","colinha","presidencia","congresso"].forEach(function(k,i){
       if(i===2)p.appendChild(mk("hr"));
@@ -46041,9 +46097,9 @@ var Seletor={b:null,pop:null,menu:null,
       if(k===at)it.setAttribute("aria-current","page");
       if(k==="colinha")it.setAttribute("data-recurso","colinha");
       it.appendChild(mk("span","mi",m.ic));var d=mk("span");d.appendChild(mk("b",null,m.t));d.appendChild(mk("small",null,m.d));it.appendChild(d);
-      it.addEventListener("click",function(){Seletor.fecha();vaiModo(k);});p.appendChild(it);});
-    p.hidden=false;this.b.setAttribute("aria-expanded","true");var f=p.querySelector("button");if(f)f.focus();},
-  fecha:function(){if(!this.pop||this.pop.hidden)return;this.pop.hidden=true;this.b.setAttribute("aria-expanded","false");}
+      it.addEventListener("click",function(){Seletor.fecha();EJ.quando(function(){vaiModo(k);});});p.appendChild(it);});
+    EJ.pop(this.b,p,{focar:p.querySelector("button"),rotulo:this.b.title});},
+  fecha:function(){if(this.pop)EJ.fecha(this.pop);}
 };
 
 /* ---------------- a escolha inicial (hub) ---------------- */
@@ -46987,10 +47043,9 @@ html.ao-on .ck-bar{margin-right:72px}
 .ck-mini{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .ck-mini button{font:inherit;font-size:13.5px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface);color:var(--ink);padding:7px 12px;cursor:pointer;min-height:40px}
 /* escolher candidato: folha que sobe (tela cheia no celular) */
-dialog.ck-dlg{border:0;padding:0;margin:auto auto 0;width:100%;max-width:640px;height:min(92vh,820px);max-height:none;border-radius:18px 18px 0 0;background:var(--surface);color:var(--ink);
+div.ck-dlg{border:0;padding:0;margin:auto auto 0;width:100%;max-width:640px;height:min(92vh,820px);max-height:none;border-radius:18px 18px 0 0;background:var(--surface);color:var(--ink);
   box-shadow:0 -10px 40px rgba(0,0,0,.3);animation:ck-sobe .22s cubic-bezier(.2,.8,.3,1)}
-@media (min-width:700px){dialog.ck-dlg{margin:auto;border-radius:16px;height:min(86vh,820px)}}
-dialog.ck-dlg::backdrop{background:rgba(0,0,0,.5)}
+@media (min-width:700px){div.ck-dlg{margin:auto;border-radius:16px;height:min(86vh,820px)}}
 @keyframes ck-sobe{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
 .ck-dlg .in{display:flex;flex-direction:column;height:100%}
 .ck-dlg .hd{padding:12px 14px 8px;border-bottom:1px solid var(--line);display:grid;gap:8px}
@@ -47020,8 +47075,7 @@ dialog.ck-dlg::backdrop{background:rgba(0,0,0,.5)}
 .hub-ck .nv{display:inline-block;font-family:var(--f-m);font-size:10.5px;letter-spacing:.08em;background:#FFD54A;color:#3a2a00;border-radius:4px;padding:2px 6px;margin-left:8px;vertical-align:middle}
 .hub-ck .go{flex:none;background:#fff;color:#0C5E57;border-radius:999px;padding:10px 16px;font-weight:700;font-size:14.5px;white-space:nowrap}
 @media (max-width:560px){.hub-ck{flex-wrap:wrap}.hub-ck .go{width:100%;text-align:center}}
-dialog.ck-nov{border:0;border-radius:18px;padding:0;max-width:420px;width:calc(100% - 28px);background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-dialog.ck-nov::backdrop{background:rgba(0,0,0,.45)}
+div.ck-nov{border:0;border-radius:18px;padding:0;max-width:420px;width:calc(100% - 28px);background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
 .ck-nov .tp{background:linear-gradient(120deg,#0C5E57,#1FA855);color:#fff;padding:18px 20px 14px;border-radius:18px 18px 0 0}
 .ck-nov .tp small{font-family:var(--f-m);letter-spacing:.1em;font-size:11px;background:#FFD54A;color:#3a2a00;border-radius:4px;padding:2px 7px}
 .ck-nov .tp h2{font-size:24px;margin-top:8px;color:#fff}
@@ -47029,7 +47083,7 @@ dialog.ck-nov::backdrop{background:rgba(0,0,0,.45)}
 .ck-nov .bt{display:flex;gap:8px;padding:16px 20px 18px;flex-wrap:wrap}
 .ck-nov .bt button{flex:1 1 140px;font:inherit;font-size:15px;min-height:48px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);cursor:pointer}
 .ck-nov .bt button.pri{background:#1FA855;border-color:#1FA855;color:#fff;font-weight:700}
-@media (prefers-reduced-motion:reduce){dialog.ck-dlg{animation:none}}
+@media (prefers-reduced-motion:reduce){div.ck-dlg{animation:none}}
 @media print{.ck-bar,.ck-mini,.ck-uf,.ck-acao,.ck-add{display:none!important}.ck-slot{break-inside:avoid}}
 /* impressão: 4 cópias iguais da cola por folha (uma por quadrante, para recortar), sempre em fundo branco */
 #ck-print{display:none}
@@ -47150,7 +47204,7 @@ var CK={st:null,dados:{},pts:null,
     if(cg&&cg.cola&&((cg.cola.S||[]).length||(cg.cola.F||[]).length)){var bi=mk("button",null,"⚖️ "+T("Trazer a cola do Congresso","Bring in the Congress memo"));bi.type="button";
       bi.addEventListener("click",function(){var ps=[];(cg.cola.S||[]).forEach(function(r,i){var p=r.split("/");s.esc["S"+(i+1)]=[p[0],p[1]];ps.push(p[0]);});
         (cg.cola.F||[]).slice(0,1).forEach(function(r){var p=r.split("/");s.esc.F=[p[0],p[1]];ps.push(p[0]);});if(!s.uf&&ps[0])s.uf=ps[0];self.salva();self.pinta();});mini.appendChild(bi);}
-    var lp=mk("button",null,"🧹 "+T("Começar de novo","Start over"));lp.type="button";lp.addEventListener("click",function(){if(confirm(T("Apagar a cola inteira?","Clear the whole memo?"))){s.esc={};self.salva();self.desenha(v);}});
+    var lp=mk("button",null,"🧹 "+T("Começar de novo","Start over"));lp.type="button";lp.addEventListener("click",function(){EJ.confirma(T("Apagar a cola inteira?","Clear the whole memo?"),T("Apagar","Clear"),function(){s.esc={};self.salva();self.desenha(v);});});
     mini.appendChild(lp);w.appendChild(mini);
     /* ações */
     var bar=mk("div","ck-bar");
@@ -47164,18 +47218,15 @@ var CK={st:null,dados:{},pts:null,
 
   /* ---------- escolher um candidato (folha que sobe) ---------- */
   escolhe:function(vg){var self=this,s=this.estado(),uf=vg.cg==="P"?"BR":s.uf;
-    var dl=$("ck-dlg");if(!dl){dl=mk("dialog","ck-dlg");dl.id="ck-dlg";document.body.appendChild(dl);
-      dl.addEventListener("close",function(){if(history.state&&history.state.ck)history.back();});
-      addEventListener("popstate",function(){if(dl.open)dl.close();});}
+    var dl=$("ck-dlg");if(!dl){dl=mk("div","ck-dlg");dl.id="ck-dlg";dl.hidden=true;document.body.appendChild(dl);}
     dl.textContent="";var inn=mk("div","in");dl.appendChild(inn);
     var hd=mk("div","hd");var tt=mk("div","tt");tt.appendChild(mk("h2",null,T("Escolher: ","Choose: ")+vg.t));
-    var x=mk("button","x","×");x.type="button";x.setAttribute("aria-label",T("Fechar","Close"));x.addEventListener("click",function(){dl.close();});tt.appendChild(x);hd.appendChild(tt);
+    var x=mk("button","x","×");x.type="button";x.setAttribute("aria-label",T("Fechar","Close"));x.addEventListener("click",function(){EJ.fecha(dl);});tt.appendChild(x);hd.appendChild(tt);
     var q=mk("input");q.type="search";q.placeholder=T("Nome, número ou partido","Name, number or party");q.setAttribute("aria-label",q.placeholder);q.setAttribute("enterkeyhint","search");hd.appendChild(q);
     var chips=mk("div","ck-chips");chips.setAttribute("aria-label",T("Filtrar por partido","Filter by party"));hd.appendChild(chips);
     var ct=mk("div","ck-cont");hd.appendChild(ct);inn.appendChild(hd);
     var res=mk("div","ck-res");inn.appendChild(res);
-    try{history.pushState({ck:1},"");}catch(e){}
-    dl.showModal();
+    EJ.abre(dl,{focar:matchMedia("(pointer:fine)").matches?q:null});
     var filtroP="",mostra=60;
     this.pega(uf).then(function(d){
       var L=d.c.filter(function(c){return c[0]===vg.cg;});
@@ -47193,25 +47244,24 @@ var CK={st:null,dados:{},pts:null,
         if(!R.length){res.appendChild(mk("p","ck-cont",T("Ninguém com esse nome, número ou partido. Tente só uma parte do nome.","Nobody with that name, number or party. Try just part of the name.")));return;}
         R.slice(0,mostra).forEach(function(c){var it=mk("button","ck-it");it.type="button";it.appendChild(self.avatar(c,true));
           var nm=mk("span","nm");nm.appendChild(mk("b",null,c[2]));nm.appendChild(self.partido(c[3]));it.appendChild(nm);it.appendChild(mk("span","nb",c[1]));
-          it.addEventListener("click",function(){s.esc[vg.k]=[uf,c[4]];self.salva();dl.close();self.desenha($("v-colinha"));});res.appendChild(it);});
+          it.addEventListener("click",function(){s.esc[vg.k]=[uf,c[4]];self.salva();EJ.fecha(dl);self.desenha($("v-colinha"));});res.appendChild(it);});
         if(R.length>mostra){var mb=mk("button","ck-mais",T("Mostrar mais ","Show more ")+"("+(R.length-mostra)+")");mb.type="button";mb.addEventListener("click",function(){mostra+=80;lista();});res.appendChild(mb);}}
       q.addEventListener("input",function(){mostra=60;lista();});lista();
-      if(matchMedia("(pointer:fine)").matches)q.focus();   /* no celular não abre o teclado sozinho */
     },function(){res.appendChild(mk("p","ck-cont",T("Não consegui carregar a lista agora. Confira a internet e tente de novo.","Could not load the list now. Check the connection and try again.")));});
   },
 
   /* ---------- impressão: a mesma cola nos 4 quadrantes da folha, em preto e branco legível ---------- */
   /* pergunta 1 ou 4 cópias; com 1, a cola fica no canto da folha (1/4), do mesmo tamanho */
-  perguntaImpressao:function(){var self=this,d=mk("dialog","ck-nov");d.setAttribute("aria-labelledby","ck-imp-t");
+  perguntaImpressao:function(){var self=this,d=mk("div","ck-nov");
     var tp=mk("div","tp");var h=mk("h2",null,"🖨 "+T("Imprimir a colinha","Print the cheat sheet"));h.id="ck-imp-t";tp.appendChild(h);d.appendChild(tp);
     d.appendChild(mk("p",null,T("Cada cola ocupa 1/4 da folha, em fundo branco. Quantas quer na mesma folha? Com 4, é só recortar e dar para quem vai votar com você.",
       "Each sheet takes 1/4 of the page, on a white background. How many on the same page? With 4, just cut them out and hand them to whoever votes with you.")));
     var bt=mk("div","bt");
     [[1,T("1 cola","1 sheet"),""],[4,T("4 colas na folha","4 on the page"),"pri"]].forEach(function(o){var b=mk("button",o[2]||null,o[1]);b.type="button";
-      b.addEventListener("click",function(){d.close();self.impressao(o[0]);self.fotosProntas().then(function(){window.print();});});bt.appendChild(b);});
-    d.appendChild(bt);d.addEventListener("close",function(){d.remove();});
-    d.addEventListener("click",function(e){if(e.target===d)d.close();});
-    document.body.appendChild(d);d.showModal();},
+      b.addEventListener("click",function(){EJ.fecha(d);self.impressao(o[0]);self.fotosProntas().then(function(){window.print();});});bt.appendChild(b);});
+    var cn=mk("button","cancela",T("Cancelar","Cancel"));cn.type="button";cn.addEventListener("click",function(){EJ.fecha(d);});bt.appendChild(cn);
+    d.appendChild(bt);
+    EJ.abre(d,{descarta:true});},
   impressao:function(n){n=n||this.copias||4;this.copias=n;var self=this,s=this.estado(),L=this.linhas(),box=$("ck-print");
     if(!box){box=mk("div");box.id="ck-print";box.setAttribute("aria-hidden","true");document.body.appendChild(box);}
     box.textContent="";
@@ -47279,7 +47329,7 @@ var CK={st:null,dados:{},pts:null,
         navigator.share({files:[arq],title:T("Minha colinha","My cheat sheet"),text:T("Minha colinha da eleição 2026. Monte a sua também:","My 2026 election cheat sheet. Build yours too:")+" "+SITE+"#colinha"}).catch(function(){});}
       else{var a=mk("a");a.href=URL.createObjectURL(blob);a.download="colinha-eleicao-2026.png";document.body.appendChild(a);a.click();
         setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);
-        alert(T("A imagem foi baixada. No WhatsApp, anexe a imagem \"colinha-eleicao-2026.png\".","The image was downloaded. In WhatsApp, attach \"colinha-eleicao-2026.png\"."));}
+        EJ.aviso(T("A imagem foi baixada. No WhatsApp, anexe a imagem \"colinha-eleicao-2026.png\".","The image was downloaded. In WhatsApp, attach \"colinha-eleicao-2026.png\"."));}
     },function(){bt.disabled=false;bt.textContent=txt;});}
 };
 
@@ -47289,17 +47339,16 @@ function novidade(){
   var tentativas=0;
   (function tenta(){
     /* não abre por cima de outro aviso (ex.: o de tela pequena) */
-    if(document.querySelector("dialog[open]")){if(++tentativas<30)setTimeout(tenta,1500);return;}
+    if(EJ.ocupada()){if(++tentativas<30)setTimeout(tenta,1500);return;}
     if(colinhaOff())return;
-    var d=mk("dialog","ck-nov");d.setAttribute("aria-labelledby","ck-nov-t");
+    var d=mk("div","ck-nov");
     var tp=mk("div","tp");tp.appendChild(mk("small",null,T("NOVIDADE!","NEW!")));var h=mk("h2",null,"🗳️ "+T("Colinha da eleição","Election cheat sheet"));h.id="ck-nov-t";tp.appendChild(h);d.appendChild(tp);
     d.appendChild(mk("p",null,T("Monte em um minuto a sua cola com os números de cada cargo, na ordem da urna e com a foto de cada candidato. Depois é só mandar no WhatsApp ou imprimir. Fica só no seu celular.",
       "Build your list in a minute with the number for each office, in ballot order and with each candidate's photo. Then just send it on WhatsApp or print it. It stays only on your phone.")));
     var bt=mk("div","bt");var no=mk("button",null,T("Agora não","Not now"));no.type="button";var yes=mk("button","pri",T("Montar minha colinha","Build my cheat sheet"));yes.type="button";
-    no.addEventListener("click",function(){d.close();});yes.addEventListener("click",function(){d.close();location.hash="#colinha";});
+    no.addEventListener("click",function(){EJ.fecha(d);});yes.addEventListener("click",function(){EJ.fecha(d);EJ.quando(function(){location.hash="#colinha";});});
     bt.appendChild(no);bt.appendChild(yes);d.appendChild(bt);
-    d.addEventListener("close",function(){grava(KN,1);d.remove();});
-    document.body.appendChild(d);d.showModal();
+    EJ.abre(d,{descarta:true,aoFechar:function(){grava(KN,1);}});
   })();
 }
 

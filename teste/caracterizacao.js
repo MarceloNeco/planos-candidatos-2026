@@ -3,7 +3,7 @@
      - a página abre sem erro e mostra os botões ▶
      - voz do aparelho: ▶ fala sem pedir nada e sem chamar internet
      - Gemini / OpenAI / ElevenLabs: ▶ chama o provedor com a chave que a pessoa guardou
-       (se o cofre pedir PIN, o teste cria o PIN e segue — assim vale antes e depois da mudança)
+       (o cofre pede o PIN ao abrir a página quando há chave guardada; o teste cria o PIN e segue)
      - o resto das preferências de voz (motor, voz, modelo) continua em planos2026:voz
      - 320 px sem rolagem lateral
    Só valores de mentira. Uso: node teste/caracterizacao.js */
@@ -44,8 +44,9 @@ async function tocar(page) {
       const voz = { motor: prov, elevenVoz: 'voz-falsa-1' }; voz[campo] = CHAVES[prov];
       await semear(ctx, { 'planos2026:voz': voz });
       const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
-      await p.goto(BASE + '/' + arq); await tocar(p);
-      await passaPin(p, PIN, 3000);
+      await p.goto(BASE + '/' + arq);
+      await passaPin(p, PIN, 6000);   /* cofre 1.4.0 com proteger: chave guardada → o PIN é pedido ao abrir a página */
+      await tocar(p);
       await p.waitForFunction(() => true); await p.waitForTimeout(2500);
       conferir(pedidos.length > 0 && pedidos.every(x => x.prov === prov && x.chave === CHAVES[prov]), arq + ': ▶ com ' + prov + ' chama o provedor com a chave guardada (' + pedidos.length + ' pedido(s))');
       const v = JSON.parse(await p.evaluate(() => localStorage.getItem('planos2026:voz')));

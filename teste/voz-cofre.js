@@ -1,4 +1,4 @@
-/* Teste das chaves de voz no cofre (cofre.js 1.1.0), nas DUAS páginas (index.html e index-en.html).
+/* Teste das chaves de voz no cofre (cofre.js 1.4.0, com SolverCofre.proteger), nas DUAS páginas (index.html e index-en.html).
    Chaves de mentira em planos2026:voz e em ch_config (as que o Contador deixava aqui) e provedores simulados.
      - ao criar o PIN as chaves vão para o cofre e SAEM dos dois lugares (o resto de cada um fica)
      - ▶ com Gemini usa a chave que veio do cofre
@@ -30,19 +30,19 @@ const tudoEmAberto = (p) => p.evaluate(() => { let t = ''; for (let i = 0; i < l
     const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
     await p.goto(BASE + '/' + arq);
     await p.evaluate(() => SolverCofre.pronto);
-    conferir(await p.evaluate(() => SolverCofre.versao) === '1.1.0', arq + ': cofre.js 1.1.0 carregado antes do app');
-    conferir(!(await p.evaluate(() => SolverCofre.existe())) && !(await p.evaluate(() => SolverCofre.aberto())), arq + ': ao abrir a página o cofre ainda não existe (nada pediu PIN sozinho)');
+    conferir(await p.evaluate(() => SolverCofre.versao) === '1.4.0', arq + ': cofre.js 1.4.0 carregado antes do app');
+    conferir(!(await p.evaluate(() => SolverCofre.existe())) && !(await p.evaluate(() => SolverCofre.aberto())), arq + ': ao abrir a página o cofre ainda não existe');
 
-    /* ▶ com Gemini, cofre ainda não existe e há chaves em texto aberto → janela de criar o PIN */
-    await tocar(p, 0);
-    const j = p.locator('#solver-cofre [role=dialog]'); await j.waitFor({ state: 'visible', timeout: 8000 });
+    /* há chaves em texto aberto: com proteger, a janela de criar o PIN já abre sozinha ao carregar a página */
+    const j = p.locator('#solver-cofre .sc-caixa'); await j.waitFor({ state: 'visible', timeout: 8000 });
     const textoJanela = await j.textContent();
-    conferir(lg === 'pt' ? /Proteger as chaves/.test(textoJanela) && /Gemini/.test(textoJanela) : /Protect your AI keys/.test(textoJanela) && /Gemini/.test(textoJanela), arq + ': janela de criar o PIN no idioma da página, dizendo que é para a voz do Gemini');
+    conferir(lg === 'pt' ? /Proteger as chaves/.test(textoJanela) && /Eleições 2026/.test(textoJanela) : /Protect your AI keys/.test(textoJanela) && /Elections 2026/.test(textoJanela), arq + ': janela de criar o PIN no idioma da página, dizendo que é para abrir o Eleições 2026 com as chaves de voz guardadas');
     await p.setViewportSize({ width: 320, height: 700 });
     const r320 = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: window.innerWidth }));
     conferir(r320.sw <= r320.iw, arq + ': 320 px com a janela do PIN aberta, sem rolagem lateral (' + r320.sw + ' ≤ ' + r320.iw + ')');
     await p.setViewportSize({ width: 1100, height: 800 });
     await passaPin(p, PIN, 5000);
+    await tocar(p, 0);
     await p.waitForTimeout(2500);
     conferir(pedidos.length > 0 && pedidos.every(x => x.prov === 'gemini' && x.chave === G), arq + ': ▶ com Gemini usou a chave do cofre (' + pedidos.length + ' pedido(s))');
 
@@ -79,7 +79,7 @@ const tudoEmAberto = (p) => p.evaluate(() => { let t = ''; for (let i = 0; i < l
     await p.locator('#tts-cfg button', { hasText: /Trancar o cofre agora|Lock the vault now/ }).click();
     await p.waitForFunction(() => !SolverCofre.aberto(), null, { timeout: 5000 });
     conferir(true, arq + ': "Trancar o cofre agora" tranca');
-    await p.evaluate(() => { const d = document.getElementById('cfg'); if (d && d.open) d.close(); });
+    await p.evaluate(() => EJ.fecha(document.getElementById('cfg'))); await p.waitForTimeout(400);
 
     /* trancado: ▶ com Gemini pede o PIN e segue, com a chave nova */
     pedidos.length = 0;
@@ -96,6 +96,9 @@ const tudoEmAberto = (p) => p.evaluate(() => { let t = ''; for (let i = 0; i < l
     pedidos.length = 0;
     await p.reload(); await p.evaluate(() => SolverCofre.pronto);
     conferir(!(await p.evaluate(() => SolverCofre.aberto())), arq + ': depois de recarregar o cofre continua trancado');
+    await p.locator('#solver-cofre .sc-caixa').waitFor({ state: 'visible', timeout: 8000 });
+    conferir(true, arq + ': ao recarregar com chave guardada o PIN é pedido (proteger)');
+    await p.keyboard.press('Escape'); await p.locator('#solver-cofre').waitFor({ state: 'detached', timeout: 5000 });   /* "Agora não" */
     await tocar(p, 0); await p.waitForTimeout(1500);
     conferir(!(await p.$('#solver-cofre')) && pedidos.length === 0 && await p.evaluate(() => window.__fala.length) > 0, arq + ': voz do aparelho com o cofre trancado fala sem pedir PIN');
     await ctx.close();
