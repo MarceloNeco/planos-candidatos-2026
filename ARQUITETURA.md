@@ -88,6 +88,15 @@ o mesmo que o Contador de Histórias usa: **a chave do cofre vale para os dois a
 - **Testes**: `caracterizacao.js` (vale antes e depois: voz do aparelho sem PIN, cada provedor recebe a chave guardada, motor e voz
   ficam em `planos2026:voz`, 320 px) e `voz-cofre.js` (migração, trancar/destrancar, trocar chave, nada em texto aberto).
 
+## Interruptor da Colinha (v2.3.0)
+
+A Colinha da eleição obedece ao interruptor `colinha` do RootifyONE (Controle dos apps; o app o declara em
+`recursos-do-app.json`, então a grade do dono já mostra a função). Desligado: some o destaque do início (`.hub-ck`), o botão
+da barra do celular, o item do menu de partes e do ☰ (todos com `data-recurso="colinha"`, escondidos pelo `recursos.js`), a
+busca e o atalho do AssistONE (`colinhaOff()`), o aviso "Novidade!" não abre, e `#colinha` cai em `#hub` (`rota()` e `aplica()`);
+com a página aberta, ao chegar o arquivo novo ela volta para o início sozinha. `colinhaOff()` é definida no `<head>`, logo
+depois do `recursos.js`. Os dados da cola de cada pessoa (`planos2026:colinha`) não são apagados. Teste: `teste/colinha-interruptor.js`.
+
 ## Como a tradução funciona
 
 A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de texto cujo conteúdo

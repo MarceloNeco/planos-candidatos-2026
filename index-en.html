@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <script src="cofre.js"></script>
 <script src="recursos.js" data-app="eleicoes-2026"></script>
+<script>/* interruptor "colinha" do RootifyONE (Controle dos apps): desligado, a Colinha da eleição some do site */
+window.colinhaOff=function(){return !!(window.SolverRecursos&&!SolverRecursos.ligado("colinha",true));};</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <link rel="alternate" hreflang="en-US" href="index.html">
@@ -23264,7 +23266,7 @@ dialog.gloss::backdrop{background:rgba(8,16,15,.55)}
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Photographs: TSE — DivulgaCandContas, image from the 2026 candidacy registration. Published as the TSE publishes them, with no cropping or retouching.",
 "experiencia_privada_nota":"Criterion for this list: private organisations — companies, institutes, foundations and movements — that the person founded, led or holds a stake in, outside elected or government office. Political parties do not appear here, because they have their own block under party affiliations; trade unions and union federations do appear, because they are formal organisations outside the state. The list records what the person is or was in the organisation, not what the organisation did: court cases belong in the proceedings section, with their outcome. Where the only available source is a company-registry aggregator, the line's source says so — these are public federal revenue service records republished by third parties, and this site has not checked them record by record in the official system. The list is not exhaustive, and candidacies with less press coverage leave less documented trace: the absence of a line here means nothing was found in the sources consulted, not that nothing exists.",
-"versoes":[{"v":"2.3.0","atual":true,"itens":["Voice keys (Gemini, OpenAI and ElevenLabs) are now locked in the SolverONE key vault, with a PIN, instead of sitting in plain text in the browser. Keys already saved here or in the Story Teller move into the vault the first time you create the PIN, and the vault key works for both apps. Tapping ▶ with an internet voice asks for the PIN if the vault is locked; the device voice never asks for anything"]},{"v":"2.2.6","itens":["The site now follows the SolverONE administration switches: when AssistONE or the per-screen tips are turned off for everyone, they disappear here too"]},{"v":"2.2.5","itens":["Soundtrack on by default: it starts at the first tap on the page (browsers don't allow it before) and whoever turns it off with the 🔊 button keeps it off on later visits"]},{"v":"2.2.4","itens":["On phones, the soundtrack button is visible at the top, next to share and settings"]},{"v":"2.2.3","itens":["Printed cheat sheet always on a white background, easy to read and light on ink, even with the dark theme on: when printing, choose 1 sheet (1/4 of the page) or 4 on the same page, with a dashed line to cut"]},{"v":"2.2.2","itens":["Printed cheat sheet fits on a single page, without the site header and footer"]},{"v":"2.2.1","itens":["Cheat sheet with each candidate's official photo also in the WhatsApp image (the electoral court photos now live on the site itself) and the site address in the message; on phones, a fixed bar at the top to switch between Start, Cheat sheet, Presidency and Congress with one tap"]},{"v":"2.2","itens":["Election cheat sheet, featured on the start screen: build the numbers for president, governor, the 2 senators, federal and state (or district) deputy, in ballot order and with the electoral court photo; search by name without accents, by number or by party, edit any time and share it as an image on WhatsApp, as text or printed", "A news pop-up on the first visit, and AssistONE now explains the cheat sheet"]},{"v":"2.1","itens":["New Mandate tab in the Presidency (promises × delivery): the president-elect's specific plan commitments (proposals with specificity 4 or 5), with each one's status recorded only from an official act, and the Executive's bills and provisional measures on the same topic since inauguration; until the result, you can see how it would look for each candidacy", "New In office tab in Congress: winners in your state, your favourites' new roll calls since your last visit (with a 🔔 alert in the menu), attendance at votes, how often they voted with their own party and with the Government, bills in the legislature and the before × after on each topic", "Everything switches on its own with the calendar: electoral court result, presidential inauguration on Jan/05/2027 and the new legislature on Feb/01/2027"]},{"v":"2.0","itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress part with its own tabs: Home (what deputies and senators do and why the vote matters), Affinity, Favourites, Compare and Method, plus a record for each Senate and federal Chamber candidate in your state (career, assets, votes and bills)", "Affinity: drag 10 priorities into order and pick a side (or Neutral / Not sure) on 9 topics; the candidate list changes instantly, based on real roll-call votes in the Chamber and the Senate since 2019 and on each one's bills, and it shows when a number is an estimate", "Favourites with your ballot memo (2 senators and 1 federal deputy), side-by-side comparison of up to 3 candidacies and a Refresh button with the date of the official data, checked every day","Congress: 🔊 buttons to listen to each part, Priorities · Positions · List tabs on phones, A→Z / Z→A and highest/lowest arrows on lists, a filter for what to show when comparing, the official photo from the Chamber, the Senate or the electoral court, and a \"Check the official sources\" button that checks the votes live at the Chamber and the Senate and the candidacy date at the electoral court, with date and time of the last sync and of the last new data"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
+"versoes":[{"v":"2.3.0","atual":true,"itens":["Voice keys (Gemini, OpenAI and ElevenLabs) are now locked in the SolverONE key vault, with a PIN, instead of sitting in plain text in the browser. Keys already saved here or in the Story Teller move into the vault the first time you create the PIN, and the vault key works for both apps. Tapping ▶ with an internet voice asks for the PIN if the vault is locked; the device voice never asks for anything","The election cheat sheet can now be switched off from RootifyONE (App control): when off, it disappears from the start screen, the bar, the menus and search"]},{"v":"2.2.6","itens":["The site now follows the SolverONE administration switches: when AssistONE or the per-screen tips are turned off for everyone, they disappear here too"]},{"v":"2.2.5","itens":["Soundtrack on by default: it starts at the first tap on the page (browsers don't allow it before) and whoever turns it off with the 🔊 button keeps it off on later visits"]},{"v":"2.2.4","itens":["On phones, the soundtrack button is visible at the top, next to share and settings"]},{"v":"2.2.3","itens":["Printed cheat sheet always on a white background, easy to read and light on ink, even with the dark theme on: when printing, choose 1 sheet (1/4 of the page) or 4 on the same page, with a dashed line to cut"]},{"v":"2.2.2","itens":["Printed cheat sheet fits on a single page, without the site header and footer"]},{"v":"2.2.1","itens":["Cheat sheet with each candidate's official photo also in the WhatsApp image (the electoral court photos now live on the site itself) and the site address in the message; on phones, a fixed bar at the top to switch between Start, Cheat sheet, Presidency and Congress with one tap"]},{"v":"2.2","itens":["Election cheat sheet, featured on the start screen: build the numbers for president, governor, the 2 senators, federal and state (or district) deputy, in ballot order and with the electoral court photo; search by name without accents, by number or by party, edit any time and share it as an image on WhatsApp, as text or printed", "A news pop-up on the first visit, and AssistONE now explains the cheat sheet"]},{"v":"2.1","itens":["New Mandate tab in the Presidency (promises × delivery): the president-elect's specific plan commitments (proposals with specificity 4 or 5), with each one's status recorded only from an official act, and the Executive's bills and provisional measures on the same topic since inauguration; until the result, you can see how it would look for each candidacy", "New In office tab in Congress: winners in your state, your favourites' new roll calls since your last visit (with a 🔔 alert in the menu), attendance at votes, how often they voted with their own party and with the Government, bills in the legislature and the before × after on each topic", "Everything switches on its own with the calendar: electoral court result, presidential inauguration on Jan/05/2027 and the new legislature on Feb/01/2027"]},{"v":"2.0","itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress part with its own tabs: Home (what deputies and senators do and why the vote matters), Affinity, Favourites, Compare and Method, plus a record for each Senate and federal Chamber candidate in your state (career, assets, votes and bills)", "Affinity: drag 10 priorities into order and pick a side (or Neutral / Not sure) on 9 topics; the candidate list changes instantly, based on real roll-call votes in the Chamber and the Senate since 2019 and on each one's bills, and it shows when a number is an estimate", "Favourites with your ballot memo (2 senators and 1 federal deputy), side-by-side comparison of up to 3 candidacies and a Refresh button with the date of the official data, checked every day","Congress: 🔊 buttons to listen to each part, Priorities · Positions · List tabs on phones, A→Z / Z→A and highest/lowest arrows on lists, a filter for what to show when comparing, the official photo from the Chamber, the Senate or the electoral court, and a \"Check the official sources\" button that checks the votes live at the Chamber and the Senate and the candidacy date at the electoral court, with date and time of the last sync and of the last new data"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
 {"v":"1.8","itens":["AssistONE: an assistant in the bottom-right corner that says which screen you are on, explains the collapsed notices (\"How to read\", \"Caveats\") in plain words, reads the screen aloud, searches screens, topics, candidates and acronyms, changes quick settings and gives a one-minute tour; switch it on or off in Settings", "☰ menu on phones with the eight pages and a line saying what is in each one, quick actions (search, share, listen, settings), theme, language and help; the phone's Back button closes the menu instead of leaving the site", "Share in the header: this screen's link via WhatsApp, Telegram, e-mail or by copying; on phones it opens the device's share sheet", "\"Copy quotation\" on every macro-topic card: the passage goes with the name, the page and the link", "Accessibility in Settings: larger text (A+ and A++) and reduce animations", "Interface texts rewritten in more direct Portuguese: cover, notices, tab headers, footer and Settings notes; the \"made for a wide screen\" box now appears only on narrow screens"]},
 {"v":"1.7",
 "itens":["Read aloud: a ▶ button next to each heading, with the device voice or a natural voice (Gemini, OpenAI, ElevenLabs) and preferences in Settings",
@@ -36913,6 +36915,7 @@ function rota(){
     alvoIG=base;base="infograficos";
   }
   if(!VIEWS.some(function(v){return v[0]===base;})&&MODOS_V.indexOf(base)<0)base="inicio";
+  if(base==="colinha"&&window.colinhaOff&&colinhaOff())base="hub";   /* Colinha desligada no RootifyONE */
   if(base==="macrotemas"&&partes[1]&&MACRO[partes[1]]&&partes[1]!==mtAtual){mtAtual=partes[1];marca();render();}
   VIEWS.forEach(function(v){
     document.getElementById("v-"+v[0]).classList.toggle("on",v[0]===base);
@@ -45210,6 +45213,7 @@ var Gav={el:null,fundo:null,btn:null,aberta:false,
     Object.keys(TELAS).forEach(function(k){
       if(at!=="hub"&&k!=="hub"&&/^congresso/.test(k)!==cg)return;
       var v=TELAS[k], b=mk("button","gav-it");b.type="button";
+      if(k==="colinha")b.setAttribute("data-recurso","colinha");
       if(k===at)b.setAttribute("aria-current","page");
       b.appendChild(mk("span","gav-ic",v.ic));
       var d=mk("div");d.appendChild(document.createTextNode(v.t));d.appendChild(mk("small",null,v.d));b.appendChild(d);
@@ -45401,7 +45405,7 @@ var AO={
       colinha:[[T("Escolher o estado","Choose the state"),function(){var i=$("ck-uf");if(i){rola(i);i.focus();}}],
                [T("Compartilhar no WhatsApp","Share on WhatsApp"),function(){var b=document.querySelector(".ck-bar .pri");if(b)b.click();}],
                [T("Imprimir a cola","Print the memo"),function(){window.print();}]],
-      hub:[[T("Montar a colinha da eleição","Build the election cheat sheet"),function(){vai("colinha");}]]
+      hub:colinhaOff()?[]:[[T("Montar a colinha da eleição","Build the election cheat sheet"),function(){vai("colinha");}]]
     };
     return A[k]||[];
   },
@@ -45489,7 +45493,7 @@ var AO={
   indice:function(){
     if(this._idx)return this._idx;
     var I=[], D=PG.D;
-    Object.keys(TELAS).forEach(function(k){I.push({tipo:T("tela","screen"),t:TELAS[k].t,s:TELAS[k].sin+" "+TELAS[k].d,go:function(){vai(k);}});});
+    Object.keys(TELAS).forEach(function(k){if(k==="colinha"&&colinhaOff())return;I.push({tipo:T("tela","screen"),t:TELAS[k].t,s:TELAS[k].sin+" "+TELAS[k].d,go:function(){vai(k);}});});
     (D.macrotemas||[]).forEach(function(m){I.push({tipo:T("macrotema","macro-topic"),t:m.nome,s:m.familia||"",go:function(){location.hash="#macrotemas/"+m.cod;}});});
     (D.candidatos||[]).forEach(function(cd){I.push({tipo:T("candidato","candidate"),t:cd.nome+" ("+cd.partido+")",s:cd.curto||"",go:function(){
       vai("historico");depois(function(){var b=[].filter.call(document.querySelectorAll("#gsel button"),function(x){return x.textContent.indexOf(cd.nome.split(" ")[0])>=0;})[0];if(b){b.click();rola("#hbox");}},400);}});});
@@ -46013,7 +46017,7 @@ var Seletor={b:null,pop:null,menu:null,
       orig.parentNode.insertBefore(m,orig.nextSibling);this.menu=m;}
     var nav=document.querySelector("nav.nav");
     if(nav&&!$("modo-seg")){var sg=mk("div","modo-seg");sg.id="modo-seg";sg.setAttribute("role","navigation");sg.setAttribute("aria-label",T("Partes do site","Site sections"));
-      ["hub","colinha","presidencia","congresso"].forEach(function(k){var m=MODOS[k],x=mk("button",k==="colinha"?"ck":null);x.type="button";x.dataset.m=k;
+      ["hub","colinha","presidencia","congresso"].forEach(function(k){var m=MODOS[k],x=mk("button",k==="colinha"?"ck":null);x.type="button";x.dataset.m=k;if(k==="colinha")x.setAttribute("data-recurso","colinha");
         x.appendChild(mk("span",null,m.ic));x.appendChild(document.createTextNode(m.t));
         x.addEventListener("click",function(){Seletor.fecha();vaiModo(k);});sg.appendChild(x);});
       nav.appendChild(sg);this.seg=sg;}
@@ -46035,6 +46039,7 @@ var Seletor={b:null,pop:null,menu:null,
       if(i===2)p.appendChild(mk("hr"));
       var m=MODOS[k],it=mk("button");it.type="button";it.setAttribute("role","menuitem");
       if(k===at)it.setAttribute("aria-current","page");
+      if(k==="colinha")it.setAttribute("data-recurso","colinha");
       it.appendChild(mk("span","mi",m.ic));var d=mk("span");d.appendChild(mk("b",null,m.t));d.appendChild(mk("small",null,m.d));it.appendChild(d);
       it.addEventListener("click",function(){Seletor.fecha();vaiModo(k);});p.appendChild(it);});
     p.hidden=false;this.b.setAttribute("aria-expanded","true");var f=p.querySelector("button");if(f)f.focus();},
@@ -46050,7 +46055,7 @@ function pintaHub(){
   w.appendChild(mk("p","lede",T("Duas ferramentas, um voto mais informado. Escolha por onde começar — dá para trocar a qualquer momento pelo nome lá em cima.",
     "Two tools, one better-informed vote. Choose where to start — you can switch at any time from the name at the top.")));
   /* Colinha da eleição: em destaque, acima das duas partes */
-  var ck=mk("button","hub-ck");ck.type="button";ck.appendChild(mk("span","hi","🗳️"));
+  var ck=mk("button","hub-ck");ck.type="button";ck.setAttribute("data-recurso","colinha");ck.appendChild(mk("span","hi","🗳️"));
   var ckt=mk("span");var ckb=mk("b",null,T("Colinha da eleição","Election cheat sheet"));ckb.appendChild(mk("span","nv",T("NOVO","NEW")));ckt.appendChild(ckb);
   ckt.appendChild(mk("span","t",T("Os números de presidente, governador, senadores e deputados, na ordem da urna e com foto. Monte, edite e mande no WhatsApp.",
     "The numbers for president, governor, senators and deputies, in ballot order and with photos. Build, edit and send it on WhatsApp.")));
@@ -47280,11 +47285,12 @@ var CK={st:null,dados:{},pts:null,
 
 /* ---------------- aviso de NOVIDADE (uma vez por aparelho) ---------------- */
 function novidade(){
-  if(le(KN)||(location.hash||"")==="#colinha")return;
+  if(le(KN)||(location.hash||"")==="#colinha"||colinhaOff())return;
   var tentativas=0;
   (function tenta(){
     /* não abre por cima de outro aviso (ex.: o de tela pequena) */
     if(document.querySelector("dialog[open]")){if(++tentativas<30)setTimeout(tenta,1500);return;}
+    if(colinhaOff())return;
     var d=mk("dialog","ck-nov");d.setAttribute("aria-labelledby","ck-nov-t");
     var tp=mk("div","tp");tp.appendChild(mk("small",null,T("NOVIDADE!","NEW!")));var h=mk("h2",null,"🗳️ "+T("Colinha da eleição","Election cheat sheet"));h.id="ck-nov-t";tp.appendChild(h);d.appendChild(tp);
     d.appendChild(mk("p",null,T("Monte em um minuto a sua cola com os números de cada cargo, na ordem da urna e com a foto de cada candidato. Depois é só mandar no WhatsApp ou imprimir. Fica só no seu celular.",
@@ -47297,8 +47303,9 @@ function novidade(){
   })();
 }
 
-function aplica(){var ck=(location.hash||"").split("/")[0]==="#colinha";document.documentElement.toggleAttribute("data-ck",ck);if(ck)CK.pinta();}
-function inicia(){aplica();addEventListener("hashchange",aplica);addEventListener("beforeprint",function(){if(document.documentElement.hasAttribute("data-ck"))CK.impressao();});setTimeout(novidade,1800);}
+function aplica(){var ck=(location.hash||"").split("/")[0]==="#colinha";if(ck&&colinhaOff()){location.replace("#hub");return;}document.documentElement.toggleAttribute("data-ck",ck);if(ck)CK.pinta();}
+function inicia(){aplica();addEventListener("hashchange",aplica);addEventListener("beforeprint",function(){if(document.documentElement.hasAttribute("data-ck"))CK.impressao();});setTimeout(novidade,1800);
+  if(window.SolverRecursos)SolverRecursos.aoMudar(function(){try{aplica();}catch(e){}});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",inicia);else inicia();
 window.Colinha=CK;
 })();

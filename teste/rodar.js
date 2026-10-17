@@ -2,6 +2,7 @@
      1. index-en.html é EXATAMENTE o que o sincroniza-en.py gera a partir do index.html
      2. caracterizacao.js (voz do aparelho, provedores, 320 px) nas duas páginas
      3. voz-cofre.js (chaves no cofre) nas duas páginas
+     4. colinha-interruptor.js (interruptor da Colinha do RootifyONE) nas duas páginas
    Uso: node teste/rodar.js   (precisa do Playwright: npm install -D playwright) */
 const { spawnSync } = require('child_process');
 const fs = require('fs'), os = require('os'), path = require('path');
@@ -17,7 +18,7 @@ console.log(igual ? '  ✓ index-en.html é igual ao gerado pelo sincroniza-en.p
 if (!igual) falhou = true;
 fs.rmSync(tmp, { recursive: true, force: true });
 
-for (const t of ['caracterizacao.js', 'voz-cofre.js']) {
+for (const t of ['caracterizacao.js', 'voz-cofre.js', 'colinha-interruptor.js']) {
   console.log('\n▶ ' + t);
   if (spawnSync(process.execPath, [path.join(__dirname, t)], { stdio: 'inherit' }).status !== 0) falhou = true;
 }
