@@ -44,7 +44,8 @@ window.EJ=(function(){
     else e.push("left:"+Math.max(8,Math.min(r.left,L-260))+"px","right:auto");
     menu.style.cssText=(css?css+";":"")+e.join(";");
     botao.setAttribute("aria-expanded","true");
-    return abre(menu,{classe:"ej-livre",rotulo:o.rotulo||botao.getAttribute("aria-label")||botao.textContent,focar:o.focar,
+    /* menus presos a um botão nunca perguntam "Descartar?": a busca de dentro deles (seleção múltipla) não é texto a perder */
+    return abre(menu,{classe:"ej-livre",temTexto:false,rotulo:o.rotulo||botao.getAttribute("aria-label")||botao.textContent,focar:o.focar,
       aoFechar:function(m,c){
         if(css===null)menu.removeAttribute("style");else menu.setAttribute("style",css);
         botao.setAttribute("aria-expanded","false");

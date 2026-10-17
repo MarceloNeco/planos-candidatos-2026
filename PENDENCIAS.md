@@ -13,9 +13,12 @@
 - **v2.3.0 — interruptor da Colinha**: a Colinha da eleição pode ser desligada no RootifyONE (Controle dos apps → função "Colinha da eleição"), a pedido do dono, porque a eleição está acabando.
 
 ## Sugestões (não feitas, para o dono decidir)
-- **Service worker / uso sem internet**: este app não tem `sw.js` nem `versoes.json` (as versões ficam no bloco `dados` das duas
-  páginas). Se um dia ganhar `sw.js`, ele precisa guardar o `janela.js` e o `cofre.js` (a passada das janelas pedia isso, mas não
-  há `sw.js` para editar; criar um é decisão do dono).
+- **Service worker / uso sem internet** — o dono decidiu (17/Out/2026): fica para um PR próprio, com regra zero. Este app não tem
+  `sw.js` nem `versoes.json` (as versões ficam no bloco `dados` das duas páginas). Quando ganhar `sw.js`, ele precisa guardar o
+  `janela.js` e o `cofre.js`.
+- **Ajuda aberta de dentro das Configurações** — pedido do dono (17/Out/2026), pendente: a ajuda (ex.: ajuda da voz, "como
+  conseguir a chave") deve abrir dentro da própria janela das Configurações, como uma seção que expande, em vez de fechar e
+  reabrir as Configurações.
 - **AssistONE abre sozinho na primeira visita**: agora, sendo janela, ele prende a tela até "Agora não". O dono decidiu (17/Out/2026)
   que fica como está.
 - **Menus presos a um botão como janela**: idioma, seleção múltipla, compartilhar e Presidência/Congresso agora são janela (a página
