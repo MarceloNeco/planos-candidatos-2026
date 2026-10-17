@@ -13,6 +13,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
 | `recursos.js` | interruptores do RootifyONE (cópia avulsa do master do `rootify-one`; carregado no `<head>` das duas páginas com `data-app="eleicoes-2026"`): lê `solverone-dados/recursos/global.json` e `eleicoes-2026.json` | **nunca à mão**: trocar pela cópia nova do master |
+| `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.1.0), carregado no `<head>` das duas páginas **antes** do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
+| `teste/` | testes automáticos (Chromium/Playwright, só valores de mentira): `node teste/rodar.js` | sim |
 | `recursos-do-app.json` | diz ao RootifyONE o que este app obedece (hoje: `assistone` e `assistone.dicas`) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
 | `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
@@ -62,6 +64,29 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
    Senado, os votos de todas as votações usadas e recalcula (`Cg.recalc`, mesma regra do script) só nesta
    visita; do TSE lê a data de publicação das candidaturas. Leitura em voz alta dos títulos do Congresso:
    entradas `#v-congresso …` no `ALVOS` do bloco de voz.
+
+## Chaves de voz no cofre (v2.3.0, 17/Out/2026)
+
+As chaves da leitura em voz alta **não ficam mais em texto aberto**. `planos2026:voz` guarda só motor, voz, modelo,
+velocidade e tom. As chaves moram no cofre comum (`cofre.js`, nomes `ia:gemini`, `ia:openai`, `ia:elevenlabs`),
+o mesmo que o Contador de Histórias usa: **a chave do cofre vale para os dois apps** (saíram `chaveContador` e os botões
+"Usar a chave já salva no Contador de Histórias").
+
+- **Migração** (`SolverCofre.registrarFontes`, no bloco "v1.7"): `planos2026:voz` (`geminiKey`, `openaiKey`, `elevenKey`)
+  e `ch_config` (os mesmos três campos, **sem** `manter`: a cópia temporária que o Contador deixava para este app sai) vão para
+  o cofre e **saem dos dois lugares** quando a pessoa cria o PIN (ou abre o cofre). Nenhum outro campo de um nem do outro é tocado.
+- **Leitura**: `chaveCofre(prov, rótulo)` → `SolverCofre.ler`. Cofre trancado: ▶ com Gemini/OpenAI/ElevenLabs abre a janela do
+  PIN dizendo para quê e a leitura segue sozinha; "Agora não" avisa que o cofre continua trancado. Sem chave nenhuma: avisa sem pedir
+  PIN. A voz do aparelho nunca toca no cofre.
+- **`grava()`** escreve **por cima** do que já está em `planos2026:voz` (não regrava o objeto inteiro): enquanto o cofre ainda não
+  foi aberto, uma chave antiga em texto aberto não se perde antes de migrar. `P` nunca carrega as chaves.
+- **Configurações → Leitura em voz alta**: "🔐 Guardado no cofre"; o campo fica vazio e colar outra chave + "Guardar no cofre"
+  troca (grava só no cofre, pede PIN se preciso); "🔒 Trancar o cofre agora" aparece com o cofre aberto. Textos em `T(pt, en)`.
+- Não há backup/exportação de preferências neste app que leve chaves (o `DL` exporta dados do site, não `planos2026:voz`).
+- **Atenção na página em inglesa**: só se edita o `index.html`; o `index-en.html` sai do `sincroniza-en.py`. O teste
+  `teste/rodar.js` confere que o inglês é igual ao que o script gera.
+- **Testes**: `caracterizacao.js` (vale antes e depois: voz do aparelho sem PIN, cada provedor recebe a chave guardada, motor e voz
+  ficam em `planos2026:voz`, 320 px) e `voz-cofre.js` (migração, trancar/destrancar, trocar chave, nada em texto aberto).
 
 ## Como a tradução funciona
 
