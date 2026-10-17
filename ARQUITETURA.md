@@ -13,7 +13,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
 | `recursos.js` | interruptores do RootifyONE (cópia avulsa do master do `rootify-one`; carregado no `<head>` das duas páginas com `data-app="eleicoes-2026"`): lê `solverone-dados/recursos/global.json` e `eleicoes-2026.json` | **nunca à mão**: trocar pela cópia nova do master |
-| `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.1.0), carregado no `<head>` das duas páginas **antes** do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
+| `janela.js` | janela comum da SolverONE (`SolverJanela` 1.0.1), carregada no `<head>` das duas páginas **antes** do `cofre.js`. Toda janela do site passa por ela (ver "Janelas" abaixo) | **nunca à mão**: cópia exata do master do `rootify-one` |
+| `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.4.0), carregado no `<head>` das duas páginas **depois** do `janela.js` e antes do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `teste/` | testes automáticos (Chromium/Playwright, só valores de mentira): `node teste/rodar.js` | sim |
 | `recursos-do-app.json` | diz ao RootifyONE o que este app obedece (hoje: `assistone` e `assistone.dicas`) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
@@ -83,10 +84,42 @@ o mesmo que o Contador de Histórias usa: **a chave do cofre vale para os dois a
 - **Configurações → Leitura em voz alta**: "🔐 Guardado no cofre"; o campo fica vazio e colar outra chave + "Guardar no cofre"
   troca (grava só no cofre, pede PIN se preciso); "🔒 Trancar o cofre agora" aparece com o cofre aberto. Textos em `T(pt, en)`.
 - Não há backup/exportação de preferências neste app que leve chaves (o `DL` exporta dados do site, não `planos2026:voz`).
-- **Atenção na página em inglesa**: só se edita o `index.html`; o `index-en.html` sai do `sincroniza-en.py`. O teste
+- **Atenção na página em inglesa**: só se edita o `index.html` (e, a cada versão, as entradas `versao`/`versoes` do bloco `dados` do `index-en.html`); o `index-en.html` sai do `sincroniza-en.py`. O teste
   `teste/rodar.js` confere que o inglês é igual ao que o script gera.
 - **Testes**: `caracterizacao.js` (vale antes e depois: voz do aparelho sem PIN, cada provedor recebe a chave guardada, motor e voz
   ficam em `planos2026:voz`, 320 px) e `voz-cofre.js` (migração, trancar/destrancar, trocar chave, nada em texto aberto).
+
+## Janelas pela janela comum e regras do PIN (v2.4.0, 17/Out/2026)
+
+Diretriz "Janelas (pop-ups)" da plataforma (passada das janelas, app 2). Toda janela do site abre por `SolverJanela.abrir`
+(`janela.js`, cópia exata do master): a página de trás não rola nem recebe toque/foco; três saídas (botão da janela, Esc, Voltar do
+celular) mais toque na parte escura (só se começa e termina nela); com texto digitado pergunta "Descartar?"; uma janela por vez.
+
+- **`window.EJ`** (script no `<head>` do `index.html`, logo depois do `recursos.js`) é a única ponte do app com o `SolverJanela`.
+  A caixa de cada janela continua sendo o elemento que já existia (agora um `<div>` com a mesma classe; a tag `<dialog>` era do
+  navegador e o `<dialog>` da janela comum é o fundo): `EJ.abre(caixa, {focar, temTexto, descarta, aoFechar})` (a busca da Colinha e a do AssistONE levam `temTexto:false`: busca não é texto a perder) põe a caixa dentro da
+  janela e, ao fechar, ela volta escondida para onde morava (`descarta`: some). `EJ.fecha(caixa)`; `EJ.pop(botao, menu)` para os
+  quatro menus presos a um botão (idioma, seleção múltipla, compartilhar, Presidência/Congresso: mesma janela, sem escurecer,
+  posicionados pelo botão); `EJ.confirma(texto, rótulo, fn)` e `EJ.aviso(texto)` no lugar de `confirm()`/`alert()` (janela curta
+  `alertdialog`, `porCima`: abre por cima de qualquer janela aberta e fecha junto com ela); `EJ.aPartirDe(caixa, abrirOutra, voltar)`
+  para a ajuda aberta de dentro das Configurações (nada empilha: a de baixo fecha, a nova abre e, ao fechar, a primeira volta);
+  `EJ.quando(fn)` = `SolverJanela.quandoQuieto` (o `depois()` do app já usa: trocar de tela só depois que o histórico acompanhou).
+- **Janelas** (todas em `EJ.abre`): glossário `#gloss`, painel de leitura `#doc` ("O que mudou", "Aviso de uso"), Configurações `#cfg`
+  (o campo da chave de voz leva `data-sj-texto`: chave colada e não guardada pergunta "Descartar?"), aviso de tela estreita
+  `#tela-dlg`, "i" das dimensões `#cm-info`, ajuda da voz `#tts-dlg`, Colinha (escolher candidato `#ck-dlg`, imprimir — agora com
+  "Cancelar" —, aviso NOVIDADE), gaveta ☰ (`Gav`, `.gav` dentro da janela), AssistONE (`AO.box`, janela sem escurecer; o tour também)
+  e os quatro menus. Telas de bloqueio: não há neste app.
+- O AssistONE abre sozinho na primeira visita ("Olá!") e, como janela, passa a prender a tela até "Agora não" (pendência abaixo).
+- Fechar uma janela **volta a rolagem** para onde estava (regra 5 da diretriz): ações que rolam a página depois de fechar o
+  AssistONE usam `depois(...)`.
+- **Cofre 1.1.0 → 1.4.0**: `SolverCofre.proteger({motivo, ocupado, tocando})` logo depois do `registrarFontes` (bloco "v1.7"):
+  com chave guardada (ou chave antiga em texto aberto esperando ir para o cofre) o PIN é pedido ao abrir e ao recarregar; tranca ao
+  sair do app, com o site escondido por mais de 1 minuto e com 5 minutos sem uso (voz tocando só adia). "Agora não" (Esc, Voltar,
+  toque fora) deixa trancado e a voz do aparelho segue funcionando. `SolverCofre.painelDigital` desenha a digital no elemento
+  `#tts-cofre-digital` (Configurações → Leitura em voz alta → "Cofre de chaves"; só aparece com o cofre criado; o app não desenha a
+  digital por conta própria; o cofre só desenha num elemento já na página: `ligaDigital`).
+- **Testes**: `janelas.js` (cada janela × 4 saídas × trava × "Descartar?", 390 px e computador, PT e EN) e `cofre-protecao.js`;
+  os testes antigos foram ajustados: o PIN agora abre ao carregar a página quando há chave guardada (de propósito).
 
 ## Interruptor da Colinha (v2.3.0)
 

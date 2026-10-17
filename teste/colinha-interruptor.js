@@ -33,6 +33,8 @@ const visivel = (p, sel) => p.evaluate(s => { const e = document.querySelector(s
     /* ligado (sem arquivo: padrão ligado) */
     { const { ctx, p } = await abrir(browser, arq, null, '#hub', erros);
       conferir(await visivel(p, '.hub-ck'), arq + ': ligada: o destaque da Colinha aparece no início');
+      /* ligada: o aviso "Novidade!" abre sozinho (janela comum, trava a página); Esc fecha e o teste segue */
+      await p.locator('.ck-nov').waitFor({ state: 'visible', timeout: 8000 }); await p.keyboard.press('Escape'); await p.locator('.ck-nov').waitFor({ state: 'detached', timeout: 3000 });
       await p.click('#modo-b'); await p.waitForTimeout(300);
       conferir(await p.evaluate(() => [...document.querySelectorAll('#modo-pop [role=menuitem]')].some(e => getComputedStyle(e).display !== 'none' && /Colinha|cheat sheet/i.test(e.textContent))), arq + ': ligada: a Colinha aparece no menu de partes');
       await estreito(p);
@@ -54,7 +56,7 @@ const visivel = (p, sel) => p.evaluate(s => { const e = document.querySelector(s
       const r = await p.evaluate(() => ({ h: location.hash, on: document.getElementById('v-colinha').classList.contains('on'), hub: document.getElementById('v-hub').classList.contains('on') }));
       conferir(r.h === '#hub' && !r.on && r.hub, arq + ': desligada: #colinha cai no início (' + r.h + ')');
       await p.waitForTimeout(3500);
-      conferir(!(await p.$('dialog.ck-nov')), arq + ': desligada: o aviso "Novidade!" não abre');
+      conferir(!(await p.$('.ck-nov')), arq + ': desligada: o aviso "Novidade!" não abre');
       await ctx.close(); }
     /* ligada com a página aberta na Colinha; o arquivo muda para desligado */
     { const { ctx, p, resp } = await abrir(browser, arq, true, '#colinha', erros);

@@ -32,6 +32,10 @@ async function novoContexto(browser, largura, pedidos) {
     if (/api\.elevenlabs\.io/.test(u)) { pedidos.push({ prov: 'elevenlabs', chave: h['xi-api-key'] }); return route.fulfill({ status: 200, contentType: 'audio/mpeg', headers: { 'access-control-allow-origin': '*' }, body: Buffer.alloc(900) }); }
     return route.abort();
   });
+  /* o AssistONE abre sozinho na primeira visita e, como janela, trava a página: os testes começam como quem já o viu */
+  await ctx.addInitScript(() => {
+    try { const k = 'planos2026:prefs', o = JSON.parse(localStorage.getItem(k) || '{}'); if (!o.aoVisto) { o.aoVisto = true; localStorage.setItem(k, JSON.stringify(o)); } } catch (e) {}
+  });
   /* a voz do aparelho vira um gravador: anota o que foi "falado" e termina na hora */
   await ctx.addInitScript(() => {
     window.__fala = [];
@@ -50,15 +54,17 @@ async function novoContexto(browser, largura, pedidos) {
 /* guarda valores no localStorage ANTES de a página carregar (só uma vez por contexto) */
 async function semear(ctx, itens) {
   await ctx.addInitScript(([it]) => {
-    if (sessionStorage.getItem('__semeado')) return;
-    sessionStorage.setItem('__semeado', '1');
-    Object.keys(it).forEach(k => localStorage.setItem(k, JSON.stringify(it[k])));
+    try {   /* em about:blank o navegador nega o acesso ao armazenamento: não é erro do app */
+      if (sessionStorage.getItem('__semeado')) return;
+      sessionStorage.setItem('__semeado', '1');
+      Object.keys(it).forEach(k => localStorage.setItem(k, JSON.stringify(it[k])));
+    } catch (e) {}
   }, [itens]);
 }
 
 /* se a janela do cofre aparecer, cria o PIN (ou abre com ele) e segue */
 async function passaPin(page, pin, espera) {
-  const j = page.locator('#solver-cofre [role=dialog]');
+  const j = page.locator('#solver-cofre .sc-caixa');
   try { await j.waitFor({ state: 'visible', timeout: espera || 2500 }); } catch (e) { return false; }
   const campos = await page.$$('#solver-cofre input[type=password]');
   for (const c of campos) await c.fill(pin);
