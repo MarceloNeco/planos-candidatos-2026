@@ -16,7 +16,7 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `janela.js` | janela comum da SolverONE (`SolverJanela` 1.0.1), carregada no `<head>` das duas páginas **antes** do `cofre.js`. Toda janela do site passa por ela (ver "Janelas" abaixo) | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.4.0), carregado no `<head>` das duas páginas **depois** do `janela.js` e antes do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `teste/` | testes automáticos (Chromium/Playwright, só valores de mentira): `node teste/rodar.js` | sim |
-| `recursos-do-app.json` | diz ao RootifyONE o que este app obedece: recursos `assistone` e `colinha`; comportamentos `assistone.dicas` e `eleicao.calendario` (com o padrão de fábrica do calendário, que o teste confere igual ao do código) | sim — ao ligar um interruptor novo no código |
+| `recursos-do-app.json` | diz ao RootifyONE o que este app obedece: recursos `assistone` e `colinha`; comportamentos `assistone.dicas`, `cofre.proteger` (padrão `false`) e `eleicao.calendario` (com o padrão de fábrica do calendário, que o teste confere igual ao do código) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
 | `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
 | `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
@@ -119,6 +119,15 @@ celular) mais toque na parte escura (só se começa e termina nela); com texto d
   toque fora) deixa trancado e a voz do aparelho segue funcionando. `SolverCofre.painelDigital` desenha a digital no elemento
   `#tts-cofre-digital` (Configurações → Leitura em voz alta → "Cofre de chaves"; só aparece com o cofre criado; o app não desenha a
   digital por conta própria; o cofre só desenha num elemento já na página: `ligaDigital`).
+- **2.5.1 (18/Out/2026): a entrada não é protegida.** O cofre é um só por endereço e pode ter chaves de outros apps (Contador,
+  CifrasONE); este site é público e a chave só serve para a voz. Por isso o `SolverCofre.proteger(...)` (mesmo lugar) só é chamado
+  com o comportamento **`cofre.proteger`** ligado no RootifyONE (`SolverRecursos.valor("cofre.proteger", false) === true`; padrão
+  desligado; declarado no `recursos-do-app.json`). Ele lê a cópia do arquivo que o aparelho já guardou: ligar ou desligar no
+  RootifyONE vale da próxima abertura. Desligado, o PIN aparece só no ▶ com voz da internet e chave guardada (`chaveCofre`), e
+  **"Agora não" segue a leitura com a voz do aparelho**: `chaveCofre` marca o erro com `trancado` e o `Leitor.rodaInternet` corta o
+  resto da fila para a voz do aparelho (`pedacos(…, true)`) e segue por `rodaNativo`, com o aviso na barra. Teste: `cofre-entrada.js`
+  (um "outro app" de mentira em `/outro-app/` cria o cofre com `ia:gemini`); os testes das regras do PIN ao abrir (`cofre-protecao.js`,
+  `voz-cofre.js`) ligam o `cofre.proteger` simulado (`comProtecao` no `teste/comum.js`).
 - **Testes**: `janelas.js` (cada janela × 4 saídas × trava × "Descartar?", 390 px e computador, PT e EN) e `cofre-protecao.js`;
   os testes antigos foram ajustados: o PIN agora abre ao carregar a página quando há chave guardada (de propósito).
 
