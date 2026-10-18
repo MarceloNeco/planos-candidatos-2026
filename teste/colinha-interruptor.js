@@ -10,6 +10,8 @@ const { falhas, conferir } = relatorio();
 
 async function abrir(browser, arq, estado, hash, erros) {
   const ctx = await novoContexto(browser, 1100, []);
+  /* a Colinha também some no pós-eleição (calendário): dia fixo no 1º turno, para testar só o interruptor */
+  await ctx.clock.setFixedTime(new Date('2026-10-01T15:00:00Z'));
   await semear(ctx, {});   /* sem "novidade-colinha" guardado: o aviso pode abrir */
   const resp = { ligado: estado };
   await ctx.route(BASE + '/solverone-dados/recursos/*.json', r => {

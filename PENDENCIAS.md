@@ -1,6 +1,14 @@
 # Pendências — Eleições 2026
 
 ## Feito
+- **v2.5.0 (18/Out/2026) — calendário eleitoral configurável**: um calendário só (`window.Calendario`) com fases 1º turno,
+  2º turno e pós-eleição pela data de Brasília; o RootifyONE muda datas, cargos, turnos, onde há 2º turno e força a fase pelo
+  comportamento `eleicao.calendario` (declarado no `recursos-do-app.json`). No 2º turno a Colinha mostra só governador (nos estados
+  com 2º turno) e presidente, com os dois finalistas do TSE (`ele-c.json` + arquivo unificado, no máximo 1 vez por hora, cópia no
+  aparelho); lista manual vence a do TSE; cola por turno, com a do 1º turno guardada; no pós-eleição a Colinha some sozinha.
+  Início e aba Mandato da Presidência leem a data e a posse do calendário. Ver "Calendário eleitoral" no `ARQUITETURA.md`.
+  Teste novo: `calendario.js`; `janelas.js` e `colinha-interruptor.js` passaram a fixar o relógio no 1º turno.
+
 - **v2.4.0 (17/Out/2026) — janelas pela janela comum + regras do PIN do cofre** (passada das janelas, app 2): `janela.js` 1.0.1 e
   `cofre.js` 1.4.0 (cópias exatas do master); todas as janelas, a gaveta ☰, o AssistONE, os quatro menus e a confirmação/aviso
   (antes `confirm()`/`alert()`) seguem a diretriz "Janelas (pop-ups)"; `SolverCofre.proteger` e `SolverCofre.painelDigital`.
@@ -13,6 +21,20 @@
 - **v2.3.0 — interruptor da Colinha**: a Colinha da eleição pode ser desligada no RootifyONE (Controle dos apps → função "Colinha da eleição"), a pedido do dono, porque a eleição está acabando.
 
 ## Sugestões (não feitas, para o dono decidir)
+- **`versoes.json`** — a diretriz pede o arquivo `versoes.json` na raiz (versão, data e novidades PT/EN, lido pelo módulo comum).
+  Este app guarda as versões **dentro das duas páginas** (bloco `dados`: `versao`, `atualizado_em` e a lista `versoes`, PT no
+  `index.html` e EN no `index-en.html`). O dono decidiu (18/Out/2026) não criar o arquivo agora.
+- **O que ainda tem "2026" fixo fora do calendário** (para a ferramenta de monitoramento, depois; nada disso é da Colinha):
+  - `congresso-sync.py`: `DIA_ELEICAO` (idade dos candidatos no dia da eleição) e `POSSE` (atos do Executivo desde a posse) são
+    do próprio script; o site já lê a posse do calendário, mas o filtro dos atos continua no script;
+  - o código da eleição no DivulgaCandContas (`20322002026`) nas fotos do TSE (Colinha e Congresso) — o `ele-c.json` traz esse
+    número (`sqele`) e daria para ler de lá;
+  - textos do Congresso com "2026", "4 de outubro" ou "até 2035/2031" (`Cg`) e o nome do site ("Eleições 2026").
+- **Eleição municipal (2028)**: o calendário já aceita prefeito e vereador e a lista manual aceita código de município, mas a
+  Colinha só tem dados por estado (`cola/<UF>.json`). Faltaria o `congresso-sync.py` gerar os dados por município e a Colinha
+  pedir o município (e, para o 2º turno, ler os municípios no `mun-e<eleição>-cm.json` do TSE).
+- **`recursos.js` mais antigo que o master** do rootify-one (falta a tela "Em manutenção" do id `app` do Modo DEUS). Não mexi
+  (é cópia de arquivo mestre): vem na varredura.
 - **Service worker / uso sem internet** — o dono decidiu (17/Out/2026): fica para um PR próprio, com regra zero. Este app não tem
   `sw.js` nem `versoes.json` (as versões ficam no bloco `dados` das duas páginas). Quando ganhar `sw.js`, ele precisa guardar o
   `janela.js` e o `cofre.js`.

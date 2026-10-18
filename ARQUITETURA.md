@@ -16,7 +16,7 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `janela.js` | janela comum da SolverONE (`SolverJanela` 1.0.1), carregada no `<head>` das duas páginas **antes** do `cofre.js`. Toda janela do site passa por ela (ver "Janelas" abaixo) | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.4.0), carregado no `<head>` das duas páginas **depois** do `janela.js` e antes do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `teste/` | testes automáticos (Chromium/Playwright, só valores de mentira): `node teste/rodar.js` | sim |
-| `recursos-do-app.json` | diz ao RootifyONE o que este app obedece (hoje: `assistone` e `assistone.dicas`) | sim — ao ligar um interruptor novo no código |
+| `recursos-do-app.json` | diz ao RootifyONE o que este app obedece: recursos `assistone` e `colinha`; comportamentos `assistone.dicas` e `eleicao.calendario` (com o padrão de fábrica do calendário, que o teste confere igual ao do código) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
 | `congresso-pautas.json` | **o método do Congresso**: as 10 pautas (tema oficial da Câmara e palavras-chave), os 9 eixos de posicionamento (cada votação nominal e para que lado conta o Sim) e as votações marcantes da ficha, em PT e EN | **sim — é a fonte do método** |
 | `congresso-sync.py` | baixa votos e propostas (Câmara e Senado, desde 2019), candidaturas e patrimônio (TSE), calcula posição por eixo e propostas por pauta e gera a pasta `congresso/` (≈5 min) | rodar depois de mexer no método |
@@ -28,7 +28,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 
 ## Dentro do `index.html` (de cima para baixo)
 
-1. `<head>` + `<style>` principal — tokens de cor (`:root`), tema escuro, layout de todas as abas.
+1. `<head>`: `janela.js`, `cofre.js`, `recursos.js`, o **calendário eleitoral** (`window.Calendario`, v2.5.0), `colinhaOff()`, a
+   ponte das janelas (`window.EJ`) + `<style>` principal — tokens de cor (`:root`), tema escuro, layout de todas as abas.
 2. `<nav>` e as oito `.view` (Início, Currículo, Infográficos, Macrotemas, Índice sob medida,
    Documentos, Método, Glossário), rodapé, janelas (`<dialog>`) de Configurações e Sobre.
 3. Blocos de dados `<script type="application/json">`:
@@ -128,7 +129,52 @@ A Colinha da eleição obedece ao interruptor `colinha` do RootifyONE (Controle 
 da barra do celular, o item do menu de partes e do ☰ (todos com `data-recurso="colinha"`, escondidos pelo `recursos.js`), a
 busca e o atalho do AssistONE (`colinhaOff()`), o aviso "Novidade!" não abre, e `#colinha` cai em `#hub` (`rota()` e `aplica()`);
 com a página aberta, ao chegar o arquivo novo ela volta para o início sozinha. `colinhaOff()` é definida no `<head>`, logo
-depois do `recursos.js`. Os dados da cola de cada pessoa (`planos2026:colinha`) não são apagados. Teste: `teste/colinha-interruptor.js`.
+depois do calendário. Desde a 2.5.0 ela também some no **pós-eleição** do calendário (ver abaixo). Os dados da cola de cada pessoa (`planos2026:colinha`) não são apagados. Teste: `teste/colinha-interruptor.js`.
+
+## Calendário eleitoral (v2.5.0, 18/Out/2026)
+
+Um calendário só para o site inteiro: `window.Calendario`, no `<head>` do `index.html`, logo depois do `recursos.js`.
+A Colinha, a tela de Início (linha de cima e o destaque da Colinha), a descrição da Colinha no ☰/busca/AssistONE e a aba
+Mandato da Presidência (posse, data do 1º e do 2º turno) leem dele. **Nenhuma data, ano ou cargo de eleição fica fixo fora do
+`PADRAO`** (o valor de fábrica = eleição de 2026, comentado campo a campo no código).
+
+- **Onde se muda sem código**: RootifyONE → Controle dos apps → Eleições 2026 → ⚙️ Comportamentos → `eleicao.calendario`
+  (tipo JSON). `recursos.js` já entrega o valor (`SolverRecursos.valor`); cada campo enviado vence o de fábrica (os cargos,
+  letra a letra). Sem nada lá, vale o `PADRAO`. Campos: `ano`, `fase` (`"auto"`, `"1"`, `"2"`, `"pos"`), `tse` (só a chave do
+  ano, `ele2026`), `turnos` (`[{data, cargos}]`, em ordem de data; cargo repetido = mais de um voto), `segundoTurno` (lista
+  manual **por cargo e por lugar**: `"BR"`, sigla do estado ou, numa eleição municipal, o código do município no TSE; vence a
+  do TSE para aquele cargo), `posse`, `cargos` (nome PT/EN, dígitos, código do cargo no TSE, `lugar: "br"` e o nome que muda
+  num lugar, ex.: `DF`).
+- **Fases** (`Calendario.fase()`): até o dia do 1º turno = `1`; do dia seguinte até o dia do 2º = `2`; depois = `"pos"`. O dia é
+  o de Brasília (`America/Sao_Paulo` pelo `Intl`; sem ele, UTC−3), qualquer que seja o fuso do aparelho. `fase` diferente de
+  `"auto"` força.
+- **Pós-eleição**: `<html data-colinha-pos>` esconde tudo o que tem `data-recurso="colinha"` (regra no `<style>` da Colinha) e
+  `colinhaOff()` responde sim (busca, AssistONE, aviso "Novidade!", `#colinha` → `#hub`). O interruptor `colinha` vale por cima
+  nos dois sentidos: desligado esconde em qualquer fase; religado, ela volta no 1º e no 2º turno. Para mostrar a Colinha
+  depois da eleição, força-se a fase no calendário.
+- **2º turno pelo TSE** (só quando a fase é 2 ou mais; nunca no 1º turno nem no pós): `Calendario.consultar(uf)`.
+  1. `https://resultados.tse.jus.br/oficial/comum/config/ele-c.json` (configuração oficial da divulgação de resultados,
+     "EA11"): no ano (`pl[].c` = `tse`) e no turno (`e[].t`), as eleições **ordinárias** (`nm` com "Ordinária"; suplementares
+     e outros anos não contam) e, por código de cargo (`abr[].cp[].cd`), os lugares (`abr[].cd`). Nenhum código de eleição fica
+     no código: o app descobre por ali.
+  2. Os finalistas do lugar da pessoa: `…/oficial/<tse>/<eleição>/dados/<lugar>/<lugar>-c<cargo 4 dígitos>-e<eleição 6 dígitos>-u.json`
+     (arquivo unificado, "EA20"; antes da votação ele traz só quem está no turno): `carg[].agr[].par[].cand[].sqcand` = o id do
+     TSE da `cola/<UF>.json`.
+  - Guardado em `planos2026:tse` (`<tse>/<turno>`: lugares e códigos; `fin`: ids por cargo e lugar; `tent`: a última ida a
+    cada arquivo; se o navegador não deixar guardar, fica na memória da página). **No máximo uma ida por hora por arquivo**
+    (a tentativa é anotada antes; falhou, só daqui a 1 hora), prazo de 8 s, sem travar a tela: a Colinha abre com a cópia
+    guardada e redesenha quando chega a nova.
+  - Quem vale: lista manual do RootifyONE → TSE (a última cópia) → nada: a vaga aparece com **todos** os candidatos e o aviso
+    "Não consegui confirmar no TSE… Confira na urna." O TSE responde ao nosso endereço (CORS conferido em 18/Out/2026).
+- **Colinha por turno**: `planos2026:colinha` = `{uf, por: {"2026-1": {F, E, S1, S2, G, P}, "2026-2": {G, P}}}` (chave
+  `ano-turno`; `null` = tirada de propósito). A cola única da 2.4.0 (`esc`) passa sozinha para `por["<ano de fábrica>-1"]`, sem
+  mudar. No 2º turno, vaga sem escolha herda a do turno anterior (mesmo estado); quem não está entre os finalistas aparece como
+  "<nome> não está no 2º turno. Escolha de novo." e a cola do 1º turno não muda. "Começar de novo" e trocar de estado mexem só
+  na cola do turno de agora.
+- `Calendario.aoMudar(fn)`: chegou arquivo do RootifyONE (interruptor ou calendário) ou a fase mudou pela data (conferido ao
+  voltar para a aba). A Colinha e o Início ouvem e se redesenham sem recarregar.
+- **Teste**: `teste/calendario.js` (relógio, RootifyONE e TSE simulados). Os testes antigos que abrem a Colinha (`janelas.js`,
+  `colinha-interruptor.js`) fixam o relógio no 1º turno, para não mudarem com a data em que rodam.
 
 ## Como a tradução funciona
 
@@ -155,8 +201,8 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
   `python3 sincroniza-en.py`.
 
 9. **Colinha da eleição** (`<style>` + `<script>` "v2.2", no fim; objeto `window.Colinha`): `#colinha`, em
-   destaque na tela de escolha, acima de Presidência e Congresso. Cargos na ordem da urna (federal, estadual,
-   2 senadores, governador, presidente); busca sem acento, por número ou partido; imagem montada em `<canvas>`
+   destaque na tela de escolha, acima de Presidência e Congresso. Cargos na ordem da urna, os do turno de agora no
+   calendário (ver "Calendário eleitoral" abaixo); busca sem acento, por número ou partido; imagem montada em `<canvas>`
    e enviada pelo compartilhar do celular (ou baixada); texto pelo WhatsApp; impressão (`CK.impressao` monta `#ck-print`: 1 ou 4 cópias da cola, cada uma em 1/4 da folha, sempre em fundo branco; a pessoa escolhe ao tocar em Imprimir; na
    impressão só ele aparece). Foto do candidato de
    `cola/fotos/` (o site do TSE manda o cabeçalho CORS repetido e o navegador não deixa usar a foto dele na imagem);
@@ -179,5 +225,6 @@ A interface em inglês **não** tem HTML próprio: `traduzDOM` troca cada nó de
 | tela de escolha, módulo Congresso, botão Atualizar | bloco "v2.0" no fim do `index.html` (`pintaHub`, `Cg.tela…`, `Seletor`) |
 | pautas, eixos e votações usadas na afinidade | `congresso-pautas.json` e depois `python3 congresso-sync.py` |
 | Colinha (cargos, imagem, aviso Novidade) | bloco "v2.2" no fim do `index.html` (`CK.desenha`, `CK.desenhaImagem`, `novidade`) |
+| datas, turnos, cargos, fase e onde há 2º turno | **sem código**: RootifyONE → Comportamentos → `eleicao.calendario`; o de fábrica é o `PADRAO` do `window.Calendario` no `<head>` (e o mesmo no `recursos-do-app.json`) |
 | andamento de um compromisso do presidente eleito | `presidencia-compromissos.json` → `status` (o site lê direto, sem rodar script) |
 | votações novas da legislatura de 2027 no antes × depois | `congresso-pautas.json` (eixos) e depois `python3 congresso-sync.py` |

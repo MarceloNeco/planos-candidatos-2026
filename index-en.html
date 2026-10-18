@@ -5,8 +5,162 @@
 <script src="janela.js"></script>
 <script src="cofre.js"></script>
 <script src="recursos.js" data-app="eleicoes-2026"></script>
-<script>/* interruptor "colinha" do RootifyONE (Controle dos apps): desligado, a Colinha da eleição some do site */
-window.colinhaOff=function(){return !!(window.SolverRecursos&&!SolverRecursos.ligado("colinha",true));};</script>
+<script>/* Calendário eleitoral (v2.5.0): UM só para o site inteiro. A Colinha, a tela de Início e a aba Mandato da Presidência leem
+   daqui as datas, os turnos e os cargos. PADRAO é o valor de fábrica (eleição de 2026). O RootifyONE muda tudo sem mexer no
+   código, pelo comportamento "eleicao.calendario" (Controle dos apps → Eleições 2026 → Comportamentos, tipo JSON): cada campo
+   que vier de lá vence o de fábrica.
+     ano           ano da eleição (textos e nome da imagem da cola)
+     fase          "auto" = pela data, no horário de Brasília; "1", "2"… força aquele turno; "pos" força o pós-eleição
+     tse           só a chave do ano no TSE ("ele2026"); as eleições de cada turno e cargo o app descobre no ele-c.json do TSE
+     turnos        em ordem de data: o dia (AAAA-MM-DD) e os cargos na ordem da urna; cargo repetido = mais de um voto
+                   (2 senadores em 2026)
+     segundoTurno  lista manual de onde há 2º turno, POR CARGO e POR LUGAR; quando um cargo está aqui, ela vence a do TSE
+                   para ele. Lugar: "BR" (presidente), sigla do estado ("RN") ou, numa eleição municipal (2028, prefeito
+                   em cidade grande), o código do município no TSE. Ex.: {"G":["AC","AM","DF","ES","RN","TO"]}.
+                   Vazio {} = vale a do TSE.
+     posse         dia em que começa o mandato de quem foi eleito para o Executivo (a aba Mandato conta a partir dele)
+     cargos        por letra: nome PT/EN, dígitos na urna, código do cargo no TSE, "lugar":"br" quando o cargo vale para o
+                   país inteiro e, quando o nome muda num lugar, o nome de lá (ex.: "DF" para deputado distrital)
+   Fases: até o dia do 1º turno = 1; do dia seguinte até o dia do 2º = 2; depois do último turno = "pos" (a Colinha some). */
+window.Calendario=(function(){
+  "use strict";
+  var PADRAO={ano:2026,fase:"auto",tse:"ele2026",
+    turnos:[{data:"2026-10-04",cargos:["F","E","S","S","G","P"]},{data:"2026-10-25",cargos:["G","P"]}],
+    segundoTurno:{},posse:"2027-01-05",
+    cargos:{P:{pt:"Presidente",en:"President",digitos:2,tse:1,lugar:"br"},
+      G:{pt:"Governador(a)",en:"Governor",digitos:2,tse:3},
+      S:{pt:"Senador(a)",en:"Senator",digitos:3,tse:5},
+      F:{pt:"Deputado(a) federal",en:"Federal deputy",digitos:4,tse:6},
+      E:{pt:"Deputado(a) estadual",en:"State deputy",digitos:5,tse:7,DF:{pt:"Deputado(a) distrital",en:"District deputy",tse:8}}}};
+  var TSE="https://resultados.tse.jus.br/oficial/", HORA=36e5, KT="planos2026:tse";
+  var MES={pt:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"],
+    en:["January","February","March","April","May","June","July","August","September","October","November","December"]};
+  var MC={pt:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],en:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]};
+  function en(){return /^en/i.test(document.documentElement.getAttribute("lang")||"");}
+  function obj(x){return !!x&&typeof x==="object"&&!Array.isArray(x);}
+  /* o de fábrica com o que veio do RootifyONE por cima; turnos inválidos (sem data AAAA-MM-DD) ficam com os de fábrica */
+  function cfg(){
+    var v=window.SolverRecursos?SolverRecursos.valor("eleicao.calendario",null):null;if(!obj(v))v={};
+    var o=Object.assign({},PADRAO,v);
+    o.cargos=Object.assign({},PADRAO.cargos,obj(v.cargos)?v.cargos:{});
+    if(!(Array.isArray(o.turnos)&&o.turnos.length&&o.turnos.every(function(t){return obj(t)&&/^\d{4}-\d\d-\d\d$/.test(t.data||"")&&Array.isArray(t.cargos);})))o.turnos=PADRAO.turnos;
+    if(!obj(o.segundoTurno))o.segundoTurno={};
+    return o;
+  }
+  /* o dia em Brasília (America/Sao_Paulo), qualquer que seja o fuso do aparelho; sem Intl com fuso, UTC−3 (sem horário de verão) */
+  function hoje(agora){
+    var d=agora||new Date();
+    try{var s=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);if(/^\d{4}-\d\d-\d\d$/.test(s))return s;}catch(e){}
+    return new Date(d.getTime()-3*HORA).toISOString().slice(0,10);
+  }
+  function fase(agora){
+    var c=cfg(),f=String(c.fase==null?"auto":c.fase).toLowerCase();
+    if(f==="pos")return "pos";
+    if(/^\d+$/.test(f)&&c.turnos[+f-1])return +f;
+    var h=hoje(agora);
+    for(var i=0;i<c.turnos.length;i++)if(h<=c.turnos[i].data)return i+1;
+    return "pos";
+  }
+  function ordinal(n){var u=n%10,d=n%100;return n+(u===1&&d!==11?"st":u===2&&d!==12?"nd":u===3&&d!==13?"rd":"th");}
+  /* as vagas de um turno, na ordem da urna: chave (F, E, S1, S2, G, P: as mesmas da cola guardada), cargo, nome, dígitos e lugar */
+  function vagas(n,uf){
+    var c=cfg(),t=c.turnos[n-1];if(!t)return [];
+    var conta={},vez={};t.cargos.forEach(function(k){conta[k]=(conta[k]||0)+1;});
+    return t.cargos.filter(function(k){return obj(c.cargos[k]);}).map(function(k){
+      var d=c.cargos[k],x=uf&&obj(d[uf])?Object.assign({},d,d[uf]):d,i=vez[k]=(vez[k]||0)+1,nome=en()?x.en:x.pt;
+      if(conta[k]>1)nome+=en()?" · "+ordinal(i)+" vote":" · "+i+"º voto";
+      return {k:conta[k]>1?k+i:k,cg:k,t:nome,d:x.digitos,lugar:d.lugar==="br"?"br":"uf",tse:x.tse};
+    });
+  }
+  function dia(n){var t=cfg().turnos[n-1],p=t?t.data.split("-"):null;return p?{d:+p[2],m:+p[1]-1}:null;}
+  /* "2º turno em 25 de outubro" · "second round on 25 October" */
+  function rotulo(n){var p=dia(n);if(!p)return "";
+    return en()?(["first","second","third"][n-1]||ordinal(n))+" round on "+p.d+" "+MES.en[p.m]:n+"º turno em "+p.d+" de "+MES.pt[p.m];}
+  /* "2º turno · 25/Out" · "2nd round · Oct 25" */
+  function curto(n){var p=dia(n);if(!p)return "";return en()?ordinal(n)+" round · "+MC.en[p.m]+" "+p.d:n+"º turno · "+p.d+"/"+MC.pt[p.m];}
+  /* tela de Início: "Eleição 2026 · 2º turno em 25 de outubro"; depois do último turno, "Eleição 2026 · encerrada" */
+  function cabecalho(){var a=cfg().ano,f=fase();return en()?a+" election · "+(f==="pos"?"concluded":rotulo(f)):"Eleição "+a+" · "+(f==="pos"?"encerrada":rotulo(f));}
+  /* os cargos de um turno (sem n: o de agora; no pós-eleição, o último), em texto: "presidente e governador(a)" */
+  function nomes(n){var c=cfg();n=n||fase();if(n==="pos")n=c.turnos.length;var t=c.turnos[n-1],L=[];if(!t)return "";
+    t.cargos.forEach(function(k){var d=c.cargos[k];if(!obj(d))return;var x=(en()?d.en:d.pt).toLowerCase();if(L.indexOf(x)<0)L.push(x);});
+    return L.length>1?L.slice(0,-1).join(", ")+(en()?" and ":" e ")+L[L.length-1]:L.join("");}
+
+  /* ---- quem está no 2º turno: o app só vai ao TSE quando a fase precisa (2º turno), no máximo 1 vez por hora por arquivo
+     e por aparelho, sem travar a tela; a cópia guardada no aparelho (planos2026:tse) vale enquanto a nova não chega ---- */
+  /* navegador que não deixa guardar (modo privado bloqueado, sem espaço): a cópia fica na memória da página, e o limite
+     de 1 ida por hora continua valendo enquanto ela estiver aberta */
+  var memo=null;
+  function guardado(){if(memo)return JSON.parse(JSON.stringify(memo));try{var g=JSON.parse(localStorage.getItem(KT)||"null");return obj(g)?g:{};}catch(e){return {};}}
+  function guarda(g){try{localStorage.setItem(KT,JSON.stringify(g));memo=null;}catch(e){memo=g;}}
+  function pede(url){
+    var ctrl=window.AbortController?new AbortController():null,prazo=setTimeout(function(){if(ctrl)ctrl.abort();},8000);
+    return fetch(url,{cache:"no-cache",signal:ctrl?ctrl.signal:undefined}).then(function(r){clearTimeout(prazo);if(!r.ok)throw new Error("http-"+r.status);return r.json();},
+      function(e){clearTimeout(prazo);throw e;});
+  }
+  /* pode ir ao TSE buscar este arquivo agora? A tentativa é anotada antes de ir: se falhar, só tenta de novo 1 hora depois */
+  function podeIr(g,nome){g.tent=obj(g.tent)?g.tent:{};var d=Date.now()-(g.tent[nome]||0);if(d>=0&&d<HORA)return false;g.tent[nome]=Date.now();guarda(g);return true;}
+  /* ele-c.json, a configuração das eleições do TSE: no ano (c.tse) e no turno n, as eleições ordinárias e, por cargo, os
+     lugares (abrangência) e o código da eleição. null = o TSE ainda não publicou esse turno */
+  function lerConfig(j,c,n){
+    var cod={},onde={},ele={},achou=false;
+    Object.keys(c.cargos).forEach(function(k){if(obj(c.cargos[k])&&c.cargos[k].tse!=null)cod[String(c.cargos[k].tse)]=k;});
+    ((j&&j.pl)||[]).forEach(function(p){if(p.c!==c.tse)return;
+      (p.e||[]).forEach(function(e){if(String(e.t)!==String(n)||!/ordin/i.test(e.nm||""))return;achou=true;
+        (e.abr||[]).forEach(function(a){(a.cp||[]).forEach(function(x){var k=cod[String(x.cd)];if(!k)return;
+          (onde[k]=onde[k]||[]).push(String(a.cd).toUpperCase());ele[k]=String(e.cd);});});});});
+    return achou?{onde:onde,ele:ele}:null;
+  }
+  /* arquivo unificado do resultado de um cargo num lugar (ex.: …/ele2026/<eleição>/dados/rn/rn-c0003-e00XXXX-u.json):
+     no 2º turno, antes da votação, ele traz só os candidatos que estão nele */
+  function urlFinal(c,ele,cargo,lugar){var l=lugar.toLowerCase();return TSE+c.tse+"/"+ele+"/dados/"+l+"/"+l+"-c"+("000"+cargo).slice(-4)+"-e"+("00000"+ele).slice(-6)+"-u.json";}
+  function lerFinal(j){var ids=[];((j&&j.carg)||[]).forEach(function(g){(g.agr||[]).forEach(function(a){(a.par||[]).forEach(function(p){
+    (p.cand||[]).forEach(function(x){if(x.sqcand)ids.push(String(x.sqcand));});});});});return ids;}
+  /* onde há aquele turno para o cargo k: a lista manual do RootifyONE vence; senão, a do TSE (a última que chegou) */
+  function onde(k,n){var c=cfg();n=n||fase();var m=c.segundoTurno[k];
+    if(Array.isArray(m))return {lista:m.map(function(x){return String(x).toUpperCase();}),fonte:"manual"};
+    var b=guardado()[c.tse+"/"+n];
+    return b?{lista:(b.onde&&b.onde[k])||[],fonte:"tse",em:b.em}:{lista:null,fonte:null};}
+  /* os ids do TSE dos candidatos daquele turno, para o cargo k no lugar; null = ainda não se sabe */
+  function finalistas(k,lugar,n){var c=cfg();n=n||fase();var g=guardado(),f=obj(g.fin)?g.fin[c.tse+"/"+n+"/"+k+"/"+lugar]:null;return f&&Array.isArray(f.ids)?f.ids:null;}
+  var indo=null,indoUf="";
+  /* busca no TSE o que a tela do estado uf precisa; devolve true se algo mudou (a tela redesenha) */
+  function consultar(uf){
+    if(indo)return uf===indoUf?indo:indo.then(function(m){return consultar(uf).then(function(m2){return m||m2;});});
+    var c=cfg(),n=fase();if(n==="pos"||n<2||!c.tse)return Promise.resolve(false);
+    indoUf=uf;
+    var chave=c.tse+"/"+n,g0=guardado(),antes=JSON.stringify([g0[chave],g0.fin]);
+    var config=podeIr(g0,chave)?pede(TSE+"comum/config/ele-c.json").then(function(j){var r=lerConfig(j,c,n);
+      if(r){r.em=new Date().toISOString();var g=guardado();g[chave]=r;guarda(g);}}).catch(function(){}):Promise.resolve();
+    indo=config.then(function(){
+      var g=guardado(),base=g[chave],L=[];if(!base)return;
+      vagas(n,uf).forEach(function(v){
+        var lugar=v.lugar==="br"?"BR":uf,o=onde(v.cg,n),nome=chave+"/"+v.cg+"/"+lugar;
+        if(!lugar||!o.lista||o.lista.indexOf(lugar)<0||!base.ele[v.cg]||!podeIr(g,nome))return;
+        L.push(pede(urlFinal(c,base.ele[v.cg],v.tse,lugar)).then(function(j){var ids=lerFinal(j);if(!ids.length)return;
+          var g2=guardado();g2.fin=obj(g2.fin)?g2.fin:{};g2.fin[nome]={ids:ids,em:new Date().toISOString()};guarda(g2);}).catch(function(){}));
+      });
+      return Promise.all(L);
+    }).catch(function(){}).then(function(){indo=null;var g=guardado();return JSON.stringify([g[chave],g.fin])!==antes;});
+    return indo;
+  }
+
+  /* pós-eleição: a Colinha some do site inteiro (tudo o que tem data-recurso="colinha", como faz o interruptor);
+     quem quer saber da troca (a Colinha, o Início) ouve aoMudar: chegou arquivo do RootifyONE ou a fase mudou pela data */
+  var ouvintes=[],ultima="";
+  function aplicar(){var f=fase();ultima=JSON.stringify([f,cfg()]);document.documentElement.toggleAttribute("data-colinha-pos",f==="pos");}
+  function avisa(){aplicar();ouvintes.slice().forEach(function(fn){try{fn();}catch(e){}});}
+  aplicar();
+  if(window.SolverRecursos)SolverRecursos.aoMudar(avisa);
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&JSON.stringify([fase(),cfg()])!==ultima)avisa();});
+  return {padrao:function(){return JSON.parse(JSON.stringify(PADRAO));},cfg:cfg,hoje:hoje,fase:fase,vagas:vagas,
+    ano:function(){return cfg().ano;},data:function(n){var t=cfg().turnos[n-1];return t?t.data:"";},
+    posse:function(){return cfg().posse||PADRAO.posse;},chave:function(n){return cfg().ano+"-"+n;},
+    rotulo:rotulo,curto:curto,cabecalho:cabecalho,nomes:nomes,onde:onde,finalistas:finalistas,consultar:consultar,
+    consultando:function(){return !!indo;},aoMudar:function(fn){if(typeof fn==="function")ouvintes.push(fn);}};
+})();</script>
+<script>/* Colinha fora do ar: interruptor "colinha" do RootifyONE (Controle dos apps) desligado OU pós-eleição pelo calendário.
+   O interruptor vale por cima nos dois sentidos: desligado esconde em qualquer fase; religado, ela volta no 1º e no 2º turno */
+window.colinhaOff=function(){return !!((window.SolverRecursos&&!SolverRecursos.ligado("colinha",true))||(window.Calendario&&Calendario.fase()==="pos"));};</script>
 <script>/* janelas do site sobre a janela comum (janela.js): a caixa de cada janela continua sendo a que já existia;
    aqui ela só vira o conteúdo de uma SolverJanela (rolagem de trás travada, ✕/Esc/Voltar/toque fora, "Descartar?", uma por vez) */
 window.EJ=(function(){
@@ -3147,7 +3301,7 @@ thead .i{vertical-align:0;margin-left:5px;width:15px;height:15px;font-size:9.5px
 "f-copiar":"Copy quotation",
 "f-copiar-tip":"Copies the passage with the name, the page and the link to this screen",
 "f-copiado":"Quotation copied, with the page and the link."}</script>
-<script id="dados" type="application/json">{"versao":"2.4.0",
+<script id="dados" type="application/json">{"versao":"2.5.0",
 "macrotemas_previstos":20,
 "macrotemas":[{"cod":"AGRO",
 "nome":"AGRICULTURE: Agribusiness and competitiveness",
@@ -23071,7 +23225,7 @@ thead .i{vertical-align:0;margin-left:5px;width:15px;height:15px;font-size:9.5px
 "rui":"29 PCO Rui Costa Pimenta 2026BR280002552487_01.pdf",
 "cur":"70 AVANTE Augusto Cury 2026BR280002551547_01.pdf"},
 "criado_em":"2026-09-05",
-"atualizado_em":"2026-10-17",
+"atualizado_em":"2026-10-18",
 "recortes":[{"id":"fiscal",
 "nome":"Public accounts first",
 "desc":"For those who think nothing works while the state spends more than it takes in.",
@@ -23350,7 +23504,7 @@ thead .i{vertical-align:0;margin-left:5px;width:15px;height:15px;font-size:9.5px
 "vn":"Eduardo Girão"}},
 "fotos_tse_credito":"Photographs: TSE — DivulgaCandContas, image from the 2026 candidacy registration. Published as the TSE publishes them, with no cropping or retouching.",
 "experiencia_privada_nota":"Criterion for this list: private organisations — companies, institutes, foundations and movements — that the person founded, led or holds a stake in, outside elected or government office. Political parties do not appear here, because they have their own block under party affiliations; trade unions and union federations do appear, because they are formal organisations outside the state. The list records what the person is or was in the organisation, not what the organisation did: court cases belong in the proceedings section, with their outcome. Where the only available source is a company-registry aggregator, the line's source says so — these are public federal revenue service records republished by third parties, and this site has not checked them record by record in the official system. The list is not exhaustive, and candidacies with less press coverage leave less documented trace: the absence of a line here means nothing was found in the sources consulted, not that nothing exists.",
-"versoes":[{"v":"2.4.0","atual":true,"itens":["All windows on the site (Settings, glossary, what's new, terms of use, the \"i\" on dimensions, voice help, the Cheat sheet, the ☰ menu, AssistONE and the language, share, selection and Presidency/Congress menus) now follow the same rule: the page behind does not scroll or take taps; the window closes with ✕, Esc, the phone's Back button or a tap on the dark area; and if you typed something, it asks before discarding. \"Clear the whole memo?\" and the downloaded-image notice no longer use the browser's plain boxes","The key vault moved to version 1.4.0: with a key saved, the PIN is asked when you open and when you reload the page, and the vault locks itself when you leave the site, when it stays hidden for over 1 minute and after 5 minutes without use (voice playback only delays locking). Settings gained the vault's fingerprint panel"]},{"v":"2.3.0","itens":["Voice keys (Gemini, OpenAI and ElevenLabs) are now locked in the SolverONE key vault, with a PIN, instead of sitting in plain text in the browser. Keys already saved here or in the Story Teller move into the vault the first time you create the PIN, and the vault key works for both apps. Tapping ▶ with an internet voice asks for the PIN if the vault is locked; the device voice never asks for anything","The election cheat sheet can now be switched off from RootifyONE (App control): when off, it disappears from the start screen, the bar, the menus and search"]},{"v":"2.2.6","itens":["The site now follows the SolverONE administration switches: when AssistONE or the per-screen tips are turned off for everyone, they disappear here too"]},{"v":"2.2.5","itens":["Soundtrack on by default: it starts at the first tap on the page (browsers don't allow it before) and whoever turns it off with the 🔊 button keeps it off on later visits"]},{"v":"2.2.4","itens":["On phones, the soundtrack button is visible at the top, next to share and settings"]},{"v":"2.2.3","itens":["Printed cheat sheet always on a white background, easy to read and light on ink, even with the dark theme on: when printing, choose 1 sheet (1/4 of the page) or 4 on the same page, with a dashed line to cut"]},{"v":"2.2.2","itens":["Printed cheat sheet fits on a single page, without the site header and footer"]},{"v":"2.2.1","itens":["Cheat sheet with each candidate's official photo also in the WhatsApp image (the electoral court photos now live on the site itself) and the site address in the message; on phones, a fixed bar at the top to switch between Start, Cheat sheet, Presidency and Congress with one tap"]},{"v":"2.2","itens":["Election cheat sheet, featured on the start screen: build the numbers for president, governor, the 2 senators, federal and state (or district) deputy, in ballot order and with the electoral court photo; search by name without accents, by number or by party, edit any time and share it as an image on WhatsApp, as text or printed", "A news pop-up on the first visit, and AssistONE now explains the cheat sheet"]},{"v":"2.1","itens":["New Mandate tab in the Presidency (promises × delivery): the president-elect's specific plan commitments (proposals with specificity 4 or 5), with each one's status recorded only from an official act, and the Executive's bills and provisional measures on the same topic since inauguration; until the result, you can see how it would look for each candidacy", "New In office tab in Congress: winners in your state, your favourites' new roll calls since your last visit (with a 🔔 alert in the menu), attendance at votes, how often they voted with their own party and with the Government, bills in the legislature and the before × after on each topic", "Everything switches on its own with the calendar: electoral court result, presidential inauguration on Jan/05/2027 and the new legislature on Feb/01/2027"]},{"v":"2.0","itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress part with its own tabs: Home (what deputies and senators do and why the vote matters), Affinity, Favourites, Compare and Method, plus a record for each Senate and federal Chamber candidate in your state (career, assets, votes and bills)", "Affinity: drag 10 priorities into order and pick a side (or Neutral / Not sure) on 9 topics; the candidate list changes instantly, based on real roll-call votes in the Chamber and the Senate since 2019 and on each one's bills, and it shows when a number is an estimate", "Favourites with your ballot memo (2 senators and 1 federal deputy), side-by-side comparison of up to 3 candidacies and a Refresh button with the date of the official data, checked every day","Congress: 🔊 buttons to listen to each part, Priorities · Positions · List tabs on phones, A→Z / Z→A and highest/lowest arrows on lists, a filter for what to show when comparing, the official photo from the Chamber, the Senate or the electoral court, and a \"Check the official sources\" button that checks the votes live at the Chamber and the Senate and the candidacy date at the electoral court, with date and time of the last sync and of the last new data"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
+"versoes":[{"v":"2.5.0","atual":true,"itens":["The election cheat sheet follows the election calendar: up to first-round day, all six votes; from the next day until second-round day, only governor and president (governor only in states with a second round); after the election, it hides on its own","In the second round, each office lists only the two finalists, checked against the electoral court's official results (at most once an hour; the latest copy stays on the device). If the court does not answer, every candidate is listed, with a note to check at the ballot box","If the candidate you had chosen is not in the second round, the cheat sheet says so and asks you to choose again. Your first-round sheet stays saved, just as you left it","The Start screen and the Presidency's In office tab show the right date and round on their own"]},{"v":"2.4.0","itens":["All windows on the site (Settings, glossary, what's new, terms of use, the \"i\" on dimensions, voice help, the Cheat sheet, the ☰ menu, AssistONE and the language, share, selection and Presidency/Congress menus) now follow the same rule: the page behind does not scroll or take taps; the window closes with ✕, Esc, the phone's Back button or a tap on the dark area; and if you typed something, it asks before discarding. \"Clear the whole memo?\" and the downloaded-image notice no longer use the browser's plain boxes","The key vault moved to version 1.4.0: with a key saved, the PIN is asked when you open and when you reload the page, and the vault locks itself when you leave the site, when it stays hidden for over 1 minute and after 5 minutes without use (voice playback only delays locking). Settings gained the vault's fingerprint panel"]},{"v":"2.3.0","itens":["Voice keys (Gemini, OpenAI and ElevenLabs) are now locked in the SolverONE key vault, with a PIN, instead of sitting in plain text in the browser. Keys already saved here or in the Story Teller move into the vault the first time you create the PIN, and the vault key works for both apps. Tapping ▶ with an internet voice asks for the PIN if the vault is locked; the device voice never asks for anything","The election cheat sheet can now be switched off from RootifyONE (App control): when off, it disappears from the start screen, the bar, the menus and search"]},{"v":"2.2.6","itens":["The site now follows the SolverONE administration switches: when AssistONE or the per-screen tips are turned off for everyone, they disappear here too"]},{"v":"2.2.5","itens":["Soundtrack on by default: it starts at the first tap on the page (browsers don't allow it before) and whoever turns it off with the 🔊 button keeps it off on later visits"]},{"v":"2.2.4","itens":["On phones, the soundtrack button is visible at the top, next to share and settings"]},{"v":"2.2.3","itens":["Printed cheat sheet always on a white background, easy to read and light on ink, even with the dark theme on: when printing, choose 1 sheet (1/4 of the page) or 4 on the same page, with a dashed line to cut"]},{"v":"2.2.2","itens":["Printed cheat sheet fits on a single page, without the site header and footer"]},{"v":"2.2.1","itens":["Cheat sheet with each candidate's official photo also in the WhatsApp image (the electoral court photos now live on the site itself) and the site address in the message; on phones, a fixed bar at the top to switch between Start, Cheat sheet, Presidency and Congress with one tap"]},{"v":"2.2","itens":["Election cheat sheet, featured on the start screen: build the numbers for president, governor, the 2 senators, federal and state (or district) deputy, in ballot order and with the electoral court photo; search by name without accents, by number or by party, edit any time and share it as an image on WhatsApp, as text or printed", "A news pop-up on the first visit, and AssistONE now explains the cheat sheet"]},{"v":"2.1","itens":["New Mandate tab in the Presidency (promises × delivery): the president-elect's specific plan commitments (proposals with specificity 4 or 5), with each one's status recorded only from an official act, and the Executive's bills and provisional measures on the same topic since inauguration; until the result, you can see how it would look for each candidacy", "New In office tab in Congress: winners in your state, your favourites' new roll calls since your last visit (with a 🔔 alert in the menu), attendance at votes, how often they voted with their own party and with the Government, bills in the legislature and the before × after on each topic", "Everything switches on its own with the calendar: electoral court result, presidential inauguration on Jan/05/2027 and the new legislature on Feb/01/2027"]},{"v":"2.0","itens":["New start screen: choose between Presidency (the eight plans, as before) and Congress; the button with the part's name, at the top, switches between them at any time, and the site remembers the last part used", "New Congress part with its own tabs: Home (what deputies and senators do and why the vote matters), Affinity, Favourites, Compare and Method, plus a record for each Senate and federal Chamber candidate in your state (career, assets, votes and bills)", "Affinity: drag 10 priorities into order and pick a side (or Neutral / Not sure) on 9 topics; the candidate list changes instantly, based on real roll-call votes in the Chamber and the Senate since 2019 and on each one's bills, and it shows when a number is an estimate", "Favourites with your ballot memo (2 senators and 1 federal deputy), side-by-side comparison of up to 3 candidacies and a Refresh button with the date of the official data, checked every day","Congress: 🔊 buttons to listen to each part, Priorities · Positions · List tabs on phones, A→Z / Z→A and highest/lowest arrows on lists, a filter for what to show when comparing, the official photo from the Chamber, the Senate or the electoral court, and a \"Check the official sources\" button that checks the votes live at the Chamber and the Senate and the candidacy date at the electoral court, with date and time of the last sync and of the last new data"]},{"v":"1.9","itens":["AssistONE with the standard SolverONE character (ajuda-botao.png) instead of the question mark: round 58 px button in the bottom-right corner, dark background in both themes, golden ring and a gentle float that stops when the balloon is open and with \"Reduce animations\""]},
 {"v":"1.8","itens":["AssistONE: an assistant in the bottom-right corner that says which screen you are on, explains the collapsed notices (\"How to read\", \"Caveats\") in plain words, reads the screen aloud, searches screens, topics, candidates and acronyms, changes quick settings and gives a one-minute tour; switch it on or off in Settings", "☰ menu on phones with the eight pages and a line saying what is in each one, quick actions (search, share, listen, settings), theme, language and help; the phone's Back button closes the menu instead of leaving the site", "Share in the header: this screen's link via WhatsApp, Telegram, e-mail or by copying; on phones it opens the device's share sheet", "\"Copy quotation\" on every macro-topic card: the passage goes with the name, the page and the link", "Accessibility in Settings: larger text (A+ and A++) and reduce animations", "Interface texts rewritten in more direct Portuguese: cover, notices, tab headers, footer and Settings notes; the \"made for a wide screen\" box now appears only on narrow screens"]},
 {"v":"1.7",
 "itens":["Read aloud: a ▶ button next to each heading, with the device voice or a natural voice (Gemini, OpenAI, ElevenLabs) and preferences in Settings",
@@ -45093,8 +45247,9 @@ var TOQUE=function(){try{return matchMedia("(pointer: coarse)").matches;}catch(e
 
 /* ---------------- o que é cada tela (mapa usado pelo ☰, pela busca e pelo assistente) ---------------- */
 var TELAS={
-  colinha:{ic:"🗳️",t:T("Colinha da eleição","Election cheat sheet"),d:T("Monte a lista dos números que você vai digitar na urna (presidente, governador, 2 senadores, deputado federal e estadual), com foto, e mande no WhatsApp.",
-    "Build the list of numbers you will type at the ballot box (president, governor, 2 senators, federal and state deputy), with photos, and send it on WhatsApp."),
+  /* os cargos vêm do turno de agora no calendário (window.Calendario) */
+  colinha:{ic:"🗳️",t:T("Colinha da eleição","Election cheat sheet"),d:T("Monte a lista dos números que você vai digitar na urna ("+Calendario.nomes()+"), com foto, e mande no WhatsApp.",
+    "Build the list of numbers you will type at the ballot box ("+Calendario.nomes()+"), with photos, and send it on WhatsApp."),
     sin:"cola colinha cedula urna numero numeros votar whatsapp imprimir candidato foto governador senador deputado presidente"},
   hub:{ic:"🧭",t:T("Início · escolher","Start · choose"),d:T("A porta de entrada: escolha entre os planos dos presidenciáveis e os votos de quem disputa o Congresso.",
     "The front door: choose between the presidential plans and the votes of those running for Congress."),
@@ -46107,15 +46262,18 @@ var Seletor={b:null,pop:null,menu:null,
 function pintaHub(){
   var v=$("v-hub");if(!v||v.dataset.ok)return;v.dataset.ok="1";
   var w=mk("section","wrap hub");
-  w.appendChild(mk("div","eyebrow",T("Eleição 2026 · 4 de outubro","2026 election · 4 October")));
+  /* a data e o turno vêm do calendário (window.Calendario) e trocam sozinhos quando a fase muda */
+  var eb=mk("div","eyebrow",Calendario.cabecalho());w.appendChild(eb);
   var h=mk("h1");h.appendChild(document.createTextNode(T("Eleições ","Elections ")));h.appendChild(mk("span",null,"2026"));w.appendChild(h);
   w.appendChild(mk("p","lede",T("Duas ferramentas, um voto mais informado. Escolha por onde começar — dá para trocar a qualquer momento pelo nome lá em cima.",
     "Two tools, one better-informed vote. Choose where to start — you can switch at any time from the name at the top.")));
   /* Colinha da eleição: em destaque, acima das duas partes */
   var ck=mk("button","hub-ck");ck.type="button";ck.setAttribute("data-recurso","colinha");ck.appendChild(mk("span","hi","🗳️"));
   var ckt=mk("span");var ckb=mk("b",null,T("Colinha da eleição","Election cheat sheet"));ckb.appendChild(mk("span","nv",T("NOVO","NEW")));ckt.appendChild(ckb);
-  ckt.appendChild(mk("span","t",T("Os números de presidente, governador, senadores e deputados, na ordem da urna e com foto. Monte, edite e mande no WhatsApp.",
-    "The numbers for president, governor, senators and deputies, in ballot order and with photos. Build, edit and send it on WhatsApp.")));
+  var ckd=mk("span","t");ckt.appendChild(ckd);
+  var textos=function(){eb.textContent=Calendario.cabecalho();ckd.textContent=T("Os números de "+Calendario.nomes()+", na ordem da urna e com foto. Monte, edite e mande no WhatsApp.",
+    "The numbers for "+Calendario.nomes()+", in ballot order and with photos. Build, edit and send it on WhatsApp.");};
+  textos();Calendario.aoMudar(textos);
   ck.appendChild(ckt);ck.appendChild(mk("span","go",T("Montar minha colinha →","Build my cheat sheet →")));
   ck.addEventListener("click",function(){location.hash="#colinha";});w.appendChild(ck);
   var g=mk("div","hub-g");
@@ -46896,13 +47054,14 @@ var PM={dados:null,mand:null,comp:null,sel:"",filtro:"",macro:"",
     try{this.dados=JSON.parse(document.getElementById("dados").textContent);}catch(e){this.dados={fichas:[],candidatos:[],macrotemas:[]};}
     var pj=function(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){return null;});};
     return Promise.all([pj("presidencia/mandato.json"),pj("presidencia-compromissos.json")]).then(function(r){self.mand=r[0]||{};self.comp=r[1]||{temas:{},status:{}};});},
-  status:function(f){var posse=this.mand.posse||"2027-01-05";var a=(this.comp.status||{})[f.id];
+  status:function(f){var posse=Calendario.posse();var a=(this.comp.status||{})[f.id];
     if(a&&a.s)return a;return {s:new Date()<new Date(posse+"T00:00:00")?"aguardando":"sem_ato"};},
   pinta:function(){
     var v=$("v-mandato");if(!v)return;var self=this;
     this.carrega().then(function(){self.desenha(v);});},
   desenha:function(v){
-    var self=this,d=this.dados,m=this.mand||{},posse=m.posse||"2027-01-05";v.textContent="";
+    /* a posse e as datas dos turnos vêm do calendário (window.Calendario: padrão de fábrica ou o RootifyONE) */
+    var self=this,d=this.dados,m=this.mand||{},posse=Calendario.posse();v.textContent="";
     var nome={};d.candidatos.forEach(function(c){nome[c.pre]=c.nome+" ("+c.partido+")";});
     var h=mk("header","wrap");h.style.paddingBlock="30px 8px";
     h.appendChild(mk("div","eyebrow",T("Presidência · acompanhamento do mandato 2027–2030","Presidency · following the 2027–2030 term")));
@@ -46914,8 +47073,8 @@ var PM={dados:null,mand:null,comp:null,sel:"",filtro:"",macro:"",
     /* situação da eleição */
     var sit=mk("div","cg-card dest");
     sit.appendChild(mk("p",null,m.eleito?T("Eleito(a), segundo o TSE: ","Elected, according to the electoral court: ")+nome[m.eleito]+". "+T("Posse em ","Inauguration on ")+dia(posse)+".":
-      (m.segundo_turno&&m.segundo_turno.length?T("Segundo turno em 25/Out/2026 entre ","Run-off on Oct/25/2026 between ")+m.segundo_turno.map(function(k){return nome[k];}).join(T(" e "," and "))+". ":
-        T("Apuração do 1º turno em 4/Out/2026. ","First-round count on Oct/04/2026. "))+
+      (m.segundo_turno&&m.segundo_turno.length?T("Segundo turno em "+dia(Calendario.data(2))+" entre ","Run-off on "+dia(Calendario.data(2))+" between ")+m.segundo_turno.map(function(k){return nome[k];}).join(T(" e "," and "))+". ":
+        T("Apuração do 1º turno em "+dia(Calendario.data(1))+". ","First-round count on "+dia(Calendario.data(1))+". "))+
       T("Quando o TSE declarar o eleito, esta aba passa a acompanhá-lo sozinha (o site confere todo dia). Até lá, veja como ficaria para cada candidatura.",
         "When the electoral court declares the winner, this tab starts following them on its own (the site checks every day). Until then, see how it would look for each candidacy.")));
     w.appendChild(sit);
@@ -47012,6 +47171,12 @@ section.ck{padding-block:18px 120px;max-width:720px}
 .ck-uf{display:flex;gap:8px;align-items:center;margin:14px 0 6px;flex-wrap:wrap}
 .ck-uf select{font:inherit;font-size:16px;padding:10px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);color:var(--ink);min-height:46px;flex:1 1 220px}
 .ck-alerta{background:var(--warn-bg);color:var(--ink);border-left:4px solid var(--warn);border-radius:8px;padding:10px 12px;font-size:14px;margin:12px 0}
+/* v2.5.0: 2º turno (onde não há, TSE sem resposta, candidato guardado que não está nele) e pós-eleição pelo calendário */
+.ck-aviso{background:var(--warn-bg);color:var(--ink);border-left:4px solid var(--warn);border-radius:8px;padding:8px 12px;font-size:14px;margin:8px 0}
+.ck-nota{font-size:14px;color:var(--muted);margin:6px 0}
+.ck-fora{font-size:13.5px;color:var(--ink);margin:4px 0 6px}
+.ck-fora::before{content:"⚠ "}
+html[data-colinha-pos] [data-recurso~="colinha"]{display:none}
 .ck-lista{display:grid;gap:10px;margin-top:14px}
 .ck-slot{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:84px}
 .ck-slot.vazio{border-style:dashed;cursor:pointer}
@@ -47118,6 +47283,9 @@ div.ck-nov{border:0;border-radius:18px;padding:0;max-width:420px;width:calc(100%
    - A imagem para o WhatsApp é desenhada num <canvas>; foto só entra na imagem se
      o TSE permitir (CORS) — senão vão as iniciais, e o resto sai igual.
    - Na cabine não pode usar celular (Lei 9.504/97, art. 91-A): a página lembra disso.
+   - v2.5.0: os cargos, as datas e o turno vêm do calendário (window.Calendario, no <head>). No 2º turno só aparecem os
+     cargos e lugares que têm 2º turno, com os finalistas do TSE; há uma cola por turno (por["2026-1"], por["2026-2"]…) e a
+     do turno anterior fica guardada como estava.
    ===================================================================== */
 (function(){
 "use strict";
@@ -47133,28 +47301,45 @@ var KC="planos2026:colinha", KN="planos2026:novidade-colinha";
 var UFN={AC:"Acre",AL:"Alagoas",AM:"Amazonas",AP:"Amapá",BA:"Bahia",CE:"Ceará",DF:"Distrito Federal",ES:"Espírito Santo",GO:"Goiás",
   MA:"Maranhão",MG:"Minas Gerais",MS:"Mato Grosso do Sul",MT:"Mato Grosso",PA:"Pará",PB:"Paraíba",PE:"Pernambuco",PI:"Piauí",PR:"Paraná",
   RJ:"Rio de Janeiro",RN:"Rio Grande do Norte",RO:"Rondônia",RR:"Roraima",RS:"Rio Grande do Sul",SC:"Santa Catarina",SE:"Sergipe",SP:"São Paulo",TO:"Tocantins"};
-/* as vagas da cola, na ordem em que aparecem na urna */
-function vagas(uf){return [
-  {k:"F",cg:"F",t:T("Deputado(a) federal","Federal deputy"),d:4},
-  {k:"E",cg:"E",t:uf==="DF"?T("Deputado(a) distrital","District deputy"):T("Deputado(a) estadual","State deputy"),d:5},
-  {k:"S1",cg:"S",t:T("Senador(a) · 1º voto","Senator · 1st vote"),d:3},
-  {k:"S2",cg:"S",t:T("Senador(a) · 2º voto","Senator · 2nd vote"),d:3},
-  {k:"G",cg:"G",t:T("Governador(a)","Governor"),d:2},
-  {k:"P",cg:"P",t:T("Presidente","President"),d:2}];}
-/* foto oficial do TSE copiada para cola/fotos pelo congresso-sync.py (o site do TSE não deixa usá-la na imagem) */
-function foto(c){return "cola/fotos/"+(c[0]==="P"?"BR":c.uf)+"/"+c[4]+".jpg";}
-function fotoTSE(c){return "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/"+c[4]+"/"+(c[0]==="P"?"BR":c.uf);}
+/* as vagas da cola, na ordem da urna, vêm do calendário do turno de agora. No 2º turno (e nos seguintes), cada vaga diz:
+   semTurno (não há esse turno ali para o cargo), fin (os ids do TSE de quem está nele) ou incerto (o TSE não respondeu e
+   não há lista manual nem cópia guardada: a vaga aparece com todos os candidatos e um aviso) */
+function vagas(uf){var f=Calendario.fase();if(f==="pos")return [];
+  return Calendario.vagas(f,uf).map(function(vg){
+    if(f<2)return vg;
+    var lugar=vg.lugar==="br"?"BR":uf;if(!lugar)return vg;   /* ainda sem estado: a vaga aparece e pede o estado */
+    var o=Calendario.onde(vg.cg,f);
+    if(!o.lista){vg.incerto=true;return vg;}
+    if(o.lista.indexOf(lugar)<0){vg.semTurno=true;return vg;}
+    vg.fin=Calendario.finalistas(vg.cg,lugar,f);if(!vg.fin)vg.incerto=true;
+    return vg;});}
+/* "Eleição 2026 · 2º turno · 25/Out" (imagem, impressão e texto) */
+function cabeca(){var a=Calendario.ano(),c=Calendario.curto(Calendario.fase());return EN?a+" election · "+c:"Eleição "+a+" · "+c;}
+/* foto oficial do TSE copiada para cola/fotos pelo congresso-sync.py (o site do TSE não deixa usá-la na imagem); c.uf = BR para presidente */
+function foto(c){return "cola/fotos/"+c.uf+"/"+c[4]+".jpg";}
+function fotoTSE(c){return "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/20322002026/"+c[4]+"/"+c.uf;}
 var SITE="https://solverone.com.br/planos-candidatos-2026/"+(/index-en/.test(location.pathname)?"index-en.html":"");
 
 var CK={st:null,dados:{},pts:null,
-  estado:function(){if(!this.st){var s=le(KC)||{};var cg=le("planos2026:congresso")||{};this.st={uf:s.uf||cg.uf||"",esc:s.esc||{}};}return this.st;},
+  /* uma cola por turno: por[ano-turno][vaga] = [uf, id do TSE] (null = tirada de propósito). Até a 2.4.0 havia uma só (esc),
+     a do 1º turno da eleição de fábrica: ela passa para por["<ano de fábrica>-1"] sem mudar nada */
+  estado:function(){if(!this.st){var s=le(KC)||{};var cg=le("planos2026:congresso")||{};
+    var por=s.por&&typeof s.por==="object"?s.por:{};if(s.esc&&!s.por)por[Calendario.padrao().ano+"-1"]=s.esc;
+    this.st={uf:s.uf||cg.uf||"",por:por};}return this.st;},
+  esc:function(){var p=this.estado().por,k=Calendario.chave(Calendario.fase());return p[k]||(p[k]={});},
   salva:function(){grava(KC,this.st);},
   pega:function(uf){var self=this;if(this.dados[uf])return Promise.resolve(this.dados[uf]);
     return fetch("cola/"+uf+".json").then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){d.c.forEach(function(c){c.uf=uf;});self.dados[uf]=d;return d;});},
   partidos:function(){var self=this;if(this.pts)return Promise.resolve(this.pts);
     return fetch("cola/partidos.json").then(function(r){return r.ok?r.json():{};}).catch(function(){return {};}).then(function(p){self.pts=p;return p;});},
-  /* candidato escolhido para uma vaga (guardado como [uf, id do TSE]) */
-  escolhido:function(k){var e=this.estado().esc[k];if(!e)return null;var d=this.dados[e[0]];if(!d)return null;
+  /* candidato de uma vaga: o escolhido neste turno ou, sem escolha ainda, o do turno anterior (mesmo estado). Fora dos
+     finalistas, vira {fora}: a tela diz "não está no 2º turno" e pede para escolher de novo; a cola anterior não muda */
+  escolha:function(vg){var s=this.estado(),f=Calendario.fase(),e=this.esc()[vg.k];
+    for(var n=f-1;e===undefined&&n>=1;n--){var x=(s.por[Calendario.chave(n)]||{})[vg.k];if(x)e=vg.lugar==="br"||x[0]===s.uf?x:null;}
+    var c=e?this.acha(e):null;if(!c)return {c:null};
+    return vg.fin&&vg.fin.indexOf(c[4])<0?{c:null,fora:c}:{c:c};},
+  /* [uf, id do TSE] → o candidato na lista carregada */
+  acha:function(e){var d=this.dados[e[0]];if(!d)return null;
     for(var i=0;i<d.c.length;i++)if(d.c[i][4]===e[1])return d.c[i];return null;},
   avatar:function(c,peq){var a=mk("span","ck-av"+(peq?" p":""));a.style.setProperty("--h",matiz(c[2]));
     a.appendChild(document.createTextNode(c[2].split(/\s+/).filter(Boolean).map(function(w){return w[0];}).slice(0,2).join("")));
@@ -47166,10 +47351,13 @@ var CK={st:null,dados:{},pts:null,
 
   /* ---------- a tela ---------- */
   pinta:function(){var v=$("v-colinha");if(!v)return;var self=this,s=this.estado();
-    Promise.all([this.partidos(),s.uf?this.pega(s.uf).catch(function(){return null;}):null,this.pega("BR").catch(function(){return null;})]).then(function(){self.desenha(v);});},
-  desenha:function(v){var self=this,s=this.estado();v.textContent="";
+    Promise.all([this.partidos(),s.uf?this.pega(s.uf).catch(function(){return null;}):null,this.pega("BR").catch(function(){return null;})]).then(function(){
+      /* 2º turno: confere no TSE quem está nele (no máximo 1 vez por hora); a tela abre na hora, com a cópia guardada */
+      var p=Calendario.consultar(s.uf);self.desenha(v);
+      p.then(function(mudou){if((mudou||self.incerto)&&document.documentElement.hasAttribute("data-ck"))self.desenha(v);});});},
+  desenha:function(v){var self=this,s=this.estado(),f=Calendario.fase(),vs=vagas(s.uf);v.textContent="";
     var w=mk("section","wrap ck");v.appendChild(w);
-    w.appendChild(mk("div","eyebrow",T("Eleição 2026 · 1º turno em 4 de outubro","2026 election · first round on 4 October")));
+    w.appendChild(mk("div","eyebrow",(EN?Calendario.ano()+" election · ":"Eleição "+Calendario.ano()+" · ")+Calendario.rotulo(f)));
     var h=mk("header");h.appendChild(mk("h1",null,"🗳️ "+T("Colinha da eleição","Election cheat sheet")));
     h.appendChild(mk("p","lede",T("Os números que você vai digitar na urna, na ordem da urna, com foto. Fica só no seu celular e dá para mudar quando quiser.",
       "The numbers you will type at the ballot box, in ballot order, with photos. It stays only on your phone and you can change it any time.")));w.appendChild(h);
@@ -47178,34 +47366,45 @@ var CK={st:null,dados:{},pts:null,
     Object.keys(UFN).sort(function(a,b){return UFN[a].localeCompare(UFN[b]);}).forEach(function(k){var o=mk("option",null,UFN[k]);o.value=k;sel.appendChild(o);});
     sel.value=s.uf;sel.addEventListener("change",function(){
       var mudou=s.uf&&s.uf!==sel.value;s.uf=sel.value;
-      if(mudou)Object.keys(s.esc).forEach(function(k){if(k!=="P")delete s.esc[k];});   /* outro estado: o presidente fica */
+      /* outro estado: o que vale para o país inteiro (presidente) fica; a cola dos turnos anteriores não muda */
+      if(mudou){var E=self.esc(),cs=Calendario.cfg().cargos;Object.keys(E).forEach(function(k){var d=cs[k.replace(/\d+$/,"")];if(!(d&&d.lugar==="br"))delete E[k];});}
       self.salva();self.pinta();});
     u.appendChild(lb);u.appendChild(sel);w.appendChild(u);
     var al=mk("div","ck-alerta");al.appendChild(mk("b",null,T("Na cabine não pode usar celular. ","No phones in the voting booth. ")));
     al.appendChild(document.createTextNode(T("Leve a cola impressa ou anotada em papel (Lei 9.504/97, art. 91-A). Mostrar a imagem para alguém antes de entrar pode.",
       "Bring the list printed or written on paper (Law 9,504/97, art. 91-A). Showing the image to someone before going in is fine.")));w.appendChild(al);
     if(!s.uf){w.appendChild(mk("p",null,T("Escolha o estado para começar.","Choose the state to start.")));}
+    /* 2º turno: onde não há, diz; sem resposta do TSE (nem lista manual nem cópia), avisa e mostra todos os candidatos */
+    self.incerto=vs.some(function(vg){return vg.incerto;});
+    if(self.incerto)w.appendChild(mk("p","ck-aviso",Calendario.consultando()?T("Conferindo no TSE quem está no "+f+"º turno…","Checking with the electoral court who is in round "+f+"…"):
+      T("Não consegui confirmar no TSE quem está no "+f+"º turno. Confira na urna.","Could not confirm with the electoral court who is in round "+f+". Check at the ballot box.")));
+    vs.forEach(function(vg){if(!vg.semTurno)return;var nm=vg.t.toLowerCase();
+      w.appendChild(mk("p","ck-nota",vg.lugar==="br"?T("Não há "+f+"º turno para "+nm+".","There is no round "+f+" for "+nm+"."):
+        T("Em "+UFN[s.uf]+" não há "+f+"º turno para "+nm+".","There is no round "+f+" for "+nm+" in "+UFN[s.uf]+".")));});
     var lista=mk("div","ck-lista");w.appendChild(lista);
-    vagas(s.uf).forEach(function(vg){
-      var c=self.escolhido(vg.k),sl=mk("div","ck-slot"+(c?"":" vazio"));
+    vs.forEach(function(vg){if(vg.semTurno)return;
+      var r=self.escolha(vg),c=r.c,sl=mk("div","ck-slot"+(c?"":" vazio"));sl.dataset.vaga=vg.k;
       if(c){sl.appendChild(self.avatar(c));var m=mk("div","ck-mid");m.appendChild(mk("div","ck-cg",vg.t));m.appendChild(mk("b",null,c[2]));m.appendChild(self.partido(c[3]));sl.appendChild(m);
         sl.appendChild(self.digitos(c[1],vg.d));
         var ac=mk("div","ck-acao");var tr=mk("button",null,"✎");tr.type="button";tr.setAttribute("aria-label",T("Trocar ","Change ")+vg.t);tr.addEventListener("click",function(){self.escolhe(vg);});
-        var rm=mk("button",null,"✕");rm.type="button";rm.setAttribute("aria-label",T("Tirar ","Remove ")+vg.t);rm.addEventListener("click",function(){delete s.esc[vg.k];self.salva();self.desenha(v);});
+        var rm=mk("button",null,"✕");rm.type="button";rm.setAttribute("aria-label",T("Tirar ","Remove ")+vg.t);rm.addEventListener("click",function(){self.esc()[vg.k]=null;self.salva();self.desenha(v);});
         ac.appendChild(tr);ac.appendChild(rm);sl.appendChild(ac);}
       else{var m2=mk("div","ck-mid");m2.appendChild(mk("div","ck-cg",vg.t+" · "+vg.d+T(" dígitos"," digits")));
+        if(r.fora)m2.appendChild(mk("p","ck-fora",T(r.fora[2]+" não está no "+f+"º turno. Escolha de novo.",r.fora[2]+" is not in round "+f+". Please choose again.")));
         var ad=mk("button","ck-add","+ "+T("Escolher","Choose"));ad.type="button";m2.appendChild(ad);sl.appendChild(m2);
         sl.appendChild(self.digitos("",vg.d));
         sl.setAttribute("role","button");sl.tabIndex=0;sl.setAttribute("aria-label",T("Escolher ","Choose ")+vg.t);
-        var abre=function(){if(!s.uf&&vg.cg!=="P"){sel.focus();return;}self.escolhe(vg);};
+        var abre=function(){if(!s.uf&&vg.lugar!=="br"){sel.focus();return;}self.escolhe(vg);};
         sl.addEventListener("click",abre);sl.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();abre();}});}
       lista.appendChild(sl);});
-    /* trazer da cola do Congresso (favoritos) */
+    /* trazer da cola do Congresso (favoritos): só no turno que tem senador ou deputado federal, que ela preenche na ordem */
     var cg=le("planos2026:congresso");var mini=mk("div","ck-mini");
-    if(cg&&cg.cola&&((cg.cola.S||[]).length||(cg.cola.F||[]).length)){var bi=mk("button",null,"⚖️ "+T("Trazer a cola do Congresso","Bring in the Congress memo"));bi.type="button";
-      bi.addEventListener("click",function(){var ps=[];(cg.cola.S||[]).forEach(function(r,i){var p=r.split("/");s.esc["S"+(i+1)]=[p[0],p[1]];ps.push(p[0]);});
-        (cg.cola.F||[]).slice(0,1).forEach(function(r){var p=r.split("/");s.esc.F=[p[0],p[1]];ps.push(p[0]);});if(!s.uf&&ps[0])s.uf=ps[0];self.salva();self.pinta();});mini.appendChild(bi);}
-    var lp=mk("button",null,"🧹 "+T("Começar de novo","Start over"));lp.type="button";lp.addEventListener("click",function(){EJ.confirma(T("Apagar a cola inteira?","Clear the whole memo?"),T("Apagar","Clear"),function(){s.esc={};self.salva();self.desenha(v);});});
+    var vS=vs.filter(function(x){return x.cg==="S"&&!x.semTurno;}),vF=vs.filter(function(x){return x.cg==="F"&&!x.semTurno;});
+    if(cg&&cg.cola&&((vS.length&&(cg.cola.S||[]).length)||(vF.length&&(cg.cola.F||[]).length))){var bi=mk("button",null,"⚖️ "+T("Trazer a cola do Congresso","Bring in the Congress memo"));bi.type="button";
+      bi.addEventListener("click",function(){var E=self.esc(),ps=[];(cg.cola.S||[]).slice(0,vS.length).forEach(function(r,i){var p=r.split("/");E[vS[i].k]=[p[0],p[1]];ps.push(p[0]);});
+        (cg.cola.F||[]).slice(0,vF.length).forEach(function(r,i){var p=r.split("/");E[vF[i].k]=[p[0],p[1]];ps.push(p[0]);});if(!s.uf&&ps[0])s.uf=ps[0];self.salva();self.pinta();});mini.appendChild(bi);}
+    /* apaga só a cola deste turno (a do turno anterior fica guardada) */
+    var lp=mk("button",null,"🧹 "+T("Começar de novo","Start over"));lp.type="button";lp.addEventListener("click",function(){EJ.confirma(T("Apagar a cola inteira?","Clear the whole memo?"),T("Apagar","Clear"),function(){var E=self.esc();vs.forEach(function(x){E[x.k]=null;});self.salva();self.desenha(v);});});
     mini.appendChild(lp);w.appendChild(mini);
     /* ações */
     var bar=mk("div","ck-bar");
@@ -47214,11 +47413,12 @@ var CK={st:null,dados:{},pts:null,
     var b3=mk("button",null,"🖨 "+T("Imprimir","Print"));b3.type="button";b3.addEventListener("click",function(){self.perguntaImpressao();});
     bar.appendChild(b1);bar.appendChild(b2);bar.appendChild(b3);w.appendChild(bar);
     w.appendChild(mk("p","ck-cont",T("Fonte: candidaturas registradas no TSE (dados abertos). Confira sempre o número na urna: ela mostra a foto e o nome antes de você confirmar.",
-      "Source: candidacies registered with the electoral court (open data). Always check the number at the ballot box: it shows the photo and name before you confirm.")));
+      "Source: candidacies registered with the electoral court (open data). Always check the number at the ballot box: it shows the photo and name before you confirm.")+
+      (f>=2?T(" Quem está no "+f+"º turno: resultados oficiais do TSE."," Who is in round "+f+": the electoral court's official results."):"")));
   },
 
   /* ---------- escolher um candidato (folha que sobe) ---------- */
-  escolhe:function(vg){var self=this,s=this.estado(),uf=vg.cg==="P"?"BR":s.uf;
+  escolhe:function(vg){var self=this,s=this.estado(),uf=vg.lugar==="br"?"BR":s.uf;
     var dl=$("ck-dlg");if(!dl){dl=mk("div","ck-dlg");dl.id="ck-dlg";dl.hidden=true;document.body.appendChild(dl);}
     dl.textContent="";var inn=mk("div","in");dl.appendChild(inn);
     var hd=mk("div","hd");var tt=mk("div","tt");tt.appendChild(mk("h2",null,T("Escolher: ","Choose: ")+vg.t));
@@ -47230,22 +47430,26 @@ var CK={st:null,dados:{},pts:null,
     EJ.abre(dl,{temTexto:false,focar:matchMedia("(pointer:fine)").matches?q:null});
     var filtroP="",mostra=60;
     this.pega(uf).then(function(d){
-      var L=d.c.filter(function(c){return c[0]===vg.cg;});
+      var L=d.c.filter(function(c){return c[0]===vg.cg;}),incerto=!!vg.incerto;
+      /* 2º turno: só os finalistas do TSE (se nenhum bater com a lista daqui, mostra todos, com o aviso) */
+      if(vg.fin){var F=L.filter(function(c){return vg.fin.indexOf(c[4])>=0;});if(F.length)L=F;else incerto=true;}
+      if(incerto)inn.insertBefore(mk("p","ck-aviso",T("Não consegui confirmar no TSE quem está no "+Calendario.fase()+"º turno: aparecem todos. Confira na urna.",
+        "Could not confirm with the electoral court who is in round "+Calendario.fase()+": everyone is listed. Check at the ballot box.")),res);
       var cont={};L.forEach(function(c){cont[c[3]]=(cont[c[3]]||0)+1;});
       var todos=mk("button",null,T("Todos","All")+" ("+L.length+")");todos.type="button";todos.setAttribute("aria-pressed","true");chips.appendChild(todos);
       Object.keys(cont).sort().forEach(function(p){var b=mk("button",null,((self.pts||{})[p]?self.pts[p]+" · ":"")+p+" ("+cont[p]+")");b.type="button";b.dataset.p=p;b.setAttribute("aria-pressed","false");chips.appendChild(b);});
       chips.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;filtroP=b.dataset.p||"";
         [].forEach.call(chips.children,function(x){x.setAttribute("aria-pressed",String(x===b));});mostra=60;lista();});
-      /* a outra vaga de senador não aparece de novo */
-      var outra=vg.k==="S1"?s.esc.S2:vg.k==="S2"?s.esc.S1:null;
+      /* quem já está na outra vaga do mesmo cargo (o outro voto de senador) não aparece de novo */
+      var outras=vagas(s.uf).filter(function(x){return x.cg===vg.cg&&x.k!==vg.k;}).map(function(x){return self.escolha(x).c;}).filter(Boolean).map(function(c){return c[4];});
       function lista(){var t=semAcento(q.value.trim()),dig=/^\d+$/.test(t);
-        var R=L.filter(function(c){if(outra&&c[4]===outra[1])return false;if(filtroP&&c[3]!==filtroP)return false;if(!t)return true;
+        var R=L.filter(function(c){if(outras.indexOf(c[4])>=0)return false;if(filtroP&&c[3]!==filtroP)return false;if(!t)return true;
           return dig?c[1].indexOf(t)===0:(semAcento(c[2]).indexOf(t)>=0||semAcento(c[3])===t);});
         res.textContent="";ct.textContent=R.length+" "+T("candidatura(s)","candidacy(ies)")+(uf!=="BR"?" · "+UFN[uf]:"");
         if(!R.length){res.appendChild(mk("p","ck-cont",T("Ninguém com esse nome, número ou partido. Tente só uma parte do nome.","Nobody with that name, number or party. Try just part of the name.")));return;}
         R.slice(0,mostra).forEach(function(c){var it=mk("button","ck-it");it.type="button";it.appendChild(self.avatar(c,true));
           var nm=mk("span","nm");nm.appendChild(mk("b",null,c[2]));nm.appendChild(self.partido(c[3]));it.appendChild(nm);it.appendChild(mk("span","nb",c[1]));
-          it.addEventListener("click",function(){s.esc[vg.k]=[uf,c[4]];self.salva();EJ.fecha(dl);self.desenha($("v-colinha"));});res.appendChild(it);});
+          it.addEventListener("click",function(){self.esc()[vg.k]=[uf,c[4]];self.salva();EJ.fecha(dl);self.desenha($("v-colinha"));});res.appendChild(it);});
         if(R.length>mostra){var mb=mk("button","ck-mais",T("Mostrar mais ","Show more ")+"("+(R.length-mostra)+")");mb.type="button";mb.addEventListener("click",function(){mostra+=80;lista();});res.appendChild(mb);}}
       q.addEventListener("input",function(){mostra=60;lista();});lista();
     },function(){res.appendChild(mk("p","ck-cont",T("Não consegui carregar a lista agora. Confira a internet e tente de novo.","Could not load the list now. Check the connection and try again.")));});
@@ -47268,7 +47472,7 @@ var CK={st:null,dados:{},pts:null,
     box.textContent="";
     for(var q=0;q<n;q++){var d=mk("div","q");
       var h=mk("div","h","🗳️ "+T("Minha colinha","My cheat sheet"));
-      h.appendChild(mk("small",null,T("Eleição 2026 · 1º turno · 4/Out","2026 election · 1st round · Oct 4")+(s.uf?" · "+UFN[s.uf]:"")+" · "+T("na ordem da urna","in ballot order")));d.appendChild(h);
+      h.appendChild(mk("small",null,cabeca()+(s.uf?" · "+UFN[s.uf]:"")+" · "+T("na ordem da urna","in ballot order")));d.appendChild(h);
       L.forEach(function(l){var r=mk("div","r"),f=mk("span","f");
         if(l.c){var im=mk("img");im.alt="";im.src=foto(l.c);im.addEventListener("error",function(){im.remove();f.textContent=l.c[2].split(/\s+/).map(function(w){return w[0];}).slice(0,2).join("");});f.appendChild(im);}
         r.appendChild(f);var m=mk("span","m");m.appendChild(mk("span","cg",l.vg.t));
@@ -47284,8 +47488,8 @@ var CK={st:null,dados:{},pts:null,
     return Promise.race([Promise.all(ims.map(function(i){return i.complete?0:new Promise(function(ok){i.onload=i.onerror=ok;});})),new Promise(function(ok){setTimeout(ok,2500);})]);},
 
   /* ---------- texto e imagem ---------- */
-  linhas:function(){var self=this,s=this.estado();return vagas(s.uf).map(function(vg){return {vg:vg,c:self.escolhido(vg.k)};});},
-  texto:function(){var s=this.estado(),t="🗳️ "+T("Minha colinha","My cheat sheet")+" · "+T("Eleição 2026","2026 election")+(s.uf?" · "+UFN[s.uf]:"")+"\n\n";
+  linhas:function(){var self=this,s=this.estado();return vagas(s.uf).filter(function(vg){return !vg.semTurno;}).map(function(vg){return {vg:vg,c:self.escolha(vg).c};});},
+  texto:function(){var s=this.estado(),t="🗳️ "+T("Minha colinha","My cheat sheet")+" · "+cabeca()+(s.uf?" · "+UFN[s.uf]:"")+"\n\n";
     this.linhas().forEach(function(l){t+=l.vg.t+": "+(l.c?l.c[1]+" — "+l.c[2]+" ("+l.c[3]+")":"—")+"\n";});
     t+="\n"+T("Na cabine não pode celular: leve no papel.","No phones in the booth: bring it on paper.")+"\n\n"+T("Monte a sua também:","Build yours too:")+" "+SITE+"#colinha";
     window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank","noopener");},
@@ -47300,7 +47504,7 @@ var CK={st:null,dados:{},pts:null,
       g.fillStyle="#F3F6F5";g.fillRect(0,0,W,H);
       var gr=g.createLinearGradient(0,0,W,260);gr.addColorStop(0,"#0C5E57");gr.addColorStop(1,"#1FA855");g.fillStyle=gr;g.fillRect(0,0,W,280);
       g.fillStyle="#fff";g.font="700 64px "+FF;g.fillText("🗳️ "+T("Minha colinha","My cheat sheet"),60,120);
-      g.font="500 34px "+FF;g.fillText(T("Eleição 2026 · 1º turno · 4/Out","2026 election · 1st round · Oct 4")+(s.uf?" · "+UFN[s.uf]:""),60,180);
+      g.font="500 34px "+FF;g.fillText(cabeca()+(s.uf?" · "+UFN[s.uf]:""),60,180);
       g.font="400 26px "+FF;g.globalAlpha=.9;g.fillText(T("Na ordem da urna","In ballot order"),60,228);g.globalAlpha=1;
       L.forEach(function(l,i){var y=310+i*LH;g.fillStyle="#fff";rr(40,y,W-80,LH-20,28);g.fill();g.strokeStyle="#DAE3E1";g.lineWidth=2;g.stroke();
         g.fillStyle="#647674";g.font="600 24px "+FM;g.fillText(l.vg.t.toUpperCase(),80,y+46);
@@ -47324,13 +47528,13 @@ var CK={st:null,dados:{},pts:null,
       return new Promise(function(ok){cv.toBlob(function(b){ok(b);},"image/png");});});},
   compartilha:function(bt){var self=this,txt=bt.textContent;bt.disabled=true;bt.textContent=T("Montando a imagem…","Building the image…");
     this.desenhaImagem().then(function(blob){bt.disabled=false;bt.textContent=txt;if(!blob)return;
-      var arq=new File([blob],"colinha-eleicao-2026.png",{type:"image/png"});
+      var nome="colinha-eleicao-"+Calendario.ano()+".png",arq=new File([blob],nome,{type:"image/png"});
       /* celular: abre a janela de compartilhar do aparelho (WhatsApp aparece ali); senão, baixa a imagem */
       if(navigator.canShare&&navigator.canShare({files:[arq]})){
-        navigator.share({files:[arq],title:T("Minha colinha","My cheat sheet"),text:T("Minha colinha da eleição 2026. Monte a sua também:","My 2026 election cheat sheet. Build yours too:")+" "+SITE+"#colinha"}).catch(function(){});}
-      else{var a=mk("a");a.href=URL.createObjectURL(blob);a.download="colinha-eleicao-2026.png";document.body.appendChild(a);a.click();
+        navigator.share({files:[arq],title:T("Minha colinha","My cheat sheet"),text:T("Minha colinha da eleição "+Calendario.ano()+". Monte a sua também:","My "+Calendario.ano()+" election cheat sheet. Build yours too:")+" "+SITE+"#colinha"}).catch(function(){});}
+      else{var a=mk("a");a.href=URL.createObjectURL(blob);a.download=nome;document.body.appendChild(a);a.click();
         setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);
-        EJ.aviso(T("A imagem foi baixada. No WhatsApp, anexe a imagem \"colinha-eleicao-2026.png\".","The image was downloaded. In WhatsApp, attach \"colinha-eleicao-2026.png\"."));}
+        EJ.aviso(T("A imagem foi baixada. No WhatsApp, anexe a imagem \""+nome+"\".","The image was downloaded. In WhatsApp, attach \""+nome+"\"."));}
     },function(){bt.disabled=false;bt.textContent=txt;});}
 };
 
@@ -47355,7 +47559,8 @@ function novidade(){
 
 function aplica(){var ck=(location.hash||"").split("/")[0]==="#colinha";if(ck&&colinhaOff()){location.replace("#hub");return;}document.documentElement.toggleAttribute("data-ck",ck);if(ck)CK.pinta();}
 function inicia(){aplica();addEventListener("hashchange",aplica);addEventListener("beforeprint",function(){if(document.documentElement.hasAttribute("data-ck"))CK.impressao();});setTimeout(novidade,1800);
-  if(window.SolverRecursos)SolverRecursos.aoMudar(function(){try{aplica();}catch(e){}});}
+  /* chegou arquivo do RootifyONE (interruptor ou calendário) ou a fase mudou pela data: volta ao início ou redesenha */
+  Calendario.aoMudar(aplica);}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",inicia);else inicia();
 window.Colinha=CK;
 })();
