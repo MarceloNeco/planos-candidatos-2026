@@ -1,5 +1,5 @@
 /* =====================================================================
-   COFRE COMUM DE CHAVES  —  cofre.js  (SolverCofre 1.4.0, 17/Out/2026)
+   COFRE COMUM DE CHAVES  —  cofre.js  (SolverCofre 1.5.0, 18/Out/2026)
    ---------------------------------------------------------------------
    POR QUE ESTE ARQUIVO EXISTE
    Todos os apps da SolverONE moram no MESMO endereço (solverone.com.br/<app>/).
@@ -8,6 +8,16 @@
    backup ou extensão curiosa lia tudo. Agora existe UM cofre só, igual em todos
    os apps: as chaves ficam embaralhadas aqui no aparelho e só abrem com o PIN.
 
+   1.5.0 (18/Out/2026, pedido do dono): a digital NUNCA dispara sozinha. Com a digital ligada, ao abrir o app protegido
+   e sempre que o cofre for pedido, a janela aparece primeiro, com "👆 Abrir com a digital" (o leitor do aparelho só
+   abre depois desse toque), "Digitar o PIN" (o campo aparece só aí, então o teclado não abre sozinho) e "Agora não"
+   (deixa navegar; o PIN volta quando uma chave for usada ou quando o cofre trancar de novo). Sem a digital ligada, a
+   janela abre direto no formulário do PIN, como na 1.4 (campo focado, "Abrir", "Agora não", "Esqueci o PIN"). Por quê: no
+   Android a caixa da digital só fecha pelo botão Voltar, e no iPhone o WebAuthn exige um toque da pessoa, então a
+   tentativa automática nem abre. Novo: SolverCofre.protegido() diz se as regras do PIN estão ligadas nesta página.
+   1.4.1 (17/Out/2026, pedido do dono): painelDigital desenha NA HORA da chamada, mesmo com o bloco ainda fora da
+   página (ex.: a tela das chaves do módulo esperando a vez de outra janela), e também quando a resposta "tem
+   digital?" chega logo depois com o bloco ainda fora. A regra "fora da página → esquece" vale só nas repinturas.
    1.4.0 (17/Out/2026, pedido do dono): (1) a janela do PIN passa pela janela comum (janela.js, SolverJanela):
    a página de trás não rola nem recebe toque, e tocar fora, Esc ou Voltar valem "Agora não" (o PIN digitado pela
    metade não pergunta "Descartar?"). Sem o janela.js na página, o cofre avisa no console e abre do jeito antigo.
@@ -73,7 +83,7 @@
   'use strict';
   if (raiz.SolverCofre && raiz.SolverCofre.__carregado) return;
 
-  var VERSAO = '1.4.0';
+  var VERSAO = '1.5.0';
   var NOME = 'dgo:global:cofre';                 /* localStorage: o cofre (embaralhado) */
   var NOME_ERROS = 'dgo:global:cofre:erros';     /* localStorage: PIN errado { n, ate } */
   var NOME_OFERTA = 'dgo:global:cofre:digital-recusada';  /* localStorage: '1' = a pessoa disse "Agora não" à pergunta da digital */
@@ -121,7 +131,7 @@
     apagado: ['Cofre apagado. Crie um PIN novo e cole as chaves de novo.', 'Vault deleted. Create a new PIN and paste the keys again.'],
     mostrar: ['Mostrar o PIN', 'Show the PIN'],
     digitalBotao: ['👆 Abrir com a digital', '👆 Open with fingerprint'],
-    ouPin: ['ou digite o PIN', 'or type the PIN'],
+    digitarPin: ['Digitar o PIN', 'Type the PIN'],
     ofertaTitulo: ['Quer abrir com a digital da próxima vez?', 'Want to open with your fingerprint next time?'],
     ofertaTexto: ['Sem digitar o PIN. O PIN continua valendo como reserva.', 'No need to type the PIN. The PIN still works as the backup.'],
     ofertaSim: ['👆 Sim, usar a digital', '👆 Yes, use my fingerprint'],
@@ -436,8 +446,6 @@
       '.sc-b2{background:transparent;color:var(--sc-t);border-color:var(--sc-l)}',
       '.sc-b[disabled]{opacity:.5;cursor:not-allowed}',
       '.sc-grande{min-height:56px;font-size:18px;width:100%;margin-top:.6rem}',
-      '.sc-ou{text-align:center;margin:.8rem 0 .2rem}',
-      '.sc-pin-menor{font-size:.92rem}.sc-pin-menor label.sc-campo{margin-top:.2rem;font-weight:500}',
       '.sc-painel p{margin:.3rem 0}.sc-painel .sc-mini{font-size:.9rem;opacity:.85}.sc-painel .sc-botoes{margin-top:.6rem}',
       '.sc-painel .sc-b{flex:0 1 auto;min-height:44px;padding:8px 16px;border-radius:10px;border:1px solid #047857;background:#047857;color:#fff;font:600 16px system-ui,sans-serif;cursor:pointer}',
       '.sc-painel .sc-b2{background:transparent;color:inherit;border-color:currentColor}',
@@ -535,7 +543,8 @@
         if ((opcoes && opcoes.semOferta) || ofertaRecusada() || API.digitalAtiva()) { fim(true); return; }
         API.digitalDisponivel().then(function (disp) { if (disp) pintar('oferta'); else fim(true); }, function () { fim(true); });
       }
-      function pintar(modo, aviso, semAuto) {
+      /* modo: 'criar' | 'oferta' | 'abrir' (comPin = a pessoa tocou em "Digitar o PIN") | 'esqueci' */
+      function pintar(modo, aviso, comPin) {
         if (terminou) return;
         modoAtual = modo;
         caixa.innerHTML = '';
@@ -579,37 +588,40 @@
           caixa.appendChild(el('div', { class: 'sc-botoes' }, [
             el('button', { type: 'button', class: 'sc-b sc-b2', 'data-sc': 'oferta-nao', texto: t('agoraNao'), onclick: function () { recusarOferta(); fim(true); } })]));
           bSim.focus();
-        } else if (modo === 'abrir') {
+        } else if (modo === 'abrir' && !comPin && API.digitalAtiva()) {
+          /* 1.5.0: com a digital ligada, a janela vem primeiro e NADA dispara sozinho: o botão grande vem focado e o leitor
+             do aparelho só abre depois do toque (no Android a caixa da digital só fecha pelo Voltar; no iPhone ela exige
+             um toque). O campo do PIN só aparece em "Digitar o PIN": o teclado do celular não abre sozinho.
+             Sem a digital ligada, cai no formulário do PIN logo abaixo, como na 1.4. */
           caixa.appendChild(el('h2', { id: 'sc-tit', texto: t('tituloAbrir') }));
           if (motivo) caixa.appendChild(el('p', { texto: motivo }));
-          var temDigital = API.digitalAtiva();
-          var botDigital = null;
-          if (!temDigital) caixa.appendChild(el('p', { class: 'sc-mini', texto: t('explicaAbrir') }));
           if (aviso) caixa.appendChild(el('p', { class: 'sc-erro', role: 'alert', texto: aviso }));
-          /* digital ligada: o botão grande vem primeiro e já tenta a digital; se o navegador não deixar sem toque,
-             o botão fica focado e um toque basta. O PIN fica embaixo, menor, e o teclado nunca abre sozinho. */
-          if (temDigital) {
-            var tentarDigital = function (auto) {
-              botDigital.disabled = true; botDigital.textContent = t('abrindo');
+          var botDigital = el('button', { type: 'button', class: 'sc-b sc-grande', 'data-sc': 'digital', texto: t('digitalBotao'),
+            onclick: function () {
+              erro.textContent = ''; botDigital.disabled = true; botDigital.textContent = t('abrindo');
               API.abrirComDigital().then(function () { fim(true); }, function (e) {
                 if (e && (e.message === 'digital-perdida' || e.message === 'digital-outro-endereco')) { pintar('abrir', t('digitalPerdida'), true); return; }
                 if (terminou) return;
                 botDigital.disabled = false; botDigital.textContent = t('digitalBotao'); botDigital.focus();
-                if (!auto) erro.textContent = t('digitalFalhou');
+                erro.textContent = t('digitalFalhou');
               });
-            };
-            botDigital = el('button', { type: 'button', class: 'sc-b sc-grande', 'data-sc': 'digital', texto: t('digitalBotao'),
-              onclick: function () { erro.textContent = ''; tentarDigital(false); } });
-            caixa.appendChild(botDigital);
-            caixa.appendChild(erro);
-            caixa.appendChild(el('p', { class: 'sc-mini sc-ou', texto: t('ouPin') }));
-          }
+            } });
+          caixa.appendChild(botDigital);
+          caixa.appendChild(erro);
+          caixa.appendChild(el('div', { class: 'sc-botoes' }, [
+            el('button', { type: 'button', class: 'sc-b sc-b2', 'data-sc': 'pin', texto: t('digitarPin'), onclick: function () { pintar('abrir', '', true); } }),
+            el('button', { type: 'button', class: 'sc-b sc-b2', 'data-sc': 'agora-nao', texto: t('agoraNao'), onclick: function () { fim(false); } })]));
+          botDigital.focus();
+        } else if (modo === 'abrir') {   /* sem a digital ligada, ou a pessoa escolheu "Digitar o PIN" */
+          caixa.appendChild(el('h2', { id: 'sc-tit', texto: t('tituloAbrir') }));
+          if (motivo) caixa.appendChild(el('p', { texto: motivo }));
+          caixa.appendChild(el('p', { class: 'sc-mini', texto: t('explicaAbrir') }));
+          if (aviso) caixa.appendChild(el('p', { class: 'sc-erro', role: 'alert', texto: aviso }));
           var cp = campoPin(t('pin'));
-          var form2 = el('form', { novalidate: true, autocomplete: 'off', class: temDigital ? 'sc-pin-menor' : '' }, [cp,
-            temDigital ? null : erro,
+          var form2 = el('form', { novalidate: true, autocomplete: 'off' }, [cp, erro,
             el('div', { class: 'sc-botoes' }, [
-              el('button', { type: 'submit', class: temDigital ? 'sc-b sc-b2' : 'sc-b', texto: t('abrir') }),
-              el('button', { type: 'button', class: 'sc-b sc-b2', texto: t('agoraNao'), onclick: function () { fim(false); } })
+              el('button', { type: 'submit', class: 'sc-b', texto: t('abrir') }),
+              el('button', { type: 'button', class: 'sc-b sc-b2', 'data-sc': 'agora-nao', texto: t('agoraNao'), onclick: function () { fim(false); } })
             ]),
             el('button', { type: 'button', class: 'sc-link', texto: t('esqueci'), onclick: function () { pintar('esqueci'); } })
           ]);
@@ -627,8 +639,7 @@
             });
           });
           caixa.appendChild(form2);
-          if (botDigital) { botDigital.focus(); if (!semAuto) tentarDigital(true); }   /* foco no botão: o teclado do celular não abre sozinho */
-          else cp._input.focus();
+          cp._input.focus();   /* sem digital (como na 1.4) ou a pessoa pediu para digitar: aqui o teclado pode abrir */
         } else {   /* esqueci */
           caixa.appendChild(el('h2', { id: 'sc-tit', texto: t('tituloEsqueci') }));
           caixa.appendChild(el('p', { texto: t('esqueciTexto') }));
@@ -661,9 +672,12 @@
   /* painel da digital (função pública painelDigital): cada elemento indicado pelo app fica na lista e se repinta sozinho
      quando a digital liga/desliga ou o cofre é apagado */
   var _paineis = [];
-  function desenharPainel(item) {
+  /* primeira = a chamada do app (painelDigital): desenha mesmo com o bloco ainda fora da página — a janela comum só põe
+     o conteúdo na página quando chega a vez dela. Nas repinturas (digital ligou/desligou, cofre apagado), bloco que
+     saiu da página é esquecido. */
+  function desenharPainel(item, primeira) {
     var box = item.el;
-    if (!box.isConnected) { _paineis = _paineis.filter(function (x) { return x !== item; }); return; }
+    if (!primeira && !box.isConnected) { _paineis = _paineis.filter(function (x) { return x !== item; }); return; }
     box.textContent = '';
     box.className = (box.className.replace(/\bsc-painel\b/g, '') + ' sc-painel').trim();
     var ativa = API.digitalAtiva();
@@ -785,6 +799,8 @@
     versao: VERSAO,
 
     existe: function () { return !!lerRegistro(); },
+    /* 1.5.0: as regras do PIN (proteger) estão ligadas nesta página? */
+    protegido: function () { return !!_prot; },
     aberto: function () { return E.aberto; },
     /* digital (WebAuthn). Disponível = o aparelho tem digital/rosto/tela cadastrada e a página é segura */
     digitalDisponivel: function () {
@@ -855,8 +871,11 @@
       var item = _paineis.filter(function (x) { return x.el === elemento; })[0];
       if (!item) { item = { el: elemento, msg: '' }; _paineis.push(item); }
       elemento.setAttribute('data-dgo-ignorar', '');
-      desenharPainel(item);
-      if (_disp === null) API.digitalDisponivel().then(function () { desenharPainel(item); });
+      desenharPainel(item, true);
+      /* a resposta "tem digital?" pode chegar com o bloco ainda fora da página (tela esperando a vez): esta repintura
+         ainda é parte da primeira chamada, então também desenha fora da página. As repinturas de verdade (ligou,
+         desligou, cofre apagado) continuam esquecendo bloco fora da página. */
+      if (_disp === null) API.digitalDisponivel().then(function () { desenharPainel(item, true); });
       return true;
     },
 

@@ -13,8 +13,8 @@ Site estático, sem build, sem framework. **Um arquivo por idioma**: `index.html
 | `*.pdf` | os oito planos de governo registrados, sem alteração | nunca |
 | `banner.jpg`, `trilha.mp3` | capa e trilha sonora (a trilha é opcional: sem o arquivo o botão some) | — |
 | `recursos.js` | interruptores do RootifyONE (cópia avulsa do master do `rootify-one`; carregado no `<head>` das duas páginas com `data-app="eleicoes-2026"`): lê `solverone-dados/recursos/global.json` e `eleicoes-2026.json` | **nunca à mão**: trocar pela cópia nova do master |
-| `janela.js` | janela comum da SolverONE (`SolverJanela` 1.0.1), carregada no `<head>` das duas páginas **antes** do `cofre.js`. Toda janela do site passa por ela (ver "Janelas" abaixo) | **nunca à mão**: cópia exata do master do `rootify-one` |
-| `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.4.0), carregado no `<head>` das duas páginas **depois** do `janela.js` e antes do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
+| `janela.js` | janela comum da SolverONE (`SolverJanela` 1.0.2), carregada no `<head>` das duas páginas **antes** do `cofre.js`. Toda janela do site passa por ela (ver "Janelas" abaixo) | **nunca à mão**: cópia exata do master do `rootify-one` |
+| `cofre.js` | cofre comum de chaves da SolverONE (`SolverCofre` 1.5.0), carregado no `<head>` das duas páginas **depois** do `janela.js` e antes do código do app. Guarda as chaves de voz (Gemini, OpenAI, ElevenLabs) embaralhadas, com PIN | **nunca à mão**: cópia exata do master do `rootify-one` |
 | `teste/` | testes automáticos (Chromium/Playwright, só valores de mentira): `node teste/rodar.js` | sim |
 | `recursos-do-app.json` | diz ao RootifyONE o que este app obedece: recursos `assistone` e `colinha`; comportamentos `assistone.dicas`, `cofre.proteger` (padrão `false`) e `eleicao.calendario` (com o padrão de fábrica do calendário, que o teste confere igual ao do código) | sim — ao ligar um interruptor novo no código |
 | `TESTE-VOZ-planos-candidatos-2026.html` | página avulsa para descobrir que vozes o navegador entrega | — |
@@ -119,6 +119,11 @@ celular) mais toque na parte escura (só se começa e termina nela); com texto d
   toque fora) deixa trancado e a voz do aparelho segue funcionando. `SolverCofre.painelDigital` desenha a digital no elemento
   `#tts-cofre-digital` (Configurações → Leitura em voz alta → "Cofre de chaves"; só aparece com o cofre criado; o app não desenha a
   digital por conta própria; o cofre só desenha num elemento já na página: `ligaDigital`).
+- **2.5.3 (18/Out/2026): arquivos mestre novos, cópias exatas do rootify-one (`main`).** `cofre.js` 1.5.0 (sha256 começa com
+  `10b9e99a6a2645d8`): a digital nunca dispara sozinha; com digital ligada a janela mostra "👆 Abrir com a digital", "Digitar o PIN"
+  e "Agora não" e o leitor só abre no toque; sem digital, abre direto no PIN. `janela.js` 1.0.2 (`7f38e4d94b24c4e7`): a trava de
+  rolagem fica só no `<html>` e o cabeçalho fixo não pula quando uma janela abre. No `recursos-do-app.json`, `cofre.proteger` ganhou
+  `"tipo": "sim-nao"` e 🔐 no nome (padrão continua `false`). Nenhuma lógica do site mudou.
 - **2.5.2 (18/Out/2026): barra da Colinha numa linha só.** `.ck-bar` (sticky) não quebra linha, em nenhuma largura, nem com `html.ao-on`
   (margem de 72 px à direita). Botões `flex:1 1 0; min-width:0`, 44 px de altura, barra de até 60 px. Até 480 px, Texto e Imprimir
   (`.ck-ic`) escondem o `.ck-t` e ficam 44×44, com `aria-label` e `title` com o nome completo. Teste: `teste/colinha-barra.js`.

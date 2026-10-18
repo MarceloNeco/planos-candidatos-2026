@@ -15,7 +15,8 @@
     "assistone.dicas",
     {
       "id": "cofre.proteger",
-      "nome": { "pt": "Pedir o PIN do cofre ao abrir", "en": "Ask for the vault PIN on opening" },
+      "tipo": "sim-nao",
+      "nome": { "pt": "🔐 Pedir o PIN do cofre ao abrir", "en": "🔐 Ask for the vault PIN on opening" },
       "onde": { "pt": "Ao abrir e recarregar o site, quando o cofre tem alguma chave (mesmo de outro app). Desligado (padrão): o site abre sem PIN, e o PIN só aparece ao tocar ▶ com uma voz da internet; \"Agora não\" segue com a voz do aparelho. Vale da próxima abertura do site.", "en": "When opening and reloading the site, if the vault holds any key (even another app's). Off (default): the site opens without a PIN, which only shows up when tapping ▶ with an online voice; \"Not now\" continues with the device voice. Applies from the next time the site opens." },
       "padrao": false
     },

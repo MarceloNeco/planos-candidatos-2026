@@ -1,4 +1,4 @@
-/* Teste das JANELAS (janela.js 1.0.1 / SolverJanela) do Eleições 2026, nas DUAS páginas e em 390 px e no computador.
+/* Teste das JANELAS (janela.js 1.0.2 / SolverJanela) do Eleições 2026, nas DUAS páginas e em 390 px e no computador.
    Só valores de mentira. Para cada janela:
      - abre pela janela comum (um <dialog class="sj"> aberto) e a página de trás fica travada: html sem rolagem,
        a roda do mouse não rola a página, o toque em algo de trás cai na janela (não no botão de trás)

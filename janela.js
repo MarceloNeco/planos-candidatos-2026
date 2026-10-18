@@ -1,5 +1,5 @@
 /* =====================================================================
-   JANELA COMUM  —  janela.js  (SolverJanela 1.0.1, 17/Out/2026)
+   JANELA COMUM  —  janela.js  (SolverJanela 1.0.2, 17/Out/2026)
    ---------------------------------------------------------------------
    POR QUE ESTE ARQUIVO EXISTE
    No celular, com uma janela aberta (o PIN do cofre, um aviso, uma confirmação), arrastar o dedo fora
@@ -34,6 +34,7 @@
 
    1.0.1 (17/Out/2026, pedido do dono): tocar fora só fecha se o toque COMEÇOU e TERMINOU na parte escura
    (antes, arrastar de dentro da caixa e soltar fora contava como "cancelar"); SolverJanela.quandoQuieto(fn).
+   1.0.2 (17/Out/2026, pedido do dono): a trava da rolagem vale só no <html> (antes também no <body>; ver estilo()).
 
    USO
        var j = SolverJanela.abrir({
@@ -59,7 +60,7 @@
   'use strict';
   if (raiz.SolverJanela && raiz.SolverJanela.__carregado) return;
 
-  var VERSAO = '1.0.1';
+  var VERSAO = '1.0.2';
   var d = raiz.document;
 
   var TX = {
@@ -91,8 +92,11 @@
       ':where(dialog.sj)::backdrop{background:transparent}',
       ':where(dialog.sj *){overscroll-behavior:contain}',
       ':where(dialog.sj:focus){outline:none}',
-      /* a trava da rolagem da página de trás: vale enquanto houver uma janela aberta */
-      'html:has(dialog.sj[open]),html:has(dialog.sj[open]) body{overflow:hidden}',
+      /* a trava da rolagem da página de trás: vale enquanto houver uma janela aberta. SÓ no <html> (1.0.2): com
+         overflow:hidden também no <body>, o navegador faz do body uma área de rolagem própria e todo cabeçalho
+         position:sticky "pula" para o topo do documento enquanto a janela está aberta (página rolada 300 px →
+         cabeçalho em −300 px). Nenhum app SolverONE usa o body como área de rolagem. Teste: teste/janela-sticky.js */
+      'html:has(dialog.sj[open]){overflow:hidden}',
       /* a pergunta "Descartar?" (não depende de nenhum outro arquivo) */
       ':where(dialog.sj-pergunta){display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(2,6,23,.55);',
       '--sj-f:#fff;--sj-t:#0f172a;--sj-t2:#475569;--sj-l:#cbd5e1;--sj-c:#b91c1c;--sj-ct:#fff}',

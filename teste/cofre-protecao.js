@@ -1,4 +1,4 @@
-/* Teste das regras do PIN do cofre (cofre.js 1.4.0, SolverCofre.proteger) e do painel da digital, nas DUAS páginas.
+/* Teste das regras do PIN do cofre (cofre.js 1.5.0, SolverCofre.proteger) e do painel da digital, nas DUAS páginas.
    Desde a 2.5.1 essas regras só valem com o comportamento "cofre.proteger" ligado no RootifyONE (aqui, simulado);
    sem ele, ver teste/cofre-entrada.js. Só valores de mentira (PIN e chave de teste).
      - com chave guardada: o PIN é pedido ao ABRIR a página e ao RECARREGAR; "Agora não" (Esc) deixa trancado
