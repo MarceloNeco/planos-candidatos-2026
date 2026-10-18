@@ -1,4 +1,4 @@
-/* Teste das chaves de voz no cofre (cofre.js 1.4.0, com SolverCofre.proteger), nas DUAS páginas (index.html e index-en.html).
+/* Teste das chaves de voz no cofre (cofre.js 1.5.0, com SolverCofre.proteger), nas DUAS páginas (index.html e index-en.html).
    Chaves de mentira em planos2026:voz e em ch_config (as que o Contador deixava aqui) e provedores simulados.
      - ao criar o PIN as chaves vão para o cofre e SAEM dos dois lugares (o resto de cada um fica)
      - ▶ com Gemini usa a chave que veio do cofre
@@ -31,7 +31,7 @@ const tudoEmAberto = (p) => p.evaluate(() => { let t = ''; for (let i = 0; i < l
     const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
     await p.goto(BASE + '/' + arq);
     await p.evaluate(() => SolverCofre.pronto);
-    conferir(await p.evaluate(() => SolverCofre.versao) === '1.4.0', arq + ': cofre.js 1.4.0 carregado antes do app');
+    conferir(await p.evaluate(() => SolverCofre.versao) === '1.5.0', arq + ': cofre.js 1.5.0 carregado antes do app');
     conferir(!(await p.evaluate(() => SolverCofre.existe())) && !(await p.evaluate(() => SolverCofre.aberto())), arq + ': ao abrir a página o cofre ainda não existe');
 
     /* há chaves em texto aberto: com proteger, a janela de criar o PIN já abre sozinha ao carregar a página */

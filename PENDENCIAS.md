@@ -1,6 +1,9 @@
 # Pendências — Eleições 2026
 
 ## Feito
+- **v2.5.3 (18/Out/2026) — janela do cofre sem digital automática**: `cofre.js` 1.5.0 e `janela.js` 1.0.2 (cópias exatas do master,
+  conferidas por sha256); `cofre.proteger` com `"tipo": "sim-nao"` e 🔐 no nome. Testes: números de versão ajustados em
+  `voz-cofre.js`, `cofre-protecao.js` e `janelas.js`. Ver "2.5.3" no `ARQUITETURA.md`.
 - **v2.5.2 (18/Out/2026) — barra da Colinha em uma linha**: `.ck-bar` sem quebra (`flex-wrap:nowrap`), botões `flex:1 1 0`, 44 px de
   altura, barra com no máximo 60 px; rótulos "📤 Compartilhar", "💬 Texto", "🖨 Imprimir"; até 480 px, Texto e Imprimir só com o ícone
   (44×44, `aria-label` e `title` com o nome completo). Só CSS e rótulos. Teste novo: `colinha-barra.js`.
