@@ -73,10 +73,18 @@ async function passaPin(page, pin, espera) {
   return true;
 }
 
+/* liga o comportamento "cofre.proteger" do RootifyONE (2.5.1): o arquivo simulado e a cópia que o aparelho já guardou dele
+   (o app lê a cópia guardada ao abrir), para os testes das regras do PIN ao abrir */
+async function comProtecao(ctx, base) {
+  const arq = { recursos: {}, comportamentos: { 'cofre.proteger': true } };
+  await ctx.route(base + '/solverone-dados/recursos/eleicoes-2026.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(arq) }));
+  await ctx.addInitScript(a => { try { localStorage.setItem('dgo:eleicoes-2026:central:recursos/eleicoes-2026.json', JSON.stringify(a)); } catch (e) {} }, arq);
+}
+
 const PAGINAS = [['index.html', 'pt'], ['index-en.html', 'en']];
 
 function relatorio() {
   const falhas = [];
   return { falhas, conferir(ok, msg) { if (!ok) { falhas.push(msg); process.stdout.write('  ✗ ' + msg + '\n'); } else process.stdout.write('  ✓ ' + msg + '\n'); } };
 }
-module.exports = { chromium, servir, novoContexto, semear, passaPin, PAGINAS, relatorio };
+module.exports = { chromium, servir, novoContexto, semear, passaPin, comProtecao, PAGINAS, relatorio };

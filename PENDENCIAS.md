@@ -1,6 +1,11 @@
 # Pendências — Eleições 2026
 
 ## Feito
+- **v2.5.1 (18/Out/2026) — o site abre sem PIN**: `SolverCofre.proteger` só com o comportamento `cofre.proteger` ligado no
+  RootifyONE (padrão desligado; declarado no `recursos-do-app.json`). O PIN aparece só no ▶ com voz da internet e chave guardada, e
+  "Agora não" segue a leitura com a voz do aparelho. Teste novo: `cofre-entrada.js`. Ver "2.5.1" em "Janelas pela janela comum e
+  regras do PIN" no `ARQUITETURA.md`.
+
 - **v2.5.0 (18/Out/2026) — calendário eleitoral configurável**: um calendário só (`window.Calendario`) com fases 1º turno,
   2º turno e pós-eleição pela data de Brasília; o RootifyONE muda datas, cargos, turnos, onde há 2º turno e força a fase pelo
   comportamento `eleicao.calendario` (declarado no `recursos-do-app.json`). No 2º turno a Colinha mostra só governador (nos estados
@@ -21,6 +26,11 @@
 - **v2.3.0 — interruptor da Colinha**: a Colinha da eleição pode ser desligada no RootifyONE (Controle dos apps → função "Colinha da eleição"), a pedido do dono, porque a eleição está acabando.
 
 ## Sugestões (não feitas, para o dono decidir)
+- **Regra nova para a mãe (rootify-one)**: "app que não guarda dado pessoal não protege a entrada; o PIN do cofre aparece só na hora
+  de usar a chave, e `proteger` vira um comportamento `cofre.proteger` do RootifyONE" — vai para a diretriz (seção do cofre) e para
+  o módulo comum (`diretrizes.js`, `cofre: { proteger }`), numa sessão da mãe.
+- **Relato do dono (18/Out/2026), do cofre mestre (`cofre.js` 1.5.0, rootify-one; não é deste app)**: a digital dispara sozinha ao
+  abrir e a caixa do sistema não fecha com um toque.
 - **`versoes.json`** — a diretriz pede o arquivo `versoes.json` na raiz (versão, data e novidades PT/EN, lido pelo módulo comum).
   Este app guarda as versões **dentro das duas páginas** (bloco `dados`: `versao`, `atualizado_em` e a lista `versoes`, PT no
   `index.html` e EN no `index-en.html`). O dono decidiu (18/Out/2026) não criar o arquivo agora.

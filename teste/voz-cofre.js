@@ -8,7 +8,7 @@
      - nenhuma chave de mentira sobra em texto aberto no navegador
      - 320 px sem rolagem lateral (com a janela do PIN e com as Configurações)
    Uso: node teste/voz-cofre.js */
-const { chromium, servir, novoContexto, semear, passaPin, PAGINAS, relatorio } = require('./comum');
+const { chromium, servir, novoContexto, semear, passaPin, comProtecao, PAGINAS, relatorio } = require('./comum');
 const PORTA = process.env.PORTA || 8096, BASE = 'http://localhost:' + PORTA, PIN = 'pin-de-teste-9';
 const { falhas, conferir } = relatorio();
 const G = 'AIza-FALSA-gemini-1', O = 'sk-FALSA-openai-1', E = 'sk_FALSA_eleven_1', NOVA = 'AIza-FALSA-NOVA-2', ANT = 'sk-ant-FALSA-1';
@@ -26,6 +26,7 @@ const tudoEmAberto = (p) => p.evaluate(() => { let t = ''; for (let i = 0; i < l
   for (const [arq, lg] of PAGINAS) {
     console.log('\n▶ ' + arq);
     const pedidos = [], ctx = await novoContexto(browser, 1100, pedidos);
+    await comProtecao(ctx, BASE);   /* 2.5.1: a janela ao abrir e o PIN ao recarregar são com "cofre.proteger" ligado */
     await semear(ctx, { 'planos2026:voz': VOZ(), 'ch_config': CONTADOR(), 'planos2026:novidade-colinha': 1 });
     const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
     await p.goto(BASE + '/' + arq);

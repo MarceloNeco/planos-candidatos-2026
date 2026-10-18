@@ -3,7 +3,7 @@
      - a página abre sem erro e mostra os botões ▶
      - voz do aparelho: ▶ fala sem pedir nada e sem chamar internet
      - Gemini / OpenAI / ElevenLabs: ▶ chama o provedor com a chave que a pessoa guardou
-       (o cofre pede o PIN ao abrir a página quando há chave guardada; o teste cria o PIN e segue)
+       (sem "cofre.proteger" no RootifyONE, o cofre pede o PIN só no ▶; o teste cria o PIN e segue)
      - o resto das preferências de voz (motor, voz, modelo) continua em planos2026:voz
      - 320 px sem rolagem lateral
    Só valores de mentira. Uso: node teste/caracterizacao.js */
@@ -45,8 +45,8 @@ async function tocar(page) {
       await semear(ctx, { 'planos2026:voz': voz });
       const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
       await p.goto(BASE + '/' + arq);
-      await passaPin(p, PIN, 6000);   /* cofre 1.4.0 com proteger: chave guardada → o PIN é pedido ao abrir a página */
       await tocar(p);
+      await passaPin(p, PIN, 6000);   /* 2.5.1: sem "cofre.proteger", o PIN é pedido no ▶ com voz da internet */
       await p.waitForFunction(() => true); await p.waitForTimeout(2500);
       conferir(pedidos.length > 0 && pedidos.every(x => x.prov === prov && x.chave === CHAVES[prov]), arq + ': ▶ com ' + prov + ' chama o provedor com a chave guardada (' + pedidos.length + ' pedido(s))');
       const v = JSON.parse(await p.evaluate(() => localStorage.getItem('planos2026:voz')));

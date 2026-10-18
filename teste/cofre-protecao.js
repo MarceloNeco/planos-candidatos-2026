@@ -1,5 +1,6 @@
 /* Teste das regras do PIN do cofre (cofre.js 1.4.0, SolverCofre.proteger) e do painel da digital, nas DUAS páginas.
-   Só valores de mentira (PIN e chave de teste).
+   Desde a 2.5.1 essas regras só valem com o comportamento "cofre.proteger" ligado no RootifyONE (aqui, simulado);
+   sem ele, ver teste/cofre-entrada.js. Só valores de mentira (PIN e chave de teste).
      - com chave guardada: o PIN é pedido ao ABRIR a página e ao RECARREGAR; "Agora não" (Esc) deixa trancado
      - a janela do PIN é a janela comum: trava a rolagem de trás
      - passar de uma tela para outra do mesmo app (#macrotemas) não pede o PIN de novo
@@ -8,7 +9,7 @@
      - sem chave guardada: nunca aparece PIN
      - Configurações: o painel da digital do cofre aparece (o desenho é do cofre.js)
    Uso: node teste/cofre-protecao.js */
-const { chromium, servir, novoContexto, semear, passaPin, PAGINAS, relatorio } = require('./comum');
+const { chromium, servir, novoContexto, semear, passaPin, comProtecao, PAGINAS, relatorio } = require('./comum');
 const PORTA = process.env.PORTA || 8099, BASE = 'http://localhost:' + PORTA, PIN = 'pin-de-teste-9', CHAVE = 'AIza-FALSA-protecao-1';
 const { falhas, conferir } = relatorio();
 
@@ -28,6 +29,7 @@ const aparece = async (p, ms) => { try { await janelaPin(p).waitFor({ state: 'vi
 
 async function nova(browser, arq, largura, relogio, erros) {
   const ctx = await novoContexto(browser, largura || 1100, []);
+  await comProtecao(ctx, BASE);
   await semear(ctx, { 'planos2026:prefs': { aoVisto: true, telaCiente: true }, 'planos2026:novidade-colinha': 1 });
   const p = await ctx.newPage(); p.on('pageerror', e => erros.push(arq + ': ' + e.message));
   /* autenticador de mentira do próprio Chromium: o aparelho de teste "tem digital" (o cofre só desenha o botão assim) */
