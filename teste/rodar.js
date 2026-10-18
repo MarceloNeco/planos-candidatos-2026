@@ -5,6 +5,8 @@
      4. colinha-interruptor.js (interruptor da Colinha do RootifyONE) nas duas páginas
      5. janelas.js (todas as janelas pela janela comum: trava de trás, ✕/Esc/Voltar/toque fora, "Descartar?", uma por vez) nas duas páginas, 390 px e computador
      6. cofre-protecao.js (PIN ao abrir e ao recarregar, trancar ao sair/esconder/sem uso, painel da digital) nas duas páginas
+     7. calendario.js (calendário eleitoral: fases, horário de Brasília, fase forçada, 2º turno pelo TSE simulado, lista manual,
+        cópia guardada e 1 ida ao TSE por hora, cola guardada fora do 2º turno) nas duas páginas
    Uso: node teste/rodar.js   (precisa do Playwright: npm install -D playwright) */
 const { spawnSync } = require('child_process');
 const fs = require('fs'), os = require('os'), path = require('path');
@@ -20,7 +22,7 @@ console.log(igual ? '  ✓ index-en.html é igual ao gerado pelo sincroniza-en.p
 if (!igual) falhou = true;
 fs.rmSync(tmp, { recursive: true, force: true });
 
-for (const t of ['caracterizacao.js', 'voz-cofre.js', 'colinha-interruptor.js', 'janelas.js', 'cofre-protecao.js']) {
+for (const t of ['caracterizacao.js', 'voz-cofre.js', 'colinha-interruptor.js', 'janelas.js', 'cofre-protecao.js', 'calendario.js']) {
   console.log('\n▶ ' + t);
   if (spawnSync(process.execPath, [path.join(__dirname, t)], { stdio: 'inherit' }).status !== 0) falhou = true;
 }

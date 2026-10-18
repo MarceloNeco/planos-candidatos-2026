@@ -1,17 +1,40 @@
 {
   "formato": 1,
   "app": "eleicoes-2026",
-  "versao": "2.3.0",
-  "atualizado": "2026-10-17",
+  "versao": "2.5.0",
+  "atualizado": "2026-10-18",
   "nota": {
-    "pt": "O que este app lê do Controle dos apps do RootifyONE (recursos/global.json e recursos/eleicoes-2026.json). Desligado o AssistONE, somem o botão, o balão, as dicas e os itens do ☰ que só abrem o assistente (Procurar, AssistONE, Tour rápido).",
-    "en": "What this app reads from RootifyONE's App control (recursos/global.json and recursos/eleicoes-2026.json). With AssistONE off, the button, the balloon, the tips and the ☰ items that only open the assistant (Search, AssistONE, Quick tour) disappear."
+    "pt": "O que este app lê do Controle dos apps do RootifyONE (recursos/global.json e recursos/eleicoes-2026.json). Desligado o AssistONE, somem o botão, o balão, as dicas e os itens do ☰ que só abrem o assistente (Procurar, AssistONE, Tour rápido). O calendário eleitoral (eleicao.calendario) diz o ano, os turnos, as datas, os cargos de cada turno, onde há 2º turno e a fase; sem ele, vale o padrão de fábrica abaixo (eleição de 2026).",
+    "en": "What this app reads from RootifyONE's App control (recursos/global.json and recursos/eleicoes-2026.json). With AssistONE off, the button, the balloon, the tips and the ☰ items that only open the assistant (Search, AssistONE, Quick tour) disappear. The election calendar (eleicao.calendario) sets the year, rounds, dates, offices per round, where there is a second round and the phase; without it, the factory default below (2026 election) applies."
   },
   "recursos": [
     "assistone",
-    { "id": "colinha", "nome": { "pt": "Colinha da eleição", "en": "Election cheat sheet" }, "onde": { "pt": "Destaque no início, botão na barra do celular, item do menu de partes, ☰, busca, AssistONE e o aviso \"Novidade!\". Desligada, #colinha volta para o início.", "en": "Highlight on the start screen, phone bar button, parts menu item, ☰, search, AssistONE and the \"New!\" notice. When off, #colinha goes back to the start screen." } }
+    { "id": "colinha", "nome": { "pt": "Colinha da eleição", "en": "Election cheat sheet" }, "onde": { "pt": "Destaque no início, botão na barra do celular, item do menu de partes, ☰, busca, AssistONE e o aviso \"Novidade!\". Desligada, #colinha volta para o início. No pós-eleição (calendário) ela some sozinha.", "en": "Highlight on the start screen, phone bar button, parts menu item, ☰, search, AssistONE and the \"New!\" notice. When off, #colinha goes back to the start screen. After the election (calendar) it hides on its own." } }
   ],
   "comportamentos": [
-    "assistone.dicas"
+    "assistone.dicas",
+    {
+      "id": "eleicao.calendario",
+      "nome": { "pt": "Calendário eleitoral", "en": "Election calendar" },
+      "onde": { "pt": "Colinha (cargos de cada turno, finalistas do 2º turno), Início (data e turno) e Presidência → Mandato (posse e datas). JSON: ano, fase (\"auto\", \"1\", \"2\" ou \"pos\"), tse, turnos, segundoTurno (manual, por cargo e por lugar), posse e cargos. Cada campo enviado vence o de fábrica.", "en": "Cheat sheet (offices per round, second-round finalists), Start (date and round) and Presidency → In office (inauguration and dates). JSON: ano, fase (\"auto\", \"1\", \"2\" or \"pos\"), tse, turnos, segundoTurno (manual, per office and place), posse and cargos. Each field sent beats the factory one." },
+      "padrao": {
+        "ano": 2026,
+        "fase": "auto",
+        "tse": "ele2026",
+        "turnos": [
+          { "data": "2026-10-04", "cargos": ["F", "E", "S", "S", "G", "P"] },
+          { "data": "2026-10-25", "cargos": ["G", "P"] }
+        ],
+        "segundoTurno": {},
+        "posse": "2027-01-05",
+        "cargos": {
+          "P": { "pt": "Presidente", "en": "President", "digitos": 2, "tse": 1, "lugar": "br" },
+          "G": { "pt": "Governador(a)", "en": "Governor", "digitos": 2, "tse": 3 },
+          "S": { "pt": "Senador(a)", "en": "Senator", "digitos": 3, "tse": 5 },
+          "F": { "pt": "Deputado(a) federal", "en": "Federal deputy", "digitos": 4, "tse": 6 },
+          "E": { "pt": "Deputado(a) estadual", "en": "State deputy", "digitos": 5, "tse": 7, "DF": { "pt": "Deputado(a) distrital", "en": "District deputy", "tse": 8 } }
+        }
+      }
+    }
   ]
 }

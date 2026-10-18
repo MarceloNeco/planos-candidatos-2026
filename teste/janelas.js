@@ -24,6 +24,8 @@ const quieto = (p) => p.evaluate(() => new Promise(ok => SolverJanela.quandoQuie
 async function pagina(browser, arq, w, hash, sem, itens) {
   const erros = [];
   const ctx = await novoContexto(browser, w, []);
+  /* a Colinha depende do calendário eleitoral: dia fixo no 1º turno (os seis votos), para o teste não mudar com a data */
+  await ctx.clock.setFixedTime(new Date('2026-10-01T15:00:00Z'));
   await semear(ctx, Object.assign({ 'planos2026:prefs': Object.assign({}, PREFS, sem || {}), 'planos2026:novidade-colinha': 1 }, itens || {}));
   const p = await ctx.newPage(); p.on('pageerror', e => erros.push(e.message));
   await p.goto(BASE + '/' + arq + (hash || '#inicio')); await p.waitForSelector('#menu button', { state: 'attached' }); await p.waitForTimeout(700);
