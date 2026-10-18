@@ -119,6 +119,9 @@ celular) mais toque na parte escura (só se começa e termina nela); com texto d
   toque fora) deixa trancado e a voz do aparelho segue funcionando. `SolverCofre.painelDigital` desenha a digital no elemento
   `#tts-cofre-digital` (Configurações → Leitura em voz alta → "Cofre de chaves"; só aparece com o cofre criado; o app não desenha a
   digital por conta própria; o cofre só desenha num elemento já na página: `ligaDigital`).
+- **2.5.2 (18/Out/2026): barra da Colinha numa linha só.** `.ck-bar` (sticky) não quebra linha, em nenhuma largura, nem com `html.ao-on`
+  (margem de 72 px à direita). Botões `flex:1 1 0; min-width:0`, 44 px de altura, barra de até 60 px. Até 480 px, Texto e Imprimir
+  (`.ck-ic`) escondem o `.ck-t` e ficam 44×44, com `aria-label` e `title` com o nome completo. Teste: `teste/colinha-barra.js`.
 - **2.5.1 (18/Out/2026): a entrada não é protegida.** O cofre é um só por endereço e pode ter chaves de outros apps (Contador,
   CifrasONE); este site é público e a chave só serve para a voz. Por isso o `SolverCofre.proteger(...)` (mesmo lugar) só é chamado
   com o comportamento **`cofre.proteger`** ligado no RootifyONE (`SolverRecursos.valor("cofre.proteger", false) === true`; padrão

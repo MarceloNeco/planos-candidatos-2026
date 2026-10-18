@@ -1,6 +1,9 @@
 # Pendências — Eleições 2026
 
 ## Feito
+- **v2.5.2 (18/Out/2026) — barra da Colinha em uma linha**: `.ck-bar` sem quebra (`flex-wrap:nowrap`), botões `flex:1 1 0`, 44 px de
+  altura, barra com no máximo 60 px; rótulos "📤 Compartilhar", "💬 Texto", "🖨 Imprimir"; até 480 px, Texto e Imprimir só com o ícone
+  (44×44, `aria-label` e `title` com o nome completo). Só CSS e rótulos. Teste novo: `colinha-barra.js`.
 - **v2.5.1 (18/Out/2026) — o site abre sem PIN**: `SolverCofre.proteger` só com o comportamento `cofre.proteger` ligado no
   RootifyONE (padrão desligado; declarado no `recursos-do-app.json`). O PIN aparece só no ▶ com voz da internet e chave guardada, e
   "Agora não" segue a leitura com a voz do aparelho. Teste novo: `cofre-entrada.js`. Ver "2.5.1" em "Janelas pela janela comum e
