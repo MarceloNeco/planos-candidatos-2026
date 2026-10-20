@@ -1,7 +1,7 @@
 {
- "atualizado_em": "2026-10-18T13:29:19Z",
- "conferido_em": "2026-10-18T13:29:19Z",
- "impressao": "5fc58517a6389a40eb0d28ba83c303ae399e860aa317d16dbb9317eef893cd86",
+ "atualizado_em": "2026-10-20T14:27:11Z",
+ "conferido_em": "2026-10-20T14:27:11Z",
+ "impressao": "cb87b297b1a53928597e39f91c89f94081feeb83f58ce01d69598b8681fc823f",
  "fontes": {
   "camara": "https://dadosabertos.camara.leg.br/api/v2",
   "senado": "https://legis.senado.leg.br/dadosabertos",
