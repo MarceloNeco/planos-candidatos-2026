@@ -67,7 +67,7 @@ def mandato_presidencial(hoje=None):
     return ini
 
 
-def baixa(url, json_=True, tentativas=4, destino=None):
+def baixa(url, json_=True, tentativas=7, destino=None):
     """GET com insistência (as APIs públicas às vezes respondem 5xx).
     Com destino, grava em arquivo (para os arquivos grandes da Câmara)."""
     for i in range(tentativas):
@@ -89,7 +89,7 @@ def baixa(url, json_=True, tentativas=4, destino=None):
             if i == tentativas - 1:
                 raise
             print('  falhou (%s), tentando de novo…' % e)
-            time.sleep(2 ** (i + 1))
+            time.sleep(min(2 ** (i + 1), 60))   # 2, 4, 8, 16, 32, 60 s: aguenta uma queda de ~2 min
 
 
 def norm(nome):
