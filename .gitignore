@@ -1,0 +1,3 @@
+# capturas do harness de paridade: só os resumos e as comparações ficam no repositório
+teste/paridade/*/*.csv
+teste/paridade/*/*.txt

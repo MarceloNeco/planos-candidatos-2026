@@ -1,0 +1,18 @@
+{
+ "A": "atual-A",
+ "B": "forcado-selic",
+ "comparado_em": "2026-10-22T18:02:44.018Z",
+ "diferencas": [
+  {
+   "onde": "snapshot",
+   "detalhe": "os dois lados NÃO partem do mesmo snapshot de dados (ig_sha256 diferente): a comparação só vale com o mesmo snapshot"
+  },
+  {
+   "onde": "g-inflacao-e-taxa-de-juros",
+   "detalhe": "1 linha(s) diferente(s)",
+   "linhas": [
+    "Taxa Selic Meta||1999: 19 → 20"
+   ]
+  }
+ ]
+}

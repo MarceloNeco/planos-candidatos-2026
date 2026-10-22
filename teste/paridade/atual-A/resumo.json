@@ -1,0 +1,502 @@
+{
+ "nome": "atual-A",
+ "capturado_em": "2026-10-22T18:01:10.910Z",
+ "url": "http://localhost:8123/index.html#infograficos",
+ "snapshot": {
+  "ig_sha256": "6cc98b6890ae0986b7323b3b8295db15a28bc6e613809614eb926da07822ce84",
+  "versao_app": "2.5.3",
+  "pagina": "index.html"
+ },
+ "total_graficos_no_ig": 43,
+ "blocos_na_pagina": 45,
+ "extras": {
+  "g-sobrepor": {
+   "existe": true,
+   "sha256": "7c900d49def5c44c1f6cd63b749d51a8c41c2c661ab8cad923d3df813de377b7"
+  },
+  "g-marcos-comp": {
+   "existe": true,
+   "sha256": "a060794dca8b7e718488975fd96032f4a190e0a9f701736f1e339314bd12d574"
+  },
+  "ig-indice": {
+   "existe": true,
+   "sha256": "1a3042172e23563804a042db907c3b967973ca13a9ddf0cbddec2d050ee9d977"
+  }
+ },
+ "erros_js": [],
+ "blocos": [
+  {
+   "n": 1,
+   "slug": "g-crescimento-do-pib-brasil-e-mundo",
+   "titulo": "Crescimento do PIB — Brasil e mundo",
+   "forma": "barra-linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "73603ee63c8c38c2489b5230ae2decb3e9bb3683f03c404fb9b0b844b0f54fe0",
+   "linhas": 57,
+   "arquivo": "g-crescimento-do-pib-brasil-e-mundo.csv"
+  },
+  {
+   "n": 2,
+   "slug": "g-inflacao-e-taxa-de-juros",
+   "titulo": "Inflação e taxa de juros",
+   "forma": "duas-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "bebb0da6dc145a169863ff777446f3da78118ed4e3bee1a43c2e5d3b230bef6b",
+   "linhas": 58,
+   "arquivo": "g-inflacao-e-taxa-de-juros.csv"
+  },
+  {
+   "n": 3,
+   "slug": "g-inflacao-sentida-por-quem-ganha-menos",
+   "titulo": "Inflação sentida por quem ganha menos",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "446c6d547970e2a38fd9842cb2a7a9cbd573bb4a6e73bcd353abb786f351f5b9",
+   "linhas": 86,
+   "arquivo": "g-inflacao-sentida-por-quem-ganha-menos.csv"
+  },
+  {
+   "n": 4,
+   "slug": "g-cambio-real-por-dolar",
+   "titulo": "Câmbio — real por dólar",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "14cf120d3c02321f8d7a949bc558aa3440902c981b0ac8c34afe90a61b66a53c",
+   "linhas": 30,
+   "arquivo": "g-cambio-real-por-dolar.csv"
+  },
+  {
+   "n": 5,
+   "slug": "g-divida-publica-tres-reguas-nenhuma-emendada",
+   "titulo": "Dívida pública — três réguas, nenhuma emendada",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "8573c867111667125c8dfa615a5f07203553b6aa0e8120b959fdc00b80fbaa80",
+   "linhas": 54,
+   "arquivo": "g-divida-publica-tres-reguas-nenhuma-emendada.csv"
+  },
+  {
+   "n": 6,
+   "slug": "g-carga-tributaria-bruta",
+   "titulo": "Carga tributária bruta",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "b92f8133f44ab8ebb7315626c33cc51f69f7e1cc249f84160fef24c1ba688acb",
+   "linhas": 28,
+   "arquivo": "g-carga-tributaria-bruta.csv"
+  },
+  {
+   "n": 7,
+   "slug": "g-desemprego-duas-pesquisas-duas-reguas",
+   "titulo": "Desemprego — duas pesquisas, duas réguas",
+   "forma": "duas-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "7adc66dbae7b848dad27b0092afabd082e9d72f95b0f17b76a13bc55a8a1a01d",
+   "linhas": 34,
+   "arquivo": "g-desemprego-duas-pesquisas-duas-reguas.csv"
+  },
+  {
+   "n": 8,
+   "slug": "g-desocupacao-subutilizacao-e-desalento",
+   "titulo": "Desocupação, subutilização e desalento",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "08824be28082ee122c87847a31f75b5e4b2b8f0b7f05dd88f6652c6a275ec0e0",
+   "linhas": 46,
+   "arquivo": "g-desocupacao-subutilizacao-e-desalento.csv"
+  },
+  {
+   "n": 9,
+   "slug": "g-desemprego-por-estado",
+   "titulo": "Desemprego por estado",
+   "forma": "uf-barras",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "c3adddf386d929fdf64ec86daca01461a3d59b6e762df52b2c51293f0445e553",
+   "linhas": 406,
+   "arquivo": "g-desemprego-por-estado.csv"
+  },
+  {
+   "n": 10,
+   "slug": "g-desemprego-e-transferencia-de-renda-lado-a-l",
+   "titulo": "Desemprego e transferência de renda, lado a lado",
+   "forma": "paineis",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "083d311bce2935d7e3dad6a93d95f48596903e2ecab418904abf782558fab712",
+   "linhas": 62,
+   "arquivo": "g-desemprego-e-transferencia-de-renda-lado-a-l.csv"
+  },
+  {
+   "n": 11,
+   "slug": "g-transferencia-de-renda-familias-atendidas-e-",
+   "titulo": "Transferência de renda — famílias atendidas e valor médio",
+   "forma": "paineis",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "7fe9bc6d1630f782c03cd1a2646898b27122a2fb749d834196015acdacefa019",
+   "linhas": 47,
+   "arquivo": "g-transferencia-de-renda-familias-atendidas-e-.csv"
+  },
+  {
+   "n": 12,
+   "slug": "g-beneficio-de-prestacao-continuada-beneficiar",
+   "titulo": "Benefício de Prestação Continuada — beneficiários",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "852b8f06f2d49d0cc8b29b4a857fdc15d5566535dbccf53835b76ca523d653bf",
+   "linhas": 24,
+   "arquivo": "g-beneficio-de-prestacao-continuada-beneficiar.csv"
+  },
+  {
+   "n": 13,
+   "slug": "g-salario-minimo-valor-desde-o-real",
+   "titulo": "Salário mínimo — valor desde o real",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "7479cf3bb5ba230cfd81982960706f16b88eb08ff43e21a52e6ca6e40d37c21a",
+   "linhas": 34,
+   "arquivo": "g-salario-minimo-valor-desde-o-real.csv"
+  },
+  {
+   "n": 14,
+   "slug": "g-reajuste-do-salario-minimo-e-inflacao",
+   "titulo": "Reajuste do salário mínimo e inflação",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "a470e3ee2b719e992d2a6c9bcfe86d534a015d04310b21b1de709617a6dbc0eb",
+   "linhas": 62,
+   "arquivo": "g-reajuste-do-salario-minimo-e-inflacao.csv"
+  },
+  {
+   "n": 15,
+   "slug": "g-fila-do-inss-requerimentos-aguardando-analis",
+   "titulo": "Fila do INSS — requerimentos aguardando análise",
+   "forma": "pontos",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "6bf67c1e5d92f98c1a4c4bdfd19df396a73e80ee49a2cbc4f82c0f54e0e924ff",
+   "linhas": 11,
+   "arquivo": "g-fila-do-inss-requerimentos-aguardando-analis.csv"
+  },
+  {
+   "n": 16,
+   "slug": "g-populacao-por-faixa-etaria",
+   "titulo": "População por faixa etária",
+   "forma": "area-empilhada",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "a72b995e1967e5a1c3f3c3dd31c5ac812da5e9050d9f948975ec7d5062a6718f",
+   "linhas": 57,
+   "arquivo": "g-populacao-por-faixa-etaria.csv"
+  },
+  {
+   "n": 17,
+   "slug": "g-ideb-rede-publica",
+   "titulo": "IDEB — rede pública",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "ddd54ebdb9c6a7a814033bd8cbb88c1c9f558d9eea109183a472063153a12d66",
+   "linhas": 31,
+   "arquivo": "g-ideb-rede-publica.csv"
+  },
+  {
+   "n": 18,
+   "slug": "g-analfabetismo-15-anos-ou-mais",
+   "titulo": "Analfabetismo — 15 anos ou mais",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "d909e93aadd09dbb1d54917b402cec793f60cc0d424c012c85ceea284660da5d",
+   "linhas": 39,
+   "arquivo": "g-analfabetismo-15-anos-ou-mais.csv"
+  },
+  {
+   "n": 19,
+   "slug": "g-escolaridade-de-quem-tem-25-anos-ou-mais",
+   "titulo": "Escolaridade de quem tem 25 anos ou mais",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "d909e93aadd09dbb1d54917b402cec793f60cc0d424c012c85ceea284660da5d",
+   "linhas": 39,
+   "arquivo": "g-escolaridade-de-quem-tem-25-anos-ou-mais.csv"
+  },
+  {
+   "n": 20,
+   "slug": "g-obitos-registrados-na-terra-indigena-yanomam",
+   "titulo": "Óbitos registrados na Terra Indígena Yanomami",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "a42199b15a1778848b72068d013c5a97c76d5c0a0d9b4869ee85f3b5acd5e980",
+   "linhas": 9,
+   "arquivo": "g-obitos-registrados-na-terra-indigena-yanomam.csv"
+  },
+  {
+   "n": 21,
+   "slug": "g-homicidios-por-100-mil-habitantes",
+   "titulo": "Homicídios por 100 mil habitantes",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "5e8e79ae0463e4f9589e31036b8ce3733f8bbafa063141a5952a54ea8e90bdf0",
+   "linhas": 22,
+   "arquivo": "g-homicidios-por-100-mil-habitantes.csv"
+  },
+  {
+   "n": 22,
+   "slug": "g-homicidios-por-estado",
+   "titulo": "Homicídios por estado",
+   "forma": "uf-barras",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "7a8617de52300d140def14eaeb3ce4ec1489b40d1164aba1c9e88a60f2508c96",
+   "linhas": 568,
+   "arquivo": "g-homicidios-por-estado.csv"
+  },
+  {
+   "n": 23,
+   "slug": "g-desmatamento-por-bioma",
+   "titulo": "Desmatamento por bioma",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "ca0421fd45231aeb25f0de95454950606eca189c7720ab8fffd3ad683ff04f6f",
+   "linhas": 92,
+   "arquivo": "g-desmatamento-por-bioma.csv"
+  },
+  {
+   "n": 24,
+   "slug": "g-terras-indigenas-homologadas",
+   "titulo": "Terras indígenas homologadas",
+   "forma": "barra",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "6c92ce22e26142c5c04db4cacbadb7f496ce399401eb90eb7eeeaf2bdde56d95",
+   "linhas": 12,
+   "arquivo": "g-terras-indigenas-homologadas.csv"
+  },
+  {
+   "n": 25,
+   "slug": "g-reforma-agraria-assentar-e-titular",
+   "titulo": "Reforma agrária — assentar e titular",
+   "forma": "titulacao-so",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "951dcdb7b1e890caf03bb8af77720a6ce97784899028eecf21d17dc949432a25",
+   "linhas": 44,
+   "arquivo": "g-reforma-agraria-assentar-e-titular.csv"
+  },
+  {
+   "n": 26,
+   "slug": "g-stf-e-poder-executivo-federal",
+   "titulo": "STF e Poder Executivo federal",
+   "forma": "dossie-stf",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "1750f192debf5b0cf2a22041da4c34c705995ef52af9966377970d7b9e0fee88",
+   "linhas": 22,
+   "arquivo": "g-stf-e-poder-executivo-federal.csv"
+  },
+  {
+   "n": 27,
+   "slug": "g-servicos-publicos-desburocratizacao-e-digita",
+   "titulo": "Serviços públicos, desburocratização e digitalização",
+   "forma": "marcos-lista",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "f6a970341e809d6cb7472d1749b9e86e427ab05d02f5407a4f10d2a1cecf2189",
+   "linhas": 25,
+   "arquivo": "g-servicos-publicos-desburocratizacao-e-digita.csv"
+  },
+  {
+   "n": 28,
+   "slug": "g-pesos-das-dimensoes",
+   "titulo": "Pesos das dimensões",
+   "forma": "pesos-radar",
+   "existe": true,
+   "modo": "texto",
+   "sha256": "a9efc5db9c126ae835bbd3f8102775c5897ddbf90d681c8e72c237e5c515f28c",
+   "linhas": 49,
+   "arquivo": "g-pesos-das-dimensoes.txt"
+  },
+  {
+   "n": 29,
+   "slug": "g-alcance-dos-marcos-dimensao-por-dimensao",
+   "titulo": "Alcance dos marcos, dimensão por dimensão",
+   "forma": "marcos-radar",
+   "existe": true,
+   "modo": "texto",
+   "sha256": "3065c3be9597795bb56794d1ff53a212cf5d7fee8070de8e9e9a0d418a24cf61",
+   "linhas": 36,
+   "arquivo": "g-alcance-dos-marcos-dimensao-por-dimensao.txt"
+  },
+  {
+   "n": 30,
+   "slug": "g-marcos-legais-e-regulatorios",
+   "titulo": "Marcos legais e regulatórios",
+   "forma": "marcos-lista",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "4b75dbfc17bb851a1a012e3e0ad2395499d861b77f019ee4877b966f5bca256a",
+   "linhas": 38,
+   "arquivo": "g-marcos-legais-e-regulatorios.csv"
+  },
+  {
+   "n": 31,
+   "slug": "g-estatais-federais-duas-medidas-que-nao-se-so",
+   "titulo": "Estatais federais — duas medidas que não se somam",
+   "forma": "paineis",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "9210a9453e1eada7754c1229bfeab95f5ef8aab3f5cc213a6e0db7799b6ebca3",
+   "linhas": 36,
+   "arquivo": "g-estatais-federais-duas-medidas-que-nao-se-so.csv"
+  },
+  {
+   "n": 32,
+   "slug": "g-resultado-por-empresa-estatal",
+   "titulo": "Resultado por empresa estatal",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "1ed118f29060422f2d7171c1aaca3fb9c5c1695792c1c8f45e513baaf4e106b9",
+   "linhas": 121,
+   "arquivo": "g-resultado-por-empresa-estatal.csv"
+  },
+  {
+   "n": 33,
+   "slug": "g-descontos-associativos-em-beneficios-do-inss",
+   "titulo": "Descontos associativos em benefícios do INSS",
+   "forma": "barra",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "e6e4b65a53d96aa879ae5a143bc03958d695ded538b70d52e73fcacd09ec2f86",
+   "linhas": 10,
+   "arquivo": "g-descontos-associativos-em-beneficios-do-inss.csv"
+  },
+  {
+   "n": 34,
+   "slug": "g-devolucao-aos-beneficiarios-valor-acumulado",
+   "titulo": "Devolução aos beneficiários — valor acumulado",
+   "forma": "pontos",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "31b8256a31ef9b51a5f7089be162bd36d99fb376fbfd325031b70917e4e1d08a",
+   "linhas": 3,
+   "arquivo": "g-devolucao-aos-beneficiarios-valor-acumulado.csv"
+  },
+  {
+   "n": 35,
+   "slug": "g-teto-do-salario-de-contribuicao",
+   "titulo": "Teto do salário de contribuição",
+   "forma": "linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "6fad5b10252f8181b4d94aab4dd40445ebd1a46c72f82d67ae0479137a8f2d12",
+   "linhas": 30,
+   "arquivo": "g-teto-do-salario-de-contribuicao.csv"
+  },
+  {
+   "n": 36,
+   "slug": "g-ibovespa-o-que-a-bolsa-fez-em-cada-ano",
+   "titulo": "Ibovespa — o que a bolsa fez em cada ano",
+   "forma": "barra",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "29d9a782e54117e6a1f03c382c312950d89de4a35b9ddcbbf67abe9f942678e2",
+   "linhas": 30,
+   "arquivo": "g-ibovespa-o-que-a-bolsa-fez-em-cada-ano.csv"
+  },
+  {
+   "n": 37,
+   "slug": "g-quantos-ministerios-cada-governo-teve",
+   "titulo": "Quantos ministérios cada governo teve",
+   "forma": "barra",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "c22fc07ad83a829118b5fb62d96117381f20d3f845f1669add4008a06fcf0325",
+   "linhas": 27,
+   "arquivo": "g-quantos-ministerios-cada-governo-teve.csv"
+  },
+  {
+   "n": 38,
+   "slug": "g-arrecadacao-federal-quanto-o-governo-federal",
+   "titulo": "Arrecadação federal — quanto o governo federal recolheu em cada ano",
+   "forma": "barra-linha",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "0647f08faa648e54a42408a4d88c75455091e723208db4d66b951d54c54c420f",
+   "linhas": 57,
+   "arquivo": "g-arrecadacao-federal-quanto-o-governo-federal.csv"
+  },
+  {
+   "n": 39,
+   "slug": "g-impostos-federais-o-que-cada-governo-mexeu",
+   "titulo": "Impostos federais — o que cada governo mexeu",
+   "forma": "marcos-lista",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "aa326f013640286143f3c8fab7d594c28a8bae0808e6999c180b32579ddd605e",
+   "linhas": 34,
+   "arquivo": "g-impostos-federais-o-que-cada-governo-mexeu.csv"
+  },
+  {
+   "n": 40,
+   "slug": "g-mortes-no-brasil-o-total-e-os-grandes-grupos",
+   "titulo": "Mortes no Brasil — o total e os grandes grupos de causa",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "2db61b98d1d9a33c51bafd6b12bbc10e8a1936f2b72a9356b5091fb60174c704",
+   "linhas": 365,
+   "arquivo": "g-mortes-no-brasil-o-total-e-os-grandes-grupos.csv"
+  },
+  {
+   "n": 41,
+   "slug": "g-as-doencas-que-mais-matam",
+   "titulo": "As doenças que mais matam",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "d60ecabacc0f65e4900350c0565324ee4410476d4a3e2e5022360b668d324f04",
+   "linhas": 398,
+   "arquivo": "g-as-doencas-que-mais-matam.csv"
+  },
+  {
+   "n": 42,
+   "slug": "g-estatais-federais-quantas-sairam-e-quantas-e",
+   "titulo": "Estatais federais — quantas saíram e quantas entraram em cada mandato",
+   "forma": "mandato-barras",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "d4990d9edb8bdbc1576b348064d4f5b753746b352aaeb7380bd6683ee50a3490",
+   "linhas": 75,
+   "arquivo": "g-estatais-federais-quantas-sairam-e-quantas-e.csv"
+  },
+  {
+   "n": 43,
+   "slug": "g-quantas-empresas-estatais-existem",
+   "titulo": "Quantas empresas estatais existem",
+   "forma": "categorias-linhas",
+   "existe": true,
+   "modo": "csv",
+   "sha256": "8901f6abd7882471485aecd55e363547f490c429edcce2acd746c4e3d3dd2481",
+   "linhas": 41,
+   "arquivo": "g-quantas-empresas-estatais-existem.csv"
+  }
+ ]
+}
