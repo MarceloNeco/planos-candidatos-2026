@@ -1,0 +1,65 @@
+{
+ "rodado_em": "2026-10-22T17:36:07Z",
+ "chamadas": [
+  {
+   "fonte": "IBGE SIDRA 1737 v69 (IPCA acumulado no ano)",
+   "url": "https://apisidra.ibge.gov.br/values/t/1737/n1/all/v/69/p/all?formato=json",
+   "segundos": 1.33,
+   "bytes": 95233,
+   "linhas": 562
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 1998-2002",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/1998&dataFinal=31/12/2002",
+   "segundos": 1.15,
+   "bytes": 53125,
+   "linhas": 1398
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 2003-2007",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2003&dataFinal=31/12/2007",
+   "segundos": 1.24,
+   "bytes": 69389,
+   "linhas": 1826
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 2008-2012",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2008&dataFinal=31/12/2012",
+   "segundos": 1.05,
+   "bytes": 68765,
+   "linhas": 1827
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 2013-2017",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2013&dataFinal=31/12/2017",
+   "segundos": 15.62,
+   "bytes": 68900,
+   "linhas": 1826
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 2018-2022",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2018&dataFinal=31/12/2022",
+   "segundos": 0.89,
+   "bytes": 67895,
+   "linhas": 1826
+  },
+  {
+   "fonte": "BCB SGS 432 (meta Selic), janela 2023-2026",
+   "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2023&dataFinal=31/12/2026",
+   "segundos": 12.67,
+   "bytes": 53353,
+   "linhas": 1404
+  }
+ ],
+ "series": {
+  "ipca": {
+   "anos_iguais": 28,
+   "diferencas": []
+  },
+  "selic": {
+   "anos_iguais": 27,
+   "diferencas": []
+  }
+ },
+ "segundos_total": 66.9
+}
