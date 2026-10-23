@@ -5,7 +5,7 @@ As pendências do Eleições 2026 (2.5.3) continuam valendo e estão em `docs/PE
 
 | # | Pendência | Origem | Situação |
 |---|---|---|---|
-| 1 | Escolher o nome do produto entre as cinco propostas; criar os dois repositórios | F0, entrega 1 | ⏸ aguardando o dono |
+| 1 | Nome do produto: **RadarONE** (escolhido em 22/10/2026). Repositórios: ver #21 | F0, entrega 1 | ✅ nome; repositórios em 26/10 |
 | 2 | `eleicao.fase` passa a existir fora de `eleicao.calendario.fase`; a de dentro fica como reserva. Decidir se, na F2, a de dentro é removida | ADR 0010 | ⏸ aguardando o dono |
 | 3 | "Pré-campanha" = eleição ligada sem Colinha. Confirmar (ou pedir Colinha preliminar na pré-campanha) | ADR 0010 | ⏸ aguardando o dono |
 | 4 | Parecer `ANALISE-plataforma-politica.md`, seção 3: `atualizacao.cadencia` deixa de ser um valor único e vira cadência por família; acrescentar `eleicao.modo` e `eleicao.fase` (requisitos 1 e 2 de 19/10) | ADR 0003 e 0010 | 🟡 aberta (chat Arquitetura atualiza o parecer) |
@@ -25,3 +25,5 @@ As pendências do Eleições 2026 (2.5.3) continuam valendo e estão em `docs/PE
 | 18 | Parecer de advogado antes de qualquer veredito próprio no Mentirômetro | ADR 0007 | ⏸ aguardando o dono |
 | 19 | O harness de paridade captura 41 blocos por CSV e 2 por impressão digital (pesos das dimensões e alcance dos marcos: células, textos do SVG e títulos). Na F2, dar CSV também a esses dois | harness F0 | 🟡 aberta |
 | 20 | PR 2 do RootifyONE (aba Recursos e menu com os apps declarados, #116 e #117) é pré-requisito para o Controle dos apps mostrar os comportamentos novos com `opcoes` | fila de ideias | 🟡 aberta (sessão mãe) |
+| 21 | Roteiro de 26/10/2026 (depois do 2º turno): renomear `planos-candidatos-2026` → `radar-one`; criar `radar-one-dados` (público, vazio) e subir README + manifesto; criar o repositório-placa `planos-candidatos-2026` com `docs/redirecionamento/`, ligar o Pages e arquivar; RootifyONE → Apps → endereço `solverone.com.br/radar-one/` → Publicar; sessão mãe ajusta `rootify-catalogo.js`, a lista do portal em `diretrizes.js` e o link do Portal | decisão do dono, 23/10 (ADR 0009, emenda) | ⏸ aguardando 26/10 |
+| 22 | Trocar as 4 menções de `planos-candidatos-2026` no `index.html` (`SITE` do WhatsApp da Colinha, dois rodapés de imagem e o aviso "a partir da versão publicada em…") pelo endereço novo, em PR de 8 linhas logo depois da renomeação | ADR 0009, emenda | 🟡 aberta (26/10) |

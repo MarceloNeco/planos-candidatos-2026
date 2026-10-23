@@ -24,12 +24,13 @@ teste), que continua inteiro dentro dele como módulo. As duas especificações 
 
 | Caminho | O que é | Mexer? |
 |---|---|---|
-| `index.html`, `index-en.html`, `sincroniza-en.py`, `*.pdf`, `banner.jpg`, `trilha.mp3`, `congresso/`, `cola/`, `presidencia/`, `congresso-sync.py`, `congresso-pautas.json`, `presidencia-compromissos.json`, `.github/workflows/congresso-sync.yml`, `teste/*.js` (exceto `paridade.js`) | **o app atual, copiado com histórico**; regras no `docs/ARQUITETURA-eleicoes-2.5.3.md` | só pelos PRs da F1 |
+| `index.html`, `index-en.html`, `sincroniza-en.py`, `*.pdf`, `banner.jpg`, `trilha.mp3`, `congresso/`, `cola/`, `presidencia/`, `congresso-sync.py`, `congresso-pautas.json`, `presidencia-compromissos.json`, `.github/workflows/congresso-sync.yml`, `teste/*.js` (exceto `paridade.js`) | **o app atual** (este repositório é renomeado de `planos-candidatos-2026` para `radar-one` em 26/10/2026, depois do 2º turno; ADR 0009, emenda); regras no `docs/ARQUITETURA-eleicoes-2.5.3.md` | só pelos PRs da F1 |
 | `janela.js`, `cofre.js`, `recursos.js` | mestres da SolverONE (cópias exatas do `rootify-one`) | **nunca à mão** |
 | `recursos-do-app.json` | o que o produto novo obedece do RootifyONE (ADR 0005 e 0010) | sim, ao ligar interruptor novo no código |
 | `docs/adr/` | decisões de arquitetura, uma por arquivo (índice em `0000-indice.md`) | sim, por ADR novo ou "superado por" |
 | `docs/legacy_catalog.json` e `.md` | manifesto das 43 entradas de infográficos (T01/T25), gerado por `robos/gera-legacy-catalog.py` | regenerar, não editar à mão |
 | `docs/fontes/registro-de-fontes.json` e `.md` | registro de fontes (T23), gerado por `robos/gera-registro-fontes.py` | editar o script e regenerar |
+| `docs/redirecionamento/` | as duas páginas (PT e EN) do repositório-placa que ficará com o nome antigo | copiar para lá em 26/10 |
 | `docs/limites-planos-gratuitos.md`, `docs/medicao-conectores.md` | limites lidos nas páginas oficiais e medição das APIs (datas e links) | reconferir a cada fase |
 | `docs/plano-F1.md` | os 10 PRs da F1, com prova e modelo | sim |
 | `docs/ARQUITETURA-eleicoes-2.5.3.md`, `docs/PENDENCIAS-eleicoes-2.5.3.md` | os dois arquivos do app atual, intactos | só pelos PRs da F1 |

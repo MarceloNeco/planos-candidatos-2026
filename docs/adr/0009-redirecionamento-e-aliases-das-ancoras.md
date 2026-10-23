@@ -1,6 +1,18 @@
 # ADR 0009 — Redirecionamento do endereço antigo e aliases de todas as âncoras (T08)
 
-**Estado:** proposta (F0, 22/10/2026) · **Vale a partir da:** F1 (último PR) · **Decisão do dono já tomada:** o repositório antigo vira arquivo e redirecionamento (parecer, seção 6, item 2)
+**Estado:** proposta (F0, 22/10/2026), **emendada em 23/10/2026** · **Vale a partir da:** 26/10/2026 (renomeação) e F1 (aliases)
+
+## Emenda de 23/10/2026 (decisão do dono)
+
+Em vez de criar o `radar-one` como cópia e deixar o `planos-candidatos-2026` virar arquivo no fim da F1, o dono decidiu
+**renomear** `planos-candidatos-2026` para `radar-one` em **26/10/2026, depois do 2º turno** (nada muda antes da votação de 25/10).
+Motivos: um repositório só (sem código duplicado), nome certo desde o início, e tudo vai junto na renomeação (histórico, branches,
+tag, PRs, robô diário e Pages). O endereço antigo (`solverone.com.br/planos-candidatos-2026/`) continua abrindo por um
+repositório novo com o nome antigo, contendo só as duas páginas de `docs/redirecionamento/` (PT e EN, preservam `#` e `?`),
+marcado como *Archived* no mesmo dia. Depois da renomeação: PR de 8 linhas trocando as 4 menções do endereço no `index.html`
+(texto da Colinha no WhatsApp, rodapé das imagens e aviso); RootifyONE → Apps → endereço novo → Publicar; mestres
+`rootify-catalogo.js` e `diretrizes.js` (lista do portal) e o link do Portal pela sessão mãe. A tabela de aliases (abaixo)
+continua valendo para a F1.
 
 ## Contexto
 
